@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CarParSel</title>
+    <style>
+    #logo {
+        height: 200px;
+        position: absolute;
+        top: 40%;
+        left: 35%;
+    }
+    </style>
+</head>
+<body>
+<div id="logo">
+    <a href="start/overview"><img id="programLogo" src="carparsel_logo.png" /></a>
+    <a href="https://www.facebook.com/EurafGmbH" target="_blank"><img id="firmLogo" src="euraf_logo.jpg" /></a>
+</div>
+<script>
+    window.onload = function() {
+        window.setTimeout( "redirect()", 2000 );
+    };
+
+    function redirect() {
+        window.location = "start/overview";
+    }
+</script>
+</body>
+</html>

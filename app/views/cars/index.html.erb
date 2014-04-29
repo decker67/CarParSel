@@ -1,0 +1,53 @@
+<h1>Listing cars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>CarId</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Type</th>
+      <th>Power</th>
+      <th>Yearofconstruction</th>
+      <th>Integer</th>
+      <th>Constructionperiod</th>
+      <th>Cylindercapacity</th>
+      <th>Fuel</th>
+      <th>Gearing</th>
+      <th>Keynumber2</th>
+      <th>Keynumber3</th>
+      <th>Mileage</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.carId %></td>
+        <td><%= car.brand %></td>
+        <td><%= car.model %></td>
+        <td><%= car.type %></td>
+        <td><%= car.power %></td>
+        <td><%= car.yearOfConstruction %></td>
+        <td><%= car.integer %></td>
+        <td><%= car.constructionPeriod %></td>
+        <td><%= car.cylinderCapacity %></td>
+        <td><%= car.fuel %></td>
+        <td><%= car.gearing %></td>
+        <td><%= car.keyNumber2 %></td>
+        <td><%= car.keyNumber3 %></td>
+        <td><%= car.mileage %></td>
+        <td><%= link_to 'Show', car %></td>
+        <td><%= link_to 'Edit', edit_car_path(car) %></td>
+        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Car', new_car_path %>
