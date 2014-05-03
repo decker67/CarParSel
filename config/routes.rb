@@ -1,4 +1,10 @@
 CarParSel::Application.routes.draw do
+  resources :brand_models
+
+  resources :brands
+
+  resources :cars
+
   resources :cars
 
   resources :sellers

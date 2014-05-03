@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: MyString
+  carId: MyString
   brand: 1
   model: MyString
-  type: 
+  carType: MyString
   power: MyString
-  yearOfConstruction: MyString
-  integer: MyString
-  constructionPeriod: MyString
+  yearOfConstruction: 1
+  constructionPeriodFrom: 1
+  constructionPeriodTo: 1
   cylinderCapacity: 1
   fuel: 1
   gearing: 1
@@ -17,14 +17,14 @@ one:
   mileage: 1
 
 two:
-  id: MyString
+  carId: MyString
   brand: 1
   model: MyString
-  type: 
+  carType: MyString
   power: MyString
-  yearOfConstruction: MyString
-  integer: MyString
-  constructionPeriod: MyString
+  yearOfConstruction: 1
+  constructionPeriodFrom: 1
+  constructionPeriodTo: 1
   cylinderCapacity: 1
   fuel: 1
   gearing: 1

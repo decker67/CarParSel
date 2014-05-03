@@ -1,1 +1,0 @@
-json.extract! @car, :id, :carId, :brand, :model, :type, :power, :yearOfConstruction, :integer, :constructionPeriod, :cylinderCapacity, :fuel, :gearing, :keyNumber2, :keyNumber3, :mileage, :created_at, :updated_at

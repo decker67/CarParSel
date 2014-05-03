@@ -18,7 +18,7 @@ class CarsControllerTest < ActionController::TestCase
 
   test "should create car" do
     assert_difference('Car.count') do
-      post :create, car: { brand: @car.brand, constructionPeriod: @car.constructionPeriod, cylinderCapacity: @car.cylinderCapacity, fuel: @car.fuel, gearing: @car.gearing, id: @car.id, integer: @car.integer, keyNumber2: @car.keyNumber2, keyNumber3: @car.keyNumber3, mileage: @car.mileage, model: @car.model, power: @car.power, type: @car.type, yearOfConstruction: @car.yearOfConstruction }
+      post :create, car: { brand: @car.brand, carId: @car.carId, carType: @car.carType, constructionPeriodFrom: @car.constructionPeriodFrom, constructionPeriodTo: @car.constructionPeriodTo, cylinderCapacity: @car.cylinderCapacity, fuel: @car.fuel, gearing: @car.gearing, keyNumber2: @car.keyNumber2, keyNumber3: @car.keyNumber3, mileage: @car.mileage, model: @car.model, power: @car.power, yearOfConstruction: @car.yearOfConstruction }
     end
 
     assert_redirected_to car_path(assigns(:car))
@@ -35,7 +35,7 @@ class CarsControllerTest < ActionController::TestCase
   end
 
   test "should update car" do
-    patch :update, id: @car, car: { brand: @car.brand, constructionPeriod: @car.constructionPeriod, cylinderCapacity: @car.cylinderCapacity, fuel: @car.fuel, gearing: @car.gearing, id: @car.id, integer: @car.integer, keyNumber2: @car.keyNumber2, keyNumber3: @car.keyNumber3, mileage: @car.mileage, model: @car.model, power: @car.power, type: @car.type, yearOfConstruction: @car.yearOfConstruction }
+    patch :update, id: @car, car: { brand: @car.brand, carId: @car.carId, carType: @car.carType, constructionPeriodFrom: @car.constructionPeriodFrom, constructionPeriodTo: @car.constructionPeriodTo, cylinderCapacity: @car.cylinderCapacity, fuel: @car.fuel, gearing: @car.gearing, keyNumber2: @car.keyNumber2, keyNumber3: @car.keyNumber3, mileage: @car.mileage, model: @car.model, power: @car.power, yearOfConstruction: @car.yearOfConstruction }
     assert_redirected_to car_path(assigns(:car))
   end
 
