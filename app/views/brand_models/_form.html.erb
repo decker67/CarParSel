@@ -1,0 +1,26 @@
+<%= form_for(@brand_model) do |f| %>
+  <% if @brand_model.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brand_model.errors.count, "error") %> prohibited this brand_model from being saved:</h2>
+
+      <ul>
+      <% @brand_model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Modell' %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label 'Hersteller' %><br>
+    <%= f.collection_select :brand_id, Brand.order('name ASC'), :id, :name %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Abbrechen', brand_models_path %>
+    <%= f.submit 'Speichern' %>
+  </div>
+<% end %>
