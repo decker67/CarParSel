@@ -16,8 +16,8 @@
   <tbody>
     <% @sellers.each do |seller| %>
       <tr>
-        <td><%= seller.firstName %></td>
-        <td><%= seller.lastName %></td>
+        <td><%= seller.first_name %></td>
+        <td><%= seller.last_name %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_seller_path(seller) %></td>
         <td><%= link_to image_tag('trash_16.png'), seller, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
       </tr>

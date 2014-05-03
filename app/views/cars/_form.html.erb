@@ -12,8 +12,12 @@
   <% end %>
 
   <div class="field">
+    <%= f.label 'Verkäufer' %><br>
+    <%= f.collection_select :seller_id, Seller.order('last_name ASC'), :id, :last_name  %>
+  </div>
+  <div class="field">
     <%= f.label 'Identifizierungsnummer' %><br>
-    <%= f.text_field :carId %>
+    <%= f.text_field :car_identifier %>
   </div>
   <div class="field">
     <%= f.label 'Hersteller' %><br>
@@ -21,11 +25,11 @@
   </div>
   <div class="field">
     <%= f.label 'Modell' %><br>
-    <%= f.collection_select :model, BrandModel.order('name ASC'), :id, :name  %>
+    <%= f.collection_select :brand_model_id, BrandModel.order('name ASC'), :id, :name  %>
   </div>
   <div class="field">
-    <%= f.label :carType %><br>
-    <%= f.text_field :carType %>
+    <%= f.label :car_type %><br>
+    <%= f.text_field :car_type %>
   </div>
   <div class="field">
     <%= f.label 'PS' %><br>
@@ -33,16 +37,16 @@
   </div>
   <div class="field">
     <%= f.label 'Konstruktionsjahr' %><br>
-    <%= f.select :yearOfConstruction, 1900..Time.now.year, :selected => f.object.yearOfConstruction %>
+    <%= f.select :year_of_construction, 1900..Time.now.year, :selected => f.object.year_of_construction %>
   </div>
   <div class="field">
     <%= f.label 'Herstellungszeitraum von/bis' %><br>
-    <%= f.select :constructionPeriodFrom, 1900..Time.now.year, :selected => f.object.constructionPeriodFrom %>
-    <%= f.select :constructionPeriodTo, 1900..Time.now.year, :selected => f.object.constructionPeriodTo %>
+    <%= f.select :construction_period_from, 1900..Time.now.year, :selected => f.object.construction_period_from %>
+    <%= f.select :construction_period_to, 1900..Time.now.year, :selected => f.object.construction_period_to %>
   </div>
   <div class="field">
     <%= f.label 'Hubraum in ccm' %><br>
-    <%= f.number_field :cylinderCapacity %>
+    <%= f.number_field :cylinder_capacity %>
   </div>
   <div class="field">
     <%= f.label 'Kraftstoff' %><br>
@@ -53,12 +57,12 @@
     <%= f.select :gearing, options_for_select( Car::GEARING_TYPES ), :selected => f.object.gearing %>
   </div>
   <div class="field">
-    <%= f.label :keyNumber2 %><br>
-    <%= f.text_field :keyNumber2 %>
+    <%= f.label :key_number2 %><br>
+    <%= f.text_field :key_number2 %>
   </div>
   <div class="field">
-    <%= f.label :keyNumber3 %><br>
-    <%= f.text_field :keyNumber3 %>
+    <%= f.label :key_number3 %><br>
+    <%= f.text_field :key_number3 %>
   </div>
   <div class="field">
     <%= f.label 'Kilometerstand' %><br>

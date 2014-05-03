@@ -19,12 +19,12 @@
   <tbody>
     <% @cars.each do |car| %>
       <tr>
-        <td><%= car.carId %></td>
+        <td><%= car.car_id %></td>
         <td><%= car.brand_id %></td>
-        <td><%= car.model %></td>
-        <td><%= car.carType %></td>
+        <td><%= car.brand_model_id %></td>
+        <td><%= car.car_type %></td>
         <td><%= car.power %></td>
-        <td><%= car.yearOfConstruction %></td>
+        <td><%= car.year_of_construction %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_path(car) %></td>
         <td><%= link_to image_tag('trash_16.png'), car, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
       </tr>

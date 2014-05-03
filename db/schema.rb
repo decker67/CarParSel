@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502095655) do
+ActiveRecord::Schema.define(version: 20140503000000) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -27,33 +27,33 @@ ActiveRecord::Schema.define(version: 20140502095655) do
   end
 
   create_table "cars", force: true do |t|
-    t.string   "carId"
+    t.string   "car_id"
     t.integer  "brand_id"
-    t.string   "model"
-    t.string   "carType"
-    t.string   "power"
-    t.integer  "yearOfConstruction"
-    t.integer  "constructionPeriodFrom"
-    t.integer  "constructionPeriodTo"
-    t.integer  "cylinderCapacity"
+    t.integer  "brand_model_id"
+    t.string   "car_type"
+    t.integer  "power"
+    t.integer  "year_of_construction"
+    t.integer  "construction_period_from"
+    t.integer  "construction_period_to"
+    t.integer  "cylinder_capacity"
     t.integer  "fuel"
     t.integer  "gearing"
-    t.string   "keyNumber2"
-    t.string   "keyNumber3"
+    t.string   "key_number2"
+    t.string   "key_number3"
     t.integer  "mileage"
+    t.integer  "seller_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sellers", force: true do |t|
-    t.string   "firstName"
-    t.string   "lastName"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "street"
     t.string   "city"
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "car_id"
   end
 
 end
