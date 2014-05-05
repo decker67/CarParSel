@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Carid</th>
-      <th>Automarke</th>
       <th>Model</th>
       <th>Cartype</th>
       <th>PS</th>
@@ -19,8 +18,7 @@
   <tbody>
     <% @cars.each do |car| %>
       <tr>
-        <td><%= car.car_id %></td>
-        <td><%= car.brand_id %></td>
+        <td><%= car.car_identifier %></td>
         <td><%= car.brand_model_id %></td>
         <td><%= car.car_type %></td>
         <td><%= car.power %></td>

@@ -49,6 +49,6 @@ class CarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
-      params.require(:car).permit(:car_identifier, :brand_id, :model_id, :car_type, :power, :year_of_construction, :construction_period_from, :construction_period_to, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage)
+      params.require(:car).permit(:car_identifier, :brand_model_id, :car_type, :power, :year_of_construction, :construction_period_from, :construction_period_to, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage, :picture_url )
     end
 end

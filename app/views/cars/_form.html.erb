@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label 'Hersteller' %><br>
-    <%= f.collection_select :brand_id, Brand.order('name ASC'), :id, :name %>
+    <%= select_tag '', options_from_collection_for_select( Brand.order('name ASC'), :id, :name ) %>
   </div>
   <div class="field">
     <%= f.label 'Modell' %><br>
@@ -67,6 +67,10 @@
   <div class="field">
     <%= f.label 'Kilometerstand' %><br>
     <%= f.number_field :mileage %>
+  </div>
+  <div class="field">
+    <%= f.label 'Bild' %><br>
+    <%= f.text_field :picture_url%>
   </div>
   <div class="actions">
     <%= link_to 'Abbrechen', cars_path %>

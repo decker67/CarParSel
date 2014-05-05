@@ -1,6 +1,6 @@
 class Seller < ActiveRecord::Base
 
-  has_many :cars
+  has_many :cars, inverse_of: :seller
 
   validates :first_name, :last_name, :street, :city, :phone, presence: true
   validates :first_name, :uniqueness => { :scope => :last_name }

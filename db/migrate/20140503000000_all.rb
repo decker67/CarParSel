@@ -26,7 +26,6 @@ class All < ActiveRecord::Migration
 
     create_table :cars do |t|
       t.string :car_identifier
-      t.integer :brand_id
       t.integer :brand_model_id
       t.string :car_type
       t.integer :power
@@ -40,12 +39,13 @@ class All < ActiveRecord::Migration
       t.string  :key_number3
       t.integer :mileage
       t.integer :seller_id
+      t.string :picture_url
 
       t.timestamps
     end
 
     create_table :car_parts do |t|
-      t.string :car_id
+      t.integer :car_id
       t.text :description
       t.string :ebay_article_number
       t.integer :ebay_selling_type
@@ -56,7 +56,6 @@ class All < ActiveRecord::Migration
       t.decimal :postage_europe_with_eu
       t.decimal :postage_europe_without_eu
       t.decimal :postage_world_wide
-      t.string :picture_url0
       t.string :picture_url1
       t.string :picture_url2
       t.string :picture_url3

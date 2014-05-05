@@ -26,9 +26,30 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.datetime "updated_at"
   end
 
+  create_table "car_parts", force: true do |t|
+    t.integer  "car_id"
+    t.text     "description"
+    t.string   "ebay_article_number"
+    t.integer  "ebay_selling_type"
+    t.decimal  "price"
+    t.decimal  "postage_germany"
+    t.decimal  "postage_austria"
+    t.decimal  "postage_swiss"
+    t.decimal  "postage_europe_with_eu"
+    t.decimal  "postage_europe_without_eu"
+    t.decimal  "postage_world_wide"
+    t.string   "picture_url1"
+    t.string   "picture_url2"
+    t.string   "picture_url3"
+    t.string   "picture_url4"
+    t.string   "picture_url5"
+    t.string   "picture_url6"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cars", force: true do |t|
-    t.string   "car_id"
-    t.integer  "brand_id"
+    t.string   "car_identifier"
     t.integer  "brand_model_id"
     t.string   "car_type"
     t.integer  "power"
@@ -42,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.string   "key_number3"
     t.integer  "mileage"
     t.integer  "seller_id"
+    t.string   "picture_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

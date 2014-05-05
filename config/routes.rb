@@ -1,4 +1,7 @@
 CarParSel::Application.routes.draw do
+  get "ebay/create"
+  resources :car_parts
+
   resources :brand_models
 
   resources :brands
