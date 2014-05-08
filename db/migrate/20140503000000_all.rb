@@ -29,9 +29,12 @@ class All < ActiveRecord::Migration
       t.integer :brand_model_id
       t.string :car_type
       t.integer :power
+      t.integer :month_of_construction
       t.integer :year_of_construction
-      t.integer :construction_period_from
-      t.integer :construction_period_to
+      t.integer :month_of_construction_period_from
+      t.integer :year_of_construction_period_from
+      t.integer :month_of_construction_period_to
+      t.integer :year_of_construction_period_to
       t.integer :cylinder_capacity
       t.integer :fuel
       t.integer :gearing

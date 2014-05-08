@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="Rails CarParSel: development" uuid="be907830-fbbf-4bad-86cb-7673c75707d0">
+  <data-source source="LOCAL" name="Rails CarParSel: development" uuid="961c0329-0894-4224-b531-25faa835dc99">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails CarParSel: test" uuid="609433e8-5185-42ba-ac56-279a3a96bd02">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

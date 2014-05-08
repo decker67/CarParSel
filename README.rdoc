@@ -1,1 +1,6 @@
+
+Welcher Webserver für Windows?
+
+Welches Windows ist installiert?
+
 g scaffold Car carId:string brand:integer model:string carType:string power:string yearOfConstruction:integer constructionPeriodFrom:integer constructionPeriodTo:integer cylinderCapacity:integer fuel:integer gearing:integer keyNumber2:string keyNumber3:string mileage:integer

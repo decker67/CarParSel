@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="4149934370">
-    <data-source source="LOCAL" name="Rails CarParSel: development" uuid="be907830-fbbf-4bad-86cb-7673c75707d0">
+  <component name="DataSourceManagerImpl" format="xml" hash="938524131">
+    <data-source source="LOCAL" name="Rails CarParSel: development" uuid="961c0329-0894-4224-b531-25faa835dc99">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:D:\projects\auftraege\ebayTemplate\CarParSel\db\development.sqlite3</jdbc-url>
       <libraries />
     </data-source>
-    <data-source source="LOCAL" name="Rails CarParSel: test" uuid="4a21d96e-da84-4da3-99ad-a914b2c4c1fe">
+    <data-source source="LOCAL" name="Rails CarParSel: test" uuid="609433e8-5185-42ba-ac56-279a3a96bd02">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:D:\projects\auftraege\ebayTemplate\CarParSel\db\test.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails CarParSel: production" uuid="32c2943c-d878-47d3-8260-25b687429a02">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\projects\auftraege\ebayTemplate\CarParSel\db\production.sqlite3</jdbc-url>
       <libraries />
     </data-source>
   </component>

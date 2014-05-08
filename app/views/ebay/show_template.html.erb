@@ -497,7 +497,7 @@
           <ul>
             <li>&nbsp;</li>
             <li align="center"><%= @car.brand_model.brand.name + ' ' + @car.brand_model.name %></li>
-            <li align="center"><%= @car.car_type + ' ' + @car.year_of_construction.to_s %></li>
+            <li align="center"><%= @car.car_type + ' ' + @car.month_of_construction.to_s + '/' + @car.year_of_construction.to_s %></li>
             <li>&nbsp;</li>
             <li align="center"><a href="#">Alle Teile aus dem Spenderfahrzeug auf einen Blick</a></li>
           </ul>

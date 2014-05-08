@@ -20,21 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 de:
-  #global
-  #confirm_delete: 'Sind Sie sicher?'
-  back:           'Zurück'
-  save:           'Speichern'
-  edit:           'Bearbeiten'
-  destroy:        'Löschen'
-
-  #seller
-  sellers_list:   'Verkäufer'
-  first_name:     'Vorname'
-  last_name:      'Nachname'
-  street:         'Strasse Nr'
-  city:           'PLZ Stadt'
-  phone:          'Telefon'
-
   #added from https://raw.githubusercontent.com/svenfuchs/rails-i18n/master/rails/locale/de.yml
   date:
     abbr_day_names:

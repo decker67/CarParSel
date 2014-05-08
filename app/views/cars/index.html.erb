@@ -5,10 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Carid</th>
+      <th>Identifikation</th>
       <th>Model</th>
-      <th>Cartype</th>
-      <th>PS</th>
+      <th>Typ</th>
+      <th>kW</th>
       <th>Konstruktionsjahr</th>
       <th></th>
       <th></th>
@@ -19,10 +19,10 @@
     <% @cars.each do |car| %>
       <tr>
         <td><%= car.car_identifier %></td>
-        <td><%= car.brand_model_id %></td>
+        <td><%= car.brand_model.name %></td>
         <td><%= car.car_type %></td>
         <td><%= car.power %></td>
-        <td><%= car.year_of_construction %></td>
+        <td><%= "#{car.month_of_construction}/#{car.year_of_construction}" %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_path(car) %></td>
         <td><%= link_to image_tag('trash_16.png'), car, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
       </tr>
