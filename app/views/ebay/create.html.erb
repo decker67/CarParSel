@@ -1,4 +1,15 @@
-<%= link_to 'Abbrechen', car_parts_path %>
+
+<div class="field">
+  <%= label :disable_car_data, 'Spenderfahrzeug ausblenden' %><br>
+  <%= check_box_tag 'disable_car_data' %>
+</div>
+<div class="field">
+  <%= label :without_postage, 'Versand kostenlos' %><br>
+  <%= check_box_tag 'without_postage' %>
+</div>
+
+<%= link_to 'Refresh', params %>
+<%= link_to 'Zurück', car_parts_path %>
 
 <html>
 <head>
@@ -672,18 +683,10 @@
           <!-- GALLERY BOX START -->
           <div class="artikelbilder" style="background-image:url(<%= @car.picture_url %>)" align="center">
 
-            <a class="thumbnail" href="#thumb"><img src="<%= @car_part.picture_url1 %>" border="0" height="75px" width="100px">
-              <span><img src="<%= @car_part.picture_url1 %>" height="400px" width="530px"></span></a>
-            <a class="thumbnail" href="#thumb"><img src="<%= @car_part.picture_url2 %>" border="0" height="75px" width="100px">
-              <span><img src="<%= @car_part.picture_url2 %>" height="400px" width="530px"></span></a>
-            <a class="thumbnail" href="#thumb"><img src="<%= @car_part.picture_url3 %>" border="0" height="75px" width="100px">
-              <span><img src="<%= @car_part.picture_url3 %>" height="400px" width="530px"></span></a>
-            <a class="thumbnail" href="#thumb"><img src="<%= @car_part.picture_url4 %>" border="0" height="75px" width="100px">
-              <span><img src="<%= @car_part.picture_url4 %>" height="400px" width="530px"></span></a>
-            <a class="thumbnail" href="#thumb"><img src="<%= @car_part.picture_url5 %>" border="0" height="75px" width="100px">
-              <span><img src="<%= @car_part.picture_url5 %>" height="400px" width="530px"></span></a>
-            <a class="thumbnail" href="#thumb"><img src="<%= @car_part.picture_url6 %>" border="0" height="75px" width="100px">
-              <span><img src="<%= @car_part.picture_url6 %>" height="400px" width="530px"></span></a>
+            <% @picture_urls.each do |url|%>
+              <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px">
+              <span><img src="<%= url %>" height="400px" width="530px"></span></a>
+            <% end %>
           </div>
           <!-- GALLERY BOX END -->
         </div>
@@ -717,7 +720,52 @@
       <h2 class="widget-title">Daten vom Spenderfahrzeug</h2>
 
       <div class="spacing">
-        <p>Daten als Tabelle</p>
+        <table>
+          <tr>
+            <td>Marke</td>
+            <td><%= @car.brand_model.brand.name %></td>
+          </tr>
+          <tr>
+            <td>Modell</td>
+            <td><%= @car.brand_model.name %></td>
+          </tr>
+          <tr>
+            <td>Typ</td>
+            <td><%= @car.car_type %></td>
+          </tr>
+          <tr>
+            <td>Leistung</td>
+            <td><%= @car.power.to_s + 'kW / ' + @car.ps.round.to_s + 'PS' %></td>
+          </tr>
+          <tr>
+            <td>Baujahr</td>
+            <td><%= @car.year_of_construction.to_s %></td>
+          </tr>
+          <tr>
+            <td>Bauzeitraum</td>
+            <td><%= @car.year_of_construction_period_from.to_s + ' - ' + @car.year_of_construction_period_to.to_s %></td>
+          </tr>
+          <tr>
+            <td>Hubraum</td>
+            <td><%= @car.cylinder_capacity.to_s + ' cm' %>&sup3;</td>
+          </tr>
+          <tr>
+            <td>Kraftstoff</td>
+            <td><%= @car.fuel %></td>
+          </tr>
+          <tr>
+            <td>Getriebeart</td>
+            <td><%= @car.gearing %></td>
+          </tr>
+          <tr>
+            <td>Schlüsselnummer zu 2/3</td>
+            <td><%= @car.key_number2 + '/' + @car.key_number3 %></td>
+          </tr>
+          <tr>
+            <td>Laufleistung</td>
+            <td><%= @car.mileage.to_s + ' km' %></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

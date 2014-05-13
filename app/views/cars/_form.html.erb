@@ -25,12 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :brand_model_id, 'Modell' %><br>
-    <%= f.collection_select :brand_model_id, BrandModel.order('name ASC'), :id, :name,
-                            "data-option-dependent" => true,
-                            "data-option-observed" => "brand_id",
-                            "data-option-url" => "/brands/:brand_id:/brands.json",
-                            "data-option-key-method" => :id,
-                            "data-option-value-method" => :name %>
+    <%= f.collection_select :brand_model_id, BrandModel.order('name ASC'), :id, :name %>
   </div>
   <div class="field">
     <%= f.label :car_type, 'Typ' %><br>
@@ -76,11 +71,22 @@
     <%= f.number_field :mileage %>
   </div>
   <div class="field">
-    <%= f.label :picture_url, 'Bild' %><br>
+    <%= f.label :picture_url, 'Url Bild' %><br>
     <%= f.text_field :picture_url%>
   </div>
+  <div class="field">
+    <%= f.label :ebay_url_all_parts, 'ebay Url "Alle Teile"' %><br>
+    <%= f.text_field :ebay_url_all_parts %>
+  </div>
+  <div class="field">
+    <%= f.label :name_ebay_url_all_parts, 'ebay Beschreibung "Alle Teile"' %><br>
+    <%= f.text_field :name_ebay_url_all_parts %>
+  </div>
+
+
+
   <div class="actions">
     <%= link_to 'Abbrechen', cars_path %>
-    <%= f.submit t(:save) %>
+    <%= f.submit 'Speichern' %>
   </div>
 <% end %>

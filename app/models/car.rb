@@ -8,11 +8,11 @@ class Car < ActiveRecord::Base
   belongs_to :brand_model, inverse_of: :cars
 
   def ps
-    self.power * 1.35962
+    return CarsHelper.power_to_ps( self.power )
   end
 
   def ps=( value )
-    self.power = value / 1.35962
+    self.power = CarsHelper.ps_to_power( value )
   end
 
 end

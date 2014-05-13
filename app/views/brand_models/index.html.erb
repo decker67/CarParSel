@@ -1,12 +1,22 @@
 <h1>Modelle</h1>
 
+<%= form_tag '', :method => :get do %>
+  <div>
+    <%= label_tag :brand_id, 'Hersteller' %><br>
+    <%= select_tag :brand_id, options_for_select( Brand.order( :name ).collect { | s |  [ s.name, s.id ] }, @filter[ :brand_id ] ), :include_blank => true  %>
+  </div>
+  <%= submit_tag 'Filter', name: nil %>
+  <%= submit_tag("Zurücksetzen", { :name => 'reset', :id => 'reset_button', :type => "reset" } ) %>
+<% end %>
+
+
 <%= link_to  image_tag('plus_16.png'), new_brand_model_path %>
 
 <table>
   <thead>
     <tr>
       <th>Modell</th>
-      <th>Automarke</th>
+      <th>Hersteller</th>
       <th></th>
       <th></th>
     </tr>

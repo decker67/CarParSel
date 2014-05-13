@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503000000) do
+ActiveRecord::Schema.define(version: 20140511201153) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.string   "picture_url6"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ebay_state"
+    t.date     "ebay_online_since"
+    t.text     "remark"
   end
 
   create_table "cars", force: true do |t|
@@ -69,6 +72,8 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.string   "picture_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ebay_url_all_parts"
+    t.string   "name_ebay_url_all_parts"
   end
 
   create_table "sellers", force: true do |t|

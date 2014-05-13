@@ -43,6 +43,8 @@ class All < ActiveRecord::Migration
       t.integer :mileage
       t.integer :seller_id
       t.string :picture_url
+      t.string :ebay_url_all_parts
+      t.string :name_ebay_url_all_parts
 
       t.timestamps
     end
@@ -50,8 +52,11 @@ class All < ActiveRecord::Migration
     create_table :car_parts do |t|
       t.integer :car_id
       t.text :description
+
       t.string :ebay_article_number
       t.integer :ebay_selling_type
+      t.date :ebay_online_since
+      t.integer :ebay_state
       t.decimal :price
       t.decimal :postage_germany
       t.decimal :postage_austria
@@ -65,6 +70,7 @@ class All < ActiveRecord::Migration
       t.string :picture_url4
       t.string :picture_url5
       t.string :picture_url6
+      t.text :remark
 
       t.timestamps
     end
