@@ -1,0 +1,80 @@
+<%= form_for(@car_part) do |f| %>
+  <% if @car_part.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@car_part.errors.count, "error") %> prohibited this car_part from being saved:</h2>
+
+      <ul>
+      <% @car_part.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :car_id, 'Fahrzeug Id' %><br>
+    <%= f.collection_select :car_id, Car.order('car_identifier ASC'), :id, :car_identifier  %>
+  </div>
+  <div class="field">
+    <%= f.label :description, 'Beschreibung' %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :ebay_state, 'ebay Status' %><br>
+    <%= f.select :ebay_state, options_for_select( CarPart::AUCTION_STATE, f.object.ebay_state ) %>
+    <%= f.date_select :ebay_online_since %>
+  </div>
+  <div class="field">
+    <%= f.label :ebay_article_number, 'ebay Artikelnummer' %><br>
+    <%= f.text_field :ebay_article_number %>
+  </div>
+  <div class="field">
+    <%= f.label :ebay_selling_type, 'ebay Angebotsformat' %><br>
+    <%= f.select :ebay_selling_type, options_for_select( CarPart::AUCTION_TYPES, f.object.ebay_selling_type ) %>
+  </div>
+  <div class="field">
+    <%= f.label :price, 'Preis' %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field" >
+    <%= f.label :postage_germany, 'Versand Deutschland' %><br>
+    <%= f.text_field :postage_germany %>
+  </div>
+  <div class="field">
+    <%= f.label :postage_austria, 'Versand Östereich' %><br>
+    <%= f.text_field :postage_austria %>
+  </div>
+  <div class="field">
+    <%= f.label :postage_swiss, 'Versand Schweiz' %><br>
+    <%= f.text_field :postage_swiss %>
+  </div>
+  <div class="field">
+    <%= f.label :postage_europe_with_eu, 'Versand Europa EU' %><br>
+    <%= f.text_field :postage_europe_with_eu %>
+  </div>
+  <div class="field">
+    <%= f.label :postage_europe_without_eu , 'Versand Europa nicht EU'%><br>
+    <%= f.text_field :postage_europe_without_eu %>
+  </div>
+  <div class="field">
+    <%= f.label :postage_world_wide, 'Versand Weltweit' %><br>
+    <%= f.text_field :postage_world_wide %>
+  </div>
+  <div class="field">
+    <%= f.label :picture_url1, 'Url Bilder' %><br>
+    <%= f.text_field :picture_url1 %>
+    <%= f.text_field :picture_url2 %>
+    <%= f.text_field :picture_url3 %>
+    <%= f.text_field :picture_url4 %>
+    <%= f.text_field :picture_url5 %>
+    <%= f.text_field :picture_url6 %>
+  </div>
+  <div class="field">
+    <%= f.label :remark, 'Bemerkungen' %><br>
+    <%= f.text_area :remark %>
+  </div>
+  <div class="actions">
+    <%= link_to 'Abbrechen', car_parts_path %>
+    <%= f.submit 'Speichern' %>
+  </div>
+<% end %>

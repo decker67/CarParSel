@@ -1,0 +1,36 @@
+<h1>Fahrzeugteile</h1>
+
+<%= link_to image_tag('plus_16.png'), new_car_part_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Car</th>
+      <th>Description</th>
+      <th>Ebay article number</th>
+      <th>Ebay selling type</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @car_parts.each do |car_part| %>
+      <tr>
+        <td><%= car_part.car_id %></td>
+        <td><%= car_part.description %></td>
+        <td><%= car_part.ebay_article_number %></td>
+        <td><%= car_part.ebay_selling_type %></td>
+        <td><%= car_part.price %></td>
+        <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part) %></td>
+        <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
+        <td><%= link_to image_tag('right_16.png'), controller: 'ebay', action: 'create', id: car_part %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  car_id: 1
+  description: MyText
+  ebay_article_number: MyString
+  ebay_selling_type: 1
+  price: 9.99
+  postage_germany: 9.99
+  postage_austria: 9.99
+  postage_swiss: 9.99
+  postage_europe_with_eu: 9.99
+  postage_europe_without_eu: 9.99
+  postage_world_wide: 9.99
+  picture_url0: MyString
+  picture_url1: MyString
+  picture_url2: MyString
+  picture_url3: MyString
+  picture_url4: MyString
+  picture_url5: MyString
+  picture_url6: MyString
+
+two:
+  car_id: 1
+  description: MyText
+  ebay_article_number: MyString
+  ebay_selling_type: 1
+  price: 9.99
+  postage_germany: 9.99
+  postage_austria: 9.99
+  postage_swiss: 9.99
+  postage_europe_with_eu: 9.99
+  postage_europe_without_eu: 9.99
+  postage_world_wide: 9.99
+  picture_url0: MyString
+  picture_url1: MyString
+  picture_url2: MyString
+  picture_url3: MyString
+  picture_url4: MyString
+  picture_url5: MyString
+  picture_url6: MyString
