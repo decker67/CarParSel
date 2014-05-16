@@ -51,3 +51,6 @@ Verkäufer vom Spenderfahrzeug brauche ich eigentlich garnicht, möchte aber tro
 später:
 - Etiketten drucken: Daten spezifizieren, wahrscheinlich mit Fahrzeug Id
 -
+
+
+http://www.erikminkel.com/2013/09/01/twitter-bootstrap-3-in-a-rails-4-application/
