@@ -2,11 +2,10 @@
 todo:
 -----
 
-aktuell:
+- Filter zurücksetzen funktioniert nicht
+- Eindeutigkeit anhand Schlüsselfeldern und Validierung
 - Suche nach Teilen über den Anfang der Fahrzeug-ID: MEW168...
 - Spenderfahrzeug ausblenden, wenn so ausgewählt
-- Auktion -> kein Preis
-- Versand kostenlos ein- oder ausblenden
 - Suchmaske für Auto und Artikelteile vervollständigen
 - Navigation zu Teilen über Fahrzeug
 - Paging für Fahrzeuge und Teile

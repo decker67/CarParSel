@@ -7,4 +7,16 @@ class CarPart < ActiveRecord::Base
 
   has_one :car, inverse_of: :car_parts
 
+  def is_auction?
+    ebay_selling_type == 1
+  end
+
+  def no_postage_for_germany?
+    postage_germany.to_f == 0.0
+  end
+
+  def remark_given?
+    remark != ''
+  end
+
 end

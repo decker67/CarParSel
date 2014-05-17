@@ -3,10 +3,12 @@ class CarsController < ApplicationController
   before_action :set_car, only: [:edit, :update, :destroy]
 
   def index
-    @filter = @filter || {}
+    @view_filter = @view_filter || {}
+    @select_filter = @select_filter || {}
 
     addFilterFor( :brand_model_id, :brand_id  ) { |id| BrandModel.select( :id ).where( brand_id: id ) }
     addFilterFor( :brand_model_id )
+    addFilterFor( :car_type )
     addFilterFor( :power )
     addFilterFor( :power, :ps ) { |ps| CarsHelper.ps_to_power( ps.to_i ).round }
     addFilterFor( :year_of_construction )
@@ -16,7 +18,7 @@ class CarsController < ApplicationController
     addFilterFor( :key_number2 )
     addFilterFor( :key_number3 )
 
-    @cars = Car.where( @filter ).order( created_at: :desc )
+    @cars = Car.where( @select_filter ).order( created_at: :desc )
   end
 
   def new
@@ -68,12 +70,15 @@ class CarsController < ApplicationController
 
     def addFilterFor( name, param_name = name )
       if params[ param_name ].present?
+        value = params[ param_name ]
         if block_given?
-          value = yield params[ param_name ]
+          modified_value = yield params[ param_name ]
         else
-          value = params[ param_name ]
+          modified_value = value
         end
-        @filter[ name ] = value
+
+        @select_filter[ name ] = modified_value
+        @view_filter[ param_name ] = value
       end
     end
 

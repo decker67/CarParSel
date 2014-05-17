@@ -2,30 +2,33 @@
 
 <%= form_tag '', :method => :get do %>
   <div>
-    <%= label_tag :brand_id, 'Hersteller' %>
-    <%= select_tag :brand_id, options_for_select( Brand.order( :name ).collect { | s |  [ s.name, s.id ] }, @filter[ :brand_id ] ), :include_blank => true  %>
+    <%= label_tag :brand_id, 'Automarke' %>
+    <%= select_tag :brand_id, options_for_select( Brand.order( :name ).collect { | s |  [ s.name, s.id ] }, @view_filter[ :brand_id ] ), :include_blank => true  %>
   </div>
   <div>
     <%= label_tag :brand_model_id, 'Modell' %>
-    <%= select_tag :brand_model_id, options_for_select( BrandModel.order( :name ).collect { | s |  [ s.name, s.id ] }, @filter[ :brand_model_id ] ), :include_blank => true  %>
+    <%= select_tag :brand_model_id, options_for_select( BrandModel.order( :name ).collect { | s |  [ s.name, s.id ] }, @view_filter[ :brand_model_id ] ), :include_blank => true  %>
   </div>
   <div>
-    <%= label_tag :power, 'kW oder PS' %><%= number_field_tag :power, @filter[ :power ] %><%= number_field_tag :ps, @filter[ :ps ] %>
+    <%= label_tag :car_type, 'Typ' %><%= text_field_tag :car_type, @view_filter[ :car_type ] %>
   </div>
   <div>
-    <%= label_tag :year_of_construction, 'Konstruktionsjahr' %><%= select_tag :year_of_construction, options_for_select( 1900..Time.now.year, @filter[ :year_of_construction ] ), :include_blank => true %>
+    <%= label_tag :power, 'kW oder PS' %><%= number_field_tag :power, @view_filter[ :power ] %><%= number_field_tag :ps, @view_filter[ :ps ] %>
   </div>
   <div>
-    <%= label_tag :cylinder_capacity, 'Hubraum' %><%= number_field_tag :cylinder_capacity, @filter[ :cylinder_capacity ] %>
+    <%= label_tag :year_of_construction, 'Konstruktionsjahr' %><%= select_tag :year_of_construction, options_for_select( 1900..Time.now.year, @view_filter[ :year_of_construction ] ), :include_blank => true %>
   </div>
   <div>
-    <%= label_tag :fuel, 'Kraftstoff' %><%= select_tag :fuel, options_for_select( Car::FUEL_TYPES, @filter[ :fuel ] ), :include_blank => true %>
+    <%= label_tag :cylinder_capacity, 'Hubraum' %><%= number_field_tag :cylinder_capacity, @view_filter[ :cylinder_capacity ] %>
   </div>
   <div>
-    <%= label_tag :gearing, 'Getriebeart' %><%= select_tag :gearing, options_for_select( Car::GEARING_TYPES, @filter[ :gearing ] ), :include_blank => true %>
+    <%= label_tag :fuel, 'Kraftstoff' %><%= select_tag :fuel, options_for_select( Car::FUEL_TYPES, @view_filter[ :fuel ] ), :include_blank => true %>
   </div>
   <div>
-    <%= label_tag :key_number2, 'Schlüsselnummer 2/3' %><%= text_field_tag :key_number2, @filter[ :key_number2 ] %><%= text_field_tag :key_number3, @filter[ :key_number3 ] %>
+    <%= label_tag :gearing, 'Getriebeart' %><%= select_tag :gearing, options_for_select( Car::GEARING_TYPES, @view_filter[ :gearing ] ), :include_blank => true %>
+  </div>
+  <div>
+    <%= label_tag :key_number2, 'Schlüsselnummer 2/3' %><%= text_field_tag :key_number2, @view_filter[ :key_number2 ] %><%= text_field_tag :key_number3, @view_filter[ :key_number3 ] %>
   </div>
 
   <%= submit_tag 'Filter', name: nil %>

@@ -1,5 +1,7 @@
 class EbayController < ApplicationController
 
+  layout 'plain'
+
   def create
     logger.debug "params" + params.inspect
     @car_part = CarPart.find_by_id( params[:id] )

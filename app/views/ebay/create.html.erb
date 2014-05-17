@@ -3,10 +3,6 @@
   <%= label :disable_car_data, 'Spenderfahrzeug ausblenden' %><br>
   <%= check_box_tag 'disable_car_data' %>
 </div>
-<div class="field">
-  <%= label :without_postage, 'Versand kostenlos' %><br>
-  <%= check_box_tag 'without_postage' %>
-</div>
 
 <%= link_to 'Refresh', params %>
 <%= link_to 'Zurück', car_parts_path %>
@@ -707,13 +703,32 @@
             <span class="nextGenBox"><span class="MultiValueSpanWidth"></span></span>
             <br>
             <span class="nextGenBox"><span class="MultiValueSpanWidth"></span></span>
+            <% if @car_part.is_auction? %>
+            <font size="6">3,2,1, ... deins</font>
+            <% else %>
             <font size="6"><%= @car_part.price %> €</font>
+            <% end %>
             <br><br>
-            <img src="http://autohalle24.de/ebay_layout/flag_de.png" height="11" width="16">&nbsp; <font color="#2E6B31"><b>Versand kostenlos</b></font><br></div><b><font face="Verdana"><b><br></b></font></b></div>
+            <% if @car_part.no_postage_for_germany? %>
+              <img src="http://autohalle24.de/ebay_layout/flag_de.png" height="11" width="16">&nbsp; <font color="#2E6B31"><b>Versand kostenlos</b></font><br></div><b><font face="Verdana"><b><br></b></font></b></div>
+            <% end %>
       </div>
     </div>
   </div>
   <!-- ITEM DESCRIPTION BOX END -->
+  <!-- ITEM ADDITIONAL BOX 0 START -->
+  <% if @car_part.remark_given? %>
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Bemerkungen</h2>
+      <div class="spacing">
+        <p align="center"><%= @car_part.remark %></p>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM ADDITIONAL BOX 0 END -->
+  <% end %>
+
   <!-- ITEM ADDITIONAL BOX 1 START -->
   <div class="widget">
     <div class="widget-content">
