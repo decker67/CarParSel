@@ -4,7 +4,7 @@
     <data-source source="LOCAL" name="Rails CarParSel: development" uuid="961c0329-0894-4224-b531-25faa835dc99">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\projects\auftraege\ebayTemplate\CarParSel\db\development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails CarParSel: test" uuid="609433e8-5185-42ba-ac56-279a3a96bd02">
