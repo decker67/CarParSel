@@ -13,7 +13,7 @@ CarParSel::Application.routes.draw do
 
   resources :sellers
 
-  #get "brands/:brand_id/brands" => "application#brands", :as => "brands", :format => :json
+  get '/all_models_for_brand' => 'cars#all_models_for_brand', :format => :json
 
   get "start/overview"
   # The priority is based upon order of creation: first created -> highest priority.

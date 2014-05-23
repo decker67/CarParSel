@@ -1,8 +1,12 @@
-<h1>Automarken</h1>
+<div class="page-header">
+  <h1>Automarken</h1>
+</div>
 
-<%= link_to image_tag('plus_16.png'), new_brand_path %>
-
-<table>
+<div class="panel panel-default">
+  <div class="panel-heading">Automarken
+    <span style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_brand_path, class: 'btn btn-default' %></span>
+  </div>
+  <table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,13 +19,12 @@
     <% @brands.each do |brand| %>
       <tr>
         <td><%= brand.name %></td>
-        <td><%= link_to image_tag('pencil_16.png'), edit_brand_path(brand) %></td>
-        <td><%= link_to image_tag('trash_16.png'), brand, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
+        <td><%= link_to image_tag('pencil_16.png'), edit_brand_path(brand), class: 'btn btn-default' %></td>
+        <td><%= link_to image_tag('trash_16.png'), brand, method: :delete, data: { confirm: 'Sind Sie sicher?' }, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
-</table>
-
-<br>
+  </table>
+</div>
 
 

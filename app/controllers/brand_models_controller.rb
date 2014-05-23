@@ -2,8 +2,12 @@ class BrandModelsController < ApplicationController
   before_action :set_brand_model, only: [:edit, :update, :destroy]
 
   def index
-    @filter = @filter || {}
-    @filter[ :brand_id ] = params[ :brand_id ] if params[ :brand_id ].present?
+    if params[ :reset ]
+      @filter = {}
+    else
+      @filter = @filter || {}
+      @filter[ :brand_id ] = params[ :brand_id ] if params[ :brand_id ].present?
+    end
     @brand_models = BrandModel.where( @filter ).order( :name )
   end
 

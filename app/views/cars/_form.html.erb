@@ -12,36 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :seller_id, 'Verkäufer' %><br>
+    <%= f.label :seller_id, 'Verkäufer' %>
     <%= f.collection_select :seller_id, Seller.order('last_name ASC'), :id, :last_name  %>
   </div>
   <div class="field">
-    <%= f.label :car_identifier, 'Identifizierungsnummer' %><br>
+    <%= f.label :car_identifier, 'Identifizierungsnummer' %>
     <%= f.text_field :car_identifier %>
   </div>
   <div class="field">
-    <%= f.label :brand_id, 'Hersteller' %><br>
-    <%= select_tag :brand_id, options_from_collection_for_select( Brand.order('name ASC'), :id, :name ) %>
+    <%= f.label :brand_id, 'Hersteller' %>
+    <%= select_tag :brand_id, options_from_collection_for_select( Brand.order('name ASC'), :id, :name ), onchange: 'brandOnChangeHandler( this )', include_blank: true %>
   </div>
   <div class="field">
-    <%= f.label :brand_model_id, 'Modell' %><br>
+    <%= f.label :brand_model_id, 'Modell' %>
     <%= f.collection_select :brand_model_id, BrandModel.order('name ASC'), :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :car_type, 'Typ' %><br>
+    <%= f.label :car_type, 'Typ' %>
     <%= f.text_field :car_type %>
   </div>
   <div class="field">
-    <%= f.label :power, 'kW' %><br>
+    <%= f.label :power, 'kW' %>
     <%= f.text_field :power %>
   </div>
   <div class="field">
-    <%= f.label :month_of_construction, 'Konstruktionsjahr' %><br>
+    <%= f.label :month_of_construction, 'Konstruktionsjahr' %>
     <%= f.select :month_of_construction, 1..12, :selected => f.object.month_of_construction %>
     <%= f.select :year_of_construction, 1900..Time.now.year, :selected => f.object.year_of_construction %>
   </div>
   <div class="field">
-    <%= f.label :month_of_construction_period_from, 'Herstellungszeitraum von/bis' %><br>
+    <%= f.label :month_of_construction_period_from, 'Herstellungszeitraum von/bis' %>
     <%= f.select :month_of_construction_period_from, 1..12, :selected => f.object.month_of_construction_period_from %>
     <%= f.select :year_of_construction_period_from, 1900..Time.now.year, :selected => f.object.year_of_construction_period_from %>
     /
@@ -49,44 +49,56 @@
     <%= f.select :year_of_construction_period_to, 1900..Time.now.year, :selected => f.object.year_of_construction_period_to %>
   </div>
   <div class="field">
-    <%= f.label :cylinder_capacity, 'Hubraum in ccm' %><br>
+    <%= f.label :cylinder_capacity, 'Hubraum in ccm' %>
     <%= f.number_field :cylinder_capacity %>
   </div>
   <div class="field">
-    <%= f.label :fuel, 'Kraftstoff' %><br>
+    <%= f.label :fuel, 'Kraftstoff' %>
     <%= f.select :fuel, options_for_select( Car::FUEL_TYPES, f.object.fuel ) %>
   </div>
   <div class="field">
-    <%= f.label :gearing, 'Getriebe' %><br>
+    <%= f.label :gearing, 'Getriebe' %>
     <%= f.select :gearing, options_for_select( Car::GEARING_TYPES, f.object.gearing ) %>
   </div>
   <div class="field">
-    <%= f.label :key_number2, 'Schlüsselwert 2/3' %><br>
+    <%= f.label :key_number2, 'Schlüsselwert 2/3' %>
     <%= f.text_field :key_number2 %>
     /
     <%= f.text_field :key_number3 %>
   </div>
   <div class="field">
-    <%= f.label :mileage, 'Kilometerstand' %><br>
+    <%= f.label :mileage, 'Kilometerstand' %>
     <%= f.number_field :mileage %>
   </div>
   <div class="field">
-    <%= f.label :picture_url, 'Url Bild' %><br>
-    <%= f.text_field :picture_url%>
+    <%= f.label :picture_url, 'Url Bild' %>
+    <%= f.url_field :picture_url%>
   </div>
   <div class="field">
-    <%= f.label :ebay_url_all_parts, 'ebay Url "Alle Teile"' %><br>
-    <%= f.text_field :ebay_url_all_parts %>
+    <%= f.label :ebay_url_all_parts, 'ebay Url "Alle Teile"' %>
+    <%= f.url_field :ebay_url_all_parts %>
   </div>
   <div class="field">
-    <%= f.label :name_ebay_url_all_parts, 'ebay Beschreibung "Alle Teile"' %><br>
+    <%= f.label :name_ebay_url_all_parts, 'ebay Beschreibung "Alle Teile"' %>
     <%= f.text_field :name_ebay_url_all_parts %>
   </div>
-
-
 
   <div class="actions">
     <%= link_to 'Abbrechen', cars_path %>
     <%= f.submit 'Speichern' %>
   </div>
 <% end %>
+
+<script>
+  function brandOnChangeHandler( event ) {
+    var selectedBrandId = $(event).val();
+    var requestForModells = '/all_models_for_brand?brand_id=' + selectedBrandId;
+    var modelSelect = $( '#car_brand_model_id');
+    modelSelect.empty();
+    $.get( requestForModells ).done( function( result ) {
+      result.forEach( function( model ) {
+        modelSelect.append( new Option( model.name, model.id ) );
+      } );
+    } );
+  }
+</script>

@@ -2,6 +2,10 @@ class CarsController < ApplicationController
 
   before_action :set_car, only: [:edit, :update, :destroy]
 
+  def all_models_for_brand
+    render json: BrandModel.order( :name ).where( brand_id: params[ :brand_id ] )
+  end
+
   def index
     @view_filter = @view_filter || {}
     @select_filter = @select_filter || {}

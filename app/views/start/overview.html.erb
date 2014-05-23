@@ -1,10 +1,32 @@
-<h1>Übersicht</h1>
-<div class="col-md-2 column">
-a
+<div class="page-header">
+  <h1>Übersicht</h1>
 </div>
-<div class="col-md-6 column">
-b
-</div>
-<div class="col-md-4 column">
-c
-</div>
+
+
+<h2>Fahrzeugteile noch nicht online</h2>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Car</th>
+    <th>Description</th>
+    <th>Ebay article number</th>
+    <th>Ebay selling type</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @car_parts.each do |car_part| %>
+    <tr>
+      <td><%= car_part.car_id %></td>
+      <td><%= car_part.description %></td>
+      <td><%= car_part.ebay_article_number %></td>
+      <td><%= car_part.ebay_selling_type %></td>
+      <td><%= car_part.price %></td>
+      <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

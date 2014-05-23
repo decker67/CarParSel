@@ -1,36 +1,50 @@
-<h1>Modelle</h1>
+<div class="page-header">
+  <h1>Modelle</h1>
+</div>
 
-<%= form_tag '', :method => :get do %>
-  <div>
-    <%= label_tag :brand_id, 'Hersteller' %><br>
-    <%= select_tag :brand_id, options_for_select( Brand.order( :name ).collect { | s |  [ s.name, s.id ] }, @filter[ :brand_id ] ), :include_blank => true  %>
-  </div>
-  <%= submit_tag 'Filter', name: nil %>
-  <%= submit_tag("Zurücksetzen", { :name => 'reset', :id => 'reset_button', :type => "reset" } ) %>
-<% end %>
-
-
-<%= link_to  image_tag('plus_16.png'), new_brand_model_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Modell</th>
-      <th>Automarke</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @brand_models.each do |brand_model| %>
-      <tr>
-        <td><%= brand_model.name %></td>
-        <td><%= brand_model.brand.name %></td>
-        <td><%= link_to image_tag('pencil_16.png'), edit_brand_model_path(brand_model) %></td>
-        <td><%= link_to image_tag('trash_16.png'), brand_model, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
-      </tr>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_tag '', :method => :get, class: 'form' do %>
+      <div class="form-group">
+        <div class="col-md-2">
+          <%= label_tag :brand_id, 'Hersteller', class: 'form-control' %>
+        </div>
+          <div class="col-md-2">
+            <%= select_tag :brand_id, options_for_select( Brand.order( :name ).collect { | s |  [ s.name, s.id ] }, @filter[ :brand_id ] ), :include_blank => true, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-4">
+          <%= submit_tag 'Filter', name: nil, class: 'btn btn-default' %>
+          <%= submit_tag "Zurücksetzen", name: :reset, class: 'btn btn-default' %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
-<br>
+<div class="panel panel-default">
+  <div class="panel-heading">Modelle
+    <span style="margin-left: 10px;"><%= link_to  image_tag('plus_16.png'), new_brand_model_path, class: 'btn btn-default' %></span>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Automarke</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @brand_models.each do |brand_model| %>
+        <tr>
+          <td><%= brand_model.name %></td>
+          <td><%= brand_model.brand.name %></td>
+          <td><%= link_to image_tag('pencil_16.png'), edit_brand_model_path(brand_model), class: 'btn btn-default' %></td>
+          <td><%= link_to image_tag('trash_16.png'), brand_model, method: :delete, data: { confirm: 'Sind Sie sicher?' }, class: 'btn btn-default' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

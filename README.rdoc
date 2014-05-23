@@ -12,7 +12,7 @@ todo:
 - Bootstrap für Oberfläche
 - Sortierung: Hersteller und Modelle implementiert
 - Filter für Fahrzeuge und Fahrzeugteile
-- subselect (abhängige Select-Box)
+- subselect (abhängige Select-Box), fast fertig
 
 
 Suche nach Spenderfahrzeug:
@@ -41,7 +41,6 @@ PS: 105
 Ergebnis: Es werden Fahrzeugteile gefiltert, in wessen Artikelbeschreibung das Wort "Drosselklappe" auftaucht, Teile welche aus einem VW-Spenderfahrzeug mit 105 PS demontiert wurden.
 
 Was ist Zweck und Sinn dieser Suchfunktion?
-
 Ich habe einen Kunden, der eine Drosselklappe für einen Audi A3 mit 105PS benötigt. Ich habe kein Audi A3 zerlegt, aber einen Golf 4. Da Audi, Seat, VW und Seat Teile gleich sind, könnte ich ihm die Drosselklappe vom Golf 4 anbieten.
 
 Verkäufer vom Spenderfahrzeug brauche ich eigentlich garnicht, möchte aber trotzdem diese in den Spenderfahrzeugdaten gespeichert haben.

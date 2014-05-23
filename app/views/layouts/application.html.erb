@@ -13,7 +13,7 @@
   <div class="row clearfix">
     <div class="col-md-12 column">
 
-      <div class="navbar navbar-default" role="navigation">
+      <div class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -54,28 +54,26 @@
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-
-      <div class="row clearfix">
-        <%= yield %>
-      </div>
-
     </div>
   </div>
 </div>
 
-<div id="logo">
-  <%= link_to image_tag( "carparsel_logo.png" ), start_overview_url %>
-  <%= link_to image_tag( "customer_logo.jpg" ), "https://www.facebook.com/EurafGmbH" %>
+<div class="container">
+  <div class="row clearfix">
+    <%= yield %>
+  </div>
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <%= link_to image_tag( "carparsel_logo.png" ), start_overview_url %>
+      <%= link_to image_tag( "customer_logo.jpg" ), "https://www.facebook.com/EurafGmbH" %>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
 
-<script>
-  $(document).ready(function () {
-    $("ul.dropdown-menu").click(function(event) {
-      console.log( this )
-      this.removeClass("in").addClass("collapse");
-    });
-  });
-</script>
 </body>
 </html>
