@@ -5,7 +5,7 @@ class CarPart < ActiveRecord::Base
   AUCTION_TYPES = [ [ 'Festpreis', 0 ], [ 'Auktion', 1 ] ]
   AUCTION_STATE = [ [ 'Online', 0 ], [ 'Offline', 1 ] ]
 
-  has_one :car, inverse_of: :car_parts
+  belongs_to :car, inverse_of: :car_parts
 
   def is_auction?
     ebay_selling_type == 1

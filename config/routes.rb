@@ -1,5 +1,8 @@
 CarParSel::Application.routes.draw do
+
   get 'ebay/create'
+
+  get '/car_parts/index_session_reseted' => 'car_parts#index_session_reseted', :as => 'index_session_reseted'
 
   resources :car_parts
 
@@ -16,6 +19,7 @@ CarParSel::Application.routes.draw do
   get '/all_models_for_brand' => 'cars#all_models_for_brand', :format => :json
 
   get "start/overview"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

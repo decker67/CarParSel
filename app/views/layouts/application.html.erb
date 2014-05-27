@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>CarParSel</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
@@ -45,18 +47,56 @@
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">Verkauf<strong class="caret"></strong></a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Fahrzeugteile", car_parts_url %></li>
+                <li><%= link_to "Fahrzeugteile", index_session_reseted_path %></li>
               </ul>
             </li>
 
-            <li><a href="#about">Info</a></li>
-            <li><a href="#contact">Kontakt</a></li>
+            <li><a href="#about" data-toggle="modal">Info</a></li>
+            <li><a href="#contact" data-toggle="modal">Kontakt</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="contact">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Kontakt</h4>
+      </div>
+      <div class="modal-body">
+        <p>Dirk Ecker</p>
+        <p>dirk.ecker@gmx.net</p>
+        <a href="http://www.decitss.de">DECITSS</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="about">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Info</h4>
+      </div>
+      <div class="modal-body">
+        <p>Diese Webanwendung erlaubt die Erfassung von Fahrzeugen und Fahrzeugteilen</p>
+        <p>für den Verkauf auf der ebay Platform.</p>
+        <p>Entwickelt im Auftrag von ...</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <div class="container">
   <div class="row clearfix">

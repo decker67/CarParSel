@@ -1,36 +1,188 @@
-<h1>Fahrzeugteile</h1>
+<div class="page-header">
+  <h1>Fahrzeugteile</h1>
+</div>
 
-<%= link_to image_tag('plus_16.png'), new_car_part_path %>
+<% if @show_filter %>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#filter" class="btn btn-default">Filter</a></h4>
+      </div>
+      <div id="filter" class="panel-collapse collapse">
+        <div class="panel-body">
+          <%= form_tag '', :method => :get, id: :filter, class: 'form-horizontal' do %>
 
-<table class="table">
-  <thead>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :description, 'Artikelbeschreibung' %>
+              </div>
+              <div class="col-md-2">
+                <%= text_field_tag :description, @view_filter[:description] %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :ebay_article_number, 'Artikelnummer' %>
+              </div>
+              <div class="col-md-2">
+                <%= text_field_tag :ebay_article_number, @view_filter[:ebay_article_number] %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :ebay_selling_type, 'Angebotsformat' %>
+              </div>
+              <div class="col-md-2">
+                <%= select_tag :ebay_selling_type, options_for_select(CarPart::AUCTION_TYPES, @view_filter[:ebay_selling_type]), :include_blank => true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :ebay_state, 'eBay-Status' %>
+              </div>
+              <div class="col-md-2">
+                <%= select_tag :ebay_state, options_for_select(CarPart::AUCTION_STATE, @view_filter[:ebay_state]), :include_blank => true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :brand_id, 'Automarke' %>
+              </div>
+              <div class="col-md-2">
+                <%= select_tag :brand_id, options_for_select(Brand.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_id]), :include_blank => true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :brand_model_id, 'Modell' %>
+              </div>
+              <div class="col-md-2">
+                <%= select_tag :brand_model_id, options_for_select(BrandModel.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_model_id]), :include_blank => true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :car_type, 'Typ' %>
+              </div>
+              <div class="col-md-2">
+                <%= text_field_tag :car_type, @view_filter[:car_type] %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :power, 'kW oder PS' %>
+              </div>
+              <div class="col-md-2">
+                <%= number_field_tag :power, @view_filter[:power] %>
+              </div>
+              <div class="col-md-2">
+                <%= number_field_tag :ps, @view_filter[:ps] %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :year_of_construction, 'Konstruktionsjahr' %>
+              </div>
+              <div class="col-md-2">
+                <%= select_tag :year_of_construction, options_for_select(1900..Time.now.year, @view_filter[:year_of_construction]), :include_blank => true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :cylinder_capacity, 'Hubraum' %>
+              </div>
+              <div class="col-md-2">
+                <%= number_field_tag :cylinder_capacity, @view_filter[:cylinder_capacity] %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :fuel, 'Kraftstoff' %>
+              </div>
+              <div class="col-md-2">
+                <%= select_tag :fuel, options_for_select(Car::FUEL_TYPES, @view_filter[:fuel]), :include_blank => true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :gearing, 'Getriebeart' %>
+              </div>
+              <div class="col-md-2">
+                <%= select_tag :gearing, options_for_select(Car::GEARING_TYPES, @view_filter[:gearing]), :include_blank => true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <%= label_tag :key_number2, 'Schlüsselnummer 2/3' %>
+              </div>
+              <div class="col-md-2">
+                <%= text_field_tag :key_number2, @view_filter[:key_number2] %>
+              </div>
+              <div class="col-md-2">
+                <%= text_field_tag :key_number3, @view_filter[:key_number3] %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-4">
+                <%= submit_tag 'Filter', name: nil, class: 'btn btn-default' %>
+                <%= submit_tag "Zurücksetzen", name: :reset, class: 'btn btn-default' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Fahrzeugteile
+
+    <span style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_car_part_path, class: 'btn btn-default' %></span>
+  </div>
+  <table class="table">
+    <thead>
     <tr>
-      <th>Car</th>
-      <th>Description</th>
-      <th>Ebay article number</th>
-      <th>Ebay selling type</th>
-      <th>Price</th>
+      <th>Fahrzeug</th>
+      <th>Beschreibung</th>
+      <th>Artikelnummer</th>
+      <th>Angebotsformat</th>
+      <th>Preis</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @car_parts.each do |car_part| %>
       <tr>
-        <td><%= car_part.car_id %></td>
+        <td><%= car_part.car.car_identifier %></td>
         <td><%= car_part.description %></td>
         <td><%= car_part.ebay_article_number %></td>
         <td><%= car_part.ebay_selling_type %></td>
         <td><%= car_part.price %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part) %></td>
-        <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: { confirm: 'Sind Sie sicher?' } %></td>
+        <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
         <td><%= link_to image_tag('right_16.png'), controller: 'ebay', action: 'create', id: car_part %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-
-
+    </tbody>
+  </table>
+</div>
 

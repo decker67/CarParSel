@@ -1,8 +1,7 @@
-<%= form_for(@car) do |f| %>
+<%= form_for(@car, html: { class: 'form-horizontal' }) do |f| %>
   <% if @car.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
-
+      <h2>Bitte korrigieren Sie die Eingabe:</h2>
       <ul>
       <% @car.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,81 +10,80 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :seller_id, 'Verkäufer' %>
-    <%= f.collection_select :seller_id, Seller.order('last_name ASC'), :id, :last_name  %>
+  <div class="form-group">
+    <%= f.label :seller_id, 'Verkäufer', class: 'col-md-3' %>
+    <%= f.collection_select :seller_id, Seller.order('last_name ASC'), :id, :last_name %>
   </div>
-  <div class="field">
-    <%= f.label :car_identifier, 'Identifizierungsnummer' %>
+  <div class="form-group">
+    <%= f.label :car_identifier, 'Identifikation', class: 'col-md-3' %>
     <%= f.text_field :car_identifier %>
   </div>
-  <div class="field">
-    <%= f.label :brand_id, 'Hersteller' %>
+  <div class="form-group">
+    <%= f.label :brand_id, 'Hersteller', class: 'col-md-3' %>
     <%= select_tag :brand_id, options_from_collection_for_select( Brand.order('name ASC'), :id, :name ), onchange: 'brandOnChangeHandler( this )', include_blank: true %>
   </div>
-  <div class="field">
-    <%= f.label :brand_model_id, 'Modell' %>
+  <div class="form-group">
+    <%= f.label :brand_model_id, 'Modell', class: 'col-md-3' %>
     <%= f.collection_select :brand_model_id, BrandModel.order('name ASC'), :id, :name %>
   </div>
-  <div class="field">
-    <%= f.label :car_type, 'Typ' %>
-    <%= f.text_field :car_type %>
+  <div class="form-group">
+    <%= f.label :car_type, 'Typ', class: 'col-md-3' %>
+    <%= f.text_field :car_type, class: 'col-md-3' %>
   </div>
-  <div class="field">
-    <%= f.label :power, 'kW' %>
+  <div class="form-group">
+    <%= f.label :power, 'kW', class: 'col-md-3' %>
     <%= f.text_field :power %>
   </div>
-  <div class="field">
-    <%= f.label :month_of_construction, 'Konstruktionsjahr' %>
-    <%= f.select :month_of_construction, 1..12, :selected => f.object.month_of_construction %>
+  <div class="form-group">
+    <%= f.label :month_of_construction, 'Konstruktionsjahr', class: 'col-md-3' %>
+    <%= f.select :month_of_construction, 1..12, {}, :selected => f.object.month_of_construction %>
     <%= f.select :year_of_construction, 1900..Time.now.year, :selected => f.object.year_of_construction %>
   </div>
-  <div class="field">
-    <%= f.label :month_of_construction_period_from, 'Herstellungszeitraum von/bis' %>
+  <div class="form-group">
+    <%= f.label :month_of_construction_period_from, 'Herstellungszeitraum von/bis', class: 'col-md-3' %>
     <%= f.select :month_of_construction_period_from, 1..12, :selected => f.object.month_of_construction_period_from %>
     <%= f.select :year_of_construction_period_from, 1900..Time.now.year, :selected => f.object.year_of_construction_period_from %>
     /
     <%= f.select :month_of_construction_period_to, 1..12, :selected => f.object.month_of_construction_period_to %>
     <%= f.select :year_of_construction_period_to, 1900..Time.now.year, :selected => f.object.year_of_construction_period_to %>
   </div>
-  <div class="field">
-    <%= f.label :cylinder_capacity, 'Hubraum in ccm' %>
+  <div class="form-group">
+    <%= f.label :cylinder_capacity, 'Hubraum in ccm', class: 'col-md-3' %>
     <%= f.number_field :cylinder_capacity %>
   </div>
-  <div class="field">
-    <%= f.label :fuel, 'Kraftstoff' %>
+  <div class="form-group">
+    <%= f.label :fuel, 'Kraftstoff', class: 'col-md-3' %>
     <%= f.select :fuel, options_for_select( Car::FUEL_TYPES, f.object.fuel ) %>
   </div>
-  <div class="field">
-    <%= f.label :gearing, 'Getriebe' %>
+  <div class="form-group">
+    <%= f.label :gearing, 'Getriebe', class: 'col-md-3' %>
     <%= f.select :gearing, options_for_select( Car::GEARING_TYPES, f.object.gearing ) %>
   </div>
-  <div class="field">
-    <%= f.label :key_number2, 'Schlüsselwert 2/3' %>
+  <div class="form-group">
+    <%= f.label :key_number2, 'Schlüsselwert 2 3', class: 'col-md-3' %>
     <%= f.text_field :key_number2 %>
-    /
     <%= f.text_field :key_number3 %>
   </div>
-  <div class="field">
-    <%= f.label :mileage, 'Kilometerstand' %>
+  <div class="form-group">
+    <%= f.label :mileage, 'Kilometerstand', class: 'col-md-3' %>
     <%= f.number_field :mileage %>
   </div>
-  <div class="field">
-    <%= f.label :picture_url, 'Url Bild' %>
+  <div class="form-group">
+    <%= f.label :picture_url, 'Url Bild', class: 'col-md-3' %>
     <%= f.url_field :picture_url%>
   </div>
-  <div class="field">
-    <%= f.label :ebay_url_all_parts, 'ebay Url "Alle Teile"' %>
+  <div class="form-group">
+    <%= f.label :ebay_url_all_parts, 'ebay Url "Alle Teile"', class: 'col-md-3' %>
     <%= f.url_field :ebay_url_all_parts %>
   </div>
-  <div class="field">
-    <%= f.label :name_ebay_url_all_parts, 'ebay Beschreibung "Alle Teile"' %>
+  <div class="form-group">
+    <%= f.label :name_ebay_url_all_parts, 'ebay Beschreibung "Alle Teile"', class: 'col-md-3' %>
     <%= f.text_field :name_ebay_url_all_parts %>
   </div>
 
-  <div class="actions">
-    <%= link_to 'Abbrechen', cars_path %>
-    <%= f.submit 'Speichern' %>
+  <div class="form-group">
+    <%= link_to 'Abbrechen', cars_path, class: 'btn btn-default' %>
+    <%= f.submit 'Speichern', class: 'btn btn-default' %>
   </div>
 <% end %>
 
