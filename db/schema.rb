@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140503000000) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "brand_models", force: true do |t|
     t.string   "name"
     t.integer  "brand_id"
@@ -20,11 +23,15 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.datetime "updated_at"
   end
 
+  add_index "brand_models", ["name", "brand_id"], name: "index_brand_models_on_name_and_brand_id", unique: true, using: :btree
+
   create_table "brands", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "brands", ["name"], name: "index_brands_on_name", unique: true, using: :btree
 
   create_table "car_parts", force: true do |t|
     t.integer  "car_id"
@@ -51,6 +58,9 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.datetime "updated_at"
   end
 
+  add_index "car_parts", ["car_id"], name: "index_car_parts_on_car_id", using: :btree
+  add_index "car_parts", ["ebay_article_number"], name: "index_car_parts_on_ebay_article_number", unique: true, using: :btree
+
   create_table "cars", force: true do |t|
     t.string   "car_identifier"
     t.integer  "brand_model_id"
@@ -75,6 +85,9 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "cars", ["brand_model_id"], name: "index_cars_on_brand_model_id", using: :btree
+  add_index "cars", ["car_identifier"], name: "index_cars_on_car_identifier", unique: true, using: :btree
 
   create_table "sellers", force: true do |t|
     t.string   "first_name"

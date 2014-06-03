@@ -7,11 +7,12 @@
 <table class="table">
   <thead>
   <tr>
-    <th>Car</th>
-    <th>Description</th>
-    <th>Ebay article number</th>
-    <th>Ebay selling type</th>
-    <th>Price</th>
+    <th>Fahrzeug</th>
+    <th>Beschreibung</th>
+    <th>Artikelnummer</th>
+    <th>Angebotsformat</th>
+    <th>Preis</th>
+    <th></th>
     <th></th>
   </tr>
   </thead>
@@ -19,12 +20,13 @@
   <tbody>
   <% @car_parts.each do |car_part| %>
     <tr>
-      <td><%= car_part.car_id %></td>
+      <td><%= link_to car_part.car.car_identifier, edit_car_url( car_part.car ), class: 'btn btn-default' %></td>
       <td><%= car_part.description %></td>
       <td><%= car_part.ebay_article_number %></td>
-      <td><%= car_part.ebay_selling_type %></td>
-      <td><%= car_part.price %></td>
-      <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part) %></td>
+      <td><%= car_part.ebay_selling_type_as_string %></td>
+      <td><%= number_to_currency car_part.price %></td>
+      <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
+      <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'} , class: 'btn btn-default'%></td>
     </tr>
   <% end %>
   </tbody>

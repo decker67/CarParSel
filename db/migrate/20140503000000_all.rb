@@ -3,9 +3,9 @@ class All < ActiveRecord::Migration
 
     create_table :brands do |t|
       t.string :name
-
       t.timestamps
     end
+    add_index :brands, :name, unique: true
 
     create_table :brand_models do |t|
       t.string :name
@@ -13,6 +13,7 @@ class All < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :brand_models, [ :name, :brand_id ], unique: true
 
     create_table :sellers do |t|
       t.string :first_name
@@ -48,6 +49,8 @@ class All < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :cars, :car_identifier, unique: true
+    add_index :cars, :brand_model_id
 
     create_table :car_parts do |t|
       t.integer :car_id
@@ -74,7 +77,8 @@ class All < ActiveRecord::Migration
 
       t.timestamps
     end
-
+    add_index :car_parts, :car_id
+    add_index :car_parts, :ebay_article_number
 
   end
 end

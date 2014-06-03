@@ -1,4 +1,5 @@
 class CarPartsController < ApplicationController
+
   before_action :set_car_part, only: [:edit, :update, :destroy]
 
   def index_session_reseted
@@ -12,25 +13,32 @@ class CarPartsController < ApplicationController
       @show_filter = false
       @car_parts = CarPart.where(car_id: session[:car_id])
     else
-      @show_filter = true
-      @view_filter = @view_filter || {}
-      @select_filter = @select_filter || {}
+      if params[:reset]
+        @filter = {}
+        @view_filter = {}
+      else
+        @show_filter = true
+        @view_filter = @view_filter || {}
+        @select_filter = @select_filter || {}
 
-      addFilterFor(:description)
-      addFilterFor(:ebay_article_number)
-      addFilterFor(:ebay_selling_type)
-      # addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
-      # addFilterFor(:brand_model_id)
-      # addFilterFor(:car_type)
-      # addFilterFor(:power)
-      # addFilterFor(:power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
-      # addFilterFor(:year_of_construction)
-      # addFilterFor(:cylinder_capacity)
-      # addFilterFor(:fuel)
-      # addFilterFor(:gearing)
-      # addFilterFor(:key_number2)
-      # addFilterFor(:key_number3)
+        #like = params[:name].concat("%")
+        #items = Item.find(:all, :conditions => ["name like ?", like])
 
+        addFilterFor(:description)
+        addFilterFor(:ebay_article_number)
+        addFilterFor(:ebay_selling_type)
+        # addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
+        # addFilterFor(:brand_model_id)
+        #addFilterFor(:car_type)
+        # addFilterFor(:power)
+        # addFilterFor(:power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
+        # addFilterFor(:year_of_construction)
+        # addFilterFor(:cylinder_capacity)
+        # addFilterFor(:fuel)
+        # addFilterFor(:gearing)
+        # addFilterFor(:key_number2)
+        #addFilterFor( 'car.key_number3' )
+      end
       @car_parts = CarPart.where(@select_filter).order(created_at: :desc)
     end
   end
@@ -45,30 +53,24 @@ class CarPartsController < ApplicationController
 
   def create
     @car_part = CarPart.new(car_part_params)
-    respond_to do |format|
-      if @car_part.save
-        format.html { redirect_to car_parts_url }
-      else
-        format.html { render action: 'new' }
-      end
+    if @car_part.save
+      redirect_to car_parts_url
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @car_part.update(car_part_params)
-        format.html { redirect_to car_parts_url }
-      else
-        format.html { render action: 'edit' }
-      end
+    if @car_part.update(car_part_params)
+      redirect_to car_parts_url
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @car_part.destroy
-    respond_to do |format|
-      format.html { redirect_to car_parts_url }
-    end
+    redirect_to car_parts_url
   end
 
   private

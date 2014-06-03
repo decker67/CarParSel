@@ -1,0 +1,743 @@
+<html>
+<head>
+
+<style type="text/css">
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  clear: both;
+  width: 1020px;
+  margin: 0 auto;
+}
+
+.graphicListReset {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.graphicListReset li {
+  margin: 0;
+  padding: 0;
+}
+
+.defaultFont {
+  font: 12px Helvetica Arial, sans-serif;
+  color: #333333;
+}
+
+.titleFont {
+  font-size: 14px;
+  text-align: center;
+  line-height: 32px;
+}
+
+.logoFont {
+  font-size: 22px;
+  line-height: 30px;
+  color: #2671b3;
+}
+
+.hide {
+  position: absolute !important;
+  left: -9999em !important;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+}
+
+hr {
+  display: none;
+}
+
+.graphic-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.graphic-list li {
+  padding: 0;
+  margin: 0;
+}
+
+.page-wrapper {
+  font: 12px Arial, sans-serif;
+  color: #333333;
+  background: #e8e8e8;
+  padding-bottom: 50px;
+}
+
+.page-wrapper a {
+  color: #258bca;
+  text-decoration: none;
+}
+
+.page-wrapper a:hover {
+  color: #333333;
+}
+
+#master-header {
+  padding-top: 50px;
+}
+
+#master-header > .header-container {
+  position: relative;
+  border: 1px solid #c8c8c8;
+  border-bottom: none;
+  min-height: 100px;
+  background: #ffffff
+}
+
+#master-header .site-title {
+  margin: 35px 20px;
+  float: left;
+  font-size: 22px;
+  line-height: 30px;
+  color: #258bca;
+}
+
+#master-header .slogan {
+  position: relative;
+  float: left;
+  margin: 25px 10px;
+  padding: 10px 7px;
+  font-size: 12px;
+  font-weight: normal;
+  border-left: 2px solid #d7d7d7;
+}
+
+#master-header .slogan:before {
+  content: " ";
+  display: block;
+  height: 100%;
+  width: 1px;
+  background: #ffffff;
+  position: absolute;
+  left: -2px;
+  top: 0;
+}
+
+#master-header:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+}
+
+#master-nav {
+  min-height: 34px;
+  border-bottom: 2px solid #258bca;
+  position: relative;
+  background: #2c2c2c;
+}
+
+#master-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#master-nav ul li {
+  margin: 0;
+  padding: 0;
+}
+
+#master-nav ul:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+}
+
+#master-nav ul li {
+  float: left;
+}
+
+#master-nav ul a {
+  display: block;
+  position: relative;
+  padding: 0 30px;
+  min-width: 70px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 49px;
+  text-transform: none;
+  font-weight: bold;
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 1px 0;
+  outline: none;
+}
+
+#master-nav ul .active a,
+#master-nav ul li:hover > a {
+  background: #258bca;
+}
+
+#page-content {
+  background: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-top: none;
+  margin-bottom: 20px;
+}
+
+#page-content .padder {
+  padding: 25px;
+}
+
+#page-content .padder:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+}
+
+.col-left {
+  float: left;
+  width: 220px;
+}
+
+.col-right {
+  float: right;
+  width: 730px;
+}
+
+.sidebar .widget {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.sidebar .widget:after {
+  content: ".";
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+}
+
+.sidebar .widget .widget-title {
+  position: relative;
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  border: 1px solid #d7d7d7;;
+  margin: 3px;
+  line-height: 34px;
+  padding: 0 17px;
+  font-weight: normal;
+  background: #2c2c2c;
+}
+
+.sidebar .widget .widget-content {
+  position: relative;
+  border: 1px solid #d7d7d7;
+  background: #ffffff;
+}
+
+.sidebar .widget:before {
+  margin: 0;
+  display: block;
+  content: " ";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  height: 10px;
+}
+
+.spacing {
+  padding: 2px 8px;
+}
+
+.gal {
+  width: 500px;
+  height: 520px;
+  padding-top: 15px;
+}
+
+.sidebar .nav-widget ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar .nav-widget ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar .nav-widget ul li {
+  display: block;
+}
+
+.sidebar .nav-widget ul li a {
+  display: block;
+  text-align: center;
+  padding: 5px 0;
+  font-weight: bold;
+}
+
+.nav-text ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-text ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.nav-text ul li {
+  float: left;
+  border-left: 1px solid #c3c3c3;
+}
+
+.nav-text ul li a {
+  display: block;
+  padding: 0 12px;
+}
+
+.nav-text ul li:first-child {
+  border-left: none;
+}
+
+.site-title {
+  margin: 0;
+}
+
+#master-footer {
+  color: #c3c3c3;
+  text-align: center;
+  margin-bottom: 10px;
+  border-radius: 0 0 5px 5px;
+}
+
+#master-footer .copyrights {
+  margin: 0 0 0 25px;
+}
+
+.header-search {
+  float: right;
+  width: 325px;
+  height: 28px;
+  margin: 20px 20px 0px 0px;
+}
+
+.header-search2 {
+  float: left;
+  width: 265px;
+  height: 28px;
+  background-image: url(http://gfdesign.nazwa.pl/ebay_templates/pro/search.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  margin: 20px 0px 0px 25px;
+  border: none;
+}
+
+.search {
+  width: 325px;
+  height: 28px;
+  background-image: url(http://gfdesign.nazwa.pl/ebay_templates/pro/search.png);
+  margin-top: 18px;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+.search input {
+  border: none;
+}
+
+input.search_feld {
+  background: none;
+  color: #666;
+  width: 205px;
+  height: 20px;
+  margin-top: 5px;
+  margin-left: 40px;
+}
+
+input.search_button {
+  background: none;
+  width: 50px;
+  height: 30px;
+  margin-left: 250px;
+  cursor: pointer;
+  margin-top: -25px;
+}
+
+.artikelbilder {
+  position: relative;
+  width: 700px;
+  border: none;
+  float: left;
+  background-repeat: no-repeat;
+  background-position: top center;
+  margin-bottom: 20px;
+}
+
+.thumbnail img {
+  border: 5px solid #ffffff;
+  margin-top: 410px;
+}
+
+.thumbnail:link {
+  text-decoration: none;
+}
+
+.thumbnail:hover {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.thumbnail span {
+  position: absolute;
+  left: -1000px;
+  border: none;
+  visibility: hidden;
+  text-decoration: none;
+}
+
+.thumbnail span img {
+  padding: 0px;
+  border: none;
+}
+
+.thumbnail:hover span {
+  visibility: visible;
+  top: -410px;
+  left: 85px;
+  z-index: 50;
+}
+
+.style1 {
+  font: 12px Arial, sans-serif;
+  color: #333333;
+}
+
+.style4 {
+  color: #FFFFFF;
+  font-size: 10px;
+}
+
+.style5 {
+  font-size: 10px
+}
+</style>
+</head>
+
+<body oncontextmenu="return false">
+
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#e8e8e8">
+<tr>
+<td>
+<div id="EBdescription">
+
+<div class="page-wrapper">
+<div id="master-header" class="header">
+  <div class="container header-container">
+    <div>
+      <!-- SHOPNAME START -->
+      <h1 class="site-title">Ihr Shopname</h1>
+      <!-- SHOPNAME END -->
+      <!-- SLOGAN START -->
+      <h2 class="slogan">Herzlich<br/>Willkommen</h2>
+      <!-- SLOGAN END -->
+    </div>
+    <!-- SEARCH BOX START -->
+    <div class="header-search">
+      <form class="search" action="http://stores.ebay.de/LOGO-DESIGN-SHOP?_rdc=1" method="GET">
+        <input class="search_feld" id="search_value" name="_nkw" value="Suchbegriff eingeben..." type="text">
+        <input class="search_button" id="submit" value="" type="submit"></form>
+    </div>
+    <!-- SEARCH BOX END -->
+  </div>
+  <!-- MENU START -->
+  <div id="master-nav" class="nav container">
+    <ul>
+      <li class="active">
+        <a href="http://stores.ebay.de/LOGO-DESIGN-SHOP">eBay Shop</a></li>
+      <li>
+        <a href="http://feedback.ebay.de/ws/eBayISAPI.dll?ViewFeedback2&userid=gf_logo&ftab=AllFeedback">Bewertungen</a>
+      </li>
+      <li>
+        <a href="http://my.ebay.de/ws/eBayISAPI.dll?AcceptSavedSeller&mode=0&preference=0&sellerid=gf_logo&ru=http%3A%2F%2Ffeedback.ebay.pl%2Fws%2FeBayISAPI.dll%3FViewFeedback2%26userid%3Dgf_logo&ssPageName=STRK:MEFS:ADDMP">Als Favorit speichern</a>
+      </li>
+      <li>
+        <a href="http://myworld.ebay.de/gf_logo">&Uuml;ber uns</a></li>
+      <li>
+        <a href="http://contact.ebay.de/ws/eBayISAPI.dll?FindAnswers&frm=284&requested=gf_logo">Kontakt</a></li>
+    </ul>
+  </div>
+  <!-- MENU END -->
+</div>
+<div id="page-content" class="container">
+<div class="padder">
+<div class="col-left sidebar">
+  <!-- CATEGORY START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Artikelkategorien</h2>
+
+      <div class="spacing">
+        <div id="aside-nav" class="nav-widget">
+          <ul>
+            <li>
+              <a href="#">Kategorie 1</a></li>
+            <li>
+              <a href="#">Kategorie 2</a></li>
+            <li>
+              <a href="#">Kategorie 3</a></li>
+            <li>
+              <a href="#">Kategorie 4</a></li>
+            <li>
+              <a href="#">Kategorie 5</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CATEGORY END -->
+  <!-- PAYMENTS START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Zahlung</h2>
+
+      <div class="spacing">
+        <p>Wir akzeptieren Ihre Zahlung per:</p>
+        <table width="204" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="60">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_paypal.png" width="50" height="38"></td>
+            <td class="style1">PayPal Zahlung</td>
+          </tr>
+          <tr>
+            <td width="60">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_uberweisung.png" width="50" height="38">
+            </td>
+            <td class="style1">Zahlung per &Uuml;berweisung</td>
+          </tr>
+          <tr>
+            <td width="60">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_barzahlung.png" width="50" height="38">
+            </td>
+            <td class="style1">Barzahlung bei Abholung</td>
+          </tr>
+          <tr>
+            <td width="60">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_kreditkarte.png" width="50" height="38">
+            </td>
+            <td class="style1">Zahlung per Kreditkarte</td>
+          </tr>
+          <tr>
+            <td width="60">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_nachnahme.png" width="50" height="38">
+            </td>
+            <td class="style1">Zahlung per Nachname</td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <!-- PAYMENTS END -->
+  <!-- SHIPPING START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Versand</h2>
+
+      <div class="spacing">
+        <p>
+        <table width="204" height="220" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="102" align="center" valign="top">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_dhl.jpg" width="85" height="50"></td>
+            <td width="102" align="center" valign="top">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_dp.jpg" width="85" height="50"></td>
+          </tr>
+          <tr>
+            <td width="102" align="center" valign="top">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_ups.jpg" width="85" height="50"></td>
+            <td width="102" align="center" valign="top">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_hermes.jpg" width="85" height="50"></td>
+          </tr>
+          <tr>
+            <td width="102" align="center" valign="top">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_dpd.jpg" width="85" height="50"></td>
+            <td width="102" align="center" valign="top">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_gls.jpg" width="85" height="50"></td>
+          </tr>
+          <tr>
+            <td width="102" align="center" valign="top">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_iloxx.jpg" width="85" height="50"></td>
+            <td width="102" align="center" valign="top">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_fedex.jpg" width="85" height="50"></td>
+          </tr>
+        </table>
+        <p>Versandkosten:</p>
+        <table width="204" height="100" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_de.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1"><span class="style1">Deutschland</span></td>
+            <td width="72" align="left" valign="middle" class="style1">0,00 EUR</td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_at.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1"><span class="style1">&Ouml;sterreich</span></td>
+            <td align="left" valign="middle"><span class="style1">0,00 EUR</span></td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_ch.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1">Schweiz</td>
+            <td align="left" valign="middle"><span class="style1">0,00 EUR</span></td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1">Europa EU</td>
+            <td align="left" valign="middle"><span class="style1">0,00 EUR</span></td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_welt.png" width="12" height="12"></td>
+            <td width="102" align="left" valign="middle" class="style1">Weltweit</td>
+            <td align="left" valign="middle"><span class="style1">0,00 EUR</span></td>
+          </tr>
+        </table>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- SHIPPING END -->
+  <!-- CONTACT START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Impressum</h2>
+
+      <div class="spacing">
+        <p>Firmenname</p>
+
+        <p><span class="style1">IIhre Stra&szlig;e 15<br/>
+14199 Berlin</span></p>
+        <table width="204" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="25">
+              <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/phone.png" width="16" height="16"/></span>
+            </td>
+            <td><span class="style1">+49 123/0456789</span></td>
+          </tr>
+          <tr>
+            <td width="25">
+              <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/mail.png" width="16" height="16"/></span>
+            </td>
+            <td><span class="style1">kontakt@googlemail.com</span></td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <!-- CONTACT END -->
+  <!-- ADDITIONAL BOX START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Weitere Box</h2>
+
+      <div class="spacing">
+        <p align="center">
+          <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/top_bewertung.png" width="120" height="121"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ADDITIONAL BOX END -->
+<div class="col-right sidebar">
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Artikelbilder</h2>
+
+      <div class="spacing">
+        <div class="gal">
+          <!-- GALLERY BOX START -->
+          <div class="artikelbilder" style="background-image:url(http://gfdesign.nazwa.pl/ebay_templates/pro/bild01.jpg)" align="center">
+            <a class="thumbnail" href="#thumb"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/bild01.jpg" border="0" height="75px" width="100px">
+              <span><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/bild01.jpg" height="400px" width="530px"></span></a>
+            <a class="thumbnail" href="#thumb"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/bild02.jpg" border="0" height="75px" width="100px">
+              <span><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/bild02.jpg" height="400px" width="530px"></span></a>
+            <a class="thumbnail" href="#thumb"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/bild03.jpg" border="0" height="75px" width="100px">
+              <span><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/bild03.jpg" height="400px" width="530px"></span></a>
+            <a class="thumbnail" href="#thumb"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/bild04.jpg" border="0" height="75px" width="100px">
+              <span><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/bild04.jpg" height="400px" width="530px"></span></a>
+          </div>
+          <!-- GALLERY BOX END -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM DESCRIPTION BOX START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Artikelbeschreibung</h2>
+
+      <div class="spacing">
+        <p>Artikelbeschreibung text here</p>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM DESCRIPTION BOX END -->
+  <!-- ITEM ADDITIONAL BOX 1 START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Weitere Box 1</h2>
+
+      <div class="spacing">
+        <p>Weitere Box 1 text here</p>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM ADDITIONAL BOX 1 END -->
+  <!-- ITEM ADDITIONAL BOX 2 START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Weitere Box 2</h2>
+
+      <div class="spacing">
+        <p>Weitere Box 2 text here</p>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM ADDITIONAL BOX 1 END -->
+</div>
+</div>
+</div>
+<div id="master-footer" class="container">
+  <p class="copyrights"><span class="style5">Copyright &copy 2013</span>
+    <a href="http://stores.ebay.pl/LOGO-DESIGN-SHOP?_rdc=1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/gfdesign.png" width="110" height="15" border="0"></a><span class="style5"> Alle Rechte vorbehalten.</span>
+  </p>
+</div>
+</div>
+
+</div>
+</td>
+</tr>
+</table>
+
+<span id="closeHtml"></span>
+</body>
+
+</html>

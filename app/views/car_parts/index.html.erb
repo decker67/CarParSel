@@ -50,92 +50,92 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :brand_id, 'Automarke' %>
-              </div>
-              <div class="col-md-2">
-                <%= select_tag :brand_id, options_for_select(Brand.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_id]), :include_blank => true %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :brand_id, 'Automarke' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= select_tag :brand_id, options_for_select(Brand.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_id]), :include_blank => true %>-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :brand_model_id, 'Modell' %>
-              </div>
-              <div class="col-md-2">
-                <%= select_tag :brand_model_id, options_for_select(BrandModel.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_model_id]), :include_blank => true %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :brand_model_id, 'Modell' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= select_tag :brand_model_id, options_for_select(BrandModel.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_model_id]), :include_blank => true %>-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :car_type, 'Typ' %>
-              </div>
-              <div class="col-md-2">
-                <%= text_field_tag :car_type, @view_filter[:car_type] %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :car_type, 'Typ' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= text_field_tag :car_type, @view_filter[:car_type] %>-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :power, 'kW oder PS' %>
-              </div>
-              <div class="col-md-2">
-                <%= number_field_tag :power, @view_filter[:power] %>
-              </div>
-              <div class="col-md-2">
-                <%= number_field_tag :ps, @view_filter[:ps] %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :power, 'kW oder PS' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= number_field_tag :power, @view_filter[:power] %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= number_field_tag :ps, @view_filter[:ps] %>-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :year_of_construction, 'Konstruktionsjahr' %>
-              </div>
-              <div class="col-md-2">
-                <%= select_tag :year_of_construction, options_for_select(1900..Time.now.year, @view_filter[:year_of_construction]), :include_blank => true %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :year_of_construction, 'Konstruktionsjahr' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= select_tag :year_of_construction, options_for_select(1900..Time.now.year, @view_filter[:year_of_construction]), :include_blank => true %>-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :cylinder_capacity, 'Hubraum' %>
-              </div>
-              <div class="col-md-2">
-                <%= number_field_tag :cylinder_capacity, @view_filter[:cylinder_capacity] %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :cylinder_capacity, 'Hubraum' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= number_field_tag :cylinder_capacity, @view_filter[:cylinder_capacity] %>-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :fuel, 'Kraftstoff' %>
-              </div>
-              <div class="col-md-2">
-                <%= select_tag :fuel, options_for_select(Car::FUEL_TYPES, @view_filter[:fuel]), :include_blank => true %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :fuel, 'Kraftstoff' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= select_tag :fuel, options_for_select(Car::FUEL_TYPES, @view_filter[:fuel]), :include_blank => true %>-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :gearing, 'Getriebeart' %>
-              </div>
-              <div class="col-md-2">
-                <%= select_tag :gearing, options_for_select(Car::GEARING_TYPES, @view_filter[:gearing]), :include_blank => true %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :gearing, 'Getriebeart' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= select_tag :gearing, options_for_select(Car::GEARING_TYPES, @view_filter[:gearing]), :include_blank => true %>-->
+              <!--</div>-->
+            <!--</div>-->
 
-            <div class="form-group">
-              <div class="col-md-3">
-                <%= label_tag :key_number2, 'Schlüsselnummer 2/3' %>
-              </div>
-              <div class="col-md-2">
-                <%= text_field_tag :key_number2, @view_filter[:key_number2] %>
-              </div>
-              <div class="col-md-2">
-                <%= text_field_tag :key_number3, @view_filter[:key_number3] %>
-              </div>
-            </div>
+            <!--<div class="form-group">-->
+              <!--<div class="col-md-3">-->
+                <!--<%= label_tag :key_number2, 'Schlüsselnummer 2/3' %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= text_field_tag :key_number2, @view_filter[:key_number2] %>-->
+              <!--</div>-->
+              <!--<div class="col-md-2">-->
+                <!--<%= text_field_tag :key_number3, @view_filter[:key_number3] %>-->
+              <!--</div>-->
+            <!--</div>-->
 
             <div class="form-group">
               <div class="col-md-4">
@@ -172,14 +172,14 @@
     <tbody>
     <% @car_parts.each do |car_part| %>
       <tr>
-        <td><%= car_part.car.car_identifier %></td>
+        <td><%= link_to car_part.car.car_identifier, edit_car_url( car_part.car ), class: 'btn btn-default' %></td>
         <td><%= car_part.description %></td>
         <td><%= car_part.ebay_article_number %></td>
-        <td><%= car_part.ebay_selling_type %></td>
-        <td><%= car_part.price %></td>
-        <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part) %></td>
-        <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'} %></td>
-        <td><%= link_to image_tag('right_16.png'), controller: 'ebay', action: 'create', id: car_part %></td>
+        <td><%= car_part.ebay_selling_type_as_string %></td>
+        <td><%= number_to_currency car_part.price %></td>
+        <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
+        <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
+        <td><%= link_to image_tag('right_16.png'), { controller: 'ebay', action: 'create', id: car_part }, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
     </tbody>
