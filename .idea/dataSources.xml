@@ -10,13 +10,14 @@
     <data-source source="LOCAL" name="Rails CarParSel: test" uuid="609433e8-5185-42ba-ac56-279a3a96bd02">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\projects\auftraege\ebayTemplate\CarParSel\db\test.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/test.sqlite3</jdbc-url>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails CarParSel: production" uuid="32c2943c-d878-47d3-8260-25b687429a02">
       <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\projects\auftraege\ebayTemplate\CarParSel\db\production.sqlite3</jdbc-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/carparsel</jdbc-url>
+      <user-name>decker</user-name>
       <libraries />
     </data-source>
   </component>
