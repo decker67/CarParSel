@@ -14,6 +14,7 @@
     <th>Preis</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
   </thead>
 
@@ -27,8 +28,8 @@
       <td><%= number_to_currency car_part.price %></td>
       <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
       <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'} , class: 'btn btn-default'%></td>
+      <td><%= link_to image_tag('ebay_16.png'), { controller: 'ebay', action: 'create', id: car_part, from_url: request.fullpath }, class: 'btn btn-default' %></td>
     </tr>
   <% end %>
   </tbody>
 </table>
-

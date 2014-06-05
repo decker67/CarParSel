@@ -138,7 +138,7 @@
         <td><%= "#{car.month_of_construction}/#{car.year_of_construction}" %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_path(car), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), car, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
-        <td><%= link_to image_tag('right_16.png'), car_parts_path(:car_id => car.id), class: 'btn btn-default' %></td>
+        <td><%= link_to image_tag('parts_16.png'), car_parts_path(:car_id => car.id), class: 'btn btn-default' %></td>
       </tr>
     <% end %>
     </tbody>

@@ -24,7 +24,7 @@
 </div>
 <div>
   <%= button_tag 'Html in die Zwischenablage kopieren', onclick: "copyToClipboard()" %>
-  <%= link_to 'Zurück', car_parts_path %>
+  <%= link_to 'Zurück', @back_to_url %>
   <%= text_area_tag :clipboard, 'Bitte <Kopieren> drücken und danach mit CTRL+A kopieren.', style: 'position: absolute; left: -1000px'  %>
 </div>
 
@@ -603,31 +603,31 @@
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_de.png" width="16" height="11"></td>
             <td width="102" align="left" valign="middle" class="style1"><span class="style1">Deutschland</span></td>
-            <td width="72" align="left" valign="middle" class="style1">0,00 EUR</td>
+            <td width="72" align="left" valign="middle" class="style1"><%= number_to_currency @car_part.postage_germany %></td>
           </tr>
           <tr>
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_at.png" width="16" height="11"></td>
             <td width="102" align="left" valign="middle" class="style1"><span class="style1">&Ouml;sterreich</span></td>
-            <td align="left" valign="middle"><span class="style1">0,00 EUR</span></td>
+            <td align="left" valign="middle"><span class="style1"><%= number_to_currency @car_part.postage_austria %></span></td>
           </tr>
           <tr>
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_ch.png" width="16" height="11"></td>
             <td width="102" align="left" valign="middle" class="style1">Schweiz</td>
-            <td align="left" valign="middle"><span class="style1">0,00 EUR</span></td>
+            <td align="left" valign="middle"><span class="style1"><%= number_to_currency @car_part.postage_swiss %></span></td>
           </tr>
           <tr>
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
             <td width="102" align="left" valign="middle" class="style1">Europa EU</td>
-            <td align="left" valign="middle"><span class="style1">0,00 EUR</span></td>
+            <td align="left" valign="middle"><span class="style1"><%= number_to_currency @car_part.postage_europe_with_eu %></span></td>
           </tr>
           <tr>
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_welt.png" width="12" height="12"></td>
             <td width="102" align="left" valign="middle" class="style1">Weltweit</td>
-            <td align="left" valign="middle"><span class="style1">0,00 EUR</span></td>
+            <td align="left" valign="middle"><span class="style1"><%= number_to_currency @car_part.postage_world_wide %></span></td>
           </tr>
         </table>
         </p>

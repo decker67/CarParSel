@@ -3,13 +3,12 @@ class EbayController < ApplicationController
   layout 'plain'
 
   def create
-    logger.debug "params" + params.inspect
     @car_part = CarPart.find_by_id( params[:id] )
     @car = Car.find_by_id( @car_part.car_id );
 
-    create_picture_urls_array
+    @back_to_url = params[ :from_url ]
 
-    @disable_car_data = @disable_car_data || false
+    create_picture_urls_array
   end
 
   private
