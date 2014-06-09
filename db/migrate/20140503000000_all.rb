@@ -27,11 +27,15 @@ class All < ActiveRecord::Migration
 
     create_table :cars do |t|
       t.string :car_identifier
+      t.string :car_brand_id
+      t.string :engine_code
+      t.string :gearing_code
+      t.string :color_code
       t.integer :brand_model_id
       t.string :car_type
+      t.integer :price
       t.integer :power
-      t.integer :month_of_construction
-      t.integer :year_of_construction
+      t.date :date_of_construction
       t.integer :month_of_construction_period_from
       t.integer :year_of_construction_period_from
       t.integer :month_of_construction_period_to
@@ -60,13 +64,13 @@ class All < ActiveRecord::Migration
       t.integer :ebay_selling_type
       t.date :ebay_online_since
       t.integer :ebay_state
-      t.decimal :price
-      t.decimal :postage_germany
-      t.decimal :postage_austria
-      t.decimal :postage_swiss
-      t.decimal :postage_europe_with_eu
-      t.decimal :postage_europe_without_eu
-      t.decimal :postage_world_wide
+      t.decimal :price, precision: 18, scale: 2
+      t.decimal :postage_germany, precision: 18, scale: 2
+      t.decimal :postage_austria, precision: 18, scale: 2
+      t.decimal :postage_swiss, precision: 18, scale: 2
+      t.decimal :postage_europe_with_eu, precision: 18, scale: 2
+      t.decimal :postage_europe_without_eu, precision: 18, scale: 2
+      t.decimal :postage_world_wide, precision: 18, scale: 2
       t.string :picture_url1
       t.string :picture_url2
       t.string :picture_url3

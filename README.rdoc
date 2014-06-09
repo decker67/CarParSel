@@ -10,3 +10,17 @@ todo:
 
 später:
 - Etiketten drucken: Daten spezifizieren, wahrscheinlich mit Fahrzeug Id
+
+
+- Kiosk-Modus vom IE ausschalten und
+Dim objIE<br>
+Set objIE = WScript.CreateObject ("InternetExplorer.Application")<br>
+ObjIE.Toolbar = false<br>
+objIE.Navigate "http://www.savilltech.com"<br>
+objIE.Visible = true
+If you save the file has ienobar.vbs and then execute with
+
+cscript ienobar.vbs
+
+IE will be started with no toolbars.
+

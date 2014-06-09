@@ -20,6 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 de:
+  activerecord:
+    models:
+      car_part: Fahrzeugteil
+
+    attributes:
+      car_part:
+        ebay_article_number: ebay Artikelnummer
+        ebay_online_since: Datum
+
+
   #added from https://raw.githubusercontent.com/svenfuchs/rails-i18n/master/rails/locale/de.yml
   date:
     abbr_day_names:

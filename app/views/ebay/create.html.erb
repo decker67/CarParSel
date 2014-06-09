@@ -9,12 +9,12 @@
   }
 
   function copyToClipboard() {
-    var ebayContent = document.getElementById( 'ebay_content' );
-    var clipBoard = document.getElementById( 'clipboard' );
+    var ebayContent = document.getElementById('ebay_content');
+    var clipBoard = document.getElementById('clipboard');
     clipBoard.value = ebayContent.innerHTML;
     clipBoard.focus();
     clipBoard.select();
-    document.execCommand( 'Copy' );
+    document.execCommand('Copy');
   }
 </script>
 
@@ -25,7 +25,7 @@
 <div>
   <%= button_tag 'Html in die Zwischenablage kopieren', onclick: "copyToClipboard()" %>
   <%= link_to 'Zurück', @back_to_url %>
-  <%= text_area_tag :clipboard, 'Bitte <Kopieren> drücken und danach mit CTRL+A kopieren.', style: 'position: absolute; left: -1000px'  %>
+  <%= text_area_tag :clipboard, 'Bitte <Kopieren> drücken und danach mit CTRL+A kopieren.', style: 'position: absolute; left: -1000px' %>
 </div>
 
 <div id="ebay_content">
@@ -524,7 +524,8 @@
           <ul>
             <li>&nbsp;</li>
             <li align="center"><%= @car.brand_model.brand.name + ' ' + @car.brand_model.name %></li>
-            <li align="center"><%= @car.car_type + ' ' + @car.month_of_construction.to_s + '/' + @car.year_of_construction.to_s %></li>
+            <li align="center"><%= @car.car_type %></li>
+            <li align="center"><%= @car.date_of_construction.to_s %></li>
             <li>&nbsp;</li>
             <li align="center"><a href="#">Alle Teile aus dem Spenderfahrzeug auf einen Blick</a></li>
           </ul>
@@ -609,25 +610,29 @@
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_at.png" width="16" height="11"></td>
             <td width="102" align="left" valign="middle" class="style1"><span class="style1">&Ouml;sterreich</span></td>
-            <td align="left" valign="middle"><span class="style1"><%= number_to_currency @car_part.postage_austria %></span></td>
+            <td align="left" valign="middle">
+              <span class="style1"><%= number_to_currency @car_part.postage_austria %></span></td>
           </tr>
           <tr>
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_ch.png" width="16" height="11"></td>
             <td width="102" align="left" valign="middle" class="style1">Schweiz</td>
-            <td align="left" valign="middle"><span class="style1"><%= number_to_currency @car_part.postage_swiss %></span></td>
+            <td align="left" valign="middle">
+              <span class="style1"><%= number_to_currency @car_part.postage_swiss %></span></td>
           </tr>
           <tr>
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
             <td width="102" align="left" valign="middle" class="style1">Europa EU</td>
-            <td align="left" valign="middle"><span class="style1"><%= number_to_currency @car_part.postage_europe_with_eu %></span></td>
+            <td align="left" valign="middle">
+              <span class="style1"><%= number_to_currency @car_part.postage_europe_with_eu %></span></td>
           </tr>
           <tr>
             <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_welt.png" width="12" height="12"></td>
             <td width="102" align="left" valign="middle" class="style1">Weltweit</td>
-            <td align="left" valign="middle"><span class="style1"><%= number_to_currency @car_part.postage_world_wide %></span></td>
+            <td align="left" valign="middle">
+              <span class="style1"><%= number_to_currency @car_part.postage_world_wide %></span></td>
           </tr>
         </table>
         </p>
@@ -705,173 +710,173 @@
       <h2 class="widget-title">Artikelbeschreibung</h2>
 
       <div class="spacing">
-        <div id="title">
-          <b><font face="Verdana"><b></b></font></b>
+        <div id="title" align="center">
+          <font face="Verdana"></font>
 
-          <div align="center"><font size="5">
-            <%= @car_part.description %></font>
-            <span class="nextGenBox"><span class="MultiValueSpanWidth"></span></span>
+          <div style="font-size: 2em;"><%= @car_part.description %></div>
+          <div style="font-size: 1em;">Artikelnummer&nbsp;<%= @car_part.ebay_article_number %></div>
 
-            <span class="nextGenBox"><span class="MultiValueSpanWidth"></span></span>
-
-            <span class="nextGenBox"><span class="MultiValueSpanWidth"></span></span>
-
-            <div>
-              <% if @car_part.is_auction? %>
-                <font size="6">3,2,1, ... deins</font>
-              <% else %>
-                <font size="6"><%= number_to_currency @car_part.price %></font>
-              <% end %>
-            </div>
-            <div>
-              <% if @car_part.no_postage_for_germany? %>
-                <img src="http://autohalle24.de/ebay_layout/flag_de.png" height="11" width="16">&nbsp;
-                <font color="#2E6B31"><b>Versand kostenlos</b></font></div><b><font face="Verdana"><b></b></font></b>
-              <% end %>
-              </div>
-        </div>
-      </div>
-    </div>
-    <!-- ITEM DESCRIPTION BOX END -->
-    <!-- ITEM ADDITIONAL BOX 0 START -->
-    <% if @car_part.remark_given? %>
-      <div class="widget">
-        <div class="widget-content">
-          <h2 class="widget-title">Bemerkungen</h2>
-
-          <div class="spacing">
-            <p align="center"><%= @car_part.remark %></p>
+          <div style="margin-top: 10px; margin-bottom: 10px; font-size: 2em;">
+             <% if @car_part.is_auction? %>
+                3,2,1, ... deins
+             <% else %>
+                <%= number_to_currency @car_part.price %>
+             <% end %>
           </div>
-        </div>
-      </div>
-      <!-- ITEM ADDITIONAL BOX 0 END -->
-    <% end %>
-
-    <!-- ITEM ADDITIONAL BOX 1 START -->
-    <div id="car_data" class="widget">
-      <div class="widget-content">
-        <h2 class="widget-title">Daten vom Spenderfahrzeug</h2>
-
-        <div class="spacing">
-          <table border="true" style="margin-left: auto; margin-right: auto;">
-            <tr>
-              <td>Marke</td>
-              <td><%= @car.brand_model.brand.name %></td>
-            </tr>
-            <tr>
-              <td>Modell</td>
-              <td><%= @car.brand_model.name %></td>
-            </tr>
-            <tr>
-              <td>Typ</td>
-              <td><%= @car.car_type %></td>
-            </tr>
-            <tr>
-              <td>Leistung</td>
-              <td><%= @car.power.to_s + 'kW / ' + @car.ps.round.to_s + 'PS' %></td>
-            </tr>
-            <tr>
-              <td>Baujahr</td>
-              <td><%= @car.year_of_construction.to_s %></td>
-            </tr>
-            <tr>
-              <td>Bauzeitraum</td>
-              <td><%= @car.year_of_construction_period_from.to_s + ' - ' + @car.year_of_construction_period_to.to_s %></td>
-            </tr>
-            <tr>
-              <td>Hubraum</td>
-              <td><%= @car.cylinder_capacity.to_s + ' cm' %>&sup3;</td>
-            </tr>
-            <tr>
-              <td>Kraftstoff</td>
-              <td><%= @car.fuel_as_string %></td>
-            </tr>
-            <tr>
-              <td>Getriebeart</td>
-              <td><%= @car.gearing_as_string %></td>
-            </tr>
-            <tr>
-              <td>Schlüsselnummer zu 2/3</td>
-              <td><%= @car.key_number2 + '/' + @car.key_number3 %></td>
-            </tr>
-            <tr>
-              <td>Laufleistung</td>
-              <td><%= @car.mileage.to_s + ' km' %></td>
-            </tr>
-          </table>
+        <div>
+          <% if @car_part.no_postage_for_germany? %>
+            <img src="http://autohalle24.de/ebay_layout/flag_de.png" height="11" width="16">&nbsp;
+            <font color="#2E6B31"><b>Versand kostenlos</b></font>
+          <% end %>
         </div>
       </div>
     </div>
-    <!-- ITEM ADDITIONAL BOX 1 END -->
-    <!-- ITEM ADDITIONAL BOX 2 START -->
-    <div class="widget">
-      <div class="widget-content">
-        <h2 class="widget-title">Verwendung für andere Fahrzeuge</h2>
-
-        <div class="spacing">
-          <p align="center">Die genannten Fahrzeugdaten, speziell Schlüsselnummern, entsprechen denen des
-            Spenderfahrzeuges. Bei einigen Teilen ist jedoch die Verwendung auch für andere Fahrzeuge möglich. Wenn Sie
-            sich nicht sicher sind, ob das angebotene Artikel zu Ihrem Fahrzeug passt, nehmen Sie bitte Kontakt mit uns
-            auf.</p>
-        </div>
-      </div>
-    </div>
-    <!-- ITEM ADDITIONAL BOX 2 END -->
-    <!-- ITEM ADDITIONAL BOX 3 START -->
-    <div class="widget">
-      <div class="widget-content">
-        <h2 class="widget-title">Für gebrauchte Ersatzteile gilt</h2>
-
-        <div class="spacing">
-          <p align="center">Der von uns angebotene Gegenstand ist ein gebrauchtes Ersatzteil. Gebrauchte Ersatzteile
-            weisen in der Regel immer Gebrauchsspuren auf, deshalb bezeichnet man diese auch als gebraucht!
-            Gebrauchsspuren sind deshalb kein Grund für eine Reklamation. Gebrauchte Ersatzteile kosten in der Regel
-            einen
-            Bruchteil gegenüber neuen Ersatzteilen. Sie sollten sich deshalb vor dem Kauf oder dem Bieten darüber
-            bewusst
-            sein, dass sie hier einen gebrauchten Gegenstand mit Gebrauchsspuren erwerben. Sie sollten deshalb nur
-            bieten
-            oder kaufen, wenn sie tatsächlich einen gebrauchten Gegenstand erwerben möchten.</p>
-        </div>
-      </div>
-    </div>
-    <!-- ITEM ADDITIONAL BOX 3 END -->
-    <!-- ITEM ADDITIONAL BOX 4 START -->
-    <div class="widget">
-      <div class="widget-content">
-        <h2 class="widget-title">Rechtliche Hinweise</h2>
-
-        <div class="spacing">
-          <p align="center">Wir sind bestrebt, alle gesetzlichen Anforderungen, Vorschriften und Informationspflichten
-            vollständig zu erfüllen und Schutzrechtsverletzungen zu vermeiden. Falls Sie vermuten, dass dies nicht der
-            Fall ist, teilen Sie dies bitte umgehend per Email an ebay@autohalle24.de mit, damit zügig Abhilfe
-            geschaffen
-            werden kann. Bitte nehmen Sie zur Kenntnis, dass die zeitaufwendigere Einschaltung eines Rechtsanwaltes zur
-            für den Dienstanbieter kostenpflichtigen Abmahnung nicht dessen wirklichen oder mutmaßlichen Willen
-            entspricht. Dennoch von Ihnen ohne vorherige Kontaktaufnahme ausgelöste Kosten werden wir vollumfänglich
-            zurückweisen und gegebenenfalls Gegenklage wegen Verletzung vorgenannter Bestimmungen einreichen.</p>
-        </div>
-      </div>
-    </div>
-    <!-- ITEM ADDITIONAL BOX 4 END -->
-    <!-- ITEM ADDITIONAL BOX 5 START -->
-    <div class="widget">
-      <div class="widget-content">
-        <h2 class="widget-title">Kundenbetreuung</h2>
-
-        <div class="spacing">
-          <p align="center">Haben Sie Fragen oder Anregungen?
-            Dann erreichen Sie uns per E-Mail: ebay@autohalle24.de
-
-            Wenn Sie Teile benötigen, welche wir nicht auf Lager haben und auf Ebay nicht anbieten, nehmen Sie trotzdem
-            Kontakt mit uns auf. Wir sind auch Vermittler von KFZ-Teilen. Stellen Sie uns eine Anfrage per E-Mail mit
-            möglichst genauen Informationen zum gesuchten Artikel. Wir machen uns gerne die Mühe und fragen bei unseren
-            Teilelieferanten nach.</p>
-        </div>
-      </div>
-    </div>
-    <!-- ITEM ADDITIONAL BOX 5 END -->
   </div>
+  <!-- ITEM DESCRIPTION BOX END -->
+  <!-- ITEM ADDITIONAL BOX 0 START -->
+  <% if @car_part.remark_given? %>
+    <div class="widget">
+      <div class="widget-content">
+        <h2 class="widget-title">Bemerkungen</h2>
+
+        <div class="spacing">
+          <p align="center"><%= @car_part.remark %></p>
+        </div>
+      </div>
+    </div>
+    <!-- ITEM ADDITIONAL BOX 0 END -->
+  <% end %>
+
+  <!-- ITEM ADDITIONAL BOX 1 START -->
+  <div id="car_data" class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Daten vom Spenderfahrzeug</h2>
+
+      <div class="spacing">
+        <table style="margin-left: auto; margin-right: auto; font-size: 130%;">
+          <tr>
+            <td>Marke</td>
+            <td><%= @car.brand_model.brand.name %></td>
+          </tr>
+          <tr>
+            <td>Modell</td>
+            <td><%= @car.brand_model.name %></td>
+          </tr>
+          <tr>
+            <td>Typ</td>
+            <td><%= @car.car_type %></td>
+          </tr>
+          <tr>
+            <td>Leistung</td>
+            <td><%= @car.power.to_s + 'kW / ' + @car.ps.round.to_s + 'PS' %></td>
+          </tr>
+          <tr>
+            <td>Baujahr</td>
+            <td><%= @car.date_of_construction.year.to_s %></td>
+          </tr>
+          <tr>
+            <td>Bauzeitraum</td>
+            <td><%= @car.year_of_construction_period_from.to_s + ' - ' + @car.year_of_construction_period_to.to_s %></td>
+          </tr>
+          <tr>
+            <td>Hubraum</td>
+            <td><%= @car.cylinder_capacity.to_s + ' cm' %>&sup3;</td>
+          </tr>
+          <tr>
+            <td>Kraftstoff</td>
+            <td><%= @car.fuel_as_string %></td>
+          </tr>
+          <tr>
+            <td>Getriebeart</td>
+            <td><%= @car.gearing_as_string %></td>
+          </tr>
+          <tr>
+            <td>Schlüsselnummer zu 2/3</td>
+            <td><%= @car.key_number2 + '/' + @car.key_number3 %></td>
+          </tr>
+          <tr>
+            <td>Laufleistung</td>
+            <td><%= @car.mileage.to_s + ' km' %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM ADDITIONAL BOX 1 END -->
+  <!-- ITEM ADDITIONAL BOX 2 START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Verwendung für andere Fahrzeuge</h2>
+
+      <div class="spacing">
+        <p align="center">Die genannten Fahrzeugdaten, speziell Schlüsselnummern, entsprechen denen des
+          Spenderfahrzeuges. Bei einigen Teilen ist jedoch die Verwendung auch für andere Fahrzeuge möglich. Wenn
+          Sie
+          sich nicht sicher sind, ob das angebotene Artikel zu Ihrem Fahrzeug passt, nehmen Sie bitte Kontakt mit
+          uns
+          auf.</p>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM ADDITIONAL BOX 2 END -->
+  <!-- ITEM ADDITIONAL BOX 3 START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Für gebrauchte Ersatzteile gilt</h2>
+
+      <div class="spacing">
+        <p align="center">Der von uns angebotene Gegenstand ist ein gebrauchtes Ersatzteil. Gebrauchte Ersatzteile
+          weisen in der Regel immer Gebrauchsspuren auf, deshalb bezeichnet man diese auch als gebraucht!
+          Gebrauchsspuren sind deshalb kein Grund für eine Reklamation. Gebrauchte Ersatzteile kosten in der Regel
+          einen
+          Bruchteil gegenüber neuen Ersatzteilen. Sie sollten sich deshalb vor dem Kauf oder dem Bieten darüber
+          bewusst
+          sein, dass sie hier einen gebrauchten Gegenstand mit Gebrauchsspuren erwerben. Sie sollten deshalb nur
+          bieten
+          oder kaufen, wenn sie tatsächlich einen gebrauchten Gegenstand erwerben möchten.</p>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM ADDITIONAL BOX 3 END -->
+  <!-- ITEM ADDITIONAL BOX 4 START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Rechtliche Hinweise</h2>
+
+      <div class="spacing">
+        <p align="center">Wir sind bestrebt, alle gesetzlichen Anforderungen, Vorschriften und Informationspflichten
+          vollständig zu erfüllen und Schutzrechtsverletzungen zu vermeiden. Falls Sie vermuten, dass dies nicht der
+          Fall ist, teilen Sie dies bitte umgehend per Email an ebay@autohalle24.de mit, damit zügig Abhilfe
+          geschaffen
+          werden kann. Bitte nehmen Sie zur Kenntnis, dass die zeitaufwendigere Einschaltung eines Rechtsanwaltes
+          zur
+          für den Dienstanbieter kostenpflichtigen Abmahnung nicht dessen wirklichen oder mutmaßlichen Willen
+          entspricht. Dennoch von Ihnen ohne vorherige Kontaktaufnahme ausgelöste Kosten werden wir vollumfänglich
+          zurückweisen und gegebenenfalls Gegenklage wegen Verletzung vorgenannter Bestimmungen einreichen.</p>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM ADDITIONAL BOX 4 END -->
+  <!-- ITEM ADDITIONAL BOX 5 START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Kundenbetreuung</h2>
+
+      <div class="spacing">
+        <p align="center">Haben Sie Fragen oder Anregungen?
+          Dann erreichen Sie uns per E-Mail: ebay@autohalle24.de
+
+          Wenn Sie Teile benötigen, welche wir nicht auf Lager haben und auf Ebay nicht anbieten, nehmen Sie
+          trotzdem
+          Kontakt mit uns auf. Wir sind auch Vermittler von KFZ-Teilen. Stellen Sie uns eine Anfrage per E-Mail mit
+          möglichst genauen Informationen zum gesuchten Artikel. Wir machen uns gerne die Mühe und fragen bei
+          unseren
+          Teilelieferanten nach.</p>
+      </div>
+    </div>
+  </div>
+  <!-- ITEM ADDITIONAL BOX 5 END -->
+</div>
 </div>
 </div>
 <div id="master-footer" class="container">
