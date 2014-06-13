@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Modelle</h1>
+  <h1>Typen</h1>
 </div>
 
 <div class="panel-group" id="accordion">
@@ -13,10 +13,10 @@
         <%= form_tag '', :method => :get, class: 'form-horizontal' do %>
           <div class="form-group">
             <div class="col-md-1">
-              <%= label_tag :brand_id, 'Automarke' %>
+              <%= label_tag :brand_model_id, 'Modell' %>
             </div>
             <div class="col-md-2">
-              <%= select_tag :brand_id, options_for_select(Brand.order(:name).collect { |s| [s.name, s.id] }, @filter[:brand_id]), :include_blank => true %>
+              <%= select_tag :brand_model_id, options_for_select(BrandModel.order(:name).collect { |s| [s.name, s.id] }, @filter[:brand_model_id]), :include_blank => true %>
             </div>
           </div>
           <div class="form-group">
@@ -32,25 +32,31 @@
 </div>
 
 <div class="panel panel-default">
-  <div class="panel-heading">Modelle
-    <span style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_brand_model_path, class: 'btn btn-default' %></span>
+  <div class="panel-heading">Typen
+    <span style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_model_type_path, class: 'btn btn-default' %></span>
   </div>
   <table class="table table-hover">
     <thead>
     <tr>
       <th>Automarke</th>
-      <th>Name</th>
+      <th>Modell</th>
+      <th>Typ</th>
+      <th>von</th>
+      <th>bis</th>
       <th></th>
       <th></th>
     </tr>
     </thead>
     <tbody>
-    <% @brand_models.each do |brand_model| %>
+    <% @model_types.each do |model_type| %>
       <tr>
-        <td><%= brand_model.brand.name %></td>
-        <td><%= brand_model.name %></td>
-        <td><%= link_to image_tag('pencil_16.png'), edit_brand_model_path(brand_model), class: 'btn btn-default' %></td>
-        <td><%= link_to image_tag('trash_16.png'), brand_model, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
+        <td><%= model_type.brand_model.brand.name %></td>
+        <td><%= model_type.brand_model.name %></td>
+        <td><%= model_type.model_type %></td>
+        <td><%= model_type.month_of_construction_period_from %>/<%= model_type.year_of_construction_period_from %></td>
+        <td><%= model_type.month_of_construction_period_to %>/<%= model_type.year_of_construction_period_to %></td>
+        <td><%= link_to image_tag('pencil_16.png'), edit_model_type_path(model_type), class: 'btn btn-default' %></td>
+        <td><%= link_to image_tag('trash_16.png'), model_type, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
     </tbody>

@@ -20,6 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 de:
+  views:
+    pagination:
+      first: "|<"
+      last: ">|"
+      previous: "<"
+      next: ">"
+
   activerecord:
     models:
       car_part: Fahrzeugteil

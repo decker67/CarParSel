@@ -1,9 +1,8 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: [:edit, :update, :destroy]
-  rescue_from Exception, with: :handleException
 
   def index
-    @brands = Brand.all.order(:name)
+    @brands = Brand.all.order( :name ).page params[ :page ]
   end
 
   def new
@@ -24,20 +23,16 @@ class BrandsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @brand.update(brand_params)
-        format.html { redirect_to brands_url }
-      else
-        format.html { render action: :edit }
-      end
+    if @brand.update(brand_params)
+      redirect_to brands_url
+    else
+      render action: :edit
     end
   end
 
   def destroy
     @brand.destroy
-    respond_to do |format|
-      format.html { redirect_to brands_url }
-    end
+    redirect_to brands_url
   end
 
   private
@@ -49,12 +44,6 @@ class BrandsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def brand_params
     params.require(:brand).permit(:name)
-  end
-
-  public
-  def handleException(exception)
-    flash[:error] = exception.message
-    redirect_to brands_url
   end
 
 end

@@ -6,17 +6,18 @@ CarParSel::Application.routes.draw do
 
   resources :car_parts
 
+  resources :model_types
+
   resources :brand_models
 
   resources :brands
 
   resources :cars
 
-  resources :cars
-
   resources :sellers
 
   get '/all_models_for_brand' => 'cars#all_models_for_brand', :format => :json
+  get '/all_types_for_model' => 'cars#all_types_for_model', :format => :json
 
   get "start/overview"
 

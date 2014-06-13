@@ -11,15 +11,15 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, 'Name', class: 'col-md-2' %>
+    <%= f.label :brand_id, 'Automarke', class: 'col-md-2' %>
     <div class="col-md-2">
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.collection_select :brand_id, Brand.order('name ASC'), :id, :name, {}, { class: 'form-control' } %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :brand_id, 'Automarke', class: 'col-md-2' %>
+    <%= f.label :name, 'Name', class: 'col-md-2' %>
     <div class="col-md-2">
-    <%= f.collection_select :brand_id, Brand.order('name ASC'), :id, :name, {}, { class: 'form-control' } %>
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">

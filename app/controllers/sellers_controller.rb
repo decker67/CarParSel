@@ -15,30 +15,24 @@ class SellersController < ApplicationController
   def create
     @seller = Seller.new(seller_params)
 
-    respond_to do |format|
-      if @seller.save
-        format.html { redirect_to sellers_url }
-      else
-        format.html { render action: :new }
-      end
+    if @seller.save
+      redirect_to sellers_url
+    else
+      render action: :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @seller.update(seller_params)
-        format.html { redirect_to sellers_url }
-      else
-        format.html { render action: :edit }
-      end
+    if @seller.update(seller_params)
+      redirect_to sellers_url
+    else
+      render action: :edit
     end
   end
 
   def destroy
     @seller.destroy
-    respond_to do |format|
-      format.html { redirect_to sellers_url }
-    end
+    format.html { redirect_to sellers_url }
   end
 
   private

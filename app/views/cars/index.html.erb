@@ -32,6 +32,15 @@
 
           <div class="form-group">
             <div class="col-md-3">
+              <%= label_tag :model_type_id, 'Modell' %>
+            </div>
+            <div class="col-md-2">
+              <%= select_tag :model_type_id, options_for_select(ModelType.order(:model_type).collect { |s| [s.model_type, s.id] }, @view_filter[:model_type_id]), :include_blank => true %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-3">
               <%= label_tag :car_type, 'Typ' %>
             </div>
             <div class="col-md-2">
@@ -119,6 +128,7 @@
     <thead>
     <tr>
       <th>Identifikation</th>
+      <th>Hersteller</th>
       <th>Model</th>
       <th>Typ</th>
       <th>kW</th>
@@ -132,8 +142,9 @@
     <% @cars.each do |car| %>
       <tr>
         <td><%= car.car_identifier %></td>
-        <td><%= car.brand_model.name %></td>
-        <td><%= car.car_type %></td>
+        <td><%= car.model_type.brand_model.brand.name %></td>
+        <td><%= car.model_type.brand_model.name %></td>
+        <td><%= car.model_type.model_type %></td>
         <td><%= car.power %></td>
         <td><%= car.date_of_construction %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_path(car), class: 'btn btn-default' %></td>

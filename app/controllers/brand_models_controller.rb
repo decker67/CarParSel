@@ -21,30 +21,24 @@ class BrandModelsController < ApplicationController
   def create
     @brand_model = BrandModel.new(brand_model_params)
 
-    respond_to do |format|
-      if @brand_model.save
-        format.html { redirect_to brand_models_url }
-      else
-        format.html { render action: 'new' }
-      end
+    if @brand_model.save
+      redirect_to brand_models_url
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @brand_model.update(brand_model_params)
-        format.html { redirect_to brand_models_url }
-      else
-        format.html { render action: 'edit' }
-      end
+    if @brand_model.update(brand_model_params)
+      redirect_to brand_models_url
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @brand_model.destroy
-    respond_to do |format|
-      format.html { redirect_to brand_models_url }
-    end
+    format.html { redirect_to brand_models_url }
   end
 
   private

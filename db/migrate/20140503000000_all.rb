@@ -15,6 +15,18 @@ class All < ActiveRecord::Migration
     end
     add_index :brand_models, [ :name, :brand_id ], unique: true
 
+    create_table :model_types do |t|
+      t.integer :brand_model_id
+      t.string :model_type
+      t.integer :month_of_construction_period_from
+      t.integer :year_of_construction_period_from
+      t.integer :month_of_construction_period_to
+      t.integer :year_of_construction_period_to
+
+      t.timestamps
+    end
+    add_index :model_types, [ :model_type, :brand_model_id ], unique: true
+
     create_table :sellers do |t|
       t.string :first_name
       t.string :last_name
@@ -31,15 +43,10 @@ class All < ActiveRecord::Migration
       t.string :engine_code
       t.string :gearing_code
       t.string :color_code
-      t.integer :brand_model_id
-      t.string :car_type
+      t.integer :model_type_id
       t.integer :price
       t.integer :power
       t.date :date_of_construction
-      t.integer :month_of_construction_period_from
-      t.integer :year_of_construction_period_from
-      t.integer :month_of_construction_period_to
-      t.integer :year_of_construction_period_to
       t.integer :cylinder_capacity
       t.integer :fuel
       t.integer :gearing
@@ -49,15 +56,16 @@ class All < ActiveRecord::Migration
       t.integer :seller_id
       t.string :picture_url
       t.string :ebay_url_all_parts
-      t.string :name_ebay_url_all_parts
+      t.text :name_ebay_url_all_parts
 
       t.timestamps
     end
     add_index :cars, :car_identifier, unique: true
-    add_index :cars, :brand_model_id
+    add_index :cars, :model_type_id
 
     create_table :car_parts do |t|
       t.integer :car_id
+      t.text :part_number
       t.text :description
 
       t.string :ebay_article_number

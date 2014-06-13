@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140503000000) do
 
   create_table "car_parts", force: true do |t|
     t.integer  "car_id"
+    t.text     "part_number"
     t.text     "description"
     t.string   "ebay_article_number"
     t.integer  "ebay_selling_type"
@@ -64,15 +65,10 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.string   "engine_code"
     t.string   "gearing_code"
     t.string   "color_code"
-    t.integer  "brand_model_id"
-    t.string   "car_type"
+    t.integer  "model_type_id"
     t.integer  "price"
     t.integer  "power"
     t.date     "date_of_construction"
-    t.integer  "month_of_construction_period_from"
-    t.integer  "year_of_construction_period_from"
-    t.integer  "month_of_construction_period_to"
-    t.integer  "year_of_construction_period_to"
     t.integer  "cylinder_capacity"
     t.integer  "fuel"
     t.integer  "gearing"
@@ -87,8 +83,21 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.datetime "updated_at"
   end
 
-  add_index "cars", ["brand_model_id"], name: "index_cars_on_brand_model_id"
   add_index "cars", ["car_identifier"], name: "index_cars_on_car_identifier", unique: true
+  add_index "cars", ["model_type_id"], name: "index_cars_on_model_type_id"
+
+  create_table "model_types", force: true do |t|
+    t.integer  "brand_model_id"
+    t.string   "model_type"
+    t.integer  "month_of_construction_period_from"
+    t.integer  "year_of_construction_period_from"
+    t.integer  "month_of_construction_period_to"
+    t.integer  "year_of_construction_period_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "model_types", ["model_type", "brand_model_id"], name: "index_model_types_on_model_type_and_brand_model_id", unique: true
 
   create_table "sellers", force: true do |t|
     t.string   "first_name"

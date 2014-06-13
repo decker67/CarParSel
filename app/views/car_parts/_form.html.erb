@@ -19,6 +19,10 @@
     <%= f.text_area :description, size: '80x5' %>
   </div>
   <div class="form-group">
+    <%= f.label :part_number, 'Teilenummer', class: 'col-md-3' %>
+    <%= f.text_field :part_number %>
+  </div>
+  <div class="form-group">
     <%= f.label :ebay_state, 'ebay Status', class: 'col-md-3' %>
     <%= f.select :ebay_state, options_for_select(CarPart::AUCTION_STATE, f.object.ebay_state) %>
     <%= f.date_field :ebay_online_since, :include_blank => true %>

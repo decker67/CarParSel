@@ -28,7 +28,11 @@
   </div>
   <div class="form-group">
     <%= f.label :brand_model_id, 'Modell', class: 'col-md-3' %>
-    <%= f.collection_select :brand_model_id, BrandModel.order('name ASC'), :id, :name %>
+    <%= select_tag :brand_model_id, options_from_collection_for_select( BrandModel.order('name ASC'), :id, :name), onchange: 'brandModelOnChangeHandler( this )', include_blank: true  %>
+  </div>
+  <div class="form-group">
+    <%= f.label :model_type_id, 'Typ', class: 'col-md-3' %>
+    <%= f.collection_select :model_type_id, ModelType.order('model_type ASC'), :id, :model_type %>
   </div>
   <div class="form-group">
     <%= f.label :color_code, 'Farb-Code', class: 'col-md-3' %>
@@ -39,24 +43,12 @@
     <%= f.text_field :car_brand_id, class: 'col-md-3' %>
   </div>
   <div class="form-group">
-    <%= f.label :car_type, 'Typ', class: 'col-md-3' %>
-    <%= f.text_field :car_type, class: 'col-md-3' %>
-  </div>
-  <div class="form-group">
     <%= f.label :power, 'kW', class: 'col-md-3' %>
     <%= f.number_field :power %>
   </div>
   <div class="form-group">
     <%= f.label :date_of_construction, 'Konstruktionsdatum', class: 'col-md-3' %>
     <%= f.date_field :date_of_construction, :include_blank => true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :month_of_construction_period_from, 'Herstellungszeitraum von/bis', class: 'col-md-3' %>
-    <%= f.select :month_of_construction_period_from, 1..12, :selected => f.object.month_of_construction_period_from, :include_blank => true %>
-    <%= f.select :year_of_construction_period_from, 1900..Time.now.year, :selected => f.object.year_of_construction_period_from, :include_blank => true %>
-    /
-    <%= f.select :month_of_construction_period_to, 1..12, :selected => f.object.month_of_construction_period_to, :include_blank => true %>
-    <%= f.select :year_of_construction_period_to, 1900..Time.now.year, :selected => f.object.year_of_construction_period_to, :include_blank => true %>
   </div>
   <div class="form-group">
     <%= f.label :cylinder_capacity, 'Hubraum in ccm', class: 'col-md-3' %>
@@ -97,7 +89,7 @@
   </div>
   <div class="form-group">
     <%= f.label :name_ebay_url_all_parts, 'ebay Beschreibung "Alle Teile"', class: 'col-md-3' %>
-    <%= f.text_field :name_ebay_url_all_parts %>
+    <%= f.text_area :name_ebay_url_all_parts, size: '80x5' %>
   </div>
 
   <div class="form-group">
@@ -110,11 +102,23 @@
   function brandOnChangeHandler( event ) {
     var selectedBrandId = $(event).val();
     var requestForModells = '/all_models_for_brand?brand_id=' + selectedBrandId;
-    var modelSelect = $( '#car_brand_model_id');
+    var modelSelect = $( '#brand_model_id');
     modelSelect.empty();
     $.get( requestForModells ).done( function( result ) {
       result.forEach( function( model ) {
         modelSelect.append( new Option( model.name, model.id ) );
+      } );
+    } );
+  }
+
+  function brandModelOnChangeHandler( event ) {
+    var selectedModelId = $(event).val();
+    var requestForTypes = '/all_types_for_model?brand_model_id=' + selectedModelId;
+    var typeSelect = $( '#car_model_type_id');
+    typeSelect.empty();
+    $.get( requestForTypes ).done( function( result ) {
+      result.forEach( function( type ) {
+        typeSelect.append( new Option( type.model_type, type.id ) );
       } );
     } );
   }

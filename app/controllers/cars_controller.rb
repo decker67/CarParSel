@@ -6,6 +6,10 @@ class CarsController < ApplicationController
     render json: BrandModel.order(:name).where(brand_id: params[:brand_id])
   end
 
+  def all_types_for_model
+    render json: ModelType.order(:model_type).where(brand_model_id: params[:brand_model_id])
+  end
+
   def index
     if params[:reset]
       @filter = {}
@@ -14,8 +18,9 @@ class CarsController < ApplicationController
       @view_filter = @view_filter || {}
       @select_filter = @select_filter || {}
 
-      addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
-      addFilterFor(:brand_model_id)
+      #addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
+      #addFilterFor(:brand_model_id, :brand_id) { |id| ModelType.select(:id).where(model_type_id: id) }
+      addFilterFor(:model_type_id)
       addFilterFor(:car_type)
       addFilterFor(:power)
       addFilterFor(:power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
@@ -39,30 +44,24 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
 
-    respond_to do |format|
-      if @car.save
-        format.html { redirect_to cars_path }
-      else
-        format.html { render action: :new }
-      end
+    if @car.save
+      redirect_to cars_path
+    else
+      render action: :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @car.update(car_params)
-        format.html { redirect_to cars_path }
-      else
-        format.html { render action: :edit }
-      end
+    if @car.update(car_params)
+      redirect_to cars_path
+    else
+      render action: :edit
     end
   end
 
   def destroy
     @car.destroy
-    respond_to do |format|
-      format.html { redirect_to cars_url }
-    end
+    format.html { redirect_to cars_url }
   end
 
   private
@@ -73,7 +72,7 @@ class CarsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def car_params
-    params.require(:car).permit(:engine_code, :color_code, :car_brand_id, :gearing_code, :car_identifier, :brand_model_id, :car_type, :power, :date_of_construction, :month_of_construction_period_from, :year_of_construction_period_from, :month_of_construction_period_to, :year_of_construction_period_to, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage, :seller_id, :price, :picture_url, :ebay_url_all_parts, :name_ebay_url_all_parts)
+    params.require(:car).permit(:engine_code, :color_code, :car_brand_id, :gearing_code, :car_identifier, :model_type_id, :power, :date_of_construction, :month_of_construction_period_from, :year_of_construction_period_from, :month_of_construction_period_to, :year_of_construction_period_to, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage, :seller_id, :price, :picture_url, :ebay_url_all_parts, :name_ebay_url_all_parts)
   end
 
   def addFilterFor(name, param_name = name)

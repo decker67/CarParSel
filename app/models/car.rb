@@ -5,7 +5,7 @@ class Car < ActiveRecord::Base
 
   belongs_to :seller, inverse_of: :cars
   has_many :car_parts, inverse_of: :car
-  belongs_to :brand_model, inverse_of: :cars
+  belongs_to :model_type, inverse_of: :cars
 
   def gearing_as_string
     return GEARING_TYPES[ gearing ][ 0 ]

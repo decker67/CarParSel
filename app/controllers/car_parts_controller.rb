@@ -25,6 +25,7 @@ class CarPartsController < ApplicationController
         #items = Item.find(:all, :conditions => ["name like ?", like])
 
         addFilterFor(:description)
+        addFilterFor(:part_number)
         addFilterFor(:ebay_article_number)
         addFilterFor(:ebay_selling_type)
         # addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
@@ -82,7 +83,7 @@ class CarPartsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def car_part_params
-    params.require(:car_part).permit(:car_id, :description, :ebay_article_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
+    params.require(:car_part).permit(:car_id, :description, :part_number, :ebay_article_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
   end
 
   def addFilterFor(name, param_name = name)
