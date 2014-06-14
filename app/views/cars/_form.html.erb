@@ -102,8 +102,9 @@
   function brandOnChangeHandler( event ) {
     var selectedBrandId = $(event).val();
     var requestForModells = '/all_models_for_brand?brand_id=' + selectedBrandId;
-    var modelSelect = $( '#brand_model_id');
+    var modelSelect = $( '#brand_model_id' );
     modelSelect.empty();
+    modelSelect.append( new Option( '', '' ) );
     $.get( requestForModells ).done( function( result ) {
       result.forEach( function( model ) {
         modelSelect.append( new Option( model.name, model.id ) );

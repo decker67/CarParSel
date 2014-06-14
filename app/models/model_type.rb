@@ -7,7 +7,7 @@ class ModelType < ActiveRecord::Base
   validates :brand_model_id, presence: true
   validates :month_of_construction_period_from, presence: true
   validates :year_of_construction_period_from, presence: true
-  validates :month_of_construction_period_to, presence: true
-  validates :year_of_construction_period_to, presence: true
+  #validates :month_of_construction_period_to, presence: true
+  #validates :year_of_construction_period_to, presence: true
 
 end

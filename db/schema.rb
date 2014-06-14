@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.integer  "seller_id"
     t.string   "picture_url"
     t.string   "ebay_url_all_parts"
-    t.string   "name_ebay_url_all_parts"
+    t.text     "name_ebay_url_all_parts"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

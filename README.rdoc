@@ -2,6 +2,26 @@
 todo:
 -----
 
+- Fehleranzeige, bei Validierung verschönern.
+- Validierung aufnehmen
+- Paging auf möglichst allen Seiten
+- Typ anlegen/bearbeiten: Vorauswahl via Modell und Automarke
+- Filterkriterium Automarke bei Typen aufnehmen
+- Filter Fahrzeuge korrigieren und erweitern
+- Auto erfassen/bearbeiten: Selektion Modell und Typ: blank aufnehmen
+- Währungbeträge muss man mit Komma erfassen können
+
+nice to have:
+------------
+- Löschen Dialog via Bootstrap
+- Cursor automatisch im ersten Eingabefeld
+- Filter persistieren
+- aktiven Filter anzeigen ( oranger Button anstatt weiß)
+- Auto erfassen/bearbeiten: Name und Vorname anzeigen
+- Etiketten drucken: Daten spezifizieren, wahrscheinlich mit Fahrzeug Id
+
+
+
 - Eindeutigkeit anhand Schlüsselfeldern und Validierung
 - Suche nach Teilen über den Anfang der Fahrzeug-ID: MEW168...
 - Suchmaske für Artikelteile vervollständigen
@@ -9,4 +29,3 @@ todo:
 
 
 später:
-- Etiketten drucken: Daten spezifizieren, wahrscheinlich mit Fahrzeug Id

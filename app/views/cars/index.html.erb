@@ -146,7 +146,7 @@
         <td><%= car.model_type.brand_model.name %></td>
         <td><%= car.model_type.model_type %></td>
         <td><%= car.power %></td>
-        <td><%= car.date_of_construction %></td>
+        <td><%= I18n.l car.date_of_construction %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_path(car), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), car, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('parts_16.png'), car_parts_path(:car_id => car.id), class: 'btn btn-default' %></td>

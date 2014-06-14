@@ -3,11 +3,13 @@ class CarsController < ApplicationController
   before_action :set_car, only: [:edit, :update, :destroy]
 
   def all_models_for_brand
-    render json: BrandModel.order(:name).where(brand_id: params[:brand_id])
+    id = params[:brand_id]
+    render json: id != '' ? BrandModel.order(:name).where(brand_id: id ) : BrandModel.order(:name)
   end
 
   def all_types_for_model
-    render json: ModelType.order(:model_type).where(brand_model_id: params[:brand_model_id])
+    id = params[:brand_model_id]
+    render json: id != '' ? ModelType.order(:model_type).where(brand_model_id: id ) : ModelType.order(:model_type)
   end
 
   def index
