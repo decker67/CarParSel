@@ -534,9 +534,9 @@
           <ul>
             <li>&nbsp;</li>
             <% @car.name_ebay_url_all_parts.split( /\r?\n/ ).each do |line|%>
-            <li align="center" style="padding-top: 10px; padding-bottom: 10px; font-size: 120%;"><%= line %></li>
+            <li style="padding-top: 10px; padding-bottom: 10px; font-size: 120%; text-align: center"><%= line %></li>
             <% end %>
-            <li align="center" style="font-size: 130%;"><a href="<%= @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen Blick</a></li>
+            <li style="font-size: 130%; text-align: center"><a href="<%= @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen Blick</a></li>
           </ul>
         </div>
       </div>
