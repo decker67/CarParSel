@@ -1,14 +1,6 @@
 <%= form_for(@car_part) do |f| %>
-  <% if @car_part.errors.any? %>
-    <div id="error_explanation">
-      <h2>Bitte korrigieren Sie die Eingabe:</h2>
-      <ul>
-        <% @car_part.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+  <%= render 'layouts/errors', object: @car_part %>
 
   <div class="form-group">
     <%= f.label :car_id, 'Fahrzeug Id', class: 'col-md-3' %>

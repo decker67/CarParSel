@@ -63,7 +63,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car.destroy
-    format.html { redirect_to cars_url }
+    redirect_to cars_url
   end
 
   private
@@ -74,7 +74,7 @@ class CarsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def car_params
-    params.require(:car).permit(:engine_code, :color_code, :car_brand_id, :gearing_code, :car_identifier, :model_type_id, :power, :date_of_construction, :month_of_construction_period_from, :year_of_construction_period_from, :month_of_construction_period_to, :year_of_construction_period_to, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage, :seller_id, :price, :picture_url, :ebay_url_all_parts, :name_ebay_url_all_parts)
+    params.require(:car).permit(:engine_code, :color_code, :car_brand_id, :gearing_code, :car_identifier, :model_type_id, :power, :date_of_construction, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage, :seller_id, :price, :picture_url, :ebay_url_all_parts, :name_ebay_url_all_parts)
   end
 
   def addFilterFor(name, param_name = name)

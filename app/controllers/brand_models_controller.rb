@@ -8,7 +8,7 @@ class BrandModelsController < ApplicationController
       @filter = @filter || {}
       @filter[ :brand_id ] = params[ :brand_id ] if params[ :brand_id ].present?
     end
-    @brand_models = BrandModel.where( @filter ).order( :name )
+    @brand_models = BrandModel.where( @filter ).order( :name ).page params[ :page ]
   end
 
   def new

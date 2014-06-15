@@ -533,7 +533,9 @@
         <div id="aside-nav" class="nav-widget">
           <ul>
             <li>&nbsp;</li>
-            <li align="center" style="padding-top: 10px; padding-bottom: 10px;"><%= @car.name_ebay_url_all_parts%></li>
+            <% @car.name_ebay_url_all_parts.split( /\r?\n/ ).each do |line|%>
+            <li align="center" style="padding-top: 10px; padding-bottom: 10px; font-size: 120%;"><%= line %></li>
+            <% end %>
             <li align="center" style="font-size: 130%;"><a href="<%= @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen Blick</a></li>
           </ul>
         </div>
@@ -582,27 +584,27 @@
         <table width="204" height="220" border="0" cellpadding="0" cellspacing="0">
           <tr>
             <td width="102" align="center" valign="top">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_dhl.jpg" width="85" height="50"></td>
+              <img src="http://autohalle24.de/ebay_layout/versand_dhl.jpg" width="85" height="50"></td>
             <td width="102" align="center" valign="top">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_dp.jpg" width="85" height="50"></td>
+              <img src="http://autohalle24.de/ebay_layout/versand_dp.jpg" width="85" height="50"></td>
           </tr>
           <tr>
             <td width="102" align="center" valign="top">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_ups.jpg" width="85" height="50"></td>
+              <img src="http://autohalle24.de/ebay_layout/versand_gls.jpg" width="85" height="50"></td>
             <td width="102" align="center" valign="top">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_hermes.jpg" width="85" height="50"></td>
+              <img src="http://autohalle24.de/ebay_layout/versand_hermes.jpg" width="85" height="50"></td>
           </tr>
           <tr>
             <td width="102" align="center" valign="top">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_dpd.jpg" width="85" height="50"></td>
+              <img src="http://autohalle24.de/ebay_layout/versand_ups.jpg" width="85" height="50"></td>
             <td width="102" align="center" valign="top">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_gls.jpg" width="85" height="50"></td>
+              <img src="http://autohalle24.de/ebay_layout/versand_emons.jpg" width="85" height="50"></td>
           </tr>
           <tr>
             <td width="102" align="center" valign="top">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_iloxx.jpg" width="85" height="50"></td>
+              <img src="http://autohalle24.de/ebay_layout/versand_dpd.jpg" width="85" height="50"></td>
             <td width="102" align="center" valign="top">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/versand_fedex.jpg" width="85" height="50"></td>
+              <img src="http://autohalle24.de/ebay_layout/versand_tge.jpg" width="85" height="50"></td>
           </tr>
         </table>
         <p>Versandkosten:</p>
@@ -636,10 +638,23 @@
           </tr>
           <tr>
             <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1">Europa ohne EU</td>
+            <td align="right" valign="middle">
+              <span class="style1" style="font-weight: bold"><%= number_to_currency @car_part.postage_europe_without_eu %></span></td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
               <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_welt.png" width="12" height="12"></td>
             <td width="102" align="left" valign="middle" class="style1">Weltweit</td>
             <td align="right" valign="middle">
-              <span class="style1" style="font-weight: bold"><%= number_to_currency @car_part.postage_world_wide %></span></td>
+              <span class="style1" style="font-weight: bold">
+                <% if @car_part.postage_world_wide? %>
+                   <%= number_to_currency @car_part.postage_world_wide %>
+                <% else %>
+                   auf Anfrage
+                <% end %>
+              </span></td>
           </tr>
         </table>
         </p>
@@ -721,7 +736,7 @@
           <font face="Verdana"></font>
 
           <div style="font-size: 2em; padding-top: 10px; padding-bottom: 10px;"><%= @car_part.description %></div>
-          <div style="font-size: 1em; padding-top: 10px; padding-bottom: 10px;">Artikelnummer&nbsp;<%= @car_part.part_number %></div>
+          <div style="font-size: 1em; padding-top: 10px; padding-bottom: 10px;">Teilenummer&nbsp;<%= @car_part.part_number %></div>
 
           <div style="margin-top: 10px; margin-bottom: 10px; font-size: 2em; font-weight: bold">
              <% if @car_part.is_auction? %>
@@ -818,8 +833,7 @@
       <div class="spacing">
         <p align="center">Die genannten Fahrzeugdaten, speziell Schlüsselnummern, entsprechen denen des
           Spenderfahrzeuges. Bei einigen Teilen ist jedoch die Verwendung auch für andere Fahrzeuge möglich. Wenn
-          Sie
-          sich nicht sicher sind, ob das angebotene Artikel zu Ihrem Fahrzeug passt, nehmen Sie bitte Kontakt mit
+          Sie sich nicht sicher sind, ob das angebotene Artikel zu Ihrem Fahrzeug passt, nehmen Sie bitte Kontakt mit
           uns
           auf.</p>
       </div>

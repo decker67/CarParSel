@@ -7,6 +7,8 @@ class Car < ActiveRecord::Base
   has_many :car_parts, inverse_of: :car
   belongs_to :model_type, inverse_of: :cars
 
+  validate :validate_date_of_construction
+
   def gearing_as_string
     return GEARING_TYPES[ gearing ][ 0 ]
   end
@@ -23,4 +25,10 @@ class Car < ActiveRecord::Base
     self.power = CarsHelper.ps_to_power( value )
   end
 
+  private
+  def validate_date_of_construction
+    if( !date_of_construction )
+      errors.add( :date_of_construction, 'Bitte erfassen Sie ein Herstellungsdatum.' )
+    end
+  end
 end
