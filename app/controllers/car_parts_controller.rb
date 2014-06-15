@@ -54,6 +54,7 @@ class CarPartsController < ApplicationController
   end
 
   def create
+    replace_all_comma_for_numbers
     @car_part = CarPart.new(car_part_params)
     if @car_part.save
       redirect_to car_parts_url
@@ -63,6 +64,7 @@ class CarPartsController < ApplicationController
   end
 
   def update
+    replace_all_comma_for_numbers
     if @car_part.update(car_part_params)
       redirect_to car_parts_url
     else
@@ -99,5 +101,17 @@ class CarPartsController < ApplicationController
       @view_filter[param_name] = value
     end
   end
+
+  private
+  def replace_all_comma_for_numbers
+    replace_comma(params[:car_part][:price])
+    replace_comma(params[:car_part][:postage_germany])
+    replace_comma(params[:car_part][:postage_austria])
+    replace_comma(params[:car_part][:postage_swiss])
+    replace_comma(params[:car_part][:postage_europe_with_eu])
+    replace_comma(params[:car_part][:postage_europe_without_eu])
+    replace_comma(params[:car_part][:postage_world_wide])
+  end
+
 
 end

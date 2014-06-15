@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   rescue_from Exception, with: :show_errors
 
+  def replace_comma( number_string )
+    if number_string.nil?
+      number_string.sub!( ".", "" ).sub!( ",", ".")
+    end
+  end
+
   private
   def show_errors( exception )
     flash[ :error ] = 'Es ist ein Fehler aufgetreten!'
