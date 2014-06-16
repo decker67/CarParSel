@@ -3,11 +3,19 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  rescue_from Exception, with: :show_errors
+  #rescue_from Exception, with: :show_errors
 
   def replace_comma( number_string )
-    if number_string.nil?
-      number_string.sub!( ".", "" ).sub!( ",", ".")
+    if !number_string.nil?
+      number_string.sub!( '.', '' )
+      number_string.sub!( ',', '.')
+    end
+  end
+
+  def replace_decimal( number_string )
+    if !number_string.nil?
+      number_string.sub!( '.', ',' )
+      number_string.sub!( ',', '')
     end
   end
 

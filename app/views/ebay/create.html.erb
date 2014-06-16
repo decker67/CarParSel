@@ -534,7 +534,7 @@
           <ul>
             <li>&nbsp;</li>
             <% @car.name_ebay_url_all_parts.split( /\r?\n/ ).each do |line|%>
-            <li style="padding-top: 10px; padding-bottom: 10px; font-size: 120%; text-align: center"><%= line %></li>
+            <li style="font-size: 120%; text-align: center"><%= line %></li>
             <% end %>
             <li style="font-size: 130%; text-align: center"><a href="<%= @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen Blick</a></li>
           </ul>
@@ -776,50 +776,21 @@
 
       <div class="spacing">
         <table style="margin-left: auto; margin-right: auto; font-size: 130%;">
-          <tr>
-            <td>Marke</td>
-            <td><%= @car.model_type.brand_model.brand.name %></td>
-          </tr>
-          <tr>
-            <td>Modell</td>
-            <td><%= @car.model_type.brand_model.name %></td>
-          </tr>
-          <tr>
-            <td>Typ</td>
-            <td><%= @car.model_type.model_type %></td>
-          </tr>
-          <tr>
-            <td>Leistung</td>
-            <td><%= @car.power.to_s + ' kW / ' + @car.ps.round.to_s + ' PS' %></td>
-          </tr>
-          <tr>
-            <td>Baujahr</td>
-            <td><%= I18n.l @car.date_of_construction %></td>
-          </tr>
-          <tr>
-            <td>Bauzeitraum</td>
-            <td><%= @car.model_type.year_of_construction_period_from.to_s + ' - ' + @car.model_type.year_of_construction_period_to.to_s %></td>
-          </tr>
-          <tr>
-            <td>Hubraum</td>
-            <td><%= @car.cylinder_capacity.to_s + ' cm' %>&sup3;</td>
-          </tr>
-          <tr>
-            <td>Kraftstoff</td>
-            <td><%= @car.fuel_as_string %></td>
-          </tr>
-          <tr>
-            <td>Getriebeart</td>
-            <td><%= @car.gearing_as_string %></td>
-          </tr>
-          <tr>
-            <td>Schlüsselnummer zu 2/3</td>
-            <td><%= @car.key_number2 + '/' + @car.key_number3 %></td>
-          </tr>
-          <tr>
-            <td>Laufleistung</td>
-            <td><%= @car.mileage.to_s + ' km' %></td>
-          </tr>
+          <%= create_details_from( 'Marke', @car.model_type.brand_model.brand.name ) %>
+          <%= create_details_from( 'Modell', @car.model_type.brand_model.name ) %>
+          <%= create_details_from( 'Typ', @car.model_type.model_type ) %>
+          <%= create_details_from( 'Fahrzeug-Id', @car.car_brand_id ) %>
+          <%= create_details_from( 'Motor-Code', @car.engine_code ) %>
+          <%= create_details_from( 'Getriebe-Code', @car.gearing_code ) %>
+          <%= create_details_from( 'Farb-Code', @car.color_code ) %>
+          <%= create_details_from( 'Leistung', @car.power.to_s + ' kW / ' + @car.ps.round.to_s + ' PS' ) %>
+          <%= create_details_from( 'Baujahr', I18n.l( @car.date_of_construction ) ) %>
+          <%= create_details_from( 'Bauzeitraum', @car.model_type.month_of_construction_period_from.to_s + '/' + @car.model_type.year_of_construction_period_from.to_s + ' - ' + @car.model_type.month_of_construction_period_to.to_s + '/' + @car.model_type.year_of_construction_period_to.to_s ) %>
+          <%= create_details_from( 'Hubraum', @car.cylinder_capacity.to_s + ' cm&sup3;' ) %>
+          <%= create_details_from( 'Kraftstoff', @car.fuel_as_string ) %>
+          <%= create_details_from( 'Getriebeart', @car.gearing_as_string ) %>
+          <%= create_details_from( 'Schlüsselnummer zu 2/3', @car.key_number2 + '/' + @car.key_number3 ) %>
+          <%= create_details_from( 'Laufleistung', @car.mileage.to_s + ' km' ) %>
         </table>
       </div>
     </div>
