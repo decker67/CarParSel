@@ -38,7 +38,7 @@ class BrandModelsController < ApplicationController
 
   def destroy
     @brand_model.destroy
-    format.html { redirect_to brand_models_url }
+    redirect_to brand_models_url
   end
 
   private

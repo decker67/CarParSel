@@ -32,7 +32,7 @@
   <tbody>
   <% @car_parts.each do |car_part| %>
     <tr>
-      <td><%= link_to car_part.car.car_identifier, edit_car_url( car_part.car ), class: 'btn btn-default' %></td>
+      <td><%= car_part.car.nil? ? '-' : link_to( car_part.car.car_identifier, edit_car_url( car_part.car ), class: 'btn btn-default' ) %></td>
       <td><%= car_part.description %></td>
       <td><%= car_part.ebay_article_number %></td>
       <td><%= car_part.ebay_selling_type_as_string %></td>

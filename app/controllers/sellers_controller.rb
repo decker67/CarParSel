@@ -32,7 +32,7 @@ class SellersController < ApplicationController
 
   def destroy
     @seller.destroy
-    format.html { redirect_to sellers_url }
+    redirect_to sellers_url
   end
 
   private
@@ -46,3 +46,4 @@ class SellersController < ApplicationController
       params.require(:seller).permit(:first_name, :last_name, :street, :city, :phone)
     end
 end
+

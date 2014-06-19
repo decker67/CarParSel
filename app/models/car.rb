@@ -4,7 +4,7 @@ class Car < ActiveRecord::Base
   GEARING_TYPES = [ [ 'Automatik', 0 ], [ 'Schaltung', 1 ] ]
 
   belongs_to :seller, inverse_of: :cars
-  has_many :car_parts, inverse_of: :car
+  has_many :car_parts, inverse_of: :car, dependent: :nullify
   belongs_to :model_type, inverse_of: :cars
 
   validate :validate_date_of_construction

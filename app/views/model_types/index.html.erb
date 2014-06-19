@@ -50,8 +50,8 @@
     <tbody>
     <% @model_types.each do |model_type| %>
       <tr>
-        <td><%= model_type.brand_model.brand.name %></td>
-        <td><%= model_type.brand_model.name %></td>
+        <td><%= model_type.brand_model.nil? || model_type.brand_model.brand.nil? ? '-' : model_type.brand_model.brand.name %></td>
+        <td><%= model_type.brand_model.nil? ? '-' : model_type.brand_model.name %></td>
         <td><%= model_type.model_type %></td>
         <td><%= model_type.month_of_construction_period_from %>/<%= model_type.year_of_construction_period_from %></td>
         <td><%= model_type.month_of_construction_period_to %>/<%= model_type.year_of_construction_period_to %></td>
