@@ -14,7 +14,7 @@
     clipBoard.value = ebayContent.innerHTML;
     clipBoard.focus();
     clipBoard.select();
-    document.execCommand('Copy');
+    document.execCommand('copy', false, null );
   }
 </script>
 
@@ -23,13 +23,15 @@
   <%= check_box_tag :disable_car_data, :disable_car_data, false, onclick: 'toggleCarData( this )' %>
 </div>
 <div>
+  <%= text_area_tag :clipboard, 'Bitte <Kopieren> drücken und danach mit <CTRL>+C kopieren.', rows: 4, cols: 80, style: '' %>
+</div>
+<div>
   <%= button_tag 'Html in die Zwischenablage kopieren', onclick: "copyToClipboard()" %>
   <%= link_to 'Zurück', @back_to_url %>
-  <%= text_area_tag :clipboard, 'Bitte <Kopieren> drücken und danach mit CTRL+A kopieren.', style: 'position: absolute; left: -1000px' %>
 </div>
 
 <div id="ebay_content">
-
+<!-- Generiertes Template -->
 <style type="text/css">
   body {
     margin: 0;
@@ -533,10 +535,10 @@
         <div id="aside-nav" class="nav-widget">
           <ul>
             <li>&nbsp;</li>
-            <% @car.name_ebay_url_all_parts.split( /\r?\n/ ).each do |line|%>
+            <% @car.nil? ? '' : @car.name_ebay_url_all_parts.split( /\r?\n/ ).each do |line|%>
             <li style="font-size: 120%; text-align: center"><%= line %></li>
             <% end %>
-            <li style="font-size: 130%; text-align: center"><a href="<%= @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen Blick</a></li>
+            <li style="font-size: 130%; text-align: center"><a href="<%= @car.nil? ? '' : @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen Blick</a></li>
           </ul>
         </div>
       </div>
@@ -714,7 +716,7 @@
       <div class="spacing">
         <div class="gal">
           <!-- GALLERY BOX START -->
-          <div class="artikelbilder" style="background-image:url(<%= @car.picture_url %>)" align="center">
+          <div class="artikelbilder" style="background-image:url(<%= @car.nil? ? '' : @car.picture_url %>)" align="center">
 
             <% @picture_urls.each do |url| %>
               <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px">
@@ -776,6 +778,7 @@
 
       <div class="spacing">
         <table style="margin-left: auto; margin-right: auto; font-size: 130%;">
+          <% if !@car.nil? %>
           <%= create_details_from( 'Marke', @car.model_type.brand_model.brand.name ) %>
           <%= create_details_from( 'Modell', @car.model_type.brand_model.name ) %>
           <%= create_details_from( 'Typ', @car.model_type.model_type ) %>
@@ -791,6 +794,7 @@
           <%= create_details_from( 'Getriebeart', @car.gearing_as_string ) %>
           <%= create_details_from( 'Schlüsselnummer zu 2/3', @car.key_number2 + '/' + @car.key_number3 ) %>
           <%= create_details_from( 'Laufleistung', @car.mileage.to_s + ' km' ) %>
+          <% end %>
         </table>
       </div>
     </div>
