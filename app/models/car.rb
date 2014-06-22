@@ -7,6 +7,8 @@ class Car < ActiveRecord::Base
   has_many :car_parts, inverse_of: :car, dependent: :nullify
   belongs_to :model_type, inverse_of: :cars
 
+  validates :date_of_construction, presence: true
+
   validate :validate_date_of_construction
 
   def gearing_as_string
@@ -27,8 +29,8 @@ class Car < ActiveRecord::Base
 
   private
   def validate_date_of_construction
-    if( !date_of_construction )
-      errors.add( :date_of_construction, 'Bitte erfassen Sie ein Herstellungsdatum.' )
+    if( date_of_construction && date_of_construction.future? )
+      errors.add( :date_of_construction, 'Bitte erfassen Sie ein Herstellungsdatum in der Vergangenheit.' )
     end
   end
 end

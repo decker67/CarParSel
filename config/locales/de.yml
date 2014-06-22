@@ -29,9 +29,37 @@ de:
 
   activerecord:
     models:
+      brand: Automarke
+      brand_model: Modell
+      model_type: Typ
       car_part: Fahrzeugteil
+      car: Fahrzeug
+      seller: Verkäufer
 
     attributes:
+      brand:
+        name: Name
+
+      brand_model:
+        name: Name
+
+      model_type:
+        model_type: Typ
+        month_of_construction_period_from: Monat von
+        year_of_construction_period_from: Jahr von
+        month_of_construction_period_to: Monat bis
+        year_of_construction_period_to: Jahr bis
+
+      seller:
+        first_name: Vorname
+        last_name: Nachname
+        street: Strasse Nr
+        city: PLZ Stadt
+        phone: Telefon
+
+      car:
+        date_of_construction: Herstellungsdatum
+
       car_part:
         ebay_article_number: ebay Artikelnummer
         ebay_online_since: Datum

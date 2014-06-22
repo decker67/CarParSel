@@ -8,7 +8,7 @@ class ModelTypesController < ApplicationController
       @filter = @filter || {}
       @filter[ :brand_model_id ] = params[ :brand_model_id ] if params[ :brand_model_id ].present?
     end
-    @model_types = ModelType.where( @filter ).order( :model_type )
+    @model_types = ModelType.where( @filter ).order( :model_type ).page params[ :page ]
   end
 
   def new

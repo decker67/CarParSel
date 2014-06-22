@@ -6,7 +6,6 @@ todo:
 - Fehleranzeige, bei Validierung verschönern.
 - Validierung aufnehmen
 - Paging auf möglichst allen Seiten
-- Typ anlegen/bearbeiten: Vorauswahl via Modell und Automarke
 - Filterkriterium Automarke bei Typen aufnehmen
 - Filter Fahrzeuge korrigieren und erweitern
 - Auto erfassen/bearbeiten: Selektion Modell und Typ: blank aufnehmen
@@ -30,3 +29,15 @@ nice to have:
 
 
 später:
+Rechnung, Gutschrift, Auftrag, Kostenvoranschläge erstellen
+
+Kundendatenbank
+
+auswählen von Artikeln und einige Daten vom Spenderfahrzeug und Fahrzeugteil auf Etiketten (A4 Format)
+drucken
+
+Verknüpfung mit eBay-Turbolister, wenn möglich.
+
+Versand-Rechner für Weltweiten Versand in der HTML-Ansicht einbauen.
+
+Ein gemeinsames Projekt. Fussballmanager-Online-Spiel.

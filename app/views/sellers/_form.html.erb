@@ -1,15 +1,6 @@
 <%= form_for(@seller, html: { class: 'form-horizontal' } ) do |f| %>
-  <% if @seller.errors.any? %>
-    <div id="error_explanation">
-      <h2>Bitte korrigieren Sie die Eingabe:</h2>
 
-      <ul>
-      <% @seller.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'layouts/errors', object: @seller %>
 
   <div class="form-group">
     <%= f.label :first_name, 'Vorname', class: 'col-md-2' %>

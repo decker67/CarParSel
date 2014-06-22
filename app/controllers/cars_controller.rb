@@ -20,7 +20,7 @@ class CarsController < ApplicationController
       @view_filter = @view_filter || {}
       @select_filter = @select_filter || {}
 
-      #addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
+      addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
       #addFilterFor(:brand_model_id, :brand_id) { |id| ModelType.select(:id).where(model_type_id: id) }
       addFilterFor(:model_type_id)
       addFilterFor(:car_type)
@@ -33,7 +33,7 @@ class CarsController < ApplicationController
       addFilterFor(:key_number2)
       addFilterFor(:key_number3)
     end
-    @cars = Car.where(@select_filter).order(created_at: :desc)
+    @cars = Car.where(@select_filter).order(created_at: :desc).page params[ :page ]
   end
 
   def new

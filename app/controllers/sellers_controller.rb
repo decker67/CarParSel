@@ -2,7 +2,7 @@ class SellersController < ApplicationController
   before_action :set_seller, only: [:edit, :update, :destroy]
 
   def index
-    @sellers = Seller.all
+    @sellers = Seller.all.page params[ :page ]
   end
 
   def new

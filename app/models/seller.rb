@@ -5,4 +5,7 @@ class Seller < ActiveRecord::Base
   validates :first_name, :last_name, :street, :city, :phone, presence: true
   validates :first_name, :uniqueness => { :scope => :last_name }
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

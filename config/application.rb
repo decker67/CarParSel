@@ -23,5 +23,13 @@ module CarParSel
 
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
 
+    # own error div for each input field
+    #config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+    #  "<div class=\"has-error form-group\">#{html_tag}</div>".html_safe
+    #}
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      html_tag.html_safe
+    }
+
   end
 end

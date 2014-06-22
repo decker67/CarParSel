@@ -4,7 +4,7 @@
 
   <div class="form-group">
     <%= f.label :seller_id, 'Verkäufer', class: 'col-md-3' %>
-    <%= f.collection_select :seller_id, Seller.order('last_name ASC'), :id, :last_name %>
+    <%= f.collection_select :seller_id, Seller.order('last_name ASC'), :id, :full_name %>
   </div>
   <div class="form-group">
     <%= f.label :price, 'Preis', class: 'col-md-3' %>
@@ -24,7 +24,8 @@
   </div>
   <div class="form-group">
     <%= f.label :model_type_id, 'Typ', class: 'col-md-3' %>
-    <%= f.collection_select :model_type_id, ModelType.order('model_type ASC'), :id, :model_type %>
+    <!-- %= f.collection_select :model_type_id, ModelType.order('model_type ASC'), :id, :model_type, {}, onchange: 'modelTypeOnChangeHandler( this )' %-->
+    <%= select_tag :model_type_id, options_from_collection_for_select( ModelType.order('model_type ASC'), :id, :model_type), onchange: 'modelTypeOnChangeHandler( this )', include_blank: true %>
   </div>
   <div class="form-group">
     <%= f.label :color_code, 'Farb-Code', class: 'col-md-3' %>
@@ -90,7 +91,8 @@
   </div>
 <% end %>
 
-<script>
+<%= javascript_tag do %>
+
   function brandOnChangeHandler( event ) {
     var selectedBrandId = $(event).val();
     var requestForModells = '/all_models_for_brand?brand_id=' + selectedBrandId;
@@ -115,4 +117,10 @@
       } );
     } );
   }
-</script>
+
+  function modelTypeOnChangeHandler( event ) {
+    var selectedTypeId = $(event).val();
+    #TODO: create ajax request with type to get the brand_model_id, and the brand_id and select it
+  }
+
+<% end %>

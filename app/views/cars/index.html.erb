@@ -32,19 +32,10 @@
 
           <div class="form-group">
             <div class="col-md-3">
-              <%= label_tag :model_type_id, 'Modell' %>
+              <%= label_tag :model_type_id, 'Typ' %>
             </div>
             <div class="col-md-2">
               <%= select_tag :model_type_id, options_for_select(ModelType.order(:model_type).collect { |s| [s.model_type, s.id] }, @view_filter[:model_type_id]), :include_blank => true %>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :car_type, 'Typ' %>
-            </div>
-            <div class="col-md-2">
-              <%= text_field_tag :car_type, @view_filter[:car_type] %>
             </div>
           </div>
 
@@ -154,6 +145,7 @@
     <% end %>
     </tbody>
   </table>
+  <%= paginate @cars %>
 </div>
 
 
