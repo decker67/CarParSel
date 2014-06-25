@@ -18,7 +18,7 @@
   <tbody>
     <% @brands.each do |brand| %>
       <tr>
-        <td><%= brand.name %></td>
+        <td class="vertical_centered"><%= brand.name %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_brand_path(brand), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), brand, method: :delete, data: { confirm: 'Sind Sie sicher?' }, class: 'btn btn-default' %></td>
       </tr>

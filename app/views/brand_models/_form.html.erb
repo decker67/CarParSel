@@ -2,6 +2,8 @@
 
   <%= render 'layouts/errors', object: @brand_model %>
 
+  <!--%= f.hidden_field :lock_version unless current_page?( action: :new ) %-->
+
   <div class="form-group">
     <%= f.label :brand_id, 'Automarke', class: 'col-md-2' %>
     <div class="col-md-2">

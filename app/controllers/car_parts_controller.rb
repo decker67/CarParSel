@@ -11,7 +11,7 @@ class CarPartsController < ApplicationController
     session[:car_id] = params[:car_id] || session[:car_id]
     if session[:car_id]
       @show_filter = false
-      @car_parts = CarPart.where(car_id: session[:car_id])
+      @car_parts = CarPart.where(car_id: session[:car_id]).page params[ :page ]
     else
       if params[:reset]
         @filter = {}
@@ -19,14 +19,13 @@ class CarPartsController < ApplicationController
       else
         @show_filter = true
         @view_filter = @view_filter || {}
-        @select_filter = @select_filter || {}
+        @equal_filter = @equal_filter || {}
 
         #like = params[:name].concat("%")
         #items = Item.find(:all, :conditions => ["name like ?", like])
 
         addFilterFor(:description)
         addFilterFor(:part_number)
-        addFilterFor(:ebay_article_number)
         addFilterFor(:ebay_selling_type)
         # addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
         # addFilterFor(:brand_model_id)
@@ -40,7 +39,7 @@ class CarPartsController < ApplicationController
         # addFilterFor(:key_number2)
         #addFilterFor( 'car.key_number3' )
       end
-      @car_parts = CarPart.where(@select_filter).order(created_at: :desc).page params[ :page ]
+      @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page params[ :page ]
     end
   end
 
@@ -83,7 +82,7 @@ class CarPartsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def car_part_params
-    params.require(:car_part).permit(:car_id, :description, :part_number, :ebay_article_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
+    params.require(:car_part).permit(:car_id, :description, :part_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
   end
 
   def addFilterFor(name, param_name = name)
@@ -95,7 +94,7 @@ class CarPartsController < ApplicationController
         modified_value = value
       end
 
-      @select_filter[name] = modified_value
+      @equal_filter[name] = modified_value
       @view_filter[param_name] = value
     end
   end

@@ -50,12 +50,12 @@
     <tbody>
     <% @model_types.each do |model_type| %>
       <tr>
-        <td><%= model_type.brand_model.nil? || model_type.brand_model.brand.nil? ? '-' : model_type.brand_model.brand.name %></td>
-        <td><%= model_type.brand_model.nil? ? '-' : model_type.brand_model.name %></td>
-        <td><%= model_type.model_type %></td>
-        <td><%= model_type.month_of_construction_period_from %>/<%= model_type.year_of_construction_period_from %></td>
-        <td><%= model_type.month_of_construction_period_to %>/<%= model_type.year_of_construction_period_to %></td>
-        <td><%= link_to image_tag('pencil_16.png'), edit_model_type_path(model_type), class: 'btn btn-default' %></td>
+        <td class="vertical_centered"><%= model_type.brand_model.nil? || model_type.brand_model.brand.nil? ? '-' : model_type.brand_model.brand.name %></td>
+        <td class="vertical_centered"><%= model_type.brand_model.nil? ? '-' : model_type.brand_model.name %></td>
+        <td class="vertical_centered"><%= model_type.model_type %></td>
+        <td class="vertical_centered"><%= model_type.month_of_construction_period_from %>/<%= model_type.year_of_construction_period_from %></td>
+        <td class="vertical_centered"><%= model_type.month_of_construction_period_to %>/<%= model_type.year_of_construction_period_to %></td>
+        <td ><%= link_to image_tag('pencil_16.png'), edit_model_type_path(model_type), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), model_type, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
       </tr>
     <% end %>

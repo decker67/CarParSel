@@ -2,6 +2,8 @@
 
   <%= render 'layouts/errors', object: @car_part %>
 
+  <!--%= f.hidden_field :lock_version unless current_page?( action: :new ) %-->
+
   <div class="form-group">
     <%= f.label :car_id, 'Fahrzeug Id', class: 'col-md-3' %>
     <%= f.collection_select :car_id, Car.order('car_identifier ASC'), :id, :car_identifier %>
@@ -20,16 +22,12 @@
     <%= f.date_field :ebay_online_since, :include_blank => true %>
   </div>
   <div class="form-group">
-    <%= f.label :ebay_article_number, 'ebay Artikelnummer', class: 'col-md-3' %>
-    <%= f.text_field :ebay_article_number %>
-  </div>
-  <div class="form-group">
     <%= f.label :ebay_selling_type, 'ebay Angebotsformat', class: 'col-md-3' %>
     <%= f.select :ebay_selling_type, options_for_select(CarPart::AUCTION_TYPES, f.object.ebay_selling_type) %>
   </div>
   <div class="form-group">
     <%= f.label :price, 'Preis', class: 'col-md-3' %>
-    <%= f.text_field :price %>
+    <%= f.number_field :price, min: 0, max: 9999.99, step: 0.01 %>
   </div>
   <div class="form-group">
     <%= f.label :postage_germany, 'Versand Deutschland', class: 'col-md-3' %>

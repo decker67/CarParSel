@@ -14,11 +14,11 @@ class CarsController < ApplicationController
 
   def index
     if params[:reset]
-      @filter = {}
+      @equal_filter = {}
       @view_filter = {}
     else
       @view_filter = @view_filter || {}
-      @select_filter = @select_filter || {}
+      @equal_filter = @equal_filter || {}
 
       addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
       #addFilterFor(:brand_model_id, :brand_id) { |id| ModelType.select(:id).where(model_type_id: id) }
@@ -33,11 +33,12 @@ class CarsController < ApplicationController
       addFilterFor(:key_number2)
       addFilterFor(:key_number3)
     end
-    @cars = Car.where(@select_filter).order(created_at: :desc).page params[ :page ]
+    @cars = Car.where(@equal_filter).order(created_at: :desc).page params[ :page ]
   end
 
   def new
     @car = Car.new
+    @car.gearing=1
   end
 
   def edit
@@ -86,7 +87,7 @@ class CarsController < ApplicationController
         modified_value = value
       end
 
-      @select_filter[name] = modified_value
+      @equal_filter[name] = modified_value
       @view_filter[param_name] = value
     end
   end

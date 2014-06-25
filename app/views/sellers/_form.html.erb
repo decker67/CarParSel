@@ -2,6 +2,8 @@
 
   <%= render 'layouts/errors', object: @seller %>
 
+  <!--%= f.hidden_field :lock_version unless current_page?( action: :new ) %-->
+
   <div class="form-group">
     <%= f.label :first_name, 'Vorname', class: 'col-md-2' %>
     <%= f.text_field :first_name, class: 'col-md-2' %>

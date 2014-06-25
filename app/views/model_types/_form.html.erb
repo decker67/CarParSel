@@ -2,6 +2,8 @@
 
   <%= render 'layouts/errors', object: @model_type %>
 
+  <!--%= f.hidden_field :lock_version unless current_page?( action: :new ) %-->
+
   <div class="form-group">
     <%= f.label :brand_model_id, 'Modell', class: 'col-md-2' %>
     <div class="col-md-3">
@@ -16,7 +18,7 @@
   </div>
   <div class="form-group">
     <%= f.label :month_of_construction_period_from, 'Herstellungszeitraum von/bis', class: 'col-md-2' %>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <%= f.select :month_of_construction_period_from, 1..12, :selected => f.object.month_of_construction_period_from, :include_blank => true %>
       <%= f.select :year_of_construction_period_from, 1900..Time.now.year, :selected => f.object.year_of_construction_period_from, :include_blank => true %>
       /

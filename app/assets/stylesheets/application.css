@@ -12,3 +12,11 @@
  *= require_tree
  *= require bootstrap
  */
+
+.vertical_centered {
+  vertical-align: middle !important;
+}
+
+input[type=number] {
+  text-align: right;
+}

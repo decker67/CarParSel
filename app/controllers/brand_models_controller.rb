@@ -41,6 +41,13 @@ class BrandModelsController < ApplicationController
     redirect_to brand_models_url
   end
 
+  protected
+    # def correct_stale_record_version
+    #   @destination.reload.attributes = params[:destination].reject do |attrb, value|
+    #     attrb.to_sym == :lock_version
+    #   end
+    # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_brand_model

@@ -34,15 +34,6 @@
 
             <div class="form-group">
               <div class="col-md-3">
-                <%= label_tag :ebay_article_number, 'Artikelnummer' %>
-              </div>
-              <div class="col-md-2">
-                <%= text_field_tag :ebay_article_number, @view_filter[:ebay_article_number] %>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-3">
                 <%= label_tag :ebay_selling_type, 'Angebotsformat' %>
               </div>
               <div class="col-md-2">
@@ -167,9 +158,9 @@
   <table class="table table-hover">
     <thead>
     <tr>
+      <th>Status</th>
       <th>Fahrzeug</th>
       <th>Beschreibung</th>
-      <th>Artikelnummer</th>
       <th>Angebotsformat</th>
       <th>Preis</th>
       <th></th>
@@ -181,11 +172,11 @@
     <tbody>
     <% @car_parts.each do |car_part| %>
       <tr>
+        <td><%= image_tag car_part.ebay_state == 1 ? 'red_ball.png' : 'green_ball.png' %> </td>
         <td><%= car_part.car.nil? ? '-' : link_to( car_part.car.car_identifier, edit_car_url( car_part.car ), class: 'btn btn-default' ) %></td>
-        <td><%= car_part.description %></td>
-        <td><%= car_part.ebay_article_number %></td>
-        <td><%= car_part.ebay_selling_type_as_string %></td>
-        <td><%= number_to_currency car_part.price %></td>
+        <td class="vertical_centered"><%= car_part.description.truncate( 30, omission: '...' ) %></td>
+        <td class="vertical_centered"><%= car_part.ebay_selling_type_as_string %></td>
+        <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('ebay_16.png'), { controller: 'ebay', action: 'create', id: car_part, from_url: request.fullpath }, class: 'btn btn-default' %></td>
