@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503000000) do
+ActiveRecord::Schema.define(version: 20140628202453) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140503000000) do
     t.text     "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quantity"
   end
 
   add_index "car_parts", ["car_id"], name: "index_car_parts_on_car_id"

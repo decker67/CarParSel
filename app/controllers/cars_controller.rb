@@ -16,22 +16,25 @@ class CarsController < ApplicationController
     if params[:reset]
       @equal_filter = {}
       @view_filter = {}
+      @like_filter = {}
     else
       @view_filter = @view_filter || {}
       @equal_filter = @equal_filter || {}
+      @like_filter = @like_filter || {}
 
-      addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
+      # create a equal filter for model_type_id using the brand_id given
+      addEqualFilterFor( :model_type_id, :brand_id ) { |id| ModelType.select(:id).where(brand_id: id) }
+      addEqualFilterFor( :brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
       #addFilterFor(:brand_model_id, :brand_id) { |id| ModelType.select(:id).where(model_type_id: id) }
-      addFilterFor(:model_type_id)
-      addFilterFor(:car_type)
-      addFilterFor(:power)
-      addFilterFor(:power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
-      addFilterFor(:year_of_construction)
-      addFilterFor(:cylinder_capacity)
-      addFilterFor(:fuel)
-      addFilterFor(:gearing)
-      addFilterFor(:key_number2)
-      addFilterFor(:key_number3)
+      addEqualFilterFor( :model_type_id)
+      addEqualFilterFor( :power)
+      addEqualFilterFor( :power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
+      addEqualFilterFor( :year_of_construction)
+      addEqualFilterFor( :cylinder_capacity)
+      addEqualFilterFor( :fuel)
+      addEqualFilterFor( :gearing)
+      addEqualFilterFor( :key_number2)
+      addEqualFilterFor( :key_number3)
     end
     @cars = Car.where(@equal_filter).order(created_at: :desc).page params[ :page ]
   end
@@ -78,17 +81,17 @@ class CarsController < ApplicationController
     params.require(:car).permit(:engine_code, :color_code, :car_brand_id, :gearing_code, :car_identifier, :model_type_id, :power, :date_of_construction, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage, :seller_id, :price, :picture_url, :ebay_url_all_parts, :name_ebay_url_all_parts)
   end
 
-  def addFilterFor(name, param_name = name)
+  def addEqualFilterFor(model_attribute_name, param_name = model_attribute_name)
     if params[param_name].present?
-      value = params[param_name]
+      view_value = params[param_name]
       if block_given?
-        modified_value = yield params[param_name]
+        filter_value = yield params[param_name]
       else
-        modified_value = value
+        filter_value = view_value
       end
 
-      @equal_filter[name] = modified_value
-      @view_filter[param_name] = value
+      @equal_filter[model_attribute_name] = filter_value
+      @view_filter[param_name] = view_value
     end
   end
 

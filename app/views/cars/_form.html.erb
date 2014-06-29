@@ -1,4 +1,4 @@
-<%= form_for(@car, html: { class: 'form-horizontal' }) do |f| %>
+<%= form_for(@car, html: {class: 'form-horizontal'}) do |f| %>
 
   <%= render 'layouts/errors', object: @car %>
 
@@ -6,85 +6,126 @@
 
   <div class="form-group">
     <%= f.label :seller_id, 'Verkäufer', class: 'col-md-3' %>
-    <%= f.collection_select :seller_id, Seller.order('last_name ASC'), :id, :full_name %>
+    <div class="col-md-3">
+      <%= f.collection_select :seller_id, Seller.order('last_name ASC'), :id, :full_name, {}, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :price, 'Preis', class: 'col-md-3' %>
-    <%= f.number_field :price, min: 0, max: 99999, step: 1 %>
+    <div class="col-md-2">
+      <%= f.number_field :price, min: 0, max: 99999, step: 1, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :car_identifier, 'Identifikation', class: 'col-md-3' %>
-    <%= f.text_field :car_identifier %>
+    <div class="col-md-3">
+      <%= f.text_field :car_identifier, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :brand_id, 'Hersteller', class: 'col-md-3' %>
-    <%= select_tag :brand_id, options_from_collection_for_select( Brand.order('name ASC'), :id, :name ), onchange: 'brandOnChangeHandler( this )', include_blank: true %>
+    <div class="col-md-3">
+      <%= select_tag :brand_id, options_from_collection_for_select(Brand.order('name ASC'), :id, :name), onchange: 'brandOnChangeHandler( this )', include_blank: true, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :brand_model_id, 'Modell', class: 'col-md-3' %>
-    <%= select_tag :brand_model_id, options_from_collection_for_select( BrandModel.order('name ASC'), :id, :name), onchange: 'brandModelOnChangeHandler( this )', include_blank: true  %>
+    <div class="col-md-3">
+      <%= select_tag :brand_model_id, options_from_collection_for_select(BrandModel.order('name ASC'), :id, :name), onchange: 'brandModelOnChangeHandler( this )', include_blank: true, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :model_type_id, 'Typ', class: 'col-md-3' %>
-    <%= f.collection_select :model_type_id, ModelType.order('model_type ASC'), :id, :model_type %>
-    <!-- %= select_tag :model_type_id, options_from_collection_for_select( ModelType.order('model_type ASC'), :id, :model_type), onchange: 'modelTypeOnChangeHandler( this )', include_blank: true % -->
+    <div class="col-md-3">
+      <%= f.collection_select :model_type_id, ModelType.order('model_type ASC'), :id, :model_type, { }, class: 'form-control' %>
+      <!-- %= select_tag :model_type_id, options_from_collection_for_select( ModelType.order('model_type ASC'), :id, :model_type), onchange: 'modelTypeOnChangeHandler( this )', include_blank: true % -->
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :color_code, 'Farb-Code', class: 'col-md-3' %>
-    <%= f.text_field :color_code, class: 'col-md-3' %>
+    <div class="col-md-3">
+      <%= f.text_field :color_code, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :car_brand_id, 'Fahrzeug-Id', class: 'col-md-3' %>
-    <%= f.text_field :car_brand_id, class: 'col-md-3' %>
+    <div class="col-md-4">
+      <%= f.text_field :car_brand_id, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :power, 'kW', class: 'col-md-3' %>
-    <%= f.number_field :power %>
+    <div class="col-md-2">
+      <%= f.number_field :power, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :date_of_construction, 'Konstruktionsdatum', class: 'col-md-3' %>
-    <%= f.date_field :date_of_construction, :include_blank => true %>
+    <div class="col-md-3">
+      <%= f.date_field :date_of_construction, :include_blank => true, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :cylinder_capacity, 'Hubraum in ccm', class: 'col-md-3' %>
-    <%= f.number_field :cylinder_capacity %>
+    <div class="col-md-2">
+      <%= f.number_field :cylinder_capacity, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :fuel, 'Kraftstoff', class: 'col-md-3' %>
-    <%= f.select :fuel, options_for_select( Car::FUEL_TYPES, f.object.fuel ) %>
+    <div class="col-md-2">
+      <%= f.select :fuel, options_for_select(Car::FUEL_TYPES, f.object.fuel), {}, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :car_type, 'Motor-Code', class: 'col-md-3' %>
-    <%= f.text_field :engine_code, class: 'col-md-3' %>
+    <%= f.label :engine_code, 'Motor-Code', class: 'col-md-3' %>
+    <div class="col-md-4">
+      <%= f.text_field :engine_code, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :gearing, 'Getriebe', class: 'col-md-3' %>
-    <%= f.select :gearing, options_for_select( Car::GEARING_TYPES, f.object.gearing ) %>
+    <div class="col-md-2">
+      <%= f.select :gearing, options_for_select(Car::GEARING_TYPES, f.object.gearing), {}, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :gearing_code, 'Getriebe-Code', class: 'col-md-3' %>
-    <%= f.text_field :gearing_code %>
+    <div class="col-md-4">
+      <%= f.text_field :gearing_code, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :key_number2, 'Schlüsselwert 2/3', class: 'col-md-3' %>
-    <%= f.text_field :key_number2 %>
-    <%= f.text_field :key_number3 %>
+    <div class="col-md-2">
+      <%= f.text_field :key_number2, class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+      <%= f.text_field :key_number3, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :mileage, 'Kilometerstand', class: 'col-md-3' %>
-    <%= f.number_field :mileage %>
+    <div class="col-md-2"><%= f.number_field :mileage, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :picture_url, 'Url Bild', class: 'col-md-3' %>
-    <%= f.url_field :picture_url%>
+    <div class="col-md-6">
+      <%= f.url_field :picture_url, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :ebay_url_all_parts, 'ebay Url "Alle Teile"', class: 'col-md-3' %>
-    <%= f.url_field :ebay_url_all_parts %>
+    <div class="col-md-6">
+      <%= f.url_field :ebay_url_all_parts, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :name_ebay_url_all_parts, 'ebay Beschreibung "Alle Teile"', class: 'col-md-3' %>
-    <%= f.text_area :name_ebay_url_all_parts, size: '80x5' %>
+    <div class="col-md-6">
+      <%= f.text_area :name_ebay_url_all_parts, size: '80x5', class: 'form-control' %>
+    </div>
   </div>
 
   <div class="form-group">
@@ -95,32 +136,32 @@
 
 <script>
 
-  function brandOnChangeHandler( event ) {
+  function brandOnChangeHandler(event) {
     var selectedBrandId = $(event).val();
     var requestForModells = '/all_models_for_brand?brand_id=' + selectedBrandId;
-    var modelSelect = $( '#brand_model_id' );
+    var modelSelect = $('#brand_model_id');
     modelSelect.empty();
-    modelSelect.append( new Option( '', '' ) );
-    $.get( requestForModells ).done( function( result ) {
-      result.forEach( function( model ) {
-        modelSelect.append( new Option( model.name, model.id ) );
-      } );
-    } );
+    modelSelect.append(new Option('', ''));
+    $.get(requestForModells).done(function (result) {
+      result.forEach(function (model) {
+        modelSelect.append(new Option(model.name, model.id));
+      });
+    });
   }
 
-  function brandModelOnChangeHandler( event ) {
+  function brandModelOnChangeHandler(event) {
     var selectedModelId = $(event).val();
     var requestForTypes = '/all_types_for_model?brand_model_id=' + selectedModelId;
-    var typeSelect = $( '#car_model_type_id');
+    var typeSelect = $('#car_model_type_id');
     typeSelect.empty();
-    $.get( requestForTypes ).done( function( result ) {
-      result.forEach( function( type ) {
-        typeSelect.append( new Option( type.model_type, type.id ) );
-      } );
-    } );
+    $.get(requestForTypes).done(function (result) {
+      result.forEach(function (type) {
+        typeSelect.append(new Option(type.model_type, type.id));
+      });
+    });
   }
 
-  function modelTypeOnChangeHandler( event ) {
+  function modelTypeOnChangeHandler(event) {
     var selectedTypeId = $(event).val();
     //TODO: create ajax request with type to get the brand_model_id, and the brand_id and select it
   }

@@ -21,7 +21,6 @@
     <th>Fahrzeug</th>
     <th>Beschreibung</th>
     <th>Artikelnummer</th>
-    <th>Angebotsformat</th>
     <th>Preis</th>
     <th></th>
     <th></th>
@@ -33,9 +32,8 @@
   <% @car_parts.each do |car_part| %>
     <tr>
       <td><%= car_part.car.nil? ? '-' : link_to( car_part.car.car_identifier, edit_car_url( car_part.car ), class: 'btn btn-default' ) %></td>
-      <td class="vertical_centered"><%= car_part.description.truncate( 30, omission: '...' ) %></td>
+      <td class="vertical_centered"><%= car_part.description.truncate( 60, omission: '...' ) %></td>
       <td class="vertical_centered"><%= car_part.ebay_article_number %></td>
-      <td class="vertical_centered"><%= car_part.ebay_selling_type_as_string %></td>
       <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
       <td ><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
       <td ><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'} , class: 'btn btn-default'%></td>

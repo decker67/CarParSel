@@ -16,6 +16,8 @@ CarParSel::Application.routes.draw do
 
   resources :sellers
 
+  post '/login' => 'login#login'
+
   get '/all_models_for_brand' => 'cars#all_models_for_brand', :format => :json
   get '/all_types_for_model' => 'cars#all_types_for_model', :format => :json
 
@@ -25,6 +27,7 @@ CarParSel::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  #root 'login#index'
   root 'start#overview'
 
   # Example of regular route:

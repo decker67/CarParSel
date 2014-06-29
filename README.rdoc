@@ -2,17 +2,19 @@
 
 todo:
 -----
+x Bestandsanzahl bei Fahrzeugteil aufnehmen
+- URL Felder größer, eines je Zeile
+x Fahrzeugteile: neuer Status in Bearbeitung, Ampel gelb
+x Fahrzeugteile: Angebotsformat löschen in Auflistung, Beschreibung vergrößern
+- Teilenummer größer, da hier mehr als eine Nummer mit Komma erfasst wird
+- Login: Und bei Erfassung der Teile den Bearbeiter setzen, Filter um Bearbeiter erweitern
 
-- Fehleranzeige, bei Validierung verschönern.
-- Validierung aufnehmen
-- Paging auf möglichst allen Seiten
-- Filterkriterium Automarke bei Typen aufnehmen
+
 - Filter Fahrzeuge korrigieren und erweitern
-- Auto erfassen/bearbeiten: Selektion Modell und Typ: blank aufnehmen
-- Währungbeträge muss man mit Komma erfassen können
 
 nice to have:
 ------------
+- Filterkriterium Automarke bei Typen aufnehmen
 - Löschen Dialog via Bootstrap
 - Cursor automatisch im ersten Eingabefeld
 - Filter persistieren
@@ -25,7 +27,7 @@ nice to have:
 - Eindeutigkeit anhand Schlüsselfeldern und Validierung
 - Suche nach Teilen über den Anfang der Fahrzeug-ID: MEW168...
 - Suchmaske für Artikelteile vervollständigen
-- Paging für Fahrzeuge und Teile
+x Paging für Fahrzeuge und Teile
 
 
 später:

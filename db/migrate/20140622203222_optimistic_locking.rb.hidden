@@ -1,0 +1,7 @@
+class OptimisticLocking < ActiveRecord::Migration
+  def change
+    %w( brands brand_models model_types sellers cars car_parts ).each do |table|
+      add_column table, :lock_version, :integer
+    end
+  end
+end

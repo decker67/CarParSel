@@ -13,89 +13,71 @@
         <%= form_tag '', :method => :get, id: :filter, class: 'form-horizontal' do %>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :brand_id, 'Automarke' %>
-            </div>
+            <%= label_tag :brand_id, 'Automarke', class: "col-md-3" %>
             <div class="col-md-2">
-              <%= select_tag :brand_id, options_for_select(Brand.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_id]), :include_blank => true %>
+              <%= select_tag :brand_id, options_for_select(Brand.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_id]), :include_blank => true, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :brand_model_id, 'Modell' %>
-            </div>
+            <%= label_tag :brand_model_id, 'Modell', class: "col-md-3" %>
             <div class="col-md-2">
-              <%= select_tag :brand_model_id, options_for_select(BrandModel.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_model_id]), :include_blank => true %>
+              <%= select_tag :brand_model_id, options_for_select(BrandModel.order(:name).collect { |s| [s.name, s.id] }, @view_filter[:brand_model_id]), :include_blank => true, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :model_type_id, 'Typ' %>
-            </div>
+            <%= label_tag :model_type_id, 'Typ', class: "col-md-3" %>
             <div class="col-md-2">
-              <%= select_tag :model_type_id, options_for_select(ModelType.order(:model_type).collect { |s| [s.model_type, s.id] }, @view_filter[:model_type_id]), :include_blank => true %>
+              <%= select_tag :model_type_id, options_for_select(ModelType.order(:model_type).collect { |s| [s.model_type, s.id] }, @view_filter[:model_type_id]), :include_blank => true, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :power, 'kW oder PS' %>
+            <%= label_tag :power, 'kW oder PS', class: "col-md-3" %>
+            <div class="col-md-2">
+              <%= number_field_tag :power, @view_filter[:power], class: 'form-control' %>
             </div>
             <div class="col-md-2">
-              <%= number_field_tag :power, @view_filter[:power] %>
-            </div>
-            <div class="col-md-2">
-              <%= number_field_tag :ps, @view_filter[:ps] %>
+              <%= number_field_tag :ps, @view_filter[:ps], class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :year_of_construction, 'Konstruktionsjahr' %>
-            </div>
+            <%= label_tag :year_of_construction, 'Konstruktionsjahr', class: "col-md-3" %>
             <div class="col-md-2">
-              <%= select_tag :year_of_construction, options_for_select(1900..Time.now.year, @view_filter[:year_of_construction]), :include_blank => true %>
+              <%= select_tag :year_of_construction, options_for_select(1900..Time.now.year, @view_filter[:year_of_construction]), :include_blank => true, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :cylinder_capacity, 'Hubraum' %>
-            </div>
+            <%= label_tag :cylinder_capacity, 'Hubraum', class: "col-md-3" %>
             <div class="col-md-2">
-              <%= number_field_tag :cylinder_capacity, @view_filter[:cylinder_capacity] %>
+              <%= number_field_tag :cylinder_capacity, @view_filter[:cylinder_capacity], class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :fuel, 'Kraftstoff' %>
-            </div>
+            <%= label_tag :fuel, 'Kraftstoff', class: "col-md-3" %>
             <div class="col-md-2">
-              <%= select_tag :fuel, options_for_select(Car::FUEL_TYPES, @view_filter[:fuel]), :include_blank => true %>
+              <%= select_tag :fuel, options_for_select(Car::FUEL_TYPES, @view_filter[:fuel]), :include_blank => true, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :gearing, 'Getriebeart' %>
-            </div>
+            <%= label_tag :gearing, 'Getriebeart', class: "col-md-3" %>
             <div class="col-md-2">
-              <%= select_tag :gearing, options_for_select(Car::GEARING_TYPES, @view_filter[:gearing]), :include_blank => true %>
+              <%= select_tag :gearing, options_for_select(Car::GEARING_TYPES, @view_filter[:gearing]), :include_blank => true, class: 'form-control' %>
             </div>
           </div>
 
           <div class="form-group">
-            <div class="col-md-3">
-              <%= label_tag :key_number2, 'Schlüsselnummer 2/3' %>
+            <%= label_tag :key_number2, 'Schlüsselnummer 2/3', class: "col-md-3" %>
+            <div class="col-md-2">
+              <%= text_field_tag :key_number2, @view_filter[:key_number2], class: 'form-control' %>
             </div>
             <div class="col-md-2">
-              <%= text_field_tag :key_number2, @view_filter[:key_number2] %>
-            </div>
-            <div class="col-md-2">
-              <%= text_field_tag :key_number3, @view_filter[:key_number3] %>
+              <%= text_field_tag :key_number3, @view_filter[:key_number3], class: 'form-control' %>
             </div>
           </div>
 

@@ -12,11 +12,9 @@
       <div class="panel-body">
         <%= form_tag '', :method => :get, class: 'form-horizontal' do %>
           <div class="form-group">
-            <div class="col-md-1">
-              <%= label_tag :brand_model_id, 'Modell' %>
-            </div>
-            <div class="col-md-2">
-              <%= select_tag :brand_model_id, options_for_select(BrandModel.order(:name).collect { |s| [s.name, s.id] }, @filter[:brand_model_id]), :include_blank => true %>
+            <%= label_tag :brand_model_id, 'Modell', class: 'col-md-1' %>
+            <div class="col-md-3">
+              <%= select_tag :brand_model_id, options_for_select(BrandModel.order(:name).collect { |s| [s.name, s.id] }, @filter[:brand_model_id]), :include_blank => true, class: 'form-control' %>
             </div>
           </div>
           <div class="form-group">
@@ -53,9 +51,11 @@
         <td class="vertical_centered"><%= model_type.brand_model.nil? || model_type.brand_model.brand.nil? ? '-' : model_type.brand_model.brand.name %></td>
         <td class="vertical_centered"><%= model_type.brand_model.nil? ? '-' : model_type.brand_model.name %></td>
         <td class="vertical_centered"><%= model_type.model_type %></td>
-        <td class="vertical_centered"><%= model_type.month_of_construction_period_from %>/<%= model_type.year_of_construction_period_from %></td>
-        <td class="vertical_centered"><%= model_type.month_of_construction_period_to %>/<%= model_type.year_of_construction_period_to %></td>
-        <td ><%= link_to image_tag('pencil_16.png'), edit_model_type_path(model_type), class: 'btn btn-default' %></td>
+        <td class="vertical_centered"><%= model_type.month_of_construction_period_from %>
+          /<%= model_type.year_of_construction_period_from %></td>
+        <td class="vertical_centered"><%= model_type.month_of_construction_period_to %>
+          /<%= model_type.year_of_construction_period_to %></td>
+        <td><%= link_to image_tag('pencil_16.png'), edit_model_type_path(model_type), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), model_type, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
       </tr>
     <% end %>

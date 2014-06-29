@@ -1,4 +1,4 @@
-<%= form_for(@car_part) do |f| %>
+<%= form_for(@car_part, html: {class: 'form-horizontal'}) do |f| %>
 
   <%= render 'layouts/errors', object: @car_part %>
 
@@ -6,69 +6,121 @@
 
   <div class="form-group">
     <%= f.label :car_id, 'Fahrzeug Id', class: 'col-md-3' %>
-    <%= f.collection_select :car_id, Car.order('car_identifier ASC'), :id, :car_identifier %>
+    <div class="col-md-3">
+      <%= f.collection_select :car_id, Car.order('car_identifier ASC'), :id, :car_identifier, {}, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :description, 'Beschreibung', class: 'col-md-3' %>
-    <%= f.text_area :description, size: '80x5' %>
+    <div class="col-md-6">
+      <%= f.text_area :description, size: '80x5', class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :quantity, 'Anzahl', class: 'col-md-3' %>
+    <div class="col-md-1">
+      <%= f.number_field :quantity, min: 1, max: 100, step: 1, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :part_number, 'Teilenummer', class: 'col-md-3' %>
-    <%= f.text_field :part_number %>
+    <div class="col-md-6">
+      <%= f.text_field :part_number, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :ebay_state, 'ebay Status', class: 'col-md-3' %>
-    <%= f.select :ebay_state, options_for_select(CarPart::AUCTION_STATE, f.object.ebay_state) %>
-    <%= f.date_field :ebay_online_since, :include_blank => true %>
+    <%= f.label :ebay_state, 'Status', class: 'col-md-3' %>
+    <div class="col-md-2">
+      <%= f.select :ebay_state, options_for_select(CarPart::AUCTION_STATE, f.object.ebay_state), {}, class: 'form-control' %>
+    </div>
+    <div class="col-md-3">
+      <%= f.date_field :ebay_online_since, :include_blank => true, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :ebay_selling_type, 'ebay Angebotsformat', class: 'col-md-3' %>
-    <%= f.select :ebay_selling_type, options_for_select(CarPart::AUCTION_TYPES, f.object.ebay_selling_type) %>
+    <div class="col-md-2">
+      <%= f.select :ebay_selling_type, options_for_select(CarPart::AUCTION_TYPES, f.object.ebay_selling_type), {}, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :price, 'Preis', class: 'col-md-3' %>
-    <%= f.number_field :price, min: 0, max: 9999.99, step: 0.01 %>
+    <div class="col-md-2">
+      <%= f.number_field :price, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :postage_germany, 'Versand Deutschland', class: 'col-md-3' %>
-    <%= f.number_field :postage_germany, min: 0, max: 9999.99, step: 0.01 %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_germany, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :postage_austria, 'Versand Östereich', class: 'col-md-3' %>
-    <%= f.number_field :postage_austria, min: 0, max: 9999.99, step: 0.01 %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_austria, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :postage_swiss, 'Versand Schweiz', class: 'col-md-3' %>
-    <%= f.number_field :postage_swiss, min: 0, max: 9999.99, step: 0.01 %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_swiss, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :postage_europe_with_eu, 'Versand Europa EU', class: 'col-md-3' %>
-    <%= f.number_field :postage_europe_with_eu, min: 0, max: 9999.99, step: 0.01 %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_europe_with_eu, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :postage_europe_without_eu, 'Versand Europa nicht EU', class: 'col-md-3' %>
-    <%= f.number_field :postage_europe_without_eu, min: 0, max: 9999.99, step: 0.01 %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_europe_without_eu, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :postage_world_wide, 'Versand Weltweit', class: 'col-md-3' %>
-    <%= f.number_field :postage_world_wide, min: 0, max: 9999.99, step: 0.01 %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_world_wide, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :picture_url1, 'Url Bilder', class: 'col-md-3' %>
-    <div class="form-group">
-      <%= f.url_field :picture_url1 %>
-      <%= f.url_field :picture_url2 %>
-      <%= f.url_field :picture_url3 %>
+    <div class="col-md-6">
+      <%= f.url_field :picture_url1, class: 'form-control' %>
     </div>
-    <div class="form-group col-md-offset-3">
-      <%= f.url_field :picture_url4 %>
-      <%= f.url_field :picture_url5 %>
-      <%= f.url_field :picture_url6 %>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6 col-md-offset-3">
+      <%= f.url_field :picture_url2, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6 col-md-offset-3">
+      <%= f.url_field :picture_url3, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6 col-md-offset-3">
+      <%= f.url_field :picture_url4, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6 col-md-offset-3">
+      <%= f.url_field :picture_url5, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6 col-md-offset-3">
+      <%= f.url_field :picture_url6, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
     <%= f.label :remark, 'Bemerkungen', class: 'col-md-3' %>
-    <%= f.text_area :remark, size: '80x5' %>
+    <div class="col-md-6">
+      <%= f.text_area :remark, size: '80x5', class: 'form-control' %>
+    </div>
   </div>
 
   <div class="form-group">

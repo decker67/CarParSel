@@ -5,25 +5,33 @@
   <!--%= f.hidden_field :lock_version unless current_page?( action: :new ) %-->
 
   <div class="form-group">
-    <%= f.label :brand_model_id, 'Modell', class: 'col-md-2' %>
+    <%= f.label :brand_model_id, 'Modell', class: 'col-md-3' %>
     <div class="col-md-3">
       <%= f.collection_select :brand_model_id, BrandModel.order('name ASC'), :id, :name, {}, {class: 'form-control'} %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :model_type, 'Typ', class: 'col-md-2' %>
+    <%= f.label :model_type, 'Typ', class: 'col-md-3' %>
     <div class="col-md-3">
       <%= f.text_field :model_type, class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :month_of_construction_period_from, 'Herstellungszeitraum von/bis', class: 'col-md-2' %>
-    <div class="col-md-4">
-      <%= f.select :month_of_construction_period_from, 1..12, :selected => f.object.month_of_construction_period_from, :include_blank => true %>
-      <%= f.select :year_of_construction_period_from, 1900..Time.now.year, :selected => f.object.year_of_construction_period_from, :include_blank => true %>
-      /
-      <%= f.select :month_of_construction_period_to, 1..12, :selected => f.object.month_of_construction_period_to, :include_blank => true %>
-      <%= f.select :year_of_construction_period_to, 1900..Time.now.year, :selected => f.object.year_of_construction_period_to, :include_blank => true %>
+    <%= f.label :month_of_construction_period_from, 'Herstellungszeitraum von', class: 'col-md-3' %>
+    <div class="row">
+      <div class="col-md-1">
+        <%= f.select :month_of_construction_period_from, 1..12, {:selected => f.object.month_of_construction_period_from, :include_blank => true } , class: 'form-control' %>
+      </div>
+      <div class="col-md-2">
+        <%= f.select :year_of_construction_period_from, 1900..Time.now.year, {:selected => f.object.year_of_construction_period_from, :include_blank => true }, class: 'form-control' %>
+      </div>
+      <div class="col-md-1">&nbsp;bis&nbsp;</div>
+      <div class="col-md-1">
+        <%= f.select :month_of_construction_period_to, 1..12, {:selected => f.object.month_of_construction_period_to, :include_blank => true}, class: 'form-control' %>
+      </div>
+      <div class="col-md-2">
+        <%= f.select :year_of_construction_period_to, 1900..Time.now.year, {:selected => f.object.year_of_construction_period_to, :include_blank => true}, class: 'form-control' %>
+      </div>
     </div>
   </div>
   <div class="form-group">
