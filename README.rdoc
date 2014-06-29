@@ -3,12 +3,12 @@
 todo:
 -----
 x Bestandsanzahl bei Fahrzeugteil aufnehmen
-- URL Felder größer, eines je Zeile
+x URL Felder größer, eines je Zeile
 x Fahrzeugteile: neuer Status in Bearbeitung, Ampel gelb
 x Fahrzeugteile: Angebotsformat löschen in Auflistung, Beschreibung vergrößern
-- Teilenummer größer, da hier mehr als eine Nummer mit Komma erfasst wird
+x Teilenummer größer, da hier mehr als eine Nummer mit Komma erfasst wird
 - Login: Und bei Erfassung der Teile den Bearbeiter setzen, Filter um Bearbeiter erweitern
-
+-
 
 - Filter Fahrzeuge korrigieren und erweitern
 

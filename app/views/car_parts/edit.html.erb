@@ -2,3 +2,9 @@
   <h1>Fahrzeugteil bearbeiten</h1>
 </div>
 <%= render 'form' %>
+
+<% if @show_generated_ebay_template %>
+  <script type="text/javascript">
+      window.open('<%= "/ebay/#{@car_part.id}/create" %>', '_ebay', 'status=no,menubar=no,location=no,toolbar=no');
+  </script>
+<% end %>

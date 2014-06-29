@@ -1,22 +1,3 @@
-<script>
-  function toggleCarData(checkBox) {
-    var div = document.getElementById('car_data');
-    if (checkBox.checked) {
-      div.style.display = 'none';
-    } else {
-      div.style.display = 'block';
-    }
-  }
-
-  function copyToClipboard() {
-    var ebayContent = document.getElementById('ebay_content');
-    var clipBoard = document.getElementById('clipboard');
-    clipBoard.value = ebayContent.innerHTML;
-    clipBoard.focus();
-    clipBoard.select();
-    document.execCommand('copy', false, null );
-  }
-</script>
 
 <div>
   <%= label :disable_car_data, 'Spenderfahrzeug ausblenden' %>
@@ -27,7 +8,9 @@
 </div>
 <div>
   <%= button_tag 'Html in die Zwischenablage kopieren', onclick: "copyToClipboard()" %>
+  <% if !@back_to_url.nil? %>
   <%= link_to 'Zurück', @back_to_url %>
+  <% end %>
 </div>
 
 <div id="ebay_content">
@@ -888,5 +871,27 @@
 </table>
 
 </body>
+
+<script>
+  function toggleCarData(checkBox) {
+    var div = document.getElementById('car_data');
+    if (checkBox.checked) {
+      div.style.display = 'none';
+    } else {
+      div.style.display = 'block';
+    }
+  }
+
+  function copyToClipboard() {
+    var ebayContent = document.getElementById('ebay_content');
+    var clipBoard = document.getElementById('clipboard');
+    clipBoard.value = ebayContent.innerHTML;
+    clipBoard.focus();
+    clipBoard.select();
+    document.execCommand('copy', false, null );
+  }
+
+  copyToClipboard();
+</script>
 
 </div>

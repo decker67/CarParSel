@@ -56,7 +56,12 @@ class CarPartsController < ApplicationController
   def create
     @car_part = CarPart.new(car_part_params)
     if @car_part.save
-      redirect_to car_parts_url
+      if save_and_generate
+        @show_generated_ebay_template = true
+        render action: 'edit'
+      else
+        redirect_to car_parts_url
+      end
     else
       render action: 'new'
     end
@@ -64,7 +69,12 @@ class CarPartsController < ApplicationController
 
   def update
     if @car_part.update(car_part_params)
-      redirect_to car_parts_url
+      if save_and_generate
+        @show_generated_ebay_template = true
+        render action: 'edit'
+      else
+        redirect_to car_parts_url
+      end
     else
       render action: 'edit'
     end
@@ -98,6 +108,10 @@ class CarPartsController < ApplicationController
       @equal_filter[name] = modified_value
       @view_filter[param_name] = value
     end
+  end
+
+  def save_and_generate
+     !params[ 'save_and_generate' ].nil?
   end
 
 end
