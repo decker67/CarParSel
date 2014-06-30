@@ -2,6 +2,11 @@ class CarPartsController < ApplicationController
 
   before_action :set_car_part, only: [:edit, :update, :destroy]
 
+  def postage_for_postage_id
+    id = params[:postage_id]
+    render json: Postage.where(id: id )
+  end
+
   def index_session_reseted
     session[:car_id] = nil
     redirect_to car_parts_url
