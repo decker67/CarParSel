@@ -8,7 +8,8 @@ x Fahrzeugteile: neuer Status in Bearbeitung, Ampel gelb
 x Fahrzeugteile: Angebotsformat löschen in Auflistung, Beschreibung vergrößern
 x Teilenummer größer, da hier mehr als eine Nummer mit Komma erfasst wird
 - Login: Und bei Erfassung der Teile den Bearbeiter setzen, Filter um Bearbeiter erweitern
--
+- Versandkosten
+
 
 - Filter Fahrzeuge korrigieren und erweitern
 

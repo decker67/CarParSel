@@ -1,0 +1,54 @@
+<%= form_for @postage, html: {class: 'form-horizontal'} do |f| %>
+
+  <%= render 'layouts/errors', object: @postage %>
+
+  <div class="form-group">
+    <%= f.label :name, 'Name', class: 'col-md-3' %>
+    <div class="col-md-3">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :postage_germany, 'Versand Deutschland', class: 'col-md-3' %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_germany, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :postage_austria, 'Versand Östereich', class: 'col-md-3' %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_austria, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :postage_swiss, 'Versand Schweiz', class: 'col-md-3' %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_swiss, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :postage_europe_with_eu, 'Versand Europa EU', class: 'col-md-3' %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_europe_with_eu, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :postage_europe_without_eu, 'Versand Europa nicht EU', class: 'col-md-3' %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_europe_without_eu, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :postage_world_wide, 'Versand Weltweit', class: 'col-md-3' %>
+    <div class="col-md-2">
+      <%= f.number_field :postage_world_wide, min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-4">
+      <%= link_to 'Abbrechen', postages_path, class: 'btn btn-default' %>
+      <%= f.submit 'Speichern', class: 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

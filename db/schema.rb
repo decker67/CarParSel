@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628202453) do
+ActiveRecord::Schema.define(version: 20140630202647) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -99,6 +99,18 @@ ActiveRecord::Schema.define(version: 20140628202453) do
   end
 
   add_index "model_types", ["model_type", "brand_model_id"], name: "index_model_types_on_model_type_and_brand_model_id", unique: true
+
+  create_table "postages", force: true do |t|
+    t.string   "name"
+    t.decimal  "postage_germany",           precision: 18, scale: 2
+    t.decimal  "postage_austria",           precision: 18, scale: 2
+    t.decimal  "postage_swiss",             precision: 18, scale: 2
+    t.decimal  "postage_europe_with_eu",    precision: 18, scale: 2
+    t.decimal  "postage_europe_without_eu", precision: 18, scale: 2
+    t.decimal  "postage_world_wide",        precision: 18, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sellers", force: true do |t|
     t.string   "first_name"

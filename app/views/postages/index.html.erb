@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>Versandarten</h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Versandarten
+    <span style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_postage_path, class: 'btn btn-default' %></span>
+  </div>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @postages.each do |postage| %>
+      <tr>
+        <td class="vertical_centered"><%= postage.name %></td>
+        <td><%= link_to image_tag('pencil_16.png'), edit_postage_path(postage), class: 'btn btn-default' %></td>
+        <td><%= link_to image_tag('trash_16.png'), postage, method: :delete, data: { confirm: 'Sind Sie sicher?' }, class: 'btn btn-default' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= paginate @postages %>
+</div>
