@@ -136,6 +136,7 @@
       <th>Fahrzeug</th>
       <th>Beschreibung</th>
       <th>Preis</th>
+      <th>Teilenummer</th>
       <th></th>
       <th></th>
       <th></th>
@@ -149,6 +150,7 @@
         <td><%= car_part.car.nil? ? '-' : link_to(car_part.car.car_identifier, edit_car_url(car_part.car), class: 'btn btn-default') %></td>
         <td class="vertical_centered"><%= car_part.description.truncate(60, omission: '...') %></td>
         <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
+        <td class="vertical_centered"><%= car_part.part_number %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('ebay_16.png'), {controller: 'ebay', action: 'create', id: car_part, from_url: request.fullpath}, class: 'btn btn-default' %></td>

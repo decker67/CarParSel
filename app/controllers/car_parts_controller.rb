@@ -51,7 +51,7 @@ class CarPartsController < ApplicationController
   def new
     @car_part = CarPart.new
     @car_part.car_id = session[:car_id]
-    @car_part.ebay_state = 1 #offline
+    @car_part.ebay_state = 2 #in Bearbeitung
     @car_part.quantity = 1
   end
 
