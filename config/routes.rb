@@ -25,7 +25,7 @@ CarParSel::Application.routes.draw do
   get '/all_models_for_brand' => 'cars#all_models_for_brand', :format => :json
   get '/all_types_for_model' => 'cars#all_types_for_model', :format => :json
   get '/postage_for_postage_id' => 'car_parts#postage_for_postage_id', :format => :json
-
+  get '/toggle_car_part_state' => 'car_parts#toggle_car_part_state', :format => :json
 
   get "start/overview"
 

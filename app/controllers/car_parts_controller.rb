@@ -7,6 +7,15 @@ class CarPartsController < ApplicationController
     render json: Postage.where(id: id )
   end
 
+  def toggle_car_part_state
+    id = params[:car_part_id]
+    car_part = CarPart.find( id )
+    car_part.toggle_state
+    logger.debug( car_part.inspect )
+    car_part.save
+    render json: car_part.ebay_state
+  end
+
   def index_session_reseted
     session[:car_id] = nil
     redirect_to car_parts_url

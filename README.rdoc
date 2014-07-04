@@ -12,12 +12,7 @@ x Verkauf -> Fahrzeugteile: Teilenummer in der Übersicht
 - Login: Und bei Erfassung der Teile den Bearbeiter setzen, Filter um Bearbeiter erweitern
 - Stati Fahrzeugteile umsortieren, Migrationsskipt dafür anlegen, das die Nummern tauscht.
 
-Info: Wir haben das inserieren in 3 Schritte aufgeteilt. Mitarbeiter A erfasst die Artikel im CPS
-, Mitarbeiter B inseriert die erfassten Teile auf eBay und
-Mitarbeiter C muss auf eBay die Fahrzeugverwenderliste hinzufügen
-- Fahrzeugverwenderliste: Kompatibilitätstabelle der Fahrzeuge in welche das jeweilige Teil passt.
-
-- weiteren Status ergenzen / "Fahrzeugverwenderliste fehlt" - Farbe blau /
+x weiteren Status ergenzen / "Fahrzeugverwenderliste fehlt" - Farbe blau /
 Ist es möglich den Status zu ändern ohne die Eingabemaske öffnen zu müssen?
 Zweck: für Mitarbeiter C: hier kann er nach der Fertigstellung der Fahrzeugverwenderliste
 direkt den Status ändern.

@@ -9,7 +9,15 @@ class CarPart < ActiveRecord::Base
   belongs_to :car, inverse_of: :car_parts
 
   def ebay_selling_type_as_string
-    return AUCTION_TYPES[ ebay_selling_type ][ 0 ]
+    AUCTION_TYPES[ ebay_selling_type ][ 0 ]
+  end
+
+  def state_as_string
+    AUCTION_STATE[ ebay_state ][ 0 ]
+  end
+
+  def toggle_state
+    self.ebay_state = ( ebay_state == 3 ) ? 0 : ( ebay_state + 1 )
   end
 
   def is_auction?

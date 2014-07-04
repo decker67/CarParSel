@@ -146,7 +146,7 @@
     <tbody>
     <% @car_parts.each do |car_part| %>
       <tr>
-        <td><%= image_tag "ball_#{car_part.ebay_state}.png" %> </td>
+        <td><%= image_tag( "ball_#{car_part.ebay_state}.png", ondblclick: 'stateOnDoubleClickHandler( this )', 'data-id' => "#{car_part.id}", 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => "#{car_part.state_as_string}" ) %> </td>
         <td><%= car_part.car.nil? ? '-' : link_to(car_part.car.car_identifier, edit_car_url(car_part.car), class: 'btn btn-default') %></td>
         <td class="vertical_centered"><%= car_part.description.truncate(60, omission: '...') %></td>
         <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
@@ -161,3 +161,17 @@
   <%= paginate @car_parts %>
 </div>
 
+<script>
+
+  function stateOnDoubleClickHandler( event ) {
+    var imageTag = $( event );
+    var car_part_id = imageTag.attr( 'data-id' );
+    var requestForState = '/toggle_car_part_state?car_part_id=' + car_part_id;
+    $.get(requestForState).done(function (result) {
+      var srcOfImageTag = imageTag.attr( 'src' );
+      var pathToBallImage = srcOfImageTag.substring( 0, srcOfImageTag.lastIndexOf( '_' ) + 1 );
+      $( event ).attr( 'src', pathToBallImage + result + '.png' );
+    } );
+  }
+
+</script>
