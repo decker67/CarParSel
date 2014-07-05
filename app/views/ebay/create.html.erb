@@ -756,7 +756,7 @@
           <font face="Verdana"></font>
 
           <div style="font-size: 2em; padding-top: 10px; padding-bottom: 10px;"><%= @car_part.description %></div>
-          <div style="font-size: 1em; padding-top: 10px; padding-bottom: 10px;">Teilenummer&nbsp;<%= @car_part.part_number %></div>
+          <div style="font-size: 1em; padding-top: 10px; padding-bottom: 10px;">Teilenummer&nbsp;<%= @car_part.part_number_with_commas %></div>
 
           <div style="margin-top: 10px; margin-bottom: 10px; font-size: 2em; font-weight: bold">
             <% if @car_part.is_auction? %>

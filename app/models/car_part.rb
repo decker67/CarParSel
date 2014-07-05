@@ -32,6 +32,15 @@ class CarPart < ActiveRecord::Base
     remark != ''
   end
 
+  def part_number_with_commas
+    adjusted_part_numbers = part_number
+
+    if !adjusted_part_numbers.include?( ',' )
+      adjusted_part_numbers.gsub!( ' ', ', ' )
+    end
+    return adjusted_part_numbers
+  end
+
   private
   def validate_ebay_online_since
     if ebay_state == 0 && !ebay_online_since?

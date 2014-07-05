@@ -53,3 +53,50 @@ Verknüpfung mit eBay-Turbolister, wenn möglich.
 Versand-Rechner für Weltweiten Versand in der HTML-Ansicht einbauen.
 
 Ein gemeinsames Projekt. Fussballmanager-Online-Spiel.
+
+
+3. HTML-Schnellansicht
+- das Generieren und kopieren des HTML-Codes auch in der Fahrzeugteile-Eingabemaske - Position oben
+- weiteren Button hinzufügen zum öffnen des generierten Templates in einem neuen Fenster
+- Button "Abbrechen", "Speichern", "Generieren", "HTML-Öffnen" - unten sowie oben hinzufügen
+
+
+5. Teilernummern-Eingabe
+- wir kopieren diese auf Websites und fügen diese dann in die Eingabemaske hinzu. Das ständige Kommasetzen nervt. Haben sie eine Idee? z. B. 12-15 einzelne Felder, in dem fertigen Template dann mit einem zeichen automatisch getrennt?
+
+6. Filter-Option
+Fahrzeugteilefiltern -> Motorcode und Farbcode hinzufügen
+
+7. CPS-Ansicht
+Ansicht ausbreiten - Buttons kleiner machen - so das in die breite nicht viel Platz verloren geht. Button Reihenfolge ändern in HTML;Bearbeiten;Löschen
+Mehrere Teile auf einer Seite - Auswahl zwischen 25 - 50 - 100 - 200
+
+Das wäre erstmal alles.
+
+Thema "Rechnung schreiben"
+
+ich versuche eine genaue Beschreibung zu schreiben wie ich es gerne hätte und sie bringen
+Verbesserungvorschläge ein.
+
+Ich hatte Ihnen von einem Fussball-Manager-Projekt erzählt. Es ist eine Freizeitbeschäftigung. Aber wenn wir damit
+Erfolg haben, könnte mit etwas Glück das Projekt ein durchbruch werden. Bei diesem Projekt werden
+wir natürlich später professionelle Hilfe benötigen und auch beauftragen. Wir brauchen aber erstmal
+eine Datenbank und hier kommen sie ins Spiel.
+
+Eine kurze Beschreibung  des Spiels:
+
+Sie managen eine Manschaft, welches sie selber zusammengestellt haben mit reralen Spielerdaten.
+Die Spieler welche sie aufstellen, bekommen Punkte jenachdem wie sie in realität gespielt haben.
+Die Punktevergabe habe ich schon einbisschen aufgearbeitet. Muss ich noch verfeinern. Ich werde
+dieser E-Mail eine Excel-Datei anhängen. Ist aber noch nicht fertig. Die ersten Punktelisten sind
+Liger-Länderrang entsprechend unterteilt. Ich hoffe wir sind Saison 2015/2016 online.
+
+Wie möchten sie das machen. Möchten sie sich mit ihrer arbeit beteiligen? Oder möchten sie das
+nur als ein Auftrag sehen und Gebührenpflichtig machen? Ich bin für beides offen. Ich habe angefangen
+ bei Comunio.de zu spielen. Und das kann man viiiiieeel besser machen. Ich habe schon im Kopf
+ grob festgelegt wie das alles ablaufen soll. Das ist mein Job. Sie werden versuchen das umzusetzen
+  was ich brauche.
+
+Dieses Projekt wird aber schleppend nebenbei laufen. CPS und KFZ-Teileverkauf hat Vorrang.
+
+Alles Gute
