@@ -11,9 +11,10 @@ class CarPartsController < ApplicationController
     id = params[:car_part_id]
     car_part = CarPart.find( id )
     car_part.toggle_state
-    logger.debug( car_part.inspect )
+    #logger.debug( car_part.inspect )
     car_part.save
-    render json: car_part.ebay_state
+    render json: { state: car_part.ebay_state,
+                   state_as_string: CarPart::AUCTION_STATE[ car_part.ebay_state ][ 0 ] }
   end
 
   def index_session_reseted

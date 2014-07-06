@@ -162,16 +162,18 @@
 </div>
 
 <script>
-
-  function stateOnDoubleClickHandler( event ) {
-    var imageTag = $( event );
+  function stateOnDoubleClickHandler( element ) {
+    var imageTag = $( element );
     var car_part_id = imageTag.attr( 'data-id' );
     var requestForState = '/toggle_car_part_state?car_part_id=' + car_part_id;
     $.get(requestForState).done(function (result) {
       var srcOfImageTag = imageTag.attr( 'src' );
       var pathToBallImage = srcOfImageTag.substring( 0, srcOfImageTag.lastIndexOf( '_' ) + 1 );
-      $( event ).attr( 'src', pathToBallImage + result + '.png' );
+      element.src = ''; //otherwise the browser does not always load the new image
+      element.src = pathToBallImage + result.state + '.png';
+      element.title = result.state_as_string;
+      element.alt = result.state_as_string;
+
     } );
   }
-
 </script>
