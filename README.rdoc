@@ -9,13 +9,12 @@ x Fahrzeugteile: Angebotsformat löschen in Auflistung, Beschreibung vergrößer
 x Teilenummer größer, da hier mehr als eine Nummer mit Komma erfasst wird
 x Versandkosten
 x Verkauf -> Fahrzeugteile: Teilenummer in der Übersicht
+x weiteren Status ergenzen / "Fahrzeugverwenderliste fehlt" - Farbe blau / Ist es möglich den Status zu ändern ohne die Eingabemaske öffnen zu müssen?
+x Das ständige Kommasetzen nervt. Haben sie eine Idee? z. B. 12-15 einzelne Felder, in dem fertigen Template dann mit einem zeichen automatisch getrennt?
+
 - Login: Und bei Erfassung der Teile den Bearbeiter setzen, Filter um Bearbeiter erweitern
 - Stati Fahrzeugteile umsortieren, Migrationsskipt dafür anlegen, das die Nummern tauscht.
 
-x weiteren Status ergenzen / "Fahrzeugverwenderliste fehlt" - Farbe blau /
-Ist es möglich den Status zu ändern ohne die Eingabemaske öffnen zu müssen?
-Zweck: für Mitarbeiter C: hier kann er nach der Fertigstellung der Fahrzeugverwenderliste
-direkt den Status ändern.
 
 - Schnellansicht HTML-Ansicht / ich habe dieser Email ein Bild hinzugefügt.
 Wenn sie das so implementieren könnten, wäre das super.
@@ -37,7 +36,6 @@ nice to have:
 - Eindeutigkeit anhand Schlüsselfeldern und Validierung
 - Suche nach Teilen über den Anfang der Fahrzeug-ID: MEW168...
 - Suchmaske für Artikelteile vervollständigen
-x Paging für Fahrzeuge und Teile
 
 
 später:
@@ -61,8 +59,6 @@ Ein gemeinsames Projekt. Fussballmanager-Online-Spiel.
 - Button "Abbrechen", "Speichern", "Generieren", "HTML-Öffnen" - unten sowie oben hinzufügen
 
 
-5. Teilernummern-Eingabe
-- wir kopieren diese auf Websites und fügen diese dann in die Eingabemaske hinzu. Das ständige Kommasetzen nervt. Haben sie eine Idee? z. B. 12-15 einzelne Felder, in dem fertigen Template dann mit einem zeichen automatisch getrennt?
 
 6. Filter-Option
 Fahrzeugteilefiltern -> Motorcode und Farbcode hinzufügen

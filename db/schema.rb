@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630202647) do
+ActiveRecord::Schema.define(version: 20140705203240) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
