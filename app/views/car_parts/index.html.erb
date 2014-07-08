@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-              <%= label_tag :ebay_state, 'eBay-Status', class: 'col-md-3' %>
+              <%= label_tag :ebay_state, 'Status', class: 'col-md-3' %>
               <div class="col-md-2">
                 <%= select_tag :ebay_state, options_for_select(CarPart::AUCTION_STATE, @view_filter[:ebay_state]), :include_blank => true, class: 'form-control' %>
               </div>
@@ -61,9 +61,19 @@
                 <%= text_field_tag :car_type, @view_filter[:car_type], class: 'form-control' %>
               </div>
             </div>
-
             <div class="form-group">
-
+              <%= label_tag :color_code, 'Farb-Code', class: 'col-md-3' %>
+              <div class="col-md-2">
+                <%= text_field_tag :color_code, @view_filter[:color_code], class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= label_tag :engine_code, 'Motor-Code', class: 'col-md-3' %>
+              <div class="col-md-2">
+                <%= text_field_tag :engine_code, @view_filter[:engine_code], class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
               <%= label_tag :power, 'kW oder PS', class: 'col-md-3' %>
               <div class="col-md-2">
                 <%= number_field_tag :power, @view_filter[:power], class: 'form-control' %>
@@ -146,7 +156,7 @@
     <tbody>
     <% @car_parts.each do |car_part| %>
       <tr>
-        <td><%= image_tag( "ball_#{car_part.ebay_state}.png", ondblclick: 'stateOnDoubleClickHandler( this )', 'data-id' => "#{car_part.id}", 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => "#{car_part.state_as_string}" ) %> </td>
+        <td><%= image_tag("ball_#{car_part.ebay_state}.png", ondblclick: 'stateOnDoubleClickHandler( this )', 'data-id' => "#{car_part.id}", 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => "#{car_part.state_as_string}") %> </td>
         <td><%= car_part.car.nil? ? '-' : link_to(car_part.car.car_identifier, edit_car_url(car_part.car), class: 'btn btn-default') %></td>
         <td class="vertical_centered"><%= car_part.description.truncate(60, omission: '...') %></td>
         <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
@@ -162,18 +172,18 @@
 </div>
 
 <script>
-  function stateOnDoubleClickHandler( element ) {
-    var imageTag = $( element );
-    var car_part_id = imageTag.attr( 'data-id' );
+  function stateOnDoubleClickHandler(element) {
+    var imageTag = $(element);
+    var car_part_id = imageTag.attr('data-id');
     var requestForState = '/toggle_car_part_state?car_part_id=' + car_part_id;
     $.get(requestForState).done(function (result) {
-      var srcOfImageTag = imageTag.attr( 'src' );
-      var pathToBallImage = srcOfImageTag.substring( 0, srcOfImageTag.lastIndexOf( '_' ) + 1 );
+      var srcOfImageTag = imageTag.attr('src');
+      var pathToBallImage = srcOfImageTag.substring(0, srcOfImageTag.lastIndexOf('_') + 1);
       element.src = ''; //otherwise the browser does not always load the new image
       element.src = pathToBallImage + result.state + '.png';
       element.title = result.state_as_string;
       element.alt = result.state_as_string;
 
-    } );
+    });
   }
 </script>

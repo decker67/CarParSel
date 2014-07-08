@@ -14,6 +14,7 @@ x Das ständige Kommasetzen nervt. Haben sie eine Idee? z. B. 12-15 einzelne Fel
 
 - Login: Und bei Erfassung der Teile den Bearbeiter setzen, Filter um Bearbeiter erweitern
 - Stati Fahrzeugteile umsortieren, Migrationsskipt dafür anlegen, das die Nummern tauscht.
+- Filter-Option, Fahrzeugteilefiltern -> Motorcode und Farbcode hinzufügen
 
 
 - Schnellansicht HTML-Ansicht / ich habe dieser Email ein Bild hinzugefügt.
@@ -60,8 +61,6 @@ Ein gemeinsames Projekt. Fussballmanager-Online-Spiel.
 
 
 
-6. Filter-Option
-Fahrzeugteilefiltern -> Motorcode und Farbcode hinzufügen
 
 7. CPS-Ansicht
 Ansicht ausbreiten - Buttons kleiner machen - so das in die breite nicht viel Platz verloren geht. Button Reihenfolge ändern in HTML;Bearbeiten;Löschen

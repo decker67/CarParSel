@@ -10,5 +10,14 @@ module EbayHelper
     end
   end
 
+  def postage_output( postage_value )
+    if postage_value.nil?
+      'auf Anfrage'
+    elsif postage_value == 0
+      'kostenlos'
+    else
+       number_to_currency postage_value
+    end
+  end
 
 end

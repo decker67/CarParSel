@@ -511,219 +511,194 @@
 <div id="page-content" class="container">
 <div class="padder">
 <div class="col-left sidebar">
-  <!-- CATEGORY START -->
-  <div class="widget">
-    <div class="widget-content">
-      <h2 class="widget-title">Artikelübersicht</h2>
+<!-- CATEGORY START -->
+<div class="widget">
+  <div class="widget-content">
+    <h2 class="widget-title">Artikelübersicht</h2>
 
-      <div class="spacing">
-        <div id="aside-nav" class="nav-widget">
-          <ul>
-            <li>&nbsp;</li>
-            <% @car.nil? ? '' : @car.name_ebay_url_all_parts.split(/\r?\n/).each do |line| %>
-              <li style="font-size: 120%; text-align: center"><%= line %></li>
-            <% end %>
-            <li style="font-size: 130%; text-align: center">
-              <a href="<%= @car.nil? ? '' : @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen
-                Blick</a></li>
-          </ul>
-        </div>
+    <div class="spacing">
+      <div id="aside-nav" class="nav-widget">
+        <ul>
+          <li>&nbsp;</li>
+          <% @car.nil? ? '' : @car.name_ebay_url_all_parts.split(/\r?\n/).each do |line| %>
+            <li style="font-size: 120%; text-align: center"><%= line %></li>
+          <% end %>
+          <li style="font-size: 130%; text-align: center">
+            <a href="<%= @car.nil? ? '' : @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen
+              Blick</a></li>
+        </ul>
       </div>
     </div>
   </div>
-  <!-- CATEGORY END -->
-  <!-- PAYMENTS START -->
-  <div class="widget">
-    <div class="widget-content">
-      <h2 class="widget-title">Zahlung</h2>
+</div>
+<!-- CATEGORY END -->
+<!-- PAYMENTS START -->
+<div class="widget">
+  <div class="widget-content">
+    <h2 class="widget-title">Zahlung</h2>
 
-      <div class="spacing">
-        <p>Wir akzeptieren Ihre Zahlung per:</p>
-        <table width="204" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="60">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_paypal.png" width="50" height="38"></td>
-            <td class="style1">PayPal Zahlung</td>
-          </tr>
-          <tr>
-            <td width="60">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_uberweisung.png" width="50" height="38">
-            </td>
-            <td class="style1">Zahlung per &Uuml;berweisung</td>
-          </tr>
-          <tr>
-            <td width="60">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_barzahlung.png" width="50" height="38">
-            </td>
-            <td class="style1">Barzahlung bei Abholung</td>
-          </tr>
-        </table>
+    <div class="spacing">
+      <p>Wir akzeptieren Ihre Zahlung per:</p>
+      <table width="204" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="60">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_paypal.png" width="50" height="38"></td>
+          <td class="style1">PayPal Zahlung</td>
+        </tr>
+        <tr>
+          <td width="60">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_uberweisung.png" width="50" height="38">
+          </td>
+          <td class="style1">Zahlung per &Uuml;berweisung</td>
+        </tr>
+        <tr>
+          <td width="60">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_barzahlung.png" width="50" height="38">
+          </td>
+          <td class="style1">Barzahlung bei Abholung</td>
+        </tr>
+      </table>
 
-      </div>
     </div>
   </div>
-  <!-- PAYMENTS END -->
-  <!-- SHIPPING START -->
-  <div class="widget">
-    <div class="widget-content">
-      <h2 class="widget-title">Versand</h2>
+</div>
+<!-- PAYMENTS END -->
+<!-- SHIPPING START -->
+<div class="widget">
+  <div class="widget-content">
+    <h2 class="widget-title">Versand</h2>
 
-      <div class="spacing">
-        <p>
-        <table width="204" height="220" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="102" align="center" valign="top">
-              <img src="http://autohalle24.de/ebay_layout/versand_dhl.jpg" width="85" height="50"></td>
-            <td width="102" align="center" valign="top">
-              <img src="http://autohalle24.de/ebay_layout/versand_dp.jpg" width="85" height="50"></td>
-          </tr>
-          <tr>
-            <td width="102" align="center" valign="top">
-              <img src="http://autohalle24.de/ebay_layout/versand_gls.jpg" width="85" height="50"></td>
-            <td width="102" align="center" valign="top">
-              <img src="http://autohalle24.de/ebay_layout/versand_hermes.jpg" width="85" height="50"></td>
-          </tr>
-          <tr>
-            <td width="102" align="center" valign="top">
-              <img src="http://autohalle24.de/ebay_layout/versand_ups.jpg" width="85" height="50"></td>
-            <td width="102" align="center" valign="top">
-              <img src="http://autohalle24.de/ebay_layout/versand_emons.jpg" width="85" height="50"></td>
-          </tr>
-          <tr>
-            <td width="102" align="center" valign="top">
-              <img src="http://autohalle24.de/ebay_layout/versand_dpd.jpg" width="85" height="50"></td>
-            <td width="102" align="center" valign="top">
-              <img src="http://autohalle24.de/ebay_layout/versand_tge.jpg" width="85" height="50"></td>
-          </tr>
-        </table>
-        <p>Versandkosten:</p>
-        <table width="204" height="100" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="30" align="left" valign="middle">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_de.png" width="16" height="11"></td>
-            <td width="102" align="left" valign="middle" class="style1"><span class="style1">Deutschland</span></td>
-            <td width="72" align="right" valign="middle" class="style1" style="font-weight: bold">
-              <% if @car_part.postage_germany? %>
-                <%= number_to_currency @car_part.postage_germany %>
-              <% else %>
-                auf Anfrage
-              <% end %>
-
-            </td>
-          </tr>
-          <tr>
-            <td width="30" align="left" valign="middle">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_at.png" width="16" height="11"></td>
-            <td width="102" align="left" valign="middle" class="style1"><span class="style1">&Ouml;sterreich</span></td>
-            <td align="right" valign="middle">
+    <div class="spacing">
+      <p>
+      <table width="204" height="220" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="102" align="center" valign="top">
+            <img src="http://autohalle24.de/ebay_layout/versand_dhl.jpg" width="85" height="50"></td>
+          <td width="102" align="center" valign="top">
+            <img src="http://autohalle24.de/ebay_layout/versand_dp.jpg" width="85" height="50"></td>
+        </tr>
+        <tr>
+          <td width="102" align="center" valign="top">
+            <img src="http://autohalle24.de/ebay_layout/versand_gls.jpg" width="85" height="50"></td>
+          <td width="102" align="center" valign="top">
+            <img src="http://autohalle24.de/ebay_layout/versand_hermes.jpg" width="85" height="50"></td>
+        </tr>
+        <tr>
+          <td width="102" align="center" valign="top">
+            <img src="http://autohalle24.de/ebay_layout/versand_ups.jpg" width="85" height="50"></td>
+          <td width="102" align="center" valign="top">
+            <img src="http://autohalle24.de/ebay_layout/versand_emons.jpg" width="85" height="50"></td>
+        </tr>
+        <tr>
+          <td width="102" align="center" valign="top">
+            <img src="http://autohalle24.de/ebay_layout/versand_dpd.jpg" width="85" height="50"></td>
+          <td width="102" align="center" valign="top">
+            <img src="http://autohalle24.de/ebay_layout/versand_tge.jpg" width="85" height="50"></td>
+        </tr>
+      </table>
+      <p>Versandkosten:</p>
+      <table width="204" height="100" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="30" align="left" valign="middle">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_de.png" width="16" height="11"></td>
+          <td width="102" align="left" valign="middle" class="style1"><span class="style1">Deutschland</span></td>
+          <td width="72" align="right" valign="middle" class="style1" style="font-weight: bold">
+            <%= postage_output( @car_part.postage_germany ) %>
+          </td>
+        </tr>
+        <tr>
+          <td width="30" align="left" valign="middle">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_at.png" width="16" height="11"></td>
+          <td width="102" align="left" valign="middle" class="style1"><span class="style1">&Ouml;sterreich</span></td>
+          <td align="right" valign="middle">
               <span class="style1" style="font-weight: bold">
-                <% if @car_part.postage_austria? %>
-                  <%= number_to_currency @car_part.postage_austria %></span>
-                <% else %>
-                  auf Anfrage
-                <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td width="30" align="left" valign="middle">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_ch.png" width="16" height="11"></td>
-            <td width="102" align="left" valign="middle" class="style1">Schweiz</td>
-            <td align="right" valign="middle" halign="right">
+                  <%= postage_output( @car_part.postage_austria ) %></span>
+          </td>
+        </tr>
+        <tr>
+          <td width="30" align="left" valign="middle">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_ch.png" width="16" height="11"></td>
+          <td width="102" align="left" valign="middle" class="style1">Schweiz</td>
+          <td align="right" valign="middle" halign="right">
               <span class="style1" style="font-weight: bold">
-                <% if @car_part.postage_swiss? %>
-                  <%= number_to_currency @car_part.postage_swiss %></span>
-                <% else %>
-                  auf Anfrage
-                <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td width="30" align="left" valign="middle">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
-            <td width="102" align="left" valign="middle" class="style1">Europa EU</td>
-            <td align="right" valign="middle">
+               <%= postage_output( @car_part.postage_swiss ) %></span>
+          </td>
+        </tr>
+        <tr>
+          <td width="30" align="left" valign="middle">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
+          <td width="102" align="left" valign="middle" class="style1">Europa EU</td>
+          <td align="right" valign="middle">
               <span class="style1" style="font-weight: bold">
-                <% if @car_part.postage_europe_with_eu? %>
-                  <%= number_to_currency @car_part.postage_europe_with_eu %></span>
-                <% else %>
-                  auf Anfrage
-                <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td width="30" align="left" valign="middle">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
-            <td width="102" align="left" valign="middle" class="style1">Europa ohne EU</td>
-            <td align="right" valign="middle">
+            <%= postage_output( @car_part.postage_europe_with_eu ) %></span>
+          </td>
+        </tr>
+        <tr>
+          <td width="30" align="left" valign="middle">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
+          <td width="102" align="left" valign="middle" class="style1">Europa ohne EU</td>
+          <td align="right" valign="middle">
               <span class="style1" style="font-weight: bold">
-                <% if @car_part.postage_europe_without_eu? %>
-                  <%= number_to_currency @car_part.postage_europe_without_eu %>
-                <% else %>
-                  auf Anfrage
-                <% end %>
+                <%= postage_output( @car_part.postage_europe_without_eu ) %>
               </span></td>
-          </tr>
-          <tr>
-            <td width="30" align="left" valign="middle">
-              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_welt.png" width="12" height="12"></td>
-            <td width="102" align="left" valign="middle" class="style1">Weltweit</td>
-            <td align="right" valign="middle">
+        </tr>
+        <tr>
+          <td width="30" align="left" valign="middle">
+            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_welt.png" width="12" height="12"></td>
+          <td width="102" align="left" valign="middle" class="style1">Weltweit</td>
+          <td align="right" valign="middle">
               <span class="style1" style="font-weight: bold">
-                <% if @car_part.postage_world_wide? %>
-                   <%= number_to_currency @car_part.postage_world_wide %>
-                <% else %>
-                   auf Anfrage
-                <% end %>
+                <%= postage_output( @car_part.postage_world_wide ) %>
               </span></td>
-          </tr>
-        </table>
-        </p>
-      </div>
+        </tr>
+      </table>
+      </p>
     </div>
   </div>
-  <!-- SHIPPING END -->
-  <!-- CONTACT START -->
-  <div class="widget">
-    <div class="widget-content">
-      <h2 class="widget-title">Impressum</h2>
+</div>
+<!-- SHIPPING END -->
+<!-- CONTACT START -->
+<div class="widget">
+  <div class="widget-content">
+    <h2 class="widget-title">Impressum</h2>
 
-      <div class="spacing">
-        <p><b>Euraf GmbH</b></p>
+    <div class="spacing">
+      <p><b>Euraf GmbH</b></p>
 
-        <p>autohalle24.de</p>
+      <p>autohalle24.de</p>
 
-        <p><span class="style1">Oberhauser Str. 8-10<br/>47138 Duisburg</span></p>
-        <table width="204" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="25">
-              <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/phone.png" width="16" height="16"/></span>
-            </td>
-            <td><span class="style1">+49 203/41717852</span></td>
-          </tr>
-          <tr>
-            <td width="25">
-              <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/mail.png" width="16" height="16"/></span>
-            </td>
-            <td><span class="style1">ebay@autohalle24.de</span></td>
-          </tr>
-        </table>
+      <p><span class="style1">Oberhauser Str. 8-10<br/>47138 Duisburg</span></p>
+      <table width="204" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="25">
+            <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/phone.png" width="16" height="16"/></span>
+          </td>
+          <td><span class="style1">+49 203/41717852</span></td>
+        </tr>
+        <tr>
+          <td width="25">
+            <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/mail.png" width="16" height="16"/></span>
+          </td>
+          <td><span class="style1">ebay@autohalle24.de</span></td>
+        </tr>
+      </table>
 
-      </div>
     </div>
   </div>
-  <!-- CONTACT END -->
-  <!-- ADDITIONAL BOX START -->
-  <div class="widget">
-    <div class="widget-content">
-      <h2 class="widget-title">Top-Bewertung</h2>
+</div>
+<!-- CONTACT END -->
+<!-- ADDITIONAL BOX START -->
+<div class="widget">
+  <div class="widget-content">
+    <h2 class="widget-title">Top-Bewertung</h2>
 
-      <div class="spacing">
-        <p align="center">
-          <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/top_bewertung.png" width="120" height="121"></span>
-        </p>
-      </div>
+    <div class="spacing">
+      <p align="center">
+        <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/top_bewertung.png" width="120" height="121"></span>
+      </p>
     </div>
   </div>
+</div>
 </div>
 <!-- ADDITIONAL BOX END -->
 <div class="col-right sidebar">
