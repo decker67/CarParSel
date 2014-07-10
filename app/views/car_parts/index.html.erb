@@ -177,7 +177,16 @@
   <%= paginate @car_parts %>
 </div>
 
-<script>
+<%= javascript_tag do %>
+
+  var image_urls = [
+    '<%= image_tag "ball_0.png" %>',
+    '<%= image_tag "ball_1.png" %>',
+    '<%= image_tag "ball_2.png" %>',
+    '<%= image_tag "ball_3.png" %>'
+  ];
+
+  console.log( image_urls );
 
   function limitOnChangeHandler(element) {
     $('#paging_count').submit();
@@ -189,12 +198,12 @@
     var requestForState = '/toggle_car_part_state?car_part_id=' + car_part_id;
     $.get(requestForState).done(function (result) {
       var srcOfImageTag = imageTag.attr('src');
-      var pathToBallImage = srcOfImageTag.substring(0, srcOfImageTag.lastIndexOf('_') + 1);
       element.src = ''; //otherwise the browser does not always load the new image
-      element.src = pathToBallImage + result.state + '.png';
+      var image_tag_for_state = image_urls[ result.state ];
+      element.src = image_tag_for_state.split('src="')[ 1 ].split( '"' )[ 0 ];
       element.title = result.state_as_string;
       element.alt = result.state_as_string;
-
     });
   }
-</script>
+
+<% end %>
