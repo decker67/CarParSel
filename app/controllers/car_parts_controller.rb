@@ -24,9 +24,14 @@ class CarPartsController < ApplicationController
 
   def index
     session[:car_id] = params[:car_id] || session[:car_id]
+
     if session[:car_id]
       @show_filter = false
-      @car_parts = CarPart.where(car_id: session[:car_id]).page params[ :page ]
+      if params[:limit]
+        @car_parts = CarPart.where(car_id: session[:car_id]).page( params[ :page ] ).per(params[:limit])
+      else
+        @car_parts = CarPart.where(car_id: session[:car_id]).page( params[ :page ] )
+      end
     else
       if params[:reset]
         @filter = {}
@@ -54,7 +59,12 @@ class CarPartsController < ApplicationController
         # addFilterFor(:key_number2)
         #addFilterFor( 'car.key_number3' )
       end
-      @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page params[ :page ]
+      if params[:limit]
+        @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] ).per(params[:limit])
+      else
+        @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] )
+      end
+
     end
   end
 

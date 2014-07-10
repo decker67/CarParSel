@@ -135,9 +135,15 @@
 <% end %>
 
 <div class="panel panel-default">
-  <div class="panel-heading">Fahrzeugteile
+  <div class="panel-heading">
+    <%= form_tag '', :method => :get, id: :paging_count, class: 'form-horizontal' do %>
+      <div class="form-group" style="margin-bottom: 0px;">
+        <div class="col-md-1" style="margin-top: 5px;">Fahrzeugteile</div>
+        <div class="col-md-1" style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_car_part_path, class: 'btn btn-default' %></div>
+        <div class="col-md-2"><%= select_tag :limit, options_for_select([25, 50, 100, 200], selected: params[:limit] || 25), onchange: 'limitOnChangeHandler( this )', class: 'form-control col-md-1' %></div>
+      </div>
+    <% end %>
 
-    <span style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_car_part_path, class: 'btn btn-default' %></span>
   </div>
   <table class="table table-hover">
     <thead>
@@ -172,6 +178,11 @@
 </div>
 
 <script>
+
+  function limitOnChangeHandler(element) {
+    $('#paging_count').submit();
+  }
+
   function stateOnDoubleClickHandler(element) {
     var imageTag = $(element);
     var car_part_id = imageTag.attr('data-id');
