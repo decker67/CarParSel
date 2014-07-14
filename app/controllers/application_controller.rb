@@ -25,4 +25,32 @@ class ApplicationController < ActionController::Base
   #  render :edit, :status => :conflict
   #end
 
+  def addLikeFilterFor( model_attribute_name, param_name = model_attribute_name )
+  end
+
+  def addEqualFilterFor( model_attribute_name, param_name = model_attribute_name )
+    if params[ param_name ].present?
+      view_value = params[ param_name ]
+      if block_given?
+        filter_value = ( yield params[ param_name ] ).flatten
+      else
+        filter_value = view_value
+      end
+
+      @equal_filter[ model_attribute_name ] = filter_value
+      @view_filter[ param_name ] = view_value
+    end
+  end
+
+  def addYearFilterFor( param_name )
+    if params[ param_name ].present?
+      view_value = params[ param_name ].to_i
+      start_date = Date.new( view_value, 1,1 )
+      end_date = Date.new( view_value, 12, 31 )
+      @equal_filter[ :date_of_construction ] = start_date..end_date
+      @view_filter[ param_name ] = view_value
+    end
+  end
+
+
 end

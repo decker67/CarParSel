@@ -44,20 +44,36 @@ class CarPartsController < ApplicationController
         #like = params[:name].concat("%")
         #items = Item.find(:all, :conditions => ["name like ?", like])
 
-        addFilterFor(:description)
-        addFilterFor(:part_number)
-        addFilterFor(:ebay_selling_type)
-        # addFilterFor(:brand_model_id, :brand_id) { |id| BrandModel.select(:id).where(brand_id: id) }
-        # addFilterFor(:brand_model_id)
-        #addFilterFor(:car_type)
-        # addFilterFor(:power)
-        # addFilterFor(:power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
-        # addFilterFor(:year_of_construction)
-        # addFilterFor(:cylinder_capacity)
-        # addFilterFor(:fuel)
-        # addFilterFor(:gearing)
-        # addFilterFor(:key_number2)
-        #addFilterFor( 'car.key_number3' )
+        addEqualFilterFor( :car_id, :brand_id ) do | id |
+          BrandModel.select( :id ).where( brand_id: id ).load.map do | brand_model_id |
+            ModelType.select( :id ).where( brand_model_id: brand_model_id ).load.map do | model_type_id |
+              Car.select( :id ).where( model_type_id: model_type_id ).load
+            end
+          end
+        end
+        addEqualFilterFor( :car_id, :brand_model_id ) do | id |
+          ModelType.select( :id ).where( brand_model_id: id ).load.map do | model_type_id |
+            Car.select( :id ).where( model_type_id: model_type_id ).load
+          end
+        end
+        addEqualFilterFor( :car_id, :model_type_id ) { | id | Car.select( :id ).where( model_type_id: model_type_id ).load }
+        addEqualFilterFor(:ebay_selling_type)
+        addEqualFilterFor(:ebay_state)
+
+        addLikeFilterFor(:description)
+        addLikeFilterFor(:part_number)
+        addEqualFilterFor(:color_code )
+        addEqualFilterFor(:engine_code)
+        addEqualFilterFor(:power)
+        addEqualFilterFor(:power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
+
+        addYearFilterFor(:year_of_construction)
+
+        addEqualFilterFor(:cylinder_capacity)
+        addEqualFilterFor(:fuel)
+        addEqualFilterFor(:gearing)
+        addEqualFilterFor(:key_number2)
+        addEqualFilterFor(:key_number3)
       end
       if params[:limit]
         @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] ).per(params[:limit])
@@ -119,20 +135,6 @@ class CarPartsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def car_part_params
     params.require(:car_part).permit(:car_id, :description, :part_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
-  end
-
-  def addFilterFor(name, param_name = name)
-    if params[param_name].present?
-      value = params[param_name]
-      if block_given?
-        modified_value = yield params[param_name]
-      else
-        modified_value = value
-      end
-
-      @equal_filter[name] = modified_value
-      @view_filter[param_name] = value
-    end
   end
 
   def save_and_generate

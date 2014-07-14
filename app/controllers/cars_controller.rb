@@ -22,7 +22,7 @@ class CarsController < ApplicationController
       @equal_filter = @equal_filter || {}
 
       addEqualFilterFor( :model_type_id, :brand_id ) do | id |
-        model_type_ids = BrandModel.select( :id ).where( brand_id: id ).load.map do | brand_model_id |
+        BrandModel.select( :id ).where( brand_id: id ).load.map do | brand_model_id |
           ModelType.select( :id ).where( brand_model_id: brand_model_id ).load
         end
       end
@@ -83,30 +83,6 @@ class CarsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def car_params
     params.require(:car).permit(:engine_code, :color_code, :car_brand_id, :gearing_code, :car_identifier, :model_type_id, :power, :date_of_construction, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage, :seller_id, :price, :picture_url, :ebay_url_all_parts, :name_ebay_url_all_parts)
-  end
-
-  def addEqualFilterFor( model_attribute_name, param_name = model_attribute_name )
-    if params[ param_name ].present?
-      view_value = params[ param_name ]
-      if block_given?
-        filter_value = ( yield params[ param_name ] ).flatten
-      else
-        filter_value = view_value
-      end
-
-      @equal_filter[ model_attribute_name ] = filter_value
-      @view_filter[ param_name ] = view_value
-    end
-  end
-
-  def addYearFilterFor( param_name )
-    if params[ param_name ].present?
-      view_value = params[ param_name ].to_i
-      start_date = Date.new( view_value, 1,1 )
-      end_date = Date.new( view_value, 12, 31 )
-      @equal_filter[ :date_of_construction ] = start_date..end_date
-      @view_filter[ param_name ] = view_value
-    end
   end
 
 end

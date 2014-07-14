@@ -12,10 +12,10 @@ x Verkauf -> Fahrzeugteile: Teilenummer in der Übersicht
 x weiteren Status ergenzen / "Fahrzeugverwenderliste fehlt" - Farbe blau / Ist es möglich den Status zu ändern ohne die Eingabemaske öffnen zu müssen?
 x Das ständige Kommasetzen nervt. Haben sie eine Idee? z. B. 12-15 einzelne Felder, in dem fertigen Template dann mit einem zeichen automatisch getrennt?
 x mehrere Fahrzeugteile auf einer Seite - Auswahl zwischen 25 - 50 - 100 - 200.
+x Stati Fahrzeugteile umsortieren, Migrationsskipt dafür anlegen, das die Nummern tauscht.
+x Filter-Option, Fahrzeugteilefiltern -> Motorcode und Farbcode hinzufügen
 
 - Login: Und bei Erfassung der Teile den Bearbeiter setzen, Filter um Bearbeiter erweitern
-- Stati Fahrzeugteile umsortieren, Migrationsskipt dafür anlegen, das die Nummern tauscht.
-- Filter-Option, Fahrzeugteilefiltern -> Motorcode und Farbcode hinzufügen
 
 
 - Schnellansicht HTML-Ansicht / ich habe dieser Email ein Bild hinzugefügt.
@@ -32,7 +32,6 @@ nice to have:
 - aktiven Filter anzeigen ( oranger Button anstatt weiß)
 - Auto erfassen/bearbeiten: Name und Vorname anzeigen
 - Etiketten drucken: Daten spezifizieren, wahrscheinlich mit Fahrzeug Id
-
 
 
 - Eindeutigkeit anhand Schlüsselfeldern und Validierung
