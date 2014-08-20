@@ -8,16 +8,26 @@ class EbayController < ApplicationController
 
     @back_to_url = params[ :from_url ]
 
-    create_picture_urls_array
+    create_picture_urls
   end
 
   private
-  def create_picture_urls_array
+
+  def create_picture_urls
+    @car_picture_url = @car.nil? ? nil : @car.picture_url
+
+    if @car_picture_url.nil? || @car_picture_url == ''
+      @car_picture_url = @car_part.picture_url1
+      start_index = 2
+    else
+      start_index = 1
+    end
+
     attribute_name_template = 'picture_url'
-    @picture_urls = []
-    for i in 1..6 do
+    @picture_parts_urls = []
+    for i in start_index..6 do
       url = @car_part[attribute_name_template + i.to_s]
-      @picture_urls << url unless url.nil? || url == ''
+      @picture_parts_urls << url unless url.nil? || url == ''
     end
   end
 

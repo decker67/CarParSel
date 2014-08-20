@@ -709,9 +709,9 @@
       <div class="spacing">
         <div class="gal">
           <!-- GALLERY BOX START -->
-          <div class="artikelbilder" style="background-image:url(<%= @car.nil? ? '' : @car.picture_url %>)" align="center">
+          <div class="artikelbilder" style="background-image:url(<%= @car_picture_url %>)" align="center">
 
-            <% @picture_urls.each do |url| %>
+            <% @picture_parts_urls.each do |url| %>
               <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px">
                 <span><img src="<%= url %>" height="400px" width="530px"></span></a>
             <% end %>
