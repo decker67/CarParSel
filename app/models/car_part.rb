@@ -1,7 +1,7 @@
 class CarPart < ActiveRecord::Base
 
   validate :description, presence: true, length: { maximum: 45 }
-  validate :validate_ebay_online_since
+  #validate :validate_ebay_online_since
 
   AUCTION_TYPES = [ [ 'Festpreis', 0 ], [ 'Auktion', 1 ] ]
   AUCTION_STATE = [ [ 'In Bearbeitung', 0 ], [ 'Bereit fuer ebay', 1 ], [ 'FVL fehlt', 2 ], [ 'Fertig', 3 ] ]
@@ -42,10 +42,10 @@ class CarPart < ActiveRecord::Base
   end
 
   private
-  def validate_ebay_online_since
-    if ebay_state == 3 && !ebay_online_since?
-      errors.add :ebay_online_since, 'Bitte erfassen Sie das Datum!'
-    end
-  end
+  #def validate_ebay_online_since
+  #  if ebay_state == 3 && !ebay_online_since?
+  #    errors.add :ebay_online_since, 'Bitte erfassen Sie das Datum!'
+  #  end
+  #end
 
 end

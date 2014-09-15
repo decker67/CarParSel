@@ -186,8 +186,6 @@
     '<%= image_tag "ball_3.png" %>'
   ];
 
-  console.log( image_urls );
-
   function limitOnChangeHandler(element) {
     $('#paging_count').submit();
   }
@@ -198,7 +196,6 @@
     var requestForState = '/toggle_car_part_state?car_part_id=' + car_part_id;
     $.get(requestForState).done(function (result) {
       var srcOfImageTag = imageTag.attr('src');
-      element.src = ''; //otherwise the browser does not always load the new image
       var image_tag_for_state = image_urls[ result.state ];
       element.src = image_tag_for_state.split('src="')[ 1 ].split( '"' )[ 0 ];
       element.title = result.state_as_string;
