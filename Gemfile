@@ -32,11 +32,13 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'pg'
-
 gem 'kaminari'
 
 gem "squeel"
+
+gem "prawn"
+
+gem "prawn-labels"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -124,7 +124,7 @@
             <div class="form-group">
               <div class="col-md-4">
                 <%= submit_tag 'Filter', name: nil, class: 'btn btn-default' %>
-                <%= submit_tag "Zurücksetzen", name: :reset, class: 'btn btn-default' %>
+                <%= submit_tag 'Zurücksetzen', name: :reset, class: 'btn btn-default' %>
               </div>
             </div>
           <% end %>
@@ -141,6 +141,7 @@
         <div class="col-md-1" style="margin-top: 5px;">Fahrzeugteile</div>
         <div class="col-md-1" style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_car_part_path, class: 'btn btn-default' %></div>
         <div class="col-md-2"><%= select_tag :limit, options_for_select([25, 50, 100, 200], selected: params[:limit] || 25), onchange: 'limitOnChangeHandler( this )', class: 'form-control col-md-1' %></div>
+        <div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><%= link_to image_tag( 'print_16.png', class: 'btn btn-default'), {format: :pdf} %></div>
       </div>
     <% end %>
 
