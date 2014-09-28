@@ -140,8 +140,8 @@
       <div class="form-group" style="margin-bottom: 0px;">
         <div class="col-md-1" style="margin-top: 5px;">Fahrzeugteile</div>
         <div class="col-md-1" style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_car_part_path, class: 'btn btn-default' %></div>
-        <div class="col-md-2"><%= select_tag :limit, options_for_select([25, 50, 100, 200], selected: params[:limit] || 25), onchange: 'limitOnChangeHandler( this )', class: 'form-control col-md-1' %></div>
-        <div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><%= link_to image_tag( 'print_16.png', class: 'btn btn-default'), {format: :pdf} %></div>
+        <div class="col-md-2"><%= select_tag :limit, options_for_select([25, 50, 100, 200], selected: session[:limit] || 25), onchange: 'limitOnChangeHandler( this )', class: 'form-control col-md-1' %></div>
+        <div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><%= link_to image_tag( 'print_16.png', class: 'btn btn-default'), {format: :pdf}, onchange: 'printHandler()' %></div>
       </div>
     <% end %>
 
@@ -187,9 +187,13 @@
     '<%= image_tag "ball_3.png" %>'
   ];
 
-  function limitOnChangeHandler(element) {
+    function limitOnChangeHandler(element) {
     $('#paging_count').submit();
-  }
+    }
+
+    function printHandler() {
+    $('#filter').submit();
+    }
 
   function stateOnDoubleClickHandler(element) {
     var imageTag = $(element);

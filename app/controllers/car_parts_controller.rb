@@ -139,8 +139,10 @@ class CarPartsController < ApplicationController
         addEqualFilterFor(:key_number2)
         addEqualFilterFor(:key_number3)
       end
-      if params[:limit]
-        @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] ).per(params[:limit])
+
+      session[:limit] = params[:limit] || session[:limit]
+      if session[:limit]
+        @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] ).per(session[ :limit ])
       else
         @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] )
       end
