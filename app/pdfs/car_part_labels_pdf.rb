@@ -5,11 +5,13 @@ class CarPartLabelsPdf
 
   Prawn::Labels.types = {
       "CarPartLabels" => {
-          "paper_size"  => "A4",
-          "top_margin"  => 0.8.cm,
-          "left_margin" => 0,
-          "columns"     => 3,
-          "rows"        => 8
+          "paper_size"    => "A4",
+          "top_margin"    => 1.2.cm,
+          "left_margin"   => 0,
+          "columns"       => 3,
+          "rows"          => 8,
+          "column_gutter" => 12.mm,
+          "row_gutter"    => 9.mm
       } }
 
   def initialize( car_parts )
@@ -20,10 +22,10 @@ class CarPartLabelsPdf
     Prawn::Labels.render( @car_parts,
                           type: "CarPartLabels",
                           "shrink_to_fit" => true ) do |pdf, car_part|
-      pdf.text car_part.id.to_s, style: :bold, size: 12
-      pdf.text car_part.car.car_identifier, size: 10
-      pdf.text car_part.part_number, size: 6
-      pdf.text name_of_car( car_part ), size: 10
+      pdf.text Prawn::Text::NBSP*4 + car_part.id.to_s, style: :bold, size: 12
+      pdf.text Prawn::Text::NBSP*5 + car_part.car.car_identifier, size: 10
+      pdf.text Prawn::Text::NBSP*7 + car_part.part_number, size: 6
+      pdf.text Prawn::Text::NBSP*5 + name_of_car( car_part ), size: 10
     end
   end
 
@@ -44,7 +46,7 @@ class CarPartLabelsPdf
         end
       end
     end
-    brand_name + model_name + model_type
+    brand_name + ' ' + model_name + ' ' + model_type
   end
 
 
