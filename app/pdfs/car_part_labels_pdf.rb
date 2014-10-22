@@ -29,7 +29,7 @@ class CarPartLabelsPdf
         #pdf.text brand_name, size: 6
         #pdf.text model_name, size: 10
         #pdf.text model_type, size: 6
-        pdf.text car_part.part_number_with_commas, size: 6
+        pdf.text car_part.part_number_with_commas, size: 8
         pdf.text car_part.car.car_identifier, size: 8
         pdf.text car_part.description, size: 8
       end
