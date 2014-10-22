@@ -8,6 +8,11 @@ class CarPart < ActiveRecord::Base
 
   belongs_to :car, inverse_of: :car_parts
 
+  def formatted_id
+    id_as_string = id.to_s
+    '0' * (6 - id_as_string.length) + id_as_string
+  end
+
   def ebay_selling_type_as_string
     AUCTION_TYPES[ ebay_selling_type ][ 0 ]
   end
