@@ -144,7 +144,7 @@ class CarPartsController < ApplicationController
       #logger.debug( 'limit:' + session[:limit] + ' page:' + ( params[ :page ].nil? ? '' : params[ :page ] ) )
 
       if session[:limit]
-        @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] ).per(session[ :limit ])
+        @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] ).per( session[ :limit ] )
       else
         @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] )
       end

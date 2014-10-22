@@ -32,13 +32,12 @@ class ApplicationController < ActionController::Base
   end
 
   def addEqualFilterFor( model_attribute_name, param_name = model_attribute_name )
-
     view_value = params[ param_name ] || session[ param_name ]
-    logger.debug( view_value )
+    #logger.debug( view_value )
     if !view_value.nil? && !view_value.empty?
       session[ param_name ] = view_value
       if block_given?
-        filter_value = ( yield params[ param_name ] ).flatten
+        filter_value = ( yield session[ param_name ] ).flatten
       else
         filter_value = view_value
       end
