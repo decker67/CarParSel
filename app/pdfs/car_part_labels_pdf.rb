@@ -27,9 +27,10 @@ class CarPartLabelsPdf
         pdf.text car_part.car.car_identifier, size: 10
         pdf.text car_part.part_number_with_commas, size: 6
         brand_name, model_name, model_type = name_of_car( car_part )
-        pdf.text brand_name, size: 6
-        pdf.text model_name, size: 10
-        pdf.text model_type, size: 6
+        pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 6
+        #pdf.text brand_name, size: 6
+        #pdf.text model_name, size: 10
+        #pdf.text model_type, size: 6
         pdf.text car_part.description, size: 10
       end
     end
