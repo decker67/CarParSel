@@ -22,13 +22,16 @@ class CarPartLabelsPdf
     Prawn::Labels.render( @car_parts,
                           type: "CarPartLabels",
                           "shrink_to_fit" => true ) do |pdf, car_part|
-      pdf.text Prawn::Text::NBSP*4 + car_part.id.to_s, style: :bold, size: 12
-      pdf.text Prawn::Text::NBSP*5 + car_part.car.car_identifier, size: 10
-      pdf.text Prawn::Text::NBSP*8 + car_part.part_number, size: 6
-      brand_name, model_name, model_type = name_of_car( car_part )
-      pdf.text Prawn::Text::NBSP*5 + brand_name, size: 10
-      pdf.text Prawn::Text::NBSP*5 + model_name, size: 10
-      pdf.text Prawn::Text::NBSP*5 + model_type, size: 10
+      pdf.indent 15 do
+        pdf.text car_part.id.to_s, style: :bold, size: 12
+        pdf.text car_part.car.car_identifier, size: 10
+        pdf.text car_part.part_number_with_commas, size: 6
+        brand_name, model_name, model_type = name_of_car( car_part )
+        pdf.text brand_name, size: 6
+        pdf.text model_name, size: 10
+        pdf.text model_type, size: 6
+        pdf.text car_part.description, size: 10
+      end
     end
   end
 

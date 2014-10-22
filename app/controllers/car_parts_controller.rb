@@ -98,9 +98,8 @@ class CarPartsController < ApplicationController
       end
     else
       @show_filter = true
-      if params[:reset] #reset filter
-        @filter = {}
-        @view_filter = {}
+      if params[:reset]
+        reset_filter
       else #show car parts with filter
         @view_filter = @view_filter || {}
         @equal_filter = @equal_filter || {}
@@ -120,7 +119,7 @@ class CarPartsController < ApplicationController
             Car.select( :id ).where( model_type_id: model_type_id ).load
           end
         end
-        addEqualFilterFor( :car_id, :model_type_id ) { | id | Car.select( :id ).where( model_type_id: model_type_id ).load }
+        addEqualFilterFor(:car_id, :model_type_id ) { | id | Car.select( :id ).where( model_type_id: id ).load }
         addEqualFilterFor(:ebay_selling_type)
         addEqualFilterFor(:ebay_state)
 
@@ -141,6 +140,9 @@ class CarPartsController < ApplicationController
       end
 
       session[:limit] = params[:limit] || session[:limit]
+      #session[:page] = params[:page] #|| session[:page]
+      #logger.debug( 'limit:' + session[:limit] + ' page:' + ( params[ :page ].nil? ? '' : params[ :page ] ) )
+
       if session[:limit]
         @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] ).per(session[ :limit ])
       else
@@ -149,6 +151,27 @@ class CarPartsController < ApplicationController
     end
   end
 
+  def reset_filter
+    @filter = {}
+    @view_filter = {}
+    session[ :description ] = nil
+    session[ :part_number ] = nil
+    session[ :ebay_selling_type ] = nil
+    session[ :ebay_state ] = nil
+    session[ :brand_id ] = nil
+    session[ :brand_model_id ] = nil
+    session[ :model_type_id ] = nil
+    session[ :color_code ] = nil
+    session[ :engine_code ] = nil
+    session[ :power ] = nil
+    session[ :ps ] = nil
+    session[ :year_of_construction ] = nil
+    session[ :cylinder_capacity ] = nil
+    session[ :fuel ] = nil
+    session[ :gearing ] = nil
+    session[ :key_number2 ] = nil
+    session[ :key_number3 ] = nil
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_car_part
