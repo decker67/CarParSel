@@ -25,13 +25,13 @@ class CarPartLabelsPdf
       pdf.indent 15 do
         pdf.text car_part.id.to_s, style: :bold, size: 12
         brand_name, model_name, model_type = name_of_car( car_part )
-        pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 6
+        pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 8
         #pdf.text brand_name, size: 6
         #pdf.text model_name, size: 10
         #pdf.text model_type, size: 6
         pdf.text car_part.part_number_with_commas, size: 6
-        pdf.text car_part.car.car_identifier, size: 10
-        pdf.text car_part.description, size: 10
+        pdf.text car_part.car.car_identifier, size: 8
+        pdf.text car_part.description, size: 8
       end
     end
   end
