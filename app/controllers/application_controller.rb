@@ -29,9 +29,16 @@ class ApplicationController < ActionController::Base
   #end
 
   def addLikeFilterFor( model_attribute_name, param_name = model_attribute_name )
+    session[ param_name ] = params[ param_name ] || session[ param_name ]
+
+    filter_value = '%' + session[ param_name ] + '%'
+
+    @like_filter[ model_attribute_name ] = filter_value
+    @view_filter[ param_name ] = session[ param_name ]
   end
 
   def addEqualFilterFor( model_attribute_name, param_name = model_attribute_name )
+    #todo: add parameter to method to separate other controller parameters
     session[ param_name ] = params[ param_name ] || session[ param_name ]
     if !session[ param_name ].nil? && !session[ param_name ].empty?
       if block_given?
@@ -46,8 +53,9 @@ class ApplicationController < ActionController::Base
   end
 
   def addYearFilterFor( param_name )
-    if params[ param_name ].present?
-      view_value = params[ param_name ].to_i
+    session[ param_name ] = params[ param_name ] || session[ param_name ]
+    if session[ param_name ].present?
+      view_value = session[ param_name ].to_i
       start_date = Date.new( view_value, 1,1 )
       end_date = Date.new( view_value, 12, 31 )
       @equal_filter[ :date_of_construction ] = start_date..end_date

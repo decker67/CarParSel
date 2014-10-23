@@ -6,7 +6,7 @@ CarParSel::Application.routes.draw do
 
   get 'ebay/:id/create' => 'ebay#create'
 
-  get '/car_parts/index_session_reseted' => 'car_parts#index_session_reseted', :as => 'index_session_reseted'
+  get '/car_parts/index_all_parts' => 'car_parts#index_all_parts', as: 'all_car_parts'
 
   resources :car_parts
 

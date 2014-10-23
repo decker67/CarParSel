@@ -17,13 +17,13 @@ class CarPartsController < ApplicationController
                    state_as_string: CarPart::AUCTION_STATE[ car_part.ebay_state ][ 0 ] }
   end
 
-  def index_session_reseted
+  def index_all_parts
     session[:car_id] = nil
     redirect_to car_parts_url
   end
 
   def index
-    load_visible_car_parts
+    load_parts
 
     respond_to do |format|
       format.html
@@ -76,25 +76,20 @@ class CarPartsController < ApplicationController
     redirect_to car_parts_url
   end
 
-  def print
-    ids = params[ :ids ].split( '_' )
-    @car_parts = CarPart.find( ids )
-  end
-
   # --------------------------------------------------------------------------------------------
   # private
   # --------------------------------------------------------------------------------------------
   private
 
-  def load_visible_car_parts
+  def load_parts
     session[:car_id] = params[:car_id] || session[:car_id]
+    session[:limit] = params[:limit] || session[:limit]
 
-    if session[:car_id] #show only car parts of the specific car
+    if load_parts_of_specific_car
       @show_filter = false
-      if params[:limit]
-        @car_parts = CarPart.where(car_id: session[:car_id]).page( params[ :page ] ).per(params[:limit])
-      else
-        @car_parts = CarPart.where(car_id: session[:car_id]).page( params[ :page ] )
+      @car_parts = CarPart.where(car_id: session[:car_id]).page(params[:page])
+      if !session[:limit].nil?
+        @car_parts = @car_parts.per(session[:limit])
       end
     else
       @show_filter = true
@@ -103,23 +98,11 @@ class CarPartsController < ApplicationController
       else #show car parts with filter
         @view_filter = @view_filter || {}
         @equal_filter = @equal_filter || {}
+        @like_filter = @like_filter || {}
 
-        #like = params[:name].concat("%")
-        #items = Item.find(:all, :conditions => ["name like ?", like])
-
-        addEqualFilterFor( :car_id, :brand_id ) do | id |
-          BrandModel.select( :id ).where( brand_id: id ).load.map do | brand_model_id |
-            ModelType.select( :id ).where( brand_model_id: brand_model_id ).load.map do | model_type_id |
-              Car.select( :id ).where( model_type_id: model_type_id ).load
-            end
-          end
-        end
-        addEqualFilterFor( :car_id, :brand_model_id ) do | id |
-          ModelType.select( :id ).where( brand_model_id: id ).load.map do | model_type_id |
-            Car.select( :id ).where( model_type_id: model_type_id ).load
-          end
-        end
-        addEqualFilterFor(:car_id, :model_type_id ) { | id | Car.select( :id ).where( model_type_id: id ).load }
+        addBrandFilter
+        addBrandModelFilter
+        addBrandModelTypeFilter
         addEqualFilterFor(:ebay_selling_type)
         addEqualFilterFor(:ebay_state)
 
@@ -139,20 +122,47 @@ class CarPartsController < ApplicationController
         addEqualFilterFor(:key_number3)
       end
 
-      session[:limit] = params[:limit] || session[:limit]
-      #session[:page] = params[:page] #|| session[:page]
-      #logger.debug( 'limit:' + session[:limit] + ' page:' + ( params[ :page ].nil? ? '' : params[ :page ] ) )
-
       if session[:limit]
         @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] ).per( session[ :limit ] )
       else
         @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] )
       end
+
+      @like_filter.each do |key, value|
+        @car_parts = @car_parts.where("#{key} like ?", value )
+      end
+    end
+  end
+
+  def load_parts_of_specific_car
+    !session[:car_id].nil?
+  end
+
+  def addBrandModelTypeFilter
+    addEqualFilterFor(:car_id, :model_type_id) { |id| Car.select(:id).where(model_type_id: id).load }
+  end
+
+  def addBrandModelFilter
+    addEqualFilterFor(:car_id, :brand_model_id) do |id|
+      ModelType.select(:id).where(brand_model_id: id).load.map do |model_type_id|
+        Car.select(:id).where(model_type_id: model_type_id).load
+      end
+    end
+  end
+
+  def addBrandFilter
+    addEqualFilterFor(:car_id, :brand_id) do |id|
+      BrandModel.select(:id).where(brand_id: id).load.map do |brand_model_id|
+        ModelType.select(:id).where(brand_model_id: brand_model_id).load.map do |model_type_id|
+          Car.select(:id).where(model_type_id: model_type_id).load
+        end
+      end
     end
   end
 
   def reset_filter
-    @filter = {}
+    @equal_filter = {}
+    @like_filter = {}
     @view_filter = {}
     session[ :description ] = nil
     session[ :part_number ] = nil
@@ -173,18 +183,16 @@ class CarPartsController < ApplicationController
     session[ :key_number3 ] = nil
   end
 
-  # Use callbacks to share common setup or constraints between actions.
+  def save_and_generate
+    !params[ 'save_and_generate' ].nil?
+  end
+
   def set_car_part
     @car_part = CarPart.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def car_part_params
     params.require(:car_part).permit(:car_id, :description, :part_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
-  end
-
-  def save_and_generate
-     !params[ 'save_and_generate' ].nil?
   end
 
 end
