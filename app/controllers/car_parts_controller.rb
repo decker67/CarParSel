@@ -100,6 +100,7 @@ class CarPartsController < ApplicationController
         @equal_filter = @equal_filter || {}
         @like_filter = @like_filter || {}
 
+        addEqualFilterFor(:id)
         addBrandFilter
         addBrandModelFilter
         addBrandModelTypeFilter
@@ -161,6 +162,7 @@ class CarPartsController < ApplicationController
     @equal_filter = {}
     @like_filter = {}
     @view_filter = {}
+    session[ :id ] = nil
     session[ :description ] = nil
     session[ :part_number ] = nil
     session[ :ebay_selling_type ] = nil
@@ -189,7 +191,7 @@ class CarPartsController < ApplicationController
   end
 
   def car_part_params
-    params.require(:car_part).permit(:car_id, :description, :part_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
+    params.require(:car_part).permit(:car_id, :stock, :description, :part_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
   end
 
 end

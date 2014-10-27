@@ -13,7 +13,14 @@
         <div class="panel-body">
           <%= form_tag '', :method => :get, id: :filter, class: 'form-horizontal' do %>
 
-            <div class="form-group">
+              <div class="form-group">
+                <%= label_tag :id, 'Interne Artikelnummer', class: 'col-md-3' %>
+                <div class="col-md-2">
+                  <%= text_field_tag :id, @view_filter[:id], class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="form-group">
               <%= label_tag :description, 'Artikelbeschreibung', class: 'col-md-3' %>
               <div class="col-md-2">
                 <%= text_field_tag :description, @view_filter[:description], class: 'form-control' %>
@@ -154,6 +161,8 @@
       <th>Beschreibung</th>
       <th>Preis</th>
       <th>Teilenummer</th>
+      <th>interne Artikelnr.</th>
+      <th>Lagerort</th>
       <th></th>
       <th></th>
       <th></th>
@@ -168,6 +177,8 @@
         <td class="vertical_centered"><%= car_part.description.truncate(60, omission: '...') %></td>
         <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
         <td class="vertical_centered"><%= car_part.part_number %></td>
+        <td><%= car_part.formatted_id %></td>
+        <td><%= car_part.stock %></td>
         <td><%= link_to image_tag('ebay_16.png'), {controller: 'ebay', action: 'create', id: car_part, from_url: request.fullpath}, class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
@@ -188,9 +199,9 @@
     '<%= image_tag "ball_4.png" %>'
   ];
 
-    function limitOnChangeHandler() {
-      $('#paging_count').submit();
-    }
+  function limitOnChangeHandler() {
+    $('#paging_count').submit();
+  }
 
   function stateOnDoubleClickHandler(element) {
     var imageTag = $(element);

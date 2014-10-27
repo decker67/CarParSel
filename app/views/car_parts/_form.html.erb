@@ -10,12 +10,18 @@
       <%= f.collection_select :car_id, Car.order('car_identifier ASC'), :id, :car_identifier, {}, class: 'form-control' %>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :description, 'Beschreibung', class: 'col-md-3' %>
-    <div class="col-md-6">
-      <%= f.text_area :description, size: '80x5', class: 'form-control' %>
+    <div class="form-group">
+      <%= f.label :description, 'Beschreibung', class: 'col-md-3' %>
+      <div class="col-md-6">
+        <%= f.text_area :description, size: '80x5', class: 'form-control' %>
+      </div>
     </div>
-  </div>
+    <div class="form-group">
+      <%= f.label :stock, 'Lagerort', class: 'col-md-3' %>
+      <div class="col-md-3">
+        <%= f.text_field :stock, class: 'form-control' %>
+      </div>
+    </div>
   <div class="form-group">
     <%= f.label :quantity, 'Anzahl', class: 'col-md-3' %>
     <div class="col-md-1">
