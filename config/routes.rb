@@ -1,5 +1,7 @@
 CarParSel::Application.routes.draw do
 
+  resources :parameters
+
   resources :postages
 
   #get 'ebay/create'

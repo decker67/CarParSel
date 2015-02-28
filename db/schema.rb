@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141026123737) do
+ActiveRecord::Schema.define(version: 20150116215352) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -100,6 +100,14 @@ ActiveRecord::Schema.define(version: 20141026123737) do
   end
 
   add_index "model_types", ["model_type", "brand_model_id"], name: "index_model_types_on_model_type_and_brand_model_id", unique: true
+
+  create_table "parameters", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "postages", force: true do |t|
     t.string   "name"
