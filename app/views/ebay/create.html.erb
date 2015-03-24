@@ -8,457 +8,457 @@
 <div>
   <%= button_tag 'Html in die Zwischenablage kopieren', onclick: "copyToClipboard()" %>
   <% if !@back_to_url.nil? %>
-    <%= link_to 'Zurück', @back_to_url %>
+      <%= link_to 'Zurück', @back_to_url %>
   <% end %>
 </div>
 
 <div id="ebay_content">
 <!-- Generiertes Template -->
 <style type="text/css">
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  .container {
-    clear: both;
-    width: 1020px;
-    margin: 0 auto;
-  }
-
-  .graphicListReset {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .graphicListReset li {
-    margin: 0;
-    padding: 0;
-  }
-
-  .defaultFont {
-    font: 12px Helvetica Arial, sans-serif;
-    color: #333333;
-  }
-
-  .titleFont {
-    font-size: 14px;
-    text-align: center;
-    line-height: 32px;
-  }
-
-  .logoFont {
-    font-size: 22px;
-    line-height: 30px;
-    color: #2671b3;
-  }
-
-  .hide {
-    position: absolute !important;
-    left: -9999em !important;
-  }
-
-  .clearfix:after {
-    content: ".";
-    display: block;
-    visibility: hidden;
-    clear: both;
-    height: 0;
-  }
-
-  hr {
-    display: none;
-  }
-
-  .graphic-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .graphic-list li {
-    padding: 0;
-    margin: 0;
-  }
-
-  .page-wrapper {
-    font: 12px Arial, sans-serif;
-    color: #333333;
-    background: #e8e8e8;
-    padding-bottom: 50px;
-  }
-
-  .page-wrapper a {
-    color: #258bca;
-    text-decoration: none;
-  }
-
-  .page-wrapper a:hover {
-    color: #333333;
-  }
-
-  #master-header {
-    padding-top: 50px;
-  }
-
-  #master-header > .header-container {
-    position: relative;
-    border: 1px solid #c8c8c8;
-    border-bottom: none;
-    min-height: 100px;
-    background: #ffffff
-  }
-
-  #master-header .site-title {
-    margin: 35px 20px;
-    float: left;
-    font-size: 22px;
-    line-height: 30px;
-    color: #258bca;
-  }
-
-  #master-header .slogan {
-    position: relative;
-    float: left;
-    margin: 25px 10px;
-    padding: 10px 7px;
-    font-size: 12px;
-    font-weight: normal;
-    border-left: 2px solid #d7d7d7;
-  }
-
-  #master-header .slogan:before {
-    content: " ";
-    display: block;
-    height: 100%;
-    width: 1px;
-    background: #ffffff;
-    position: absolute;
-    left: -2px;
-    top: 0;
-  }
-
-  #master-header:after {
-    content: ".";
-    display: block;
-    visibility: hidden;
-    clear: both;
-    height: 0;
-  }
-
-  #master-nav {
-    min-height: 34px;
-    border-bottom: 2px solid #258bca;
-    position: relative;
-    background: #2c2c2c;
-  }
-
-  #master-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  #master-nav ul li {
-    margin: 0;
-    padding: 0;
-  }
-
-  #master-nav ul:after {
-    content: ".";
-    display: block;
-    visibility: hidden;
-    clear: both;
-    height: 0;
-  }
-
-  #master-nav ul li {
-    float: left;
-  }
-
-  #master-nav ul a {
-    display: block;
-    position: relative;
-    padding: 0 30px;
-    min-width: 70px;
-    text-align: center;
-    font-size: 13px;
-    line-height: 49px;
-    text-transform: none;
-    font-weight: bold;
-    color: #ffffff;
-    border: 1px solid transparent;
-    border-radius: 1px 0;
-    outline: none;
-  }
-
-  #master-nav ul .active a,
-  #master-nav ul li:hover > a {
-    background: #258bca;
-  }
-
-  #page-content {
-    background: #ffffff;
-    border: 1px solid #d7d7d7;
-    border-top: none;
-    margin-bottom: 20px;
-  }
-
-  #page-content .padder {
-    padding: 25px;
-  }
-
-  #page-content .padder:after {
-    content: ".";
-    display: block;
-    visibility: hidden;
-    clear: both;
-    height: 0;
-  }
-
-  .col-left {
-    float: left;
-    width: 220px;
-  }
-
-  .col-right {
-    float: right;
-    width: 730px;
-  }
-
-  .sidebar .widget {
-    margin-bottom: 25px;
-    position: relative;
-  }
-
-  .sidebar .widget:after {
-    content: ".";
-    display: block;
-    visibility: hidden;
-    clear: both;
-    height: 0;
-  }
-
-  .sidebar .widget .widget-title {
-    position: relative;
-    font-size: 14px;
-    color: #ffffff;
-    text-align: center;
-    border: 1px solid #d7d7d7;;
-    margin: 3px;
-    line-height: 34px;
-    padding: 0 17px;
-    font-weight: normal;
-    background: #2c2c2c;
-  }
-
-  .sidebar .widget .widget-content {
-    position: relative;
-    border: 1px solid #d7d7d7;
-    background: #ffffff;
-  }
-
-  .sidebar .widget:before {
-    margin: 0;
-    display: block;
-    content: " ";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    height: 10px;
-  }
-
-  .spacing {
-    padding: 2px 8px;
-  }
-
-  .gal {
-    width: 500px;
-    height: 520px;
-    padding-top: 15px;
-  }
-
-  .sidebar .nav-widget ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .sidebar .nav-widget ul li {
-    margin: 0;
-    padding: 0;
-  }
-
-  .sidebar .nav-widget ul li {
-    display: block;
-  }
-
-  .sidebar .nav-widget ul li a {
-    display: block;
-    text-align: center;
-    padding: 5px 0;
-    font-weight: bold;
-  }
-
-  .nav-text ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .nav-text ul li {
-    margin: 0;
-    padding: 0;
-  }
-
-  .nav-text ul li {
-    float: left;
-    border-left: 1px solid #c3c3c3;
-  }
-
-  .nav-text ul li a {
-    display: block;
-    padding: 0 12px;
-  }
-
-  .nav-text ul li:first-child {
-    border-left: none;
-  }
-
-  .site-title {
-    margin: 0;
-  }
-
-  #master-footer {
-    color: #c3c3c3;
-    text-align: center;
-    margin-bottom: 10px;
-    border-radius: 0 0 5px 5px;
-  }
-
-  #master-footer .copyrights {
-    margin: 0 0 0 25px;
-  }
-
-  .header-search {
-    float: right;
-    width: 325px;
-    height: 28px;
-    margin: 20px 20px 0px 0px;
-  }
-
-  .header-search2 {
-    float: left;
-    width: 265px;
-    height: 28px;
-    background-image: url(http://gfdesign.nazwa.pl/ebay_templates/pro/search.png);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    margin: 20px 0px 0px 25px;
-    border: none;
-  }
-
-  .search {
-    width: 325px;
-    height: 28px;
-    background-image: url(http://gfdesign.nazwa.pl/ebay_templates/pro/search.png);
-    margin-top: 18px;
-    background-repeat: no-repeat;
-    background-position: top;
-  }
-
-  .search input {
-    border: none;
-  }
-
-  input.search_feld {
-    background: none;
-    color: #666;
-    width: 205px;
-    height: 20px;
-    margin-top: 5px;
-    margin-left: 40px;
-  }
-
-  input.search_button {
-    background: none;
-    width: 50px;
-    height: 30px;
-    margin-left: 250px;
-    cursor: pointer;
-    margin-top: -25px;
-  }
-
-  .artikelbilder {
-    position: relative;
-    width: 700px;
-    border: none;
-    float: left;
-    background-repeat: no-repeat;
-    background-position: top center;
-    margin-bottom: 20px;
-  }
-
-  .thumbnail img {
-    border: 5px solid #ffffff;
-    margin-top: 410px;
-  }
-
-  .thumbnail:link {
-    text-decoration: none;
-  }
-
-  .thumbnail:hover {
-    background-color: transparent;
-    text-decoration: none;
-  }
-
-  .thumbnail span {
-    position: absolute;
-    left: -1000px;
-    border: none;
-    visibility: hidden;
-    text-decoration: none;
-  }
-
-  .thumbnail span img {
-    padding: 0px;
-    border: none;
-  }
-
-  .thumbnail:hover span {
-    visibility: visible;
-    top: -410px;
-    left: 85px;
-    z-index: 50;
-  }
-
-  .style1 {
-    font: 12px Arial, sans-serif;
-    color: #333333;
-  }
-
-  .style4 {
-    color: #FFFFFF;
-    font-size: 10px;
-  }
-
-  .style5 {
-    font-size: 10px
-  }
-
-  #car_data table {
-    border-collapse: collapse;
-    border: 1px solid black;
-    padding: 5px;
-  }
-
-  #car_data td {
-    border-collapse: collapse;
-    border: 1px solid black;
-    padding: 5px;
-  }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        clear: both;
+        width: 1020px;
+        margin: 0 auto;
+    }
+
+    .graphicListReset {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .graphicListReset li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .defaultFont {
+        font: 12px Helvetica Arial, sans-serif;
+        color: #333333;
+    }
+
+    .titleFont {
+        font-size: 14px;
+        text-align: center;
+        line-height: 32px;
+    }
+
+    .logoFont {
+        font-size: 22px;
+        line-height: 30px;
+        color: #2671b3;
+    }
+
+    .hide {
+        position: absolute !important;
+        left: -9999em !important;
+    }
+
+    .clearfix:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        clear: both;
+        height: 0;
+    }
+
+    hr {
+        display: none;
+    }
+
+    .graphic-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .graphic-list li {
+        padding: 0;
+        margin: 0;
+    }
+
+    .page-wrapper {
+        font: 12px Arial, sans-serif;
+        color: #333333;
+        background: #e8e8e8;
+        padding-bottom: 50px;
+    }
+
+    .page-wrapper a {
+        color: #258bca;
+        text-decoration: none;
+    }
+
+    .page-wrapper a:hover {
+        color: #333333;
+    }
+
+    #master-header {
+        padding-top: 50px;
+    }
+
+    #master-header > .header-container {
+        position: relative;
+        border: 1px solid #c8c8c8;
+        border-bottom: none;
+        min-height: 100px;
+        background: #ffffff
+    }
+
+    #master-header .site-title {
+        margin: 35px 20px;
+        float: left;
+        font-size: 22px;
+        line-height: 30px;
+        color: #258bca;
+    }
+
+    #master-header .slogan {
+        position: relative;
+        float: left;
+        margin: 25px 10px;
+        padding: 10px 7px;
+        font-size: 12px;
+        font-weight: normal;
+        border-left: 2px solid #d7d7d7;
+    }
+
+    #master-header .slogan:before {
+        content: " ";
+        display: block;
+        height: 100%;
+        width: 1px;
+        background: #ffffff;
+        position: absolute;
+        left: -2px;
+        top: 0;
+    }
+
+    #master-header:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        clear: both;
+        height: 0;
+    }
+
+    #master-nav {
+        min-height: 34px;
+        border-bottom: 2px solid #258bca;
+        position: relative;
+        background: #2c2c2c;
+    }
+
+    #master-nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #master-nav ul li {
+        margin: 0;
+        padding: 0;
+    }
+
+    #master-nav ul:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        clear: both;
+        height: 0;
+    }
+
+    #master-nav ul li {
+        float: left;
+    }
+
+    #master-nav ul a {
+        display: block;
+        position: relative;
+        padding: 0 30px;
+        min-width: 70px;
+        text-align: center;
+        font-size: 13px;
+        line-height: 49px;
+        text-transform: none;
+        font-weight: bold;
+        color: #ffffff;
+        border: 1px solid transparent;
+        border-radius: 1px 0;
+        outline: none;
+    }
+
+    #master-nav ul .active a,
+    #master-nav ul li:hover > a {
+        background: #258bca;
+    }
+
+    #page-content {
+        background: #ffffff;
+        border: 1px solid #d7d7d7;
+        border-top: none;
+        margin-bottom: 20px;
+    }
+
+    #page-content .padder {
+        padding: 25px;
+    }
+
+    #page-content .padder:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        clear: both;
+        height: 0;
+    }
+
+    .col-left {
+        float: left;
+        width: 220px;
+    }
+
+    .col-right {
+        float: right;
+        width: 730px;
+    }
+
+    .sidebar .widget {
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    .sidebar .widget:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        clear: both;
+        height: 0;
+    }
+
+    .sidebar .widget .widget-title {
+        position: relative;
+        font-size: 14px;
+        color: #ffffff;
+        text-align: center;
+        border: 1px solid #d7d7d7;;
+        margin: 3px;
+        line-height: 34px;
+        padding: 0 17px;
+        font-weight: normal;
+        background: #2c2c2c;
+    }
+
+    .sidebar .widget .widget-content {
+        position: relative;
+        border: 1px solid #d7d7d7;
+        background: #ffffff;
+    }
+
+    .sidebar .widget:before {
+        margin: 0;
+        display: block;
+        content: " ";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        height: 10px;
+    }
+
+    .spacing {
+        padding: 2px 8px;
+    }
+
+    .gal {
+        width: 500px;
+        height: 520px;
+        padding-top: 15px;
+    }
+
+    .sidebar .nav-widget ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar .nav-widget ul li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .sidebar .nav-widget ul li {
+        display: block;
+    }
+
+    .sidebar .nav-widget ul li a {
+        display: block;
+        text-align: center;
+        padding: 5px 0;
+        font-weight: bold;
+    }
+
+    .nav-text ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-text ul li {
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-text ul li {
+        float: left;
+        border-left: 1px solid #c3c3c3;
+    }
+
+    .nav-text ul li a {
+        display: block;
+        padding: 0 12px;
+    }
+
+    .nav-text ul li:first-child {
+        border-left: none;
+    }
+
+    .site-title {
+        margin: 0;
+    }
+
+    #master-footer {
+        color: #c3c3c3;
+        text-align: center;
+        margin-bottom: 10px;
+        border-radius: 0 0 5px 5px;
+    }
+
+    #master-footer .copyrights {
+        margin: 0 0 0 25px;
+    }
+
+    .header-search {
+        float: right;
+        width: 325px;
+        height: 28px;
+        margin: 20px 20px 0px 0px;
+    }
+
+    .header-search2 {
+        float: left;
+        width: 265px;
+        height: 28px;
+        background-image: url(http://gfdesign.nazwa.pl/ebay_templates/pro/search.png);
+        background-repeat: no-repeat;
+        background-position: bottom;
+        margin: 20px 0px 0px 25px;
+        border: none;
+    }
+
+    .search {
+        width: 325px;
+        height: 28px;
+        background-image: url(http://gfdesign.nazwa.pl/ebay_templates/pro/search.png);
+        margin-top: 18px;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+
+    .search input {
+        border: none;
+    }
+
+    input.search_feld {
+        background: none;
+        color: #666;
+        width: 205px;
+        height: 20px;
+        margin-top: 5px;
+        margin-left: 40px;
+    }
+
+    input.search_button {
+        background: none;
+        width: 50px;
+        height: 30px;
+        margin-left: 250px;
+        cursor: pointer;
+        margin-top: -25px;
+    }
+
+    .artikelbilder {
+        position: relative;
+        width: 700px;
+        border: none;
+        float: left;
+        background-repeat: no-repeat;
+        background-position: top center;
+        margin-bottom: 20px;
+    }
+
+    .thumbnail img {
+        border: 5px solid #ffffff;
+        margin-top: 410px;
+    }
+
+    .thumbnail:link {
+        text-decoration: none;
+    }
+
+    .thumbnail:hover {
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    .thumbnail span {
+        position: absolute;
+        left: -1000px;
+        border: none;
+        visibility: hidden;
+        text-decoration: none;
+    }
+
+    .thumbnail span img {
+        padding: 0px;
+        border: none;
+    }
+
+    .thumbnail:hover span {
+        visibility: visible;
+        top: -410px;
+        left: 85px;
+        z-index: 50;
+    }
+
+    .style1 {
+        font: 12px Arial, sans-serif;
+        color: #333333;
+    }
+
+    .style4 {
+        color: #FFFFFF;
+        font-size: 10px;
+    }
+
+    .style5 {
+        font-size: 10px
+    }
+
+    #car_data table {
+        border-collapse: collapse;
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    #car_data td {
+        border-collapse: collapse;
+        border: 1px solid black;
+        padding: 5px;
+    }
 
 </style>
 
@@ -511,194 +511,194 @@
 <div id="page-content" class="container">
 <div class="padder">
 <div class="col-left sidebar">
-<!-- CATEGORY START -->
-<div class="widget">
-  <div class="widget-content">
-    <h2 class="widget-title">Artikelübersicht</h2>
+  <!-- CATEGORY START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Artikelübersicht</h2>
 
-    <div class="spacing">
-      <div id="aside-nav" class="nav-widget">
-        <ul>
-          <li>&nbsp;</li>
-          <% @car.nil? ? '' : @car.name_ebay_url_all_parts.split(/\r?\n/).each do |line| %>
-            <li style="font-size: 120%; text-align: center"><%= line %></li>
-          <% end %>
-          <li style="font-size: 130%; text-align: center">
-            <a href="<%= @car.nil? ? '' : @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen
-              Blick</a></li>
-        </ul>
+      <div class="spacing">
+        <div id="aside-nav" class="nav-widget">
+          <ul>
+            <li>&nbsp;</li>
+            <% @car.nil? ? '' : @car.name_ebay_url_all_parts.split(/\r?\n/).each do |line| %>
+                <li style="font-size: 120%; text-align: center"><%= line %></li>
+            <% end %>
+            <li style="font-size: 130%; text-align: center">
+              <a href="<%= @car.nil? ? '' : @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen
+                Blick</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- CATEGORY END -->
-<!-- PAYMENTS START -->
-<div class="widget">
-  <div class="widget-content">
-    <h2 class="widget-title">Zahlung</h2>
+  <!-- CATEGORY END -->
+  <!-- PAYMENTS START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Zahlung</h2>
 
-    <div class="spacing">
-      <p>Wir akzeptieren Ihre Zahlung per:</p>
-      <table width="204" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="60">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_paypal.png" width="50" height="38"></td>
-          <td class="style1">PayPal Zahlung</td>
-        </tr>
-        <tr>
-          <td width="60">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_uberweisung.png" width="50" height="38">
-          </td>
-          <td class="style1">Zahlung per &Uuml;berweisung</td>
-        </tr>
-        <tr>
-          <td width="60">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_barzahlung.png" width="50" height="38">
-          </td>
-          <td class="style1">Barzahlung bei Abholung</td>
-        </tr>
-      </table>
+      <div class="spacing">
+        <p>Wir akzeptieren Ihre Zahlung per:</p>
+        <table width="204" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="60">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_paypal.png" width="50" height="38"></td>
+            <td class="style1">PayPal Zahlung</td>
+          </tr>
+          <tr>
+            <td width="60">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_uberweisung.png" width="50" height="38">
+            </td>
+            <td class="style1">Zahlung per &Uuml;berweisung</td>
+          </tr>
+          <tr>
+            <td width="60">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/zahlung_barzahlung.png" width="50" height="38">
+            </td>
+            <td class="style1">Barzahlung bei Abholung</td>
+          </tr>
+        </table>
 
+      </div>
     </div>
   </div>
-</div>
-<!-- PAYMENTS END -->
-<!-- SHIPPING START -->
-<div class="widget">
-  <div class="widget-content">
-    <h2 class="widget-title">Versand</h2>
+  <!-- PAYMENTS END -->
+  <!-- SHIPPING START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Versand</h2>
 
-    <div class="spacing">
-      <p>
-      <table width="204" height="220" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="102" align="center" valign="top">
-            <img src="http://autohalle24.de/ebay_layout/versand_dhl.jpg" width="85" height="50"></td>
-          <td width="102" align="center" valign="top">
-            <img src="http://autohalle24.de/ebay_layout/versand_dp.jpg" width="85" height="50"></td>
-        </tr>
-        <tr>
-          <td width="102" align="center" valign="top">
-            <img src="http://autohalle24.de/ebay_layout/versand_gls.jpg" width="85" height="50"></td>
-          <td width="102" align="center" valign="top">
-            <img src="http://autohalle24.de/ebay_layout/versand_hermes.jpg" width="85" height="50"></td>
-        </tr>
-        <tr>
-          <td width="102" align="center" valign="top">
-            <img src="http://autohalle24.de/ebay_layout/versand_ups.jpg" width="85" height="50"></td>
-          <td width="102" align="center" valign="top">
-            <img src="http://autohalle24.de/ebay_layout/versand_emons.jpg" width="85" height="50"></td>
-        </tr>
-        <tr>
-          <td width="102" align="center" valign="top">
-            <img src="http://autohalle24.de/ebay_layout/versand_dpd.jpg" width="85" height="50"></td>
-          <td width="102" align="center" valign="top">
-            <img src="http://autohalle24.de/ebay_layout/versand_tge.jpg" width="85" height="50"></td>
-        </tr>
-      </table>
-      <p>Versandkosten:</p>
-      <table width="204" height="100" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="30" align="left" valign="middle">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_de.png" width="16" height="11"></td>
-          <td width="102" align="left" valign="middle" class="style1"><span class="style1">Deutschland</span></td>
-          <td width="72" align="right" valign="middle" class="style1" style="font-weight: bold">
-            <%= postage_output( @car_part.postage_germany ) %>
-          </td>
-        </tr>
-        <tr>
-          <td width="30" align="left" valign="middle">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_at.png" width="16" height="11"></td>
-          <td width="102" align="left" valign="middle" class="style1"><span class="style1">&Ouml;sterreich</span></td>
-          <td align="right" valign="middle">
+      <div class="spacing">
+        <p>
+        <table width="204" height="220" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="102" align="center" valign="top">
+              <img src="http://autohalle24.de/ebay_layout/versand_dhl.jpg" width="85" height="50"></td>
+            <td width="102" align="center" valign="top">
+              <img src="http://autohalle24.de/ebay_layout/versand_dp.jpg" width="85" height="50"></td>
+          </tr>
+          <tr>
+            <td width="102" align="center" valign="top">
+              <img src="http://autohalle24.de/ebay_layout/versand_gls.jpg" width="85" height="50"></td>
+            <td width="102" align="center" valign="top">
+              <img src="http://autohalle24.de/ebay_layout/versand_hermes.jpg" width="85" height="50"></td>
+          </tr>
+          <tr>
+            <td width="102" align="center" valign="top">
+              <img src="http://autohalle24.de/ebay_layout/versand_ups.jpg" width="85" height="50"></td>
+            <td width="102" align="center" valign="top">
+              <img src="http://autohalle24.de/ebay_layout/versand_emons.jpg" width="85" height="50"></td>
+          </tr>
+          <tr>
+            <td width="102" align="center" valign="top">
+              <img src="http://autohalle24.de/ebay_layout/versand_dpd.jpg" width="85" height="50"></td>
+            <td width="102" align="center" valign="top">
+              <img src="http://autohalle24.de/ebay_layout/versand_tge.jpg" width="85" height="50"></td>
+          </tr>
+        </table>
+        <p>Versandkosten:</p>
+        <table width="204" height="100" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_de.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1"><span class="style1">Deutschland</span></td>
+            <td width="72" align="right" valign="middle" class="style1" style="font-weight: bold">
+              <%= postage_output(@car_part.postage_germany) %>
+            </td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_at.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1"><span class="style1">&Ouml;sterreich</span></td>
+            <td align="right" valign="middle">
               <span class="style1" style="font-weight: bold">
-                  <%= postage_output( @car_part.postage_austria ) %></span>
-          </td>
-        </tr>
-        <tr>
-          <td width="30" align="left" valign="middle">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_ch.png" width="16" height="11"></td>
-          <td width="102" align="left" valign="middle" class="style1">Schweiz</td>
-          <td align="right" valign="middle" halign="right">
+                  <%= postage_output(@car_part.postage_austria) %></span>
+            </td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_ch.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1">Schweiz</td>
+            <td align="right" valign="middle" halign="right">
               <span class="style1" style="font-weight: bold">
-               <%= postage_output( @car_part.postage_swiss ) %></span>
-          </td>
-        </tr>
-        <tr>
-          <td width="30" align="left" valign="middle">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
-          <td width="102" align="left" valign="middle" class="style1">Europa EU</td>
-          <td align="right" valign="middle">
+               <%= postage_output(@car_part.postage_swiss) %></span>
+            </td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1">Europa EU</td>
+            <td align="right" valign="middle">
               <span class="style1" style="font-weight: bold">
-            <%= postage_output( @car_part.postage_europe_with_eu ) %></span>
-          </td>
-        </tr>
-        <tr>
-          <td width="30" align="left" valign="middle">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
-          <td width="102" align="left" valign="middle" class="style1">Europa ohne EU</td>
-          <td align="right" valign="middle">
+            <%= postage_output(@car_part.postage_europe_with_eu) %></span>
+            </td>
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_eu.png" width="16" height="11"></td>
+            <td width="102" align="left" valign="middle" class="style1">Europa ohne EU</td>
+            <td align="right" valign="middle">
               <span class="style1" style="font-weight: bold">
-                <%= postage_output( @car_part.postage_europe_without_eu ) %>
+                <%= postage_output(@car_part.postage_europe_without_eu) %>
               </span></td>
-        </tr>
-        <tr>
-          <td width="30" align="left" valign="middle">
-            <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_welt.png" width="12" height="12"></td>
-          <td width="102" align="left" valign="middle" class="style1">Weltweit</td>
-          <td align="right" valign="middle">
+          </tr>
+          <tr>
+            <td width="30" align="left" valign="middle">
+              <img src="http://gfdesign.nazwa.pl/ebay_templates/pro/flag_welt.png" width="12" height="12"></td>
+            <td width="102" align="left" valign="middle" class="style1">Weltweit</td>
+            <td align="right" valign="middle">
               <span class="style1" style="font-weight: bold">
-                <%= postage_output( @car_part.postage_world_wide ) %>
+                <%= postage_output(@car_part.postage_world_wide) %>
               </span></td>
-        </tr>
-      </table>
-      </p>
+          </tr>
+        </table>
+        </p>
+      </div>
     </div>
   </div>
-</div>
-<!-- SHIPPING END -->
-<!-- CONTACT START -->
-<div class="widget">
-  <div class="widget-content">
-    <h2 class="widget-title">Impressum</h2>
+  <!-- SHIPPING END -->
+  <!-- CONTACT START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Impressum</h2>
 
-    <div class="spacing">
-      <p><b>Euraf GmbH</b></p>
+      <div class="spacing">
+        <p><b>Euraf GmbH</b></p>
 
-      <p>autohalle24.de</p>
+        <p>autohalle24.de</p>
 
-      <p><span class="style1">Rheinstr. 85<br/>45478 Mühlheim an der Ruhr</span></p>
-      <table width="204" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="25">
-            <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/phone.png" width="16" height="16"/></span>
-          </td>
-          <td><span class="style1">+49 208/55026</span></td>
-        </tr>
-        <tr>
-          <td width="25">
-            <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/mail.png" width="16" height="16"/></span>
-          </td>
-          <td><span class="style1">ebay@autohalle24.de</span></td>
-        </tr>
-      </table>
+        <p><span class="style1">Rheinstr. 85<br/>45478 Mühlheim an der Ruhr</span></p>
+        <table width="204" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="25">
+              <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/phone.png" width="16" height="16"/></span>
+            </td>
+            <td><span class="style1">+49 208/55026</span></td>
+          </tr>
+          <tr>
+            <td width="25">
+              <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/mail.png" width="16" height="16"/></span>
+            </td>
+            <td><span class="style1">ebay@autohalle24.de</span></td>
+          </tr>
+        </table>
 
+      </div>
     </div>
   </div>
-</div>
-<!-- CONTACT END -->
-<!-- ADDITIONAL BOX START -->
-<div class="widget">
-  <div class="widget-content">
-    <h2 class="widget-title">Top-Bewertung</h2>
+  <!-- CONTACT END -->
+  <!-- ADDITIONAL BOX START -->
+  <div class="widget">
+    <div class="widget-content">
+      <h2 class="widget-title">Top-Bewertung</h2>
 
-    <div class="spacing">
-      <p align="center">
-        <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/top_bewertung.png" width="120" height="121"></span>
-      </p>
+      <div class="spacing">
+        <p align="center">
+          <span class="style1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/top_bewertung.png" width="120" height="121"></span>
+        </p>
+      </div>
     </div>
   </div>
-</div>
 </div>
 <!-- ADDITIONAL BOX END -->
 <div class="col-right sidebar">
@@ -712,8 +712,8 @@
           <div class="artikelbilder" style="background-image:url(<%= @car_picture_url %>)" align="center">
 
             <% @picture_parts_urls.each do |url| %>
-              <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px">
-                <span><img src="<%= url %>" height="400px" width="530px"></span></a>
+                <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px">
+                  <span><img src="<%= url %>" height="400px" width="530px"></span></a>
             <% end %>
           </div>
           <!-- GALLERY BOX END -->
@@ -735,15 +735,15 @@
 
           <div style="margin-top: 10px; margin-bottom: 10px; font-size: 2em; font-weight: bold">
             <% if @car_part.is_auction? %>
-              3,2,1, ... deins
+                3,2,1, ... deins
             <% else %>
-              <%= number_to_currency @car_part.price %>
+                <%= number_to_currency @car_part.price %>
             <% end %>
           </div>
           <div>
             <% if @car_part.no_postage_for_germany? %>
-              <img src="http://autohalle24.de/ebay_layout/flag_de.png" height="11" width="16">&nbsp;
-              <font color="#2E6B31"><b>Versand kostenlos</b></font>
+                <img src="http://autohalle24.de/ebay_layout/flag_de.png" height="11" width="16">&nbsp;
+                <font color="#2E6B31"><b>Versand kostenlos</b></font>
             <% end %>
           </div>
           <div style="font-size: 1em; padding-top: 10px; padding-bottom: 10px;">Artikelnummer <%= @car_part.formatted_id %></div>
@@ -753,16 +753,16 @@
     <!-- ITEM DESCRIPTION BOX END -->
     <!-- ITEM ADDITIONAL BOX 0 START -->
     <% if @car_part.remark_given? %>
-      <div class="widget">
-        <div class="widget-content">
-          <h2 class="widget-title">Bemerkungen</h2>
+        <div class="widget">
+          <div class="widget-content">
+            <h2 class="widget-title">Bemerkungen</h2>
 
-          <div class="spacing">
-            <p align="center"><%= @car_part.remark %></p>
+            <div class="spacing">
+              <p align="center"><%= @car_part.remark %></p>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- ITEM ADDITIONAL BOX 0 END -->
+        <!-- ITEM ADDITIONAL BOX 0 END -->
     <% end %>
 
     <!-- ITEM ADDITIONAL BOX 1 START -->
@@ -773,21 +773,21 @@
         <div class="spacing">
           <table style="margin-left: auto; margin-right: auto; font-size: 130%;">
             <% if !@car.nil? %>
-              <%= @car.model_type.nil? || @car.model_type.brand_model.nil? || @car.model_type.brand_model.brand.nil? ? '' : create_details_from('Marke', @car.model_type.brand_model.brand.name) %>
-              <%= @car.model_type.nil? || @car.model_type.brand_model.nil? ? '' : create_details_from('Modell', @car.model_type.brand_model.name) %>
-              <%= @car.model_type.nil? ? '' : create_details_from('Typ', @car.model_type.model_type) %>
-              <%= create_details_from('Fahrzeug-Id', @car.car_brand_id) %>
-              <%= create_details_from('Motor-Code', @car.engine_code) %>
-              <%= create_details_from('Getriebe-Code', @car.gearing_code) %>
-              <%= create_details_from('Farb-Code', @car.color_code) %>
-              <%= create_details_from('Leistung', @car.power.to_s + ' kW / ' + @car.ps.round.to_s + ' PS') %>
-              <%= create_details_from('Baujahr', I18n.l(@car.date_of_construction)) %>
-              <%= @car.model_type.nil? ? '' : create_details_from('Bauzeitraum', @car.model_type.month_of_construction_period_from.to_s + '/' + @car.model_type.year_of_construction_period_from.to_s + ' - ' + @car.model_type.month_of_construction_period_to.to_s + '/' + @car.model_type.year_of_construction_period_to.to_s) %>
-              <%= create_details_from('Hubraum', @car.cylinder_capacity.to_s + ' cm&sup3;') %>
-              <%= create_details_from('Kraftstoff', @car.fuel_as_string) %>
-              <%= create_details_from('Getriebeart', @car.gearing_as_string) %>
-              <%= create_details_from('Schlüsselnummer zu 2/3', @car.key_number2 + '/' + @car.key_number3) %>
-              <%= create_details_from('Laufleistung', @car.mileage.to_s + ' km') %>
+                <%= @car.model_type.nil? || @car.model_type.brand_model.nil? || @car.model_type.brand_model.brand.nil? ? '' : create_details_from('Marke', @car.model_type.brand_model.brand.name) %>
+                <%= @car.model_type.nil? || @car.model_type.brand_model.nil? ? '' : create_details_from('Modell', @car.model_type.brand_model.name) %>
+                <%= @car.model_type.nil? ? '' : create_details_from('Typ', @car.model_type.model_type) %>
+                <%= create_details_from('Fahrzeug-Id', @car.car_brand_id) %>
+                <%= create_details_from('Motor-Code', @car.engine_code) %>
+                <%= create_details_from('Getriebe-Code', @car.gearing_code) %>
+                <%= create_details_from('Farb-Code', @car.color_code) %>
+                <%= create_details_from('Leistung', @car.power.to_s + ' kW / ' + @car.ps.round.to_s + ' PS') %>
+                <%= create_details_from('Baujahr', I18n.l(@car.date_of_construction)) %>
+                <%= @car.model_type.nil? ? '' : create_details_from('Bauzeitraum', @car.model_type.month_of_construction_period_from.to_s + '/' + @car.model_type.year_of_construction_period_from.to_s + ' - ' + @car.model_type.month_of_construction_period_to.to_s + '/' + @car.model_type.year_of_construction_period_to.to_s) %>
+                <%= create_details_from('Hubraum', @car.cylinder_capacity.to_s + ' cm&sup3;') %>
+                <%= create_details_from('Kraftstoff', @car.fuel_as_string) %>
+                <%= create_details_from('Getriebeart', @car.gearing_as_string) %>
+                <%= create_details_from('Schlüsselnummer zu 2/3', @car.key_number2 + '/' + @car.key_number3) %>
+                <%= create_details_from('Laufleistung', @car.mileage.to_s + ' km') %>
             <% end %>
           </table>
         </div>
@@ -884,25 +884,25 @@
 </body>
 
 <script>
-  function toggleCarData(checkBox) {
-    var div = document.getElementById('car_data');
-    if (checkBox.checked) {
-      div.style.display = 'none';
-    } else {
-      div.style.display = 'block';
+    function toggleCarData(checkBox) {
+        var div = document.getElementById('car_data');
+        if (checkBox.checked) {
+            div.style.display = 'none';
+        } else {
+            div.style.display = 'block';
+        }
     }
-  }
 
-  function copyToClipboard() {
-    var ebayContent = document.getElementById('ebay_content');
-    var clipBoard = document.getElementById('clipboard');
-    clipBoard.value = ebayContent.innerHTML;
-    clipBoard.focus();
-    clipBoard.select();
-    document.execCommand('copy', false, null);
-  }
+    function copyToClipboard() {
+        var ebayContent = document.getElementById('ebay_content');
+        var clipBoard = document.getElementById('clipboard');
+        clipBoard.value = ebayContent.innerHTML;
+        clipBoard.focus();
+        clipBoard.select();
+        document.execCommand('copy', false, null);
+    }
 
-  copyToClipboard();
+    copyToClipboard();
 </script>
 
 </div>
