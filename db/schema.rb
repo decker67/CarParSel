@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150116215352) do
+ActiveRecord::Schema.define(version: 20150415205247) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -78,11 +78,14 @@ ActiveRecord::Schema.define(version: 20150116215352) do
     t.string   "key_number3"
     t.integer  "mileage"
     t.integer  "seller_id"
-    t.string   "picture_url"
+    t.string   "image_file_name"
     t.string   "ebay_url_all_parts"
     t.text     "name_ebay_url_all_parts"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ebay_shop_category"
+    t.string   "ebay_second_shop_category"
+    t.string   "base_image_url"
   end
 
   add_index "cars", ["car_identifier"], name: "index_cars_on_car_identifier", unique: true

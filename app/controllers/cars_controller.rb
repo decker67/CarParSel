@@ -82,7 +82,12 @@ class CarsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def car_params
-    params.require(:car).permit(:engine_code, :color_code, :car_brand_id, :gearing_code, :car_identifier, :model_type_id, :power, :date_of_construction, :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3, :mileage, :seller_id, :price, :picture_url, :ebay_url_all_parts, :name_ebay_url_all_parts)
+    params.require(:car).permit(:engine_code, :color_code, :car_brand_id, :gearing_code,
+                                :car_identifier, :model_type_id, :power, :date_of_construction,
+                                :cylinder_capacity, :fuel, :gearing, :key_number2, :key_number3,
+                                :mileage, :seller_id, :price, :base_image_url, :image_file_name,
+                                :ebay_url_all_parts, :name_ebay_url_all_parts, :ebay_shop_category,
+                                :ebay_second_shop_category)
   end
 
 end
