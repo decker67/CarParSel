@@ -8,14 +8,14 @@ class EbayController < ApplicationController
 
     @back_to_url = params[ :from_url ]
 
-    base_picture_url = Parameter.find_by_name('PATH_TO_CAR_PICTURES').value
+    base_picture_url = @car.base_image_url || Parameter.find_by_name('PATH_TO_CAR_PICTURES').value
     create_picture_urls(base_picture_url)
   end
 
   private
 
   def create_picture_urls(base_url)
-    @car_picture_url = @car.nil? ? nil : @car.picture_url
+    @car_picture_url = @car.nil? ? nil : @car.image_file_name
 
     # use first car part picture, if car picture is empty
     if @car_picture_url.nil? || @car_picture_url == ''
