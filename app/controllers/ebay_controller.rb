@@ -15,10 +15,10 @@ class EbayController < ApplicationController
   private
 
   def create_picture_urls(base_url)
-    @car_picture_url = @car.nil? ? nil : @car.image_file_name
+    @car_picture_url = @car.nil? ? nil : prepend_picture_url( base_url, @car.image_file_name)
 
     # use first car part picture, if car picture is empty
-    if @car_picture_url.nil? || @car_picture_url == ''
+    if @car_picture_url.nil? || @car_picture_url == base_url
       @car_picture_url = prepend_picture_url( base_url, @car_part.picture_url1)
       start_index = 2
     else
