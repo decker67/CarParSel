@@ -39,6 +39,14 @@ class CarPartsController < ApplicationController
     @car_part.car_id = session[:car_id]
     @car_part.ebay_state = 1 #bereit für ebay
     @car_part.quantity = 1
+
+    car = @car_part.car
+    if !car.nil?
+       brand = car.model_type.nil? || car.model_type.brand_model.nil? || car.model_type.brand_model.brand.nil? ? '' : car.model_type.brand_model.brand.name
+       model = car.model_type.nil? || car.model_type.brand_model.nil? ? '' : car.model_type.brand_model.name
+       type = car.model_type.nil? ? '' : car.model_type.model_type
+       @car_part.description = brand + ' ' + model + ' ' + type
+    end
   end
 
   def edit
@@ -191,7 +199,13 @@ class CarPartsController < ApplicationController
   end
 
   def car_part_params
-    params.require(:car_part).permit(:car_id, :quantity, :stock, :description, :part_number, :ebay_selling_type, :ebay_state, :ebay_online_since, :price, :postage_germany, :postage_austria, :postage_swiss, :postage_europe_with_eu, :postage_europe_without_eu, :postage_world_wide, :picture_url1, :picture_url2, :picture_url3, :picture_url4, :picture_url5, :picture_url6, :remark)
+    params.require(:car_part).permit(:car_id, :quantity, :stock, :description, :part_number,
+                                     :ebay_selling_type, :ebay_state, :ebay_online_since,
+                                     :price, :postage_germany, :postage_austria, :postage_swiss,
+                                     :postage_europe_with_eu, :postage_europe_without_eu,
+                                     :postage_world_wide, :picture_url1, :picture_url2,
+                                     :picture_url3, :picture_url4, :picture_url5, :picture_url6,
+                                     :remark, :ebay_shop_category)
   end
 
 end

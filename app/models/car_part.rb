@@ -4,7 +4,7 @@ class CarPart < ActiveRecord::Base
   #validate :validate_ebay_online_since
 
   AUCTION_TYPES = [ [ 'Festpreis', 0 ], [ 'Auktion', 1 ] ]
-  AUCTION_STATE = [ [ 'In Bearbeitung', 0 ], [ 'Bereit fuer ebay', 1 ], [ 'FVL fehlt', 2 ], [ 'Fertig', 3 ], [ 'Verkauft', 4 ] ]
+  AUCTION_STATE = [ [ 'In Bearbeitung', 0 ], [ 'Bei ebay einstellen', 1 ], [ 'FVL fehlt', 2 ], [ 'Fertig', 3 ], [ 'Verkauft', 4 ] ]
 
   belongs_to :car, inverse_of: :car_parts
 
