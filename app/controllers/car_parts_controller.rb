@@ -205,7 +205,8 @@ class CarPartsController < ApplicationController
                                      :postage_europe_with_eu, :postage_europe_without_eu,
                                      :postage_world_wide, :picture_url1, :picture_url2,
                                      :picture_url3, :picture_url4, :picture_url5, :picture_url6,
-                                     :remark, :ebay_shop_category)
+                                     :remark, :ebay_shop_category, :second_price
+                                     )
   end
 
 end

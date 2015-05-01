@@ -24,8 +24,8 @@ class CarPartLabelsPdf
                           "shrink_to_fit" => true ) do |pdf, car_part|
       pdf.indent 15 do
         pdf.text car_part.formatted_id, style: :bold, size: 12
-        brand_name, model_name, model_type = name_of_car( car_part )
-        pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 8
+        #brand_name, model_name, model_type = name_of_car( car_part )
+        #pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 8
         pdf.text car_part.part_number_with_commas, size: 8, style: :bold
         pdf.text car_part.car.car_identifier, size: 8
         pdf.text car_part.description, size: 8
