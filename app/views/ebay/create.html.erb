@@ -512,6 +512,7 @@
 <div class="padder">
 <div class="col-left sidebar">
   <!-- CATEGORY START -->
+  <% if @car_part.show_car_overview.nil? || @car_part.show_car_overview != 1 %>
   <div class="widget">
     <div class="widget-content">
       <h2 class="widget-title">Artikelübersicht</h2>
@@ -531,7 +532,9 @@
       </div>
     </div>
   </div>
+  <% end %>
   <!-- CATEGORY END -->
+
   <!-- PAYMENTS START -->
   <div class="widget">
     <div class="widget-content">
@@ -772,7 +775,7 @@
 
         <div class="spacing">
           <table style="margin-left: auto; margin-right: auto; font-size: 130%;">
-            <% if !@car.nil? %>
+            <% if !@car.nil? && (@car_part.show_car_details.nil? || @car_part.show_car_details != 1) %>
                 <%= @car.model_type.nil? || @car.model_type.brand_model.nil? || @car.model_type.brand_model.brand.nil? ? '' : create_details_from('Marke', @car.model_type.brand_model.brand.name) %>
                 <%= @car.model_type.nil? || @car.model_type.brand_model.nil? ? '' : create_details_from('Modell', @car.model_type.brand_model.name) %>
                 <%= @car.model_type.nil? ? '' : create_details_from('Typ', @car.model_type.model_type) %>

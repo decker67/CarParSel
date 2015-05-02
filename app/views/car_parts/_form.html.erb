@@ -23,6 +23,20 @@
       </div>
     </div>
     <div class="form-group">
+      <%= f.label :stock, 'EAN', class: 'col-md-3' %>
+      <div class="col-md-2">
+        <%= f.text_field :ean, class: 'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :show_car_overview, 'Artikelübersicht ausblenden'%>
+        <%= f.check_box :show_car_overview, class: 'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :show_car_details, 'Spenderfahrzeug ausblenden'%>
+        <%= f.check_box :show_car_details, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
       <%= f.label :stock, 'Lagerhaltungsnummer', class: 'col-md-3' %>
       <div class="col-md-3">
         <%= f.text_field :stock, class: 'form-control' %>
