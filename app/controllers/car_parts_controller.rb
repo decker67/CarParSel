@@ -1,3 +1,5 @@
+require 'csv'
+
 class CarPartsController < ApplicationController
 
   before_action :set_car_part, only: [:edit, :update, :destroy]
@@ -30,6 +32,10 @@ class CarPartsController < ApplicationController
       format.pdf do
         pdf = CarPartLabelsPdf.new( @car_parts )
         send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
+      end
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"car_parts.csv\""
+        headers['Content-Type'] ||= 'text/csv'
       end
     end
   end

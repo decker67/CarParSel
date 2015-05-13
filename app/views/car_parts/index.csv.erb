@@ -1,0 +1,13 @@
+<%- headers = ['Matchcode', 'Lagerhaltungsnummer', 'Bezeichnung', 'Vk1', 'Bestand', 'VKK',
+               'Bild 1', 'eBay Kategorie 1', 'eBay Shop Kategorie 1', 'eBay Shop Kategorie 2',
+               'Benutzerdef. Merkmale 1', 'Benutzerdef. Merkmale 2', 'HTML', 'Bezeichnung (eBay)',
+               'Notiz', 'Sofort-kaufen Preis (eBay)', 'Erstellungsdatum', 'Bei eBay einstellen',
+               'Zustand', '	Währung Stammdaten',  'Währung eBay-Daten', 'MwSt Satz',
+               'eBay Marktplatz'] -%>
+<%= CSV.generate_line headers %>
+<%- @car_parts.each do |car_part| -%>
+    <%= CSV.generate_line([car_part.id, car_part.stock, car_part.description, car_part.price,
+                           car_part.quantity, '?', car_part.picture_url1, car_part.ebay_shop_category,
+                           '?', '?', car_part.part_number, '?', '?', car_part.remark, car_part.created_at,
+                           '3000', 'EUR', 'EUR', '19' 'DE']) %>
+<%- end -%>
