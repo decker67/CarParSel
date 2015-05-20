@@ -6,8 +6,25 @@
                'eBay Marktplatz'] -%>
 <%= CSV.generate_line headers %>
 <%- @car_parts.each do |car_part| -%>
-    <%= CSV.generate_line([car_part.id, car_part.stock, car_part.description, car_part.price,
-                           car_part.quantity, '?', car_part.picture_url1, car_part.ebay_shop_category,
-                           '?', '?', car_part.part_number, '?', '?', car_part.remark, car_part.created_at,
-                           '3000', 'EUR', 'EUR', '19' 'DE']) %>
+    <%= CSV.generate_line([car_part.id,
+                           car_part.stock,
+                           car_part.description,
+                           car_part.price,
+                           car_part.quantity,
+                           'versand',
+                           absolute_picture_url(car_part.car, car_part.picture_url1),
+                           car_part.ebay_shop_category,
+                           car_part.car.ebay_shop_category,
+                           car_part.car.ebay_second_shop_category,
+                           car_part.part_number,
+                           'Spenderfahrzeugdaten',
+                           'HTML',
+                           car_part.description,
+                           car_part.remark,
+                           car_part.created_at,
+                           '3000',
+                           'EUR',
+                           'EUR',
+                           '19',
+                           'DE']) %>
 <%- end -%>

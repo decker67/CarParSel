@@ -46,6 +46,7 @@ class CarPart < ActiveRecord::Base
     return adjusted_part_numbers
   end
 
+
   private
   #def validate_ebay_online_since
   #  if ebay_state == 3 && !ebay_online_since?
