@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'csv'
 
 class CarPartsController < ApplicationController
@@ -35,7 +37,7 @@ class CarPartsController < ApplicationController
       end
       format.csv do
         headers['Content-Disposition'] = "attachment; filename=\"car_parts.csv\""
-        headers['Content-Type'] ||= 'text/csv'
+        headers['Content-Type'] ||= 'text/csv; charset=iso8859-1; header=present'
       end
     end
   end
