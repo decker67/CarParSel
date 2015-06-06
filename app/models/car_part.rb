@@ -5,7 +5,7 @@ class CarPart < ActiveRecord::Base
 
   AUCTION_TYPES = [ [ 'Festpreis', 0 ], [ 'Auktion', 1 ] ]
   AUCTION_STATE = [ [ 'In Bearbeitung', 0 ], [ 'Bei ebay einstellen', 1 ], [ 'FVL fehlt', 2 ], [ 'Fertig', 3 ], [ 'Verkauft', 4 ] ]
-  STATE = [ [ 'Neu', 1000 ], [ 'Neu mit Fehlern', 1500 ], [ 'vom Hersteller generalüberholt', 2000 ], [ 'vom Verkäufer generalüberholt', 2500 ], [ 'Gebraucht', 3000 ], [ 'Als Ersatzteil/defekt', 7000 ] ]
+  STATE = [ [ 'Neu', 1000 ], [ 'Neu mit Fehlern', 1500 ], [ 'vom Hersteller generalueberholt', 2000 ], [ 'vom Verkaeufer generalueberholt', 2500 ], [ 'Gebraucht', 3000 ], [ 'Als Ersatzteil/defekt', 7000 ] ]
 
   belongs_to :car, inverse_of: :car_parts
 
