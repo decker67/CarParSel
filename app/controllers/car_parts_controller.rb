@@ -47,7 +47,7 @@ class CarPartsController < ApplicationController
     @car_part.car_id = session[:car_id]
     @car_part.ebay_state = 1 #bereit für ebay
     @car_part.quantity = 1
-    @car_part.state1 = 3000 #gebraucht
+    @car_part.state = 3000 #gebraucht
 
     car = @car_part.car
     if !car.nil?
@@ -215,7 +215,7 @@ class CarPartsController < ApplicationController
                                      :postage_world_wide, :picture_url1, :picture_url2,
                                      :picture_url3, :picture_url4, :picture_url5, :picture_url6,
                                      :remark, :ebay_shop_category, :second_price, :ean,
-                                     :show_car_overview, :show_car_details, :state1, :postage_id
+                                     :show_car_overview, :show_car_details, :state, :postage_id
                                      )
   end
 
