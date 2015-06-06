@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430104449) do
+ActiveRecord::Schema.define(version: 20150605123826) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -58,6 +58,11 @@ ActiveRecord::Schema.define(version: 20150430104449) do
     t.string   "stock"
     t.string   "ebay_shop_category"
     t.decimal  "second_price"
+    t.string   "ean"
+    t.integer  "show_car_details"
+    t.integer  "show_car_overview"
+    t.integer  "state"
+    t.integer  "postage_id"
   end
 
   add_index "car_parts", ["car_id"], name: "index_car_parts_on_car_id"
