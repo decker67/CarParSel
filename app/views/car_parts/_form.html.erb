@@ -17,62 +17,9 @@
       </div>
     </div>
     <div class="form-group">
-      <%= f.label :remark, 'Notiz', class: 'col-md-3' %>
-      <div class="col-md-6">
-        <%= f.text_field :remark, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :stock, 'EAN', class: 'col-md-3' %>
-      <div class="col-md-2">
-        <%= f.text_field :ean, class: 'form-control' %>
-      </div>
-      <div class="col-md-3">
-        <%= f.label :show_car_overview, 'Artikelübersicht ausblenden'%>
-        <%= f.check_box :show_car_overview, class: 'form-control' %>
-      </div>
-      <div class="col-md-3">
-        <%= f.label :show_car_details, 'Spenderfahrzeug ausblenden'%>
-        <%= f.check_box :show_car_details, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :stock, 'Lagerhaltungsnummer', class: 'col-md-3' %>
-      <div class="col-md-3">
-        <%= f.text_field :stock, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :quantity, 'Anzahl', class: 'col-md-3' %>
-      <div class="col-md-2">
-        <%= f.number_field :quantity, min: 1, max: 100, step: 1, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :ebay_shop_category, 'eBay Kategorie', class: 'col-md-3' %>
-      <div class="col-md-2">
-        <%= f.text_field :ebay_shop_category, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
       <%= f.label :part_number, 'Teilenummer', class: 'col-md-3' %>
       <div class="col-md-6">
         <%= f.text_field :part_number, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :ebay_state, 'Status', class: 'col-md-3' %>
-      <div class="col-md-2">
-        <%= f.select :ebay_state, options_for_select(CarPart::AUCTION_STATE, f.object.ebay_state), {}, class: 'form-control' %>
-      </div>
-      <div class="col-md-3">
-        <%= f.date_field :ebay_online_since, :include_blank => true, class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :ebay_selling_type, 'ebay Angebotsformat', class: 'col-md-3' %>
-      <div class="col-md-2">
-        <%= f.select :ebay_selling_type, options_for_select(CarPart::AUCTION_TYPES, f.object.ebay_selling_type), {}, class: 'form-control' %>
       </div>
     </div>
     <div class="form-group">
@@ -90,6 +37,7 @@
     <div class="form-group">
       <%= f.label :postage_id, 'Versandarten', class: 'col-md-3' %>
       <div class="col-md-3">
+        <!--%= f.collection_select :postage_id, Postage.order('name ASC'), :id, :name, { :onchange => 'postageOnChangeHandler( this )', :include_blank => true}, :class => 'form-control' %-->
         <%= select_tag :postage_id, options_from_collection_for_select(Postage.order('name ASC'), :id, :name), onchange: 'postageOnChangeHandler( this )', include_blank: true, class: 'form-control' %>
       </div>
     </div>
@@ -160,6 +108,65 @@
         <%= f.text_field :picture_url6, class: 'form-control' %>
       </div>
     </div>
+    <div class="form-group">
+      <%= f.label :ebay_shop_category, 'eBay Kategorie', class: 'col-md-3' %>
+      <div class="col-md-2">
+        <%= f.text_field :ebay_shop_category, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :remark, 'Notiz', class: 'col-md-3' %>
+      <div class="col-md-6">
+        <%= f.text_field :remark, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :stock, 'EAN', class: 'col-md-3' %>
+      <div class="col-md-2">
+        <%= f.text_field :ean, class: 'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :show_car_overview, 'Artikelübersicht ausblenden'%>
+        <%= f.check_box :show_car_overview, class: 'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :show_car_details, 'Spenderfahrzeug ausblenden'%>
+        <%= f.check_box :show_car_details, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :stock, 'Lagerhaltungsnummer', class: 'col-md-3' %>
+      <div class="col-md-3">
+        <%= f.text_field :stock, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :state, 'Zustand', class: 'col-md-3' %>
+      <div class="col-md-2">
+        <%= f.select :state, options_for_select(CarPart::STATE, f.object.state), {}, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :quantity, 'Anzahl', class: 'col-md-3' %>
+      <div class="col-md-2">
+        <%= f.number_field :quantity, min: 1, max: 100, step: 1, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :ebay_state, 'Status', class: 'col-md-3' %>
+      <div class="col-md-2">
+        <%= f.select :ebay_state, options_for_select(CarPart::AUCTION_STATE, f.object.ebay_state), {}, class: 'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= f.date_field :ebay_online_since, :include_blank => true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :ebay_selling_type, 'ebay Angebotsformat', class: 'col-md-3' %>
+      <div class="col-md-2">
+        <%= f.select :ebay_selling_type, options_for_select(CarPart::AUCTION_TYPES, f.object.ebay_selling_type), {}, class: 'form-control' %>
+      </div>
+    </div>
 
     <div class="form-group">
       <div class="col-md-6">
@@ -173,6 +180,7 @@
 <script>
 
     function postageOnChangeHandler(event) {
+        console.log(event);
         var selectedPostageId = $(event).val();
         var requestForPostage = '/postage_for_postage_id?postage_id=' + selectedPostageId;
         $.get(requestForPostage).done(function (result) {
