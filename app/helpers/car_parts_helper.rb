@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module CarPartsHelper
 
   def absolute_picture_url(car, picture_url)
@@ -19,7 +21,7 @@ module CarPartsHelper
         create_csv_details_from('Hubraum', car.cylinder_capacity.to_s + ' cm3'),
         create_csv_details_from('Kraftstoff', car.fuel_as_string),
         create_csv_details_from('Getriebeart', car.gearing_as_string),
-        create_csv_details_from('Schluesselnummer zu 2/3', car.key_number2 + '/' + car.key_number3),
+        create_csv_details_from('Schlüsselnummer zu 2/3', car.key_number2 + '/' + car.key_number3),
         create_csv_details_from('Laufleistung', car.mileage.to_s + ' km')
     ]
     details.join(',')
