@@ -6,6 +6,9 @@
                'eBay Marktplatz'] -%>
 <%= CSV.generate_line headers %>
 <%- @car_parts.each do |car_part| -%>
+    <%- controller = EbayController.new -%>
+    <%- controller.create(car_part.id) -%>
+    <%- html = controller.render_to_string('ebay/create', :layout => false) -%>
     <%= CSV.generate_line([car_part.id,
                            car_part.stock,
                            car_part.description,
@@ -18,7 +21,7 @@
                            car_part.car.ebay_second_shop_category,
                            'Teilernummer:' + car_part.part_number,
                            create_car_details(car_part.car),
-                           'HTML',
+                           html,
                            car_part.description,
                            car_part.remark,
                            car_part.price,
