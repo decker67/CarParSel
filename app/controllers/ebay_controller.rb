@@ -4,7 +4,7 @@ class EbayController < ApplicationController
 
   layout 'plain'
 
-  def create(car_part_id)
+  def create(car_part_id = nil)
     @car_part = CarPart.find_by_id(car_part_id || params[:id] )
     @car = Car.find_by_id( @car_part.car_id );
 
