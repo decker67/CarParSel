@@ -1,0 +1,24 @@
+<%= form_for @storage, html: {class: 'form-horizontal'} do |f| %>
+
+    <%= render 'layouts/errors', object: @storage %>
+
+    <div class="form-group">
+      <%= f.label :name, 'Name', class: 'col-md-2' %>
+      <div class="col-md-3">
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, 'Beschreibung', class: 'col-md-2' %>
+      <div class="col-md-3">
+        <%= f.text_area :description, size: '40x2', maxlength: "80", class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-4">
+        <%= link_to 'Abbrechen', storages_path, class: 'btn btn-default' %>
+        <%= f.submit 'Speichern', class: 'btn btn-default' %>
+      </div>
+    </div>
+
+<% end %>
