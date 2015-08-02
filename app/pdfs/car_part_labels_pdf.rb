@@ -38,7 +38,7 @@ class CarPartLabelsPdf
             model_type + ';' +
             car_part.part_number_with_commas + ';' +
             car_part.car.car_identifier + ';' +
-            car_part.description;
+            car_part.description
 
         pdf.print_qr_code(qrcode_text, :extent=>3.send(:cm), :stroke=>false, :level=>:h)
         #pdf.text car_part.formatted_id, style: :bold, size: 12

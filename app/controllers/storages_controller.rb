@@ -3,6 +3,14 @@ class StoragesController < ApplicationController
 
   def index
     @storages = Storage.all.order( :name ).page params[ :page ]
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = StorageLabelsPdf.new( @storages )
+        send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
+      end
+    end
   end
 
   def new
