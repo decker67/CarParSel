@@ -1,5 +1,7 @@
 CarParSel::Application.routes.draw do
 
+  resources :storages
+
   resources :parameters
 
   resources :postages

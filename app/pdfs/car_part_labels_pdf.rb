@@ -2,6 +2,7 @@ class CarPartLabelsPdf
 
   require 'prawn/labels'
   require 'prawn/measurement_extensions'
+  require 'prawn/qrcode'
 
   Prawn::Labels.types = {
       "CarPartLabels" => {
@@ -23,12 +24,29 @@ class CarPartLabelsPdf
                           type: "CarPartLabels",
                           "shrink_to_fit" => true ) do |pdf, car_part|
       pdf.indent 15 do
-        pdf.text car_part.formatted_id, style: :bold, size: 12
+        #pdf.text car_part.formatted_id, style: :bold, size: 12
+        ##brand_name, model_name, model_type = name_of_car( car_part )
+        #pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 8
+        #pdf.text car_part.part_number_with_commas, size: 8, style: :bold
+        #pdf.text car_part.car.car_identifier, size: 8
+        #pdf.text car_part.description, size: 8
+
+        brand_name, model_name, model_type = name_of_car( car_part )
+        qrcode_text = car_part.formatted_id + ';' +
+            brand_name + ';' +
+            model_name + ';' +
+            model_type + ';' +
+            car_part.part_number_with_commas + ';' +
+            car_part.car.car_identifier + ';' +
+            car_part.description;
+
+        pdf.print_qr_code(qrcode_text, :extent=>3.send(:cm), :stroke=>false, :level=>:h)
+        #pdf.text car_part.formatted_id, style: :bold, size: 12
         #brand_name, model_name, model_type = name_of_car( car_part )
         #pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 8
-        pdf.text car_part.part_number_with_commas, size: 8, style: :bold
-        pdf.text car_part.car.car_identifier, size: 8
-        pdf.text car_part.description, size: 8
+        #pdf.text car_part.part_number_with_commas, size: 8, style: :bold
+        #pdf.text car_part.car.car_identifier, size: 8
+        #pdf.text car_part.description, size: 8
       end
     end
   end

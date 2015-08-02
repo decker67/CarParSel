@@ -35,6 +35,12 @@
       </div>
     </div>
     <div class="form-group">
+      <%= f.label :car_id, 'Lagerort', class: 'col-md-3' %>
+      <div class="col-md-3">
+        <%= f.collection_select :storage_id, Storage.order('name ASC'), :id, :name, { :include_blank => true }, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
       <%= f.label :postage_id, 'Versandarten', class: 'col-md-3' %>
       <div class="col-md-3">
         <!--%= f.collection_select :postage_id, Postage.order('name ASC'), :id, :name, { :onchange => 'postageOnChangeHandler( this )', :include_blank => true}, :class => 'form-control' %-->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605123826) do
+ActiveRecord::Schema.define(version: 20150801195603) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -63,10 +63,12 @@ ActiveRecord::Schema.define(version: 20150605123826) do
     t.integer  "show_car_overview"
     t.integer  "state"
     t.integer  "postage_id"
+    t.integer  "storage_id"
   end
 
   add_index "car_parts", ["car_id"], name: "index_car_parts_on_car_id"
   add_index "car_parts", ["ebay_article_number"], name: "index_car_parts_on_ebay_article_number"
+  add_index "car_parts", ["storage_id"], name: "index_car_parts_on_storage_id"
 
   create_table "cars", force: true do |t|
     t.string   "car_identifier"
@@ -137,6 +139,13 @@ ActiveRecord::Schema.define(version: 20150605123826) do
     t.string   "street"
     t.string   "city"
     t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "storages", force: true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
