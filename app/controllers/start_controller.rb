@@ -1,7 +1,10 @@
 class StartController < ApplicationController
 
   def overview
-    #@car_parts = CarPart.where( ebay_state: 3 )
+
+    if mobile_device?
+      redirect_to '/mobile/overview'
+    end
   end
 
 end

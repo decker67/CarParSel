@@ -23,9 +23,11 @@ class StorageLabelsPdf
     Prawn::Labels.render( @storages,
                           type: "StorageLabels",
                           "shrink_to_fit" => true ) do |pdf, storage|
-      pdf.indent 15 do
-        qrcode_text = storage.name
+
+      qrcode_text = 'S#' + storage.id.to_s
+      pdf.indent 0 do #15 do
         pdf.print_qr_code(qrcode_text, :extent=>3.send(:cm), :stroke=>false, :level=>:h)
+        pdf.text_box(storage.name, :at => [80, 60], :width => 120, :size => 16)
       end
     end
   end

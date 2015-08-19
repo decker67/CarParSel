@@ -1,0 +1,69 @@
+<h1>Artikel
+  <small>lagern</small>
+</h1>
+
+<input id="scanner" style="display: none;" type="file" accept="image/*;capture=camera">
+
+<div id="video-container" style="position: relative">
+  <video id="camera" width="300" autoplay></video>
+  <button id="scan" style="position: absolute; left: 100px; top: 100px; opacity: 0.5;width: 50px; height: 50px;">Scan</button>
+</div>
+
+
+
+</button>
+
+<div class="select">
+  <select id="videoSource"></select>
+</div>
+
+<script>
+
+
+    navigator.getUserMedia = navigator.getUserMedia ||
+            navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+    var videoSelect = document.querySelector('select#videoSource');
+    var buttonScan = document.querySelector('button#scan');
+
+    MediaStreamTrack.getSources(gotSources);
+
+    function gotSources(sourceInfos) {
+        for (var i = 0; i !== sourceInfos.length; ++i) {
+            var sourceInfo = sourceInfos[i];
+            var option = document.createElement('option');
+            option.value = sourceInfo.id;
+            if (sourceInfo.kind === 'video') {
+                option.text = sourceInfo.label || 'camera ' + (videoSelect.length + 1);
+                videoSelect.appendChild(option);
+            }
+        }
+    }
+
+    function start() {
+        if (!!window.stream) {
+            videoElement.src = null;
+            window.stream.stop();
+        }
+        var videoSource = videoSelect.value;
+        var constraints = {
+            video: {
+                optional: [{
+                    sourceId: videoSource
+                }]
+            }
+        };
+        navigator.getUserMedia(constraints,
+                function (stream) {
+                    var camera = document.getElementById('camera');
+                    camera.src = window.URL.createObjectURL(stream);
+                },
+                function (error) {
+                    console.log('navigator.getUserMedia error: ', error);
+                });
+    }
+
+    videoSelect.onchange = start;
+    buttonScan.onclick = scan;
+
+</script>

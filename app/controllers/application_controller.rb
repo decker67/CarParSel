@@ -14,6 +14,13 @@ class ApplicationController < ActionController::Base
   #rescue_from Exception, with: :show_errors
 
   private
+  def mobile_device?
+    request.user_agent =~ /Mobile/
+  end
+
+  helper_method :mobile_device?
+
+  private
   def show_errors( exception )
     flash[ :error ] = 'Es ist ein Fehler aufgetreten!'
     flash[ :error_message ] = exception.message

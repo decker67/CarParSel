@@ -1,5 +1,11 @@
 CarParSel::Application.routes.draw do
 
+  get "cargo_list/index"
+  get "store/index"
+  get "store/search"
+
+  get "mobile/overview"
+
   resources :storages
 
   resources :parameters
@@ -32,6 +38,8 @@ CarParSel::Application.routes.draw do
   get '/toggle_car_part_state' => 'car_parts#toggle_car_part_state', :format => :json
 
   get "start/overview"
+
+  get 'mobile/overview'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
