@@ -7,12 +7,12 @@ class CarPartLabelsPdf
   Prawn::Labels.types = {
       "CarPartLabels" => {
           "paper_size"    => "A4",
-          "top_margin"    => 1.2.cm,
-          "left_margin"   => 0,
+          "top_margin"    => 7.mm,
+          "left_margin"   => 2.mm,
           "columns"       => 3,
           "rows"          => 8,
-          "column_gutter" => 12.mm,
-          "row_gutter"    => 9.mm
+          "column_gutter" => 14.mm,
+          "row_gutter"    => 13.mm
       } }
 
   def initialize( car_parts )
@@ -44,7 +44,7 @@ class CarPartLabelsPdf
         #    car_part.description
 
         pdf.print_qr_code(qrcode_text, :extent=>3.send(:cm), :stroke=>false, :level=>:h)
-        pdf.text_box(id, :at => [80, 60], :width => 120, :size => 24)
+        pdf.text_box(id, :at => [80, 53], :width => 120, :size => 24)
         #pdf.text car_part.formatted_id, style: :bold, size: 12
         #brand_name, model_name, model_type = name_of_car( car_part )
         #pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 8
