@@ -2,7 +2,7 @@ class StoragesController < ApplicationController
   before_action :set_storage, only: [:edit, :update, :destroy]
 
   def index
-    @storages = Storage.all.order( :name ).page params[ :page ]
+    @storages = Storage.all.order( :name ).page(params[ :page ]) #.per(24)
 
     respond_to do |format|
       format.html
