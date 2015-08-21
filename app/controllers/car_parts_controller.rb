@@ -100,7 +100,7 @@ class CarPartsController < ApplicationController
 
   def load_parts
     session[:car_id] = params[:car_id] || session[:car_id]
-    session[:limit] = params[:limit] || session[:limit]
+    session[:limit] = params[:limit] || session[:limit] || 24
 
     if load_parts_of_specific_car
       @show_filter = false
