@@ -10,6 +10,7 @@ class CarPart < ActiveRecord::Base
   STATE = [ [ 'Neu', 1000 ], [ 'Neu mit Fehlern', 1500 ], [ 'vom Hersteller generalüberholt', 2000 ], [ 'vom Verkäufer generalüberholt', 2500 ], [ 'Gebraucht', 3000 ], [ 'Als Ersatzteil/defekt', 7000 ] ]
 
   belongs_to :car, inverse_of: :car_parts
+  belongs_to :storage, :inverse_of => :car_parts
 
   def formatted_id
     id_as_string = id.to_s
