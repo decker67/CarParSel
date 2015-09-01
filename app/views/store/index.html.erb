@@ -1,6 +1,10 @@
+<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
 <h1>Artikel
   <small>lagern</small>
 </h1>
+
 
 <input id="scanner" style="display: none;" type="file" accept="image/*;capture=camera">
 
@@ -19,26 +23,26 @@
 
 <script>
 
-
     navigator.getUserMedia = navigator.getUserMedia ||
             navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
     var videoSelect = document.querySelector('select#videoSource');
     var buttonScan = document.querySelector('button#scan');
 
-    MediaStreamTrack.getSources(gotSources);
-
-    function gotSources(sourceInfos) {
-        for (var i = 0; i !== sourceInfos.length; ++i) {
-            var sourceInfo = sourceInfos[i];
-            var option = document.createElement('option');
-            option.value = sourceInfo.id;
-            if (sourceInfo.kind === 'video') {
-                option.text = sourceInfo.label || 'camera ' + (videoSelect.length + 1);
-                videoSelect.appendChild(option);
+    MediaStreamTrack.getSources(
+        function gotSources(sourceInfos) {
+            console.log('sourceInfos', sourceInfos);
+            for (var i = 0; i !== sourceInfos.length; ++i) {
+                var sourceInfo = sourceInfos[i];
+                var option = document.createElement('option');
+                option.value = sourceInfo.id;
+                if (sourceInfo.kind === 'video') {
+                    option.text = sourceInfo.label || 'camera ' + (videoSelect.length + 1);
+                    videoSelect.appendChild(option);
+                }
             }
         }
-    }
+    );
 
     function start() {
         if (!!window.stream) {
@@ -67,3 +71,4 @@
     buttonScan.onclick = scan;
 
 </script>
+
