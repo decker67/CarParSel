@@ -18,6 +18,8 @@ CarParSel::Application.routes.draw do
 
   get '/car_parts/index_all_parts' => 'car_parts#index_all_parts', as: 'all_car_parts'
 
+  get '/car_parts/print_all_parts' => 'car_parts#print_all_parts', as: 'print_all_parts'
+
   resources :car_parts
 
   resources :model_types

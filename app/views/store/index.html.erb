@@ -1,74 +1,127 @@
-<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
 <h1>Artikel
   <small>lagern</small>
 </h1>
 
+<div id="message">Artikel sss ist im Lager X</div>
 
-<input id="scanner" style="display: none;" type="file" accept="image/*;capture=camera">
-
-<div id="video-container" style="position: relative">
-  <video id="camera" width="300" autoplay></video>
-  <button id="scan" style="position: absolute; left: 100px; top: 100px; opacity: 0.5;width: 50px; height: 50px;">Scan</button>
+<div id="outdiv">
+  <video id="video" width="300px" height="300px" autoplay></video>
 </div>
 
+<div id="result">scanning ...</div>
+<%= link_to 'Abbrechen', {controller: 'mobile', action: 'overview'}, class: 'btn btn-info btn-block', role: 'button' %>
+
+<!-- result of the camera, not visible -->
+<canvas id="qr-canvas" width="800" height="600" style="display: none;"></canvas>
 
 
-</button>
+<script type="text/javascript">
 
-<div class="select">
-  <select id="videoSource"></select>
-</div>
+    (function() {
 
-<script>
+        var canvas = document.getElementById("qr-canvas");
+        var context = canvas.getContext("2d");
+        var pictureReady = false;
+        var webkit = false;
+        var videoNode = document.getElementById("video");
 
-    navigator.getUserMedia = navigator.getUserMedia ||
-            navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        function initCanvas(w, h) {
+            canvas.style.width = w + "px";
+            canvas.style.height = h + "px";
+            canvas.width = w;
+            canvas.height = h;
+            context.clearRect(0, 0, w, h);
+        }
 
-    var videoSelect = document.querySelector('select#videoSource');
-    var buttonScan = document.querySelector('button#scan');
 
-    MediaStreamTrack.getSources(
-        function gotSources(sourceInfos) {
-            console.log('sourceInfos', sourceInfos);
-            for (var i = 0; i !== sourceInfos.length; ++i) {
-                var sourceInfo = sourceInfos[i];
-                var option = document.createElement('option');
-                option.value = sourceInfo.id;
-                if (sourceInfo.kind === 'video') {
-                    option.text = sourceInfo.label || 'camera ' + (videoSelect.length + 1);
-                    videoSelect.appendChild(option);
+        function captureToCanvas() {
+            if (pictureReady) {
+                try {
+                    context.drawImage(videoNode, 0, 0);
+                    try {
+                        var qrcodeResult = qrcode.decode();
+                        handleResult(qrcodeResult);
+                        setTimeout(captureToCanvas, 500);
+                    }
+                    catch (e) {
+                        console.log(e);
+                        setTimeout(captureToCanvas, 500);
+                    }
+                }
+                catch (e) {
+                    console.log(e);
+                    setTimeout(captureToCanvas, 500);
                 }
             }
         }
-    );
 
-    function start() {
-        if (!!window.stream) {
-            videoElement.src = null;
-            window.stream.stop();
-        }
-        var videoSource = videoSelect.value;
-        var constraints = {
-            video: {
-                optional: [{
-                    sourceId: videoSource
-                }]
+        function handleResult(codeAsText) {
+            //S#nnn or P#nnn
+            var type = codeAsText[0];
+            var id = codeAsText.substr(2);
+            if(type === 'S') {
+                store = id;
+            } else if(type === 'P') {
+                part = id;
             }
-        };
-        navigator.getUserMedia(constraints,
-                function (stream) {
-                    var camera = document.getElementById('camera');
-                    camera.src = window.URL.createObjectURL(stream);
-                },
-                function (error) {
-                    console.log('navigator.getUserMedia error: ', error);
-                });
-    }
 
-    videoSelect.onchange = start;
-    buttonScan.onclick = scan;
+        }
+
+        function read(result) {
+            document.getElementById("result").innerHTML = result;
+        }
+
+
+        function success(stream) {
+            videoNode.src = webkit ? window.webkitURL.createObjectURL(stream) : stream;
+            pictureReady = true;
+            setTimeout(captureToCanvas, 500);
+        }
+
+        function error(error) {
+            pictureReady = false;
+        }
+
+        function load() {
+            initCanvas(800, 600);
+            qrcode.callback = read;
+            initialise();
+        }
+
+        function initialise() {
+
+            MediaStreamTrack.getSources(function(sourceInfos) {
+                var videoSource = null;
+
+                for (var i = 0; i != sourceInfos.length; ++i) {
+                    var sourceInfo = sourceInfos[i];
+                    if (sourceInfo.kind === 'video') {
+                        videoSource = sourceInfo.id;
+                    }
+                }
+
+                var constraints = {
+                    audio: false,
+                    video: {
+                        optional: [ { sourceId: videoSource } ]
+                    }
+                };
+                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+                navigator.getUserMedia(constraints, success, error);
+                webkit = !!navigator.webkitGetUserMedia;
+                setTimeout(captureToCanvas, 500);
+            });
+
+        }
+
+        load();
+
+    }());
 
 </script>
+
+
+
+
 
