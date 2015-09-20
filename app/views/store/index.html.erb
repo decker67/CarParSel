@@ -21,10 +21,14 @@
     (function() {
 
         var canvas = document.getElementById("qr-canvas");
+        var messageNode = document.getElementById('message');
         var context = canvas.getContext("2d");
         var pictureReady = false;
         var webkit = false;
         var videoNode = document.getElementById("video");
+        var storage;
+        var part;
+        var lastCodeAsText;
 
         function initCanvas(w, h) {
             canvas.style.width = w + "px";
@@ -58,14 +62,39 @@
 
         function handleResult(codeAsText) {
             //S#nnn or P#nnn
+            if(lastCodeAsText === codeAsText) {
+                return;
+            }
+            lastCodeAsText = codeAsText
             var type = codeAsText[0];
             var id = codeAsText.substr(2);
             if(type === 'S') {
-                store = id;
+                storage = id;
+                part = undefined;
+                playSound();
             } else if(type === 'P') {
                 part = id;
+                playSound();
             }
 
+            if(storage && part) {
+              storePart(storage, part);
+              playSound();
+            }
+        }
+
+        function playSound() {
+            //var audio = new Audio('audio_file.mp3');
+            //audio.play();
+        }
+
+        function storePart(storage, part) {
+            var requestForStore = '/store_part';
+            var data = { storage: storage, part: part };
+            $.post(requestForStore, data).done(function (result) {
+                messageNode.innerHTML =
+                        result.car_part + ' wird gelagert in ' +  result.storage;
+            });
         }
 
         function read(result) {

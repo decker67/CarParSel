@@ -4,6 +4,8 @@ CarParSel::Application.routes.draw do
   get "store/index"
   get "store/search"
 
+  post '/store_part' => 'store#store_part', :format => :json
+
   get "mobile/overview"
 
   resources :storages
@@ -24,6 +26,8 @@ CarParSel::Application.routes.draw do
   post '/car_parts/do_label_printing' => 'car_parts#do_label_printing', as: 'do_label_printing'
 
   resources :car_parts
+  get '/postage_for_postage_id' => 'car_parts#postage_for_postage_id', :format => :json
+  get '/toggle_car_part_state' => 'car_parts#toggle_car_part_state', :format => :json
 
   resources :model_types
 
@@ -32,16 +36,12 @@ CarParSel::Application.routes.draw do
   resources :brands
 
   resources :cars
+  get '/all_models_for_brand' => 'cars#all_models_for_brand', :format => :json
+  get '/all_types_for_model' => 'cars#all_types_for_model', :format => :json
 
   resources :sellers
 
   post '/login' => 'login#login'
-
-  get '/all_models_for_brand' => 'cars#all_models_for_brand', :format => :json
-  get '/all_types_for_model' => 'cars#all_types_for_model', :format => :json
-  get '/postage_for_postage_id' => 'car_parts#postage_for_postage_id', :format => :json
-  get '/toggle_car_part_state' => 'car_parts#toggle_car_part_state', :format => :json
-
 
   get "start/overview"
 
