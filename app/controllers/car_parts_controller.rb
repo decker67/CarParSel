@@ -26,10 +26,32 @@ class CarPartsController < ApplicationController
     redirect_to car_parts_url
   end
 
-  def print_all_parts
-    @car_parts = CarPart.order(id: :asc)
-    pdf = CarPartLabelsPdf.new( @car_parts )
+  #def print_all_parts
+  #  @car_parts = CarPart.order(id: :asc)
+  #  pdf = CarPartLabelsPdf.new( @car_parts )
+  #  send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
+  #end
+
+  def label_printing
+
+  end
+
+  def do_label_printing
+    ids = params[:ids].split(',')
+    count = params[:count].to_i
+    type = params[:label_type]
+    car_parts = nil
+
+    if type == 'new_labels'
+      car_parts = createDummyCarParts(count);
+    else
+      car_parts = getCarParts(ids)
+    end
+
+    pdf = CarPartLabelsPdf.new( car_parts )
     send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
+
+    #redirect_to start_overview_path
   end
 
   def index
@@ -103,6 +125,26 @@ class CarPartsController < ApplicationController
   # private
   # --------------------------------------------------------------------------------------------
   private
+
+  def createDummyCarParts(count)
+    car_parts = []
+    count.times do
+      car_parts << CarPart.create(description: 'bitte erfassen', ebay_state: 0);
+    end
+    car_parts
+  end
+
+  def getCarParts(ids)
+    car_parts = []
+    ids.each do |id|
+      begin
+        car_parts << CarPart.find(id)
+      rescue ActiveRecord::RecordNotFound
+        #simply ignore invalid ids
+      end
+    end
+    car_parts
+  end
 
   def load_parts
     session[:car_id] = params[:car_id] || session[:car_id]

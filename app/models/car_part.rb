@@ -42,6 +42,10 @@ class CarPart < ActiveRecord::Base
   end
 
   def part_number_with_commas
+    if part_number.nil?
+        return part_number
+    end
+
     adjusted_part_numbers = part_number
 
     if !adjusted_part_numbers.include?( ',' )

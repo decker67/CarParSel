@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def base_picture_url(car)
-    car.base_image_url || Parameter.find_by_name('PATH_TO_CAR_PICTURES').value
+    (car && car.base_image_url) || Parameter.find_by_name('PATH_TO_CAR_PICTURES').value
   end
 
   def create_picture_urls(car, car_part, base_url)
@@ -27,7 +27,8 @@ module ApplicationHelper
   end
 
   def prepend_picture_url(base_url, picture_url)
-    return picture_url.start_with?('http://') ? picture_url : base_url + picture_url;
+    return (!picture_url.nil? && picture_url.start_with?('http://')) ?
+        picture_url : base_url + (picture_url.nil? ? '' : picture_url);
   end
 
 end

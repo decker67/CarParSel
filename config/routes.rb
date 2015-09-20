@@ -18,7 +18,10 @@ CarParSel::Application.routes.draw do
 
   get '/car_parts/index_all_parts' => 'car_parts#index_all_parts', as: 'all_car_parts'
 
-  get '/car_parts/print_all_parts' => 'car_parts#print_all_parts', as: 'print_all_parts'
+  #get '/car_parts/print_all_parts' => 'car_parts#print_all_parts', as: 'print_all_parts'
+
+  get '/car_parts/label_printing' => 'car_parts#label_printing', as: 'label_printing'
+  post '/car_parts/do_label_printing' => 'car_parts#do_label_printing', as: 'do_label_printing'
 
   resources :car_parts
 
@@ -38,6 +41,7 @@ CarParSel::Application.routes.draw do
   get '/all_types_for_model' => 'cars#all_types_for_model', :format => :json
   get '/postage_for_postage_id' => 'car_parts#postage_for_postage_id', :format => :json
   get '/toggle_car_part_state' => 'car_parts#toggle_car_part_state', :format => :json
+
 
   get "start/overview"
 

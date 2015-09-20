@@ -1,0 +1,58 @@
+<div class="page-header">
+  <h1>Etikettendruck</h1>
+</div>
+
+
+<%= form_tag :action => :do_label_printing, :method => :post, class: 'form-horizontal' do %>
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= radio_button_tag :label_type, :new_labels, true, id: :new_labels, class: '' %>
+        <%= label_tag :new_labels, 'Etiketten für neue Fahrzeugteile drucken', class: '' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= radio_button_tag :label_type, :old_labels, false, id: :old_labels, class: '' %>
+        <%= label_tag :old_labels, 'Etiketten für bekannte Fahrzeugeteile nachdrucken', class: '' %>
+      </div>
+    </div>
+
+    <div class="form-group" id="count_div">
+      <%= label_tag :count, 'Anzahl', class: 'col-md-1' %>
+      <div class="col-md-1">
+        <%= select_tag :count, options_for_select([24, 48, 72, 96, 144, 192], selected: 24), class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group" id="ids_div" style="display: none">
+      <div class="col-md-8">
+        <%= label_tag :ids, 'Nummern', class: 'col-md-1' %>
+        <%= text_area_tag :ids, '', cols: 40, rows: 5, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= link_to 'Abbrechen', start_overview_path, class: 'btn btn-default' %>
+        <%= submit_tag 'Drucken', class: 'btn btn-default' %>
+      </div>
+    </div>
+
+<% end %>
+
+<%= javascript_tag do %>
+
+    $('#new_labels').on('click', function() {
+      $('#ids_div').hide();
+      $('#count_div').show();
+    });
+
+    $('#old_labels').on('click', function() {
+      $('#count_div').hide();
+      $('#ids_div').show();
+    });
+
+<% end %>
+
