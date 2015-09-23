@@ -2,12 +2,12 @@ class StoragesController < ApplicationController
   before_action :set_storage, only: [:edit, :update, :destroy]
 
   def index
-    @storages = Storage.all.order( :name ).page(params[ :page ]) #.per(24)
+    @storages = Storage.all.order( :name ).page(params[:page]).per(24)
 
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = StorageLabelsPdf.new( @storages )
+        pdf = StorageLabelsPdf.new(@storages)
         send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
       end
     end
