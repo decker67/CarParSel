@@ -55,6 +55,23 @@ class CarPartsController < ApplicationController
   end
 
   def index
+    if !params[:id2add].nil? && params[:id2add] != ''
+      begin
+        carPart = CarPart.find(params[:id2add])
+        if !session[:car_id].nil?
+          carPart.update(car_id: session[:car_id])
+        end
+      rescue ActiveRecord::RecordNotFound
+        normal_index
+      else
+        redirect_to edit_car_part_path(id: params[:id2add])
+      end
+    else
+       normal_index
+    end
+  end
+
+  def normal_index
     load_parts
 
     respond_to do |format|

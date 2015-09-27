@@ -146,7 +146,8 @@
     <%= form_tag '', :method => :get, id: :paging_count, class: 'form-horizontal' do %>
       <div class="form-group" style="margin-bottom: 0px;">
         <div class="col-md-1" style="margin-top: 5px;">Fahrzeugteile</div>
-        <div class="col-md-1" style="margin-left: 10px;"><%= link_to image_tag('plus_16.png'), new_car_part_path, class: 'btn btn-default' %></div>
+        <div class="col-md-2" style="margin-left: 20px;"><%= text_field_tag :id2add, @id2add, onkeyup: 'id2addKeyUpHandler(event)', class: 'form-control col-md-1' %></div>
+        <div class="col-md-1" style="margin-left: 0px;"><%= link_to image_tag('plus_16.png'), new_car_part_path, class: 'btn btn-default' %></div>
         <div class="col-md-2"><%= select_tag :limit, options_for_select([24, 48, 72, 96, 144, 192 ], selected: session[:limit]), onchange: 'limitOnChangeHandler()', class: 'form-control col-md-1' %></div>
         <div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><%= link_to image_tag( 'print_16.png', class: 'btn btn-default'), {page: params[:page], format: :pdf} %></div>
         <!--<div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><!--%= link_to 'Alles', print_all_parts_path %></div>-->
@@ -200,6 +201,13 @@
     '<%= image_tag "ball_3.png" %>',
     '<%= image_tag "ball_4.png" %>'
   ];
+
+
+  function id2addKeyUpHandler(event) {
+    if(event.keyCode === 13) {
+      $('#paging_count').submit();
+    }
+  }
 
   function limitOnChangeHandler() {
     $('#paging_count').submit();
