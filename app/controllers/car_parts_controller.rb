@@ -59,7 +59,8 @@ class CarPartsController < ApplicationController
       begin
         carPart = CarPart.find(params[:id2add])
         if !session[:car_id].nil?
-          carPart.update(car_id: session[:car_id])
+          initializeCarPart(carPart, session[:car_id])
+          carPart.save()
         end
       rescue ActiveRecord::RecordNotFound
         normal_index
@@ -89,18 +90,7 @@ class CarPartsController < ApplicationController
 
   def new
     @car_part = CarPart.new
-    @car_part.car_id = session[:car_id]
-    @car_part.ebay_state = 1 #bereit für ebay
-    @car_part.quantity = 1
-    @car_part.state = 3000 #gebraucht
-
-    car = @car_part.car
-    if !car.nil?
-       brand = car.model_type.nil? || car.model_type.brand_model.nil? || car.model_type.brand_model.brand.nil? ? '' : car.model_type.brand_model.brand.name
-       model = car.model_type.nil? || car.model_type.brand_model.nil? ? '' : car.model_type.brand_model.name
-       type = car.model_type.nil? ? '' : car.model_type.model_type
-       @car_part.description = brand + ' ' + model + ' ' + type
-    end
+    initializeCarPart(@car_part, session[:car_id])
   end
 
   def edit
@@ -142,6 +132,22 @@ class CarPartsController < ApplicationController
   # private
   # --------------------------------------------------------------------------------------------
   private
+
+  def initializeCarPart(carPart, carId)
+    carPart.car_id = carId
+    carPart.ebay_state = 1 #bereit für ebay
+    carPart.quantity = 1
+    carPart.state = 3000 #gebraucht
+
+    car = carPart.car
+    if !car.nil?
+      brand = car.model_type.nil? || car.model_type.brand_model.nil? || car.model_type.brand_model.brand.nil? ? '' : car.model_type.brand_model.brand.name
+      model = car.model_type.nil? || car.model_type.brand_model.nil? ? '' : car.model_type.brand_model.name
+      type = car.model_type.nil? ? '' : car.model_type.model_type
+      id = carPart.id.nil? ? '' : carPart.id.to_s + ' '
+      carPart.description = id + brand + ' ' + model + ' ' + type
+    end
+  end
 
   def createDummyCarParts(count)
     car_parts = []
