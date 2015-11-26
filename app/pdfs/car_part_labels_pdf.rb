@@ -2,7 +2,9 @@ class CarPartLabelsPdf
 
   require 'prawn/labels'
   require 'prawn/measurement_extensions'
-  require 'prawn/qrcode'
+  require 'barby'
+  require 'barby/barcode/code_128'
+  require 'barby/outputter/prawn_outputter'
 
   Prawn::Labels.types = {
       "CarPartLabels" => {
@@ -25,32 +27,13 @@ class CarPartLabelsPdf
                           "shrink_to_fit" => true ) do |pdf, car_part|
       #car_part.id = 12345678901234567890
       id = car_part.id.to_s.reverse.scan(/\d{1,3}/).join(" ").reverse
-      qrcode_text = 'P#' + car_part.id.to_s
+      barcode_text = 'P#' + car_part.id.to_s
+      barcode = Barby::Code128B.new(barcode_text)
+      outputter = Barby::PrawnOutputter.new(barcode)
       pdf.indent 0 do #15 do
-        #pdf.text car_part.formatted_id, style: :bold, size: 12
-        ##brand_name, model_name, model_type = name_of_car( car_part )
-        #pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 8
-        #pdf.text car_part.part_number_with_commas, size: 8, style: :bold
-        #pdf.text car_part.car.car_identifier, size: 8
-        #pdf.text car_part.description, size: 8
-
-        #brand_name, model_name, model_type = name_of_car( car_part )
-        #qrcode_text = car_part.formatted_id + ';' +
-        #    brand_name + ';' +
-        #    model_name + ';' +
-        #    model_type + ';' +
-        #    car_part.part_number_with_commas + ';' +
-        #    car_part.car.car_identifier + ';' +
-        #    car_part.description
-
-        pdf.print_qr_code(qrcode_text, :extent=>3.send(:cm), :stroke=>false, :level=>:h)
-        pdf.text_box(id, :at => [80, 53], :width => 120, :size => 24)
-        #pdf.text car_part.formatted_id, style: :bold, size: 12
-        #brand_name, model_name, model_type = name_of_car( car_part )
-        #pdf.text brand_name + ' ' + model_name + ' ' + model_type, size: 8
-        #pdf.text car_part.part_number_with_commas, size: 8, style: :bold
-        #pdf.text car_part.car.car_identifier, size: 8
-        #pdf.text car_part.description, size: 8
+        outputter.annotate_pdf(pdf)
+        #pdf.print_qr_code(qrcode_text, :extent=>3.send(:cm), :stroke=>false, :level=>:h)
+        pdf.text_box(id, :at => [100, 53], :width => 120, :size => 24)
       end
     end
   end

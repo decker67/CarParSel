@@ -2,7 +2,10 @@ class StorageLabelsPdf
 
   require 'prawn/labels'
   require 'prawn/measurement_extensions'
-  require 'prawn/qrcode'
+  require 'barby'
+  require 'barby/barcode/code_128'
+  require 'barby/outputter/prawn_outputter'
+
 
   Prawn::Labels.types = {
       "StorageLabels" => {
@@ -24,10 +27,12 @@ class StorageLabelsPdf
                           type: "StorageLabels",
                           "shrink_to_fit" => true ) do |pdf, storage|
 
-      qrcode_text = 'S#' + storage.id.to_s
+      barcode_text = 'S#' + storage.id.to_s
+      barcode = Barby::Code128B.new(barcode_text)
+      outputter = Barby::PrawnOutputter.new(barcode)
       pdf.indent 0 do #15 do
-        pdf.print_qr_code(qrcode_text, :extent=>3.send(:cm), :stroke=>false, :level=>:h)
-        pdf.text_box(storage.name, :at => [80, 53], :width => 120, :size => 16)
+        outputter.annotate_pdf(pdf)
+        pdf.text_box(storage.name, :at => [100, 53], :width => 120, :size => 16)
       end
     end
   end
