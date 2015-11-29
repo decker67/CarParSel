@@ -22,6 +22,7 @@ module CarParSel
     config.i18n.default_locale = :de
 
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    config.assets.paths << Rails.root.join('sounds')
 
     # own error div for each input field
     #config.action_view.field_error_proc = Proc.new { |html_tag, instance|

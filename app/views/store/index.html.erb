@@ -1,153 +1,124 @@
-
 <h1>Artikel
   <small>lagern</small>
 </h1>
 
-<div id="message">Artikel sss ist im Lager X</div>
+<div id="message">-</div>
+<audio id="scan-sound" src="/assets/scan.mp3"></audio>
 
-<div id="outdiv">
-  <video id="video" width="300px" height="300px" autoplay></video>
-</div>
+<!-- scanner image -->
+<div id="interactive" class="viewport"></div>
 
-<div id="result">scanning ...</div>
-<%= link_to 'Abbrechen', {controller: 'mobile', action: 'overview'}, class: 'btn btn-info btn-block', role: 'button' %>
+<%= link_to 'Abbrechen', {controller: 'mobile', action: 'overview'}, class: 'btn btn-lg btn-info btn-block', role: 'button' %>
 
-<!-- result of the camera, not visible -->
-<canvas id="qr-canvas" width="800" height="600" style="display: none;"></canvas>
+<div id="log"></div>
 
 
 <script type="text/javascript">
 
-    (function() {
+    try {
 
-        var canvas = document.getElementById("qr-canvas");
-        var messageNode = document.getElementById('message');
-        var context = canvas.getContext("2d");
-        var pictureReady = false;
-        var webkit = false;
-        var videoNode = document.getElementById("video");
-        var storage;
-        var part;
-        var lastCodeAsText;
+        (function () {
 
-        function initCanvas(w, h) {
-            canvas.style.width = w + "px";
-            canvas.style.height = h + "px";
-            canvas.width = w;
-            canvas.height = h;
-            context.clearRect(0, 0, w, h);
-        }
+            var audioNode = document.getElementById("scan-sound");
+            var messageNode = document.getElementById('message');
+            var lastCodeAsText;
+            var storageId;
+            var partId;
 
-
-        function captureToCanvas() {
-            if (pictureReady) {
-                try {
-                    context.drawImage(videoNode, 0, 0);
-                    try {
-                        var qrcodeResult = qrcode.decode();
-                        handleResult(qrcodeResult);
-                        setTimeout(captureToCanvas, 500);
-                    }
-                    catch (e) {
-                        console.log(e);
-                        setTimeout(captureToCanvas, 500);
-                    }
+            function handleResult(codeAsText) {
+                //S#nnn or P#nnn
+                if (lastCodeAsText === codeAsText) {
+                    return;
                 }
-                catch (e) {
-                    console.log(e);
-                    setTimeout(captureToCanvas, 500);
-                }
-            }
-        }
-
-        function handleResult(codeAsText) {
-            //S#nnn or P#nnn
-            if(lastCodeAsText === codeAsText) {
-                return;
-            }
-            lastCodeAsText = codeAsText
-            var type = codeAsText[0];
-            var id = codeAsText.substr(2);
-            if(type === 'S') {
-                storage = id;
-                part = undefined;
-                playSound();
-            } else if(type === 'P') {
-                part = id;
-                playSound();
-            }
-
-            if(storage && part) {
-              storePart(storage, part);
-              playSound();
-            }
-        }
-
-        function playSound() {
-            //var audio = new Audio('audio_file.mp3');
-            //audio.play();
-        }
-
-        function storePart(storage, part) {
-            var requestForStore = '/store_part';
-            var data = { storage: storage, part: part };
-            $.post(requestForStore, data).done(function (result) {
-                messageNode.innerHTML =
-                        result.car_part + ' wird gelagert in ' +  result.storage;
-            });
-        }
-
-        function read(result) {
-            document.getElementById("result").innerHTML = result;
-        }
-
-
-        function success(stream) {
-            videoNode.src = webkit ? window.webkitURL.createObjectURL(stream) : stream;
-            pictureReady = true;
-            setTimeout(captureToCanvas, 500);
-        }
-
-        function error(error) {
-            pictureReady = false;
-        }
-
-        function load() {
-            initCanvas(800, 600);
-            qrcode.callback = read;
-            initialise();
-        }
-
-        function initialise() {
-
-            MediaStreamTrack.getSources(function(sourceInfos) {
-                var videoSource = null;
-
-                for (var i = 0; i != sourceInfos.length; ++i) {
-                    var sourceInfo = sourceInfos[i];
-                    if (sourceInfo.kind === 'video') {
-                        videoSource = sourceInfo.id;
-                    }
+                lastCodeAsText = codeAsText
+                var type = codeAsText[0];
+                var id = codeAsText.substr(2);
+                if (type === 'S') {
+                    storageId = id;
+                    partId = undefined;
+                    playSound();
+                } else if (type === 'P') {
+                    partId = id;
+                    playSound();
                 }
 
-                var constraints = {
-                    audio: false,
-                    video: {
-                        optional: [ { sourceId: videoSource } ]
-                    }
-                };
-                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-                navigator.getUserMedia(constraints, success, error);
-                webkit = !!navigator.webkitGetUserMedia;
-                setTimeout(captureToCanvas, 500);
+                if (storageId && partId) {
+                    storePart(storageId, partId);
+                    playSound();
+                    playSound();
+                }
+            }
+
+            function playSound() {
+                audioNode.play();
+            }
+
+            function storePart(storageId, partId) {
+                var requestForStore = '/store_part';
+                var data = {storage: storageId, part: partId};
+                $.post(requestForStore, data).done(function (result) {
+                    messageNode.innerHTML =
+                            result.car_part + ' wird gelagert in ' + result.storage;
+                });
+            }
+
+            var App = {
+
+                config: {
+                    inputStream: {
+                        type: "LiveStream",
+                        constraints: {
+                            width: 640,
+                            height: 480,
+                            facing: "environment" // or user
+                        }
+                    },
+                    locator: {
+                        patchSize: "medium",
+                        halfSample: true
+                    },
+                    numOfWorkers: 4,
+                    decoder: {
+                        readers: ["code_128_reader"]
+                    },
+                    locate: true
+                },
+
+                init: function () {
+                    var self = this;
+
+                    Quagga.init(this.config, function (error) {
+                        if (error) {
+                            throw new Error(error);
+                        }
+                        Quagga.start();
+                        //Quagga.stop();
+                    });
+                },
+
+                lastResult: null
+            };
+
+            App.init();
+
+            Quagga.onDetected(function (result) {
+                var code = result.codeResult.code;
+                //log(code);
+                handleResult(code);
             });
 
-        }
+        }());
 
-        load();
+    }
+    catch (exception) {
+        log('Error:' + exception.stack);
+    }
 
-    }());
-
+    function log(value) {
+        var errorNode = document.getElementById('log');
+        var textNode = document.createTextNode(value);
+        errorNode.appendChild(textNode);
+    }
 </script>
 
 
