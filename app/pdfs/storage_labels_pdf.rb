@@ -14,7 +14,7 @@ class StorageLabelsPdf
           "left_margin"   => 2.mm,
           "columns"       => 3,
           "rows"          => 8,
-          "column_gutter" => 10.mm,
+          "column_gutter" => 14.mm,
           "row_gutter"    => 13.mm
       } }
 
@@ -30,9 +30,9 @@ class StorageLabelsPdf
       barcode_text = 'S#' + storage.id.to_s
       barcode = Barby::Code128B.new(barcode_text)
       outputter = Barby::PrawnOutputter.new(barcode)
-      pdf.indent 0 do #15 do
+      pdf.indent 15 do
         outputter.annotate_pdf(pdf)
-        pdf.text_box(storage.name, :at => [100, 53], :width => 120, :size => 16)
+        pdf.text_box(storage.name);#, :at => [100, 53], :width => 120, :size => 16)
       end
     end
   end

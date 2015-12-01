@@ -30,10 +30,10 @@ class CarPartLabelsPdf
       barcode_text = 'P#' + car_part.id.to_s
       barcode = Barby::Code128B.new(barcode_text)
       outputter = Barby::PrawnOutputter.new(barcode)
-      pdf.indent 0 do #15 do
+      pdf.indent 15 do
         outputter.annotate_pdf(pdf)
         #pdf.print_qr_code(qrcode_text, :extent=>3.send(:cm), :stroke=>false, :level=>:h)
-        pdf.text_box(id, :at => [100, 53], :width => 120, :size => 24)
+        pdf.text_box(id);#, :at => [100, 53], :width => 120, :size => 24)
       end
     end
   end

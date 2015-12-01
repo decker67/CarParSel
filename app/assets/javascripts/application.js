@@ -15,6 +15,6 @@
 //= require turbolinks
 //= require_tree
 //= require bootstrap
-//= require quaggaJS/dist/quagga
+//= require quaggaJS/dist/quagga.min
 
 

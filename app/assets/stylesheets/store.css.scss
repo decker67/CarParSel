@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.cancel-button {
+  margin-top: 10px;
+  float: right;
+}
+
 #message {
   text-align: center;
   border: 1px solid green;
@@ -11,14 +16,19 @@
 #interactive.viewport {
   border: 1px solid black;
   width: 100%;
-  //height: 300px;
+  height: 400px;
   background-color: black;
   margin-bottom: 5px;
 }
 
-#interactive.viewport canvas, video {
+#interactive canvas {
   width: 100%;
-  height: 300px;
+  height: 400px;
+}
+
+#interactive video  {
+  width: 100%;
+  height: 400px;
 }
 
 #interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
