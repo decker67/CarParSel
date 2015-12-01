@@ -1,1 +1,0 @@
-mysqldump -u root -padmin carparsel --result-file=dump.sql
