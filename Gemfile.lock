@@ -55,6 +55,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.10.1)
+    mysql2 (0.3.16)
     pdf-core (0.2.5)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
@@ -104,7 +105,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.9)
     squeel (1.1.1)
       activerecord (>= 3.0)
       activesupport (>= 3.0)
@@ -133,13 +133,13 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
+  mysql2
   prawn
   prawn-labels
   rails (= 4.0.2)
   rails-i18n
   sass-rails (~> 4.0.0)
   sdoc
-  sqlite3
   squeel
   turbolinks
   uglifier (>= 1.3.0)
