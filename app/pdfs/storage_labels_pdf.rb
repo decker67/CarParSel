@@ -14,7 +14,7 @@ class StorageLabelsPdf
           "left_margin"   => 2.mm,
           "columns"       => 3,
           "rows"          => 8,
-          "column_gutter" => 14.mm,
+          "column_gutter" => 10.mm,
           "row_gutter"    => 13.mm
       } }
 

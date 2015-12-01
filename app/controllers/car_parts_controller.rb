@@ -26,11 +26,11 @@ class CarPartsController < ApplicationController
     redirect_to car_parts_url
   end
 
-  #def print_all_parts
-  #  @car_parts = CarPart.order(id: :asc)
-  #  pdf = CarPartLabelsPdf.new( @car_parts )
-  #  send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
-  #end
+  def print_all_parts
+    @car_parts = CarPart.order(id: :asc)
+    pdf = CarPartLabelsPdf.new( @car_parts )
+    send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
+  end
 
   def label_printing
 
