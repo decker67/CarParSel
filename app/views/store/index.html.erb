@@ -1,6 +1,6 @@
 <h1>Artikel
   <small>lagern</small>
-  <%= link_to 'Abbrechen', {controller: 'mobile', action: 'overview'}, class: 'cancel-button btn btn-info', role: 'button' %>
+  <%= link_to 'Abbrechen', {controller: 'mobile', action: 'overview'}, class: 'cancel-button btn btn-info', role: 'button', id: 'stopp-button' %>
 </h1>
 
 <div id="store-info">
@@ -94,10 +94,15 @@
 
                     Quagga.init(this.config, function (error) {
                         if (error) {
+                            log(error.name + ' ' + error.message);
+
                             throw new Error(error);
                         }
                         Quagga.start();
-                        //Quagga.stop();
+                        var stoppButtonNode = document.getElementById('stopp-button');
+                        stoppButtonNode.onclick = function () {
+                            Quagga.stop();
+                        };
                     });
                 },
 
@@ -124,6 +129,7 @@
         var textNode = document.createTextNode(value);
         errorNode.appendChild(textNode);
     }
+
 </script>
 
 

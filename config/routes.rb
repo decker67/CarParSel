@@ -1,12 +1,15 @@
 CarParSel::Application.routes.draw do
 
+  post '/store_part' => 'store#store_part', :format => :json
+
+  get '/search_part' => 'store#search_part', :format => :json
+  post '/store_part_found' => 'store#store_part_found', :format => :json
+
+  get "mobile/overview"
+
   get "cargo_list/index"
   get "store/index"
   get "store/search"
-
-  post '/store_part' => 'store#store_part', :format => :json
-
-  get "mobile/overview"
 
   resources :storages
 

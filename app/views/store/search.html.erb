@@ -1,0 +1,84 @@
+<h1>Artikel
+<small>suchen</small>
+<%= link_to 'Abbrechen', {controller: 'mobile', action: 'overview'}, class: 'cancel-button btn btn-info', role: 'button', id: 'stopp-button' %>
+</h1>
+
+<div class="form-group">
+  <label for="partId">Artikelnummer</label>
+  <input type="number" class="form-control" id="partId" placeholder="id">
+</div>
+
+<div class="form-group">
+  <label>Artikelbezeichnung</label>
+  <label id="carPartDetails" class="form-control"></label>
+</div>
+
+<div class="form-group">
+  <label>Lagerort</label>
+  <label id="storageDetails" class="form-control"></label>
+</div>
+
+<button id="found" class="btn btn-success">gefunden</button>
+<button id="not-found" class="btn btn-danger">fehlt</button>
+
+<script type="text/javascript">
+
+    var carPartId;
+    var carPartDetailsNode = $('#carPartDetails');
+    var storageDetailsNode = $('#storageDetails');
+    var partIdNode = $('#partId');
+    var foundNode = $('#found');
+    var notFoundNode = $('#not-found');
+
+    function init() {
+        disableKeys(true);
+        partIdNode.focus();
+        carPartDetailsNode.text('');
+        storageDetailsNode.text('');
+    }
+
+    function findCarPartById(partId) {
+        var requestForFind = '/search_part';
+        $.get(requestForFind, {partId: partId}).done(function (result) {
+            if (result.car_part) {
+                carPartDetailsNode.text(result.car_part);
+                storageDetailsNode.text(result.storage);
+                disableKeys(false);
+            }
+        });
+    }
+
+    function storePartFound(carPartId, found) {
+        var requestForStore = '/store_part_found';
+        var data = {found: found, carPartId: carPartId};
+        $.post(requestForStore, data).done(function (result) {
+            partIdNode.val('');
+        });
+    }
+
+    partIdNode.keydown(function (e) {
+        if (e.keyCode == 9 || e.keyCode == 13) {
+            carPartId = partIdNode.val();
+            findCarPartById(carPartId);
+        }
+    });
+
+    foundNode.click(function () {
+        storePartFound(carPartId, true);
+        disableKeys(true);
+        init();
+    });
+
+    notFoundNode.click(function () {
+        storePartFound(carPartId, false);
+        disableKeys(true);
+        init();
+    });
+
+    function disableKeys(enable) {
+        foundNode.attr('disabled', enable);
+        notFoundNode.attr('disabled', enable);
+    }
+
+</script>
+
