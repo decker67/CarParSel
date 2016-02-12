@@ -150,8 +150,7 @@
         <div class="col-md-1" style="margin-left: 0px;"><%= link_to image_tag('plus_16.png'), new_car_part_path, class: 'btn btn-default' %></div>
         <div class="col-md-2"><%= select_tag :limit, options_for_select([24, 48, 72, 96, 144, 192 ], selected: session[:limit]), onchange: 'limitOnChangeHandler()', class: 'form-control col-md-1' %></div>
         <div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><%= link_to image_tag( 'print_16.png', class: 'btn btn-default'), {page: params[:page], format: :pdf} %></div>
-        <div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><%= link_to 'Alles', print_all_parts_path %></div>
-        <div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><%= link_to image_tag( 'export_16.png', class: 'btn btn-default'), {format: :csv} %></div>
+        <div class="col-md-1" style="margin-left: 10px; margin-top: 2px;"><%= link_to image_tag( 'export_16.png', class: 'btn btn-default'), export_all_parts_path(format: :csv) %></div>
       </div>
     <% end %>
 
@@ -181,7 +180,7 @@
         <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
         <td class="vertical_centered"><%= car_part.part_number %></td>
         <td><%= car_part.formatted_id %></td>
-        <td><%= car_part.stock %></td>
+        <td><%= car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name %></td>
         <td><%= link_to image_tag('ebay_16.png'), {controller: 'ebay', action: 'create', id: car_part, from_url: request.fullpath}, class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
         <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>

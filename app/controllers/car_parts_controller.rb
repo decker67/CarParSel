@@ -26,14 +26,17 @@ class CarPartsController < ApplicationController
     redirect_to car_parts_url
   end
 
-  def print_all_parts
+  def export_all_parts
     @car_parts = CarPart.order(id: :asc)
-    pdf = CarPartLabelsPdf.new( @car_parts )
-    send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
+    respond_to do |format|
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"car_parts.csv\""
+        headers['Content-Type'] ||= 'text/csv; charset=iso8859-1; header=present'
+      end
+    end
   end
 
   def label_printing
-
   end
 
   def do_label_printing
@@ -80,10 +83,6 @@ class CarPartsController < ApplicationController
       format.pdf do
         pdf = CarPartLabelsPdf.new( @car_parts )
         send_data pdf.render, filename: 'etiketten.pdf', type: 'application/pdf'
-      end
-      format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\"car_parts.csv\""
-        headers['Content-Type'] ||= 'text/csv; charset=iso8859-1; header=present'
       end
     end
   end

@@ -1,0 +1,8 @@
+<%- headers = ['interne Artikelnummer', 'Lagerort', 'Artikelbezeichnung'] -%>
+<%= CSV.generate_line headers %>
+<%- @car_parts.each do |car_part| -%>
+    <%= CSV.generate_line([car_part.formatted_id,
+                           car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
+                           car_part.description
+                           ]).html_safe %>
+<%- end -%>

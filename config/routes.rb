@@ -23,7 +23,7 @@ CarParSel::Application.routes.draw do
 
   get '/car_parts/index_all_parts' => 'car_parts#index_all_parts', as: 'all_car_parts'
 
-  get '/car_parts/print_all_parts' => 'car_parts#print_all_parts', as: 'print_all_parts'
+  get '/car_parts/export_all_parts' => 'car_parts#export_all_parts', as: 'export_all_parts'
 
   get '/car_parts/label_printing' => 'car_parts#label_printing', as: 'label_printing'
   post '/car_parts/do_label_printing' => 'car_parts#do_label_printing', as: 'do_label_printing'
