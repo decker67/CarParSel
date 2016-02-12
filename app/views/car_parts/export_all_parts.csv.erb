@@ -4,5 +4,5 @@
     <%= CSV.generate_line([car_part.formatted_id,
                            car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
                            car_part.description
-                           ]).html_safe %>
+                           ]).html_safe.strip %>
 <%- end -%>
