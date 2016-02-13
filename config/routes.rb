@@ -31,6 +31,8 @@ CarParSel::Application.routes.draw do
   resources :car_parts
   get '/postage_for_postage_id' => 'car_parts#postage_for_postage_id', :format => :json
   get '/toggle_car_part_state' => 'car_parts#toggle_car_part_state', :format => :json
+  get '/reject_car_part' => 'car_parts#reject_car_part', :format => :json
+  get '/separate_car_part' => 'car_parts#separate_car_part', :format => :json
 
   resources :model_types
 

@@ -7,7 +7,8 @@ class CarPart < ActiveRecord::Base
 
   AUCTION_TYPES = [ [ 'Festpreis', 0 ], [ 'Auktion', 1 ] ]
   AUCTION_STATE = [ [ 'In Bearbeitung', 0 ], [ 'Bei ebay einstellen', 1 ], [ 'FVL fehlt', 2 ], [ 'Fertig', 3 ], [ 'Verkauft', 4 ] ]
-  STATE = [ [ 'Neu', 1000 ], [ 'Neu mit Fehlern', 1500 ], [ 'vom Hersteller generalüberholt', 2000 ], [ 'vom Verkäufer generalüberholt', 2500 ], [ 'Gebraucht', 3000 ], [ 'Als Ersatzteil/defekt', 7000 ], [ 'Fehlt', 8000 ]]
+  STATE = [ [ 'Neu', 1000 ], [ 'Neu mit Fehlern', 1500 ], [ 'vom Hersteller generalüberholt', 2000 ], [ 'vom Verkäufer generalüberholt', 2500 ], [ 'Gebraucht', 3000 ], [ 'Als Ersatzteil/defekt', 7000 ], [ 'Fehlt', 8000 ],
+            [ 'Entsorgt', 9000 ], [ 'Spezieller Lagerplatz', 9001 ]]
 
   belongs_to :car, inverse_of: :car_parts
   belongs_to :storage, :inverse_of => :car_parts
@@ -27,6 +28,16 @@ class CarPart < ActiveRecord::Base
 
   def toggle_state
     self.ebay_state = ( ebay_state == 4 ) ? 0 : ( ebay_state + 1 )
+  end
+
+  def reject
+    self.description = 'Artikel bitte entsorgen'
+    self.state = 9000
+  end
+
+  def separate
+    self.description = 'Artikel in speziellem Lagerplatz lagern'
+    self.state = 9001
   end
 
   def is_auction?

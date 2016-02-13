@@ -21,6 +21,22 @@ class CarPartsController < ApplicationController
                    state_as_string: CarPart::AUCTION_STATE[ car_part.ebay_state ][ 0 ] }
   end
 
+  def reject_car_part
+    id = params[:car_part_id]
+    car_part = CarPart.find( id )
+    car_part.reject
+    car_part.save
+    render json: { description: car_part.description }
+  end
+
+  def separate_car_part
+    id = params[:car_part_id]
+    car_part = CarPart.find( id )
+    car_part.separate
+    car_part.save
+    render json: { description: car_part.description }
+  end
+
   def index_all_parts
     session[:car_id] = nil
     redirect_to car_parts_url
