@@ -181,13 +181,13 @@
         <td class="vertical_centered" id="<%= "#{car_part.id}_description" %>"><%= car_part.description.truncate(60, omission: '...') %></td>
         <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
         <td class="vertical_centered"><%= car_part.part_number %></td>
-        <td><%= car_part.formatted_id %></td>
-        <td><%= car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name %></td>
-        <td><%= image_tag("reject_16.png", ondblclick: 'rejectClickHandler( this )', 'data-id' => "#{car_part.id}" ) %> </td>
-        <td><%= image_tag("dropbox_16.png", ondblclick: 'separateClickHandler( this )', 'data-id' => "#{car_part.id}" ) %> </td>
-        <td><%= link_to image_tag('ebay_16.png'), {controller: 'ebay', action: 'create', id: car_part, from_url: request.fullpath}, class: 'btn btn-default' %></td>
-        <td><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
-        <td><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
+        <td class="vertical_centered"><%= car_part.formatted_id %></td>
+        <td class="vertical_centered"><%= car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name %></td>
+        <td class="vertical_centered"><%= image_tag("reject_16.png", ondblclick: 'rejectClickHandler( this )', 'data-id' => "#{car_part.id}" ) %> </td>
+        <td class="vertical_centered"><%= image_tag("dropbox_16.png", ondblclick: 'separateClickHandler( this )', 'data-id' => "#{car_part.id}" ) %> </td>
+        <td class="vertical_centered"><%= link_to image_tag('ebay_16.png'), {controller: 'ebay', action: 'create', id: car_part, from_url: request.fullpath}, class: 'btn btn-default' %></td>
+        <td class="vertical_centered"><%= link_to image_tag('pencil_16.png'), edit_car_part_path(car_part), class: 'btn btn-default' %></td>
+        <td class="vertical_centered"><%= link_to image_tag('trash_16.png'), car_part, method: :delete, data: {confirm: 'Sind Sie sicher?'}, class: 'btn btn-default' %></td>
       </tr>
     <% end %>
     </tbody>
@@ -249,7 +249,7 @@
 
   function changeDescription(id, value) {
     var tag = $('#' + id + '_description');
-    console.log(id, value, tag);
+    //console.log(id, value, tag);
     tag[0].innerHTML = value;
   }
 

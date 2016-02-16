@@ -52,14 +52,15 @@ class StoreController < ApplicationController
       storage = Storage.find(storageId)
       storageInfo = storage.name
       car_part = CarPart.find(carPartId)
+      previous_storage = car_part.storage_id;
       carPartInfo = car_part.description
       car_part.update(storage_id: storage.id)
     rescue ActiveRecord::RecordNotFound
     ensure
       render json: {
           car_part: carPartInfo,
-          storage: storageInfo
-      }
+          storage: storageInfo,
+          previous_storage: previous_storage }
     end
   end
 

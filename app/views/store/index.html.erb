@@ -13,115 +13,125 @@
 <!-- scanner image -->
 <div id="interactive" class="viewport"></div>
 
+<div>
+  <%= button_tag 'Undo', type: 'button', onclick: 'undoClickHandler()', class: 'btn btn-danger', role: 'button' %>
+</div>
+
 <div id="log"></div>
 
 
 <script type="text/javascript">
 
-    try {
+try {
+    var audioNode = document.getElementById("scan-sound");
+    var storeIdNode = document.getElementById('store-id');
+    var messageNode = document.getElementById('message');
 
-        (function () {
+    var lastCodeAsText;
+    var storageId;
+    var partId;
+    var previous_storage;
+    var previous_partId;
 
-            var audioNode = document.getElementById("scan-sound");
-            var storeIdNode = document.getElementById('store-id');
-            var messageNode = document.getElementById('message');
-            var lastCodeAsText;
-            var storageId;
-            var partId;
-
-            function handleResult(codeAsText) {
-                //S#nnn or P#nnn
-                if (lastCodeAsText === codeAsText) {
-                    return;
-                }
-                lastCodeAsText = codeAsText
-                var type = codeAsText[0];
-                var id = codeAsText.substr(2);
-                if (type === 'S') {
-                    storageId = id;
-                    partId = undefined;
-                    storeIdNode.textContent = storageId;
-                    playSound();
-                } else if (type === 'P') {
-                    partId = id;
-                    playSound();
-                }
-
-                if (storageId && partId) {
-                    storePart(storageId, partId);
-                    playSound();
-                    playSound();
-                }
-            }
-
-            function playSound() {
-                audioNode.play();
-            }
-
-            function storePart(storageId, partId) {
-                var requestForStore = '/store_part';
-                var data = {storage: storageId, part: partId};
-                $.post(requestForStore, data).done(function (result) {
-                    messageNode.innerHTML =
-                            result.car_part + ' wird gelagert in ' + result.storage;
-                });
-            }
-
-            var App = {
-
-                config: {
-                    inputStream: {
-                        type: "LiveStream",
-                        constraints: {
-                            width: 640,
-                            height: 100,
-                            facing: "environment" // or user
-                        }
-                    },
-                    locator: {
-                        patchSize: "medium",
-                        halfSample: true
-                    },
-                    numOfWorkers: 4,
-                    decoder: {
-                        readers: ["code_128_reader"]
-                    },
-                    locate: true
-                },
-
-                init: function () {
-                    var self = this;
-
-                    Quagga.init(this.config, function (error) {
-                        if (error) {
-                            log(error.name + ' ' + error.message);
-
-                            throw new Error(error);
-                        }
-                        Quagga.start();
-                        var stoppButtonNode = document.getElementById('stopp-button');
-                        stoppButtonNode.onclick = function () {
-                            Quagga.stop();
-                        };
-                    });
-                },
-
-                lastResult: null
-            };
-
-            App.init();
-
-            Quagga.onDetected(function (result) {
-                var code = result.codeResult.code;
-                //log(code);
-                handleResult(code);
-            });
-
-        }());
-
+    function storePart(storageId, partId) {
+        var requestForStore = '/store_part';
+        var data = {storage: storageId, part: partId};
+        $.post(requestForStore, data).done(function (result) {
+            messageNode.innerHTML =
+                    result.car_part + ' wird gelagert in ' + result.storage;
+            previous_partId = partId;
+            previous_storage = result.previous_storage;
+        });
     }
-    catch (exception) {
-        log('Error:' + exception.stack);
+
+    function handleResult(codeAsText) {
+        //S#nnn or P#nnn
+        if (lastCodeAsText === codeAsText) {
+            return;
+        }
+        lastCodeAsText = codeAsText
+        var type = codeAsText[0];
+        var id = codeAsText.substr(2);
+        if (type === 'S') {
+            storageId = id;
+            partId = undefined;
+            storeIdNode.textContent = storageId;
+            playSound();
+        } else if (type === 'P') {
+            partId = id;
+            playSound();
+        }
+
+        if (storageId && partId) {
+            storePart(storageId, partId);
+            playSound();
+            playSound();
+        }
+    }
+
+    function playSound() {
+        audioNode.play();
+    }
+
+    var App = {
+
+        config: {
+            inputStream: {
+                type: "LiveStream",
+                constraints: {
+                    width: 640,
+                    height: 100,
+                    facing: "environment" // or user
+                }
+            },
+            locator: {
+                patchSize: "medium",
+                halfSample: true
+            },
+            numOfWorkers: 4,
+            decoder: {
+                readers: ["code_128_reader"]
+            },
+            locate: true
+        },
+
+        init: function () {
+            var self = this;
+
+            Quagga.init(this.config, function (error) {
+                if (error) {
+                    log(error.name + ' ' + error.message);
+
+                    throw new Error(error);
+                }
+                Quagga.start();
+                var stoppButtonNode = document.getElementById('stopp-button');
+                stoppButtonNode.onclick = function () {
+                    Quagga.stop();
+                };
+            });
+        },
+
+        lastResult: null
+    };
+
+    App.init();
+
+    Quagga.onDetected(function (result) {
+        var code = result.codeResult.code;
+        //log(code);
+        handleResult(code);
+    });
+
+}
+catch (exception) {
+    log('Error:' + exception.stack);
+}
+
+    function undoClickHandler() {
+        if (previous_storage !== undefined && previous_partId !== undefined) {
+            storePart(previous_storage, previous_partId);
+        }
     }
 
     function log(value) {
