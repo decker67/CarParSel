@@ -74,6 +74,8 @@ class CarPartsController < ApplicationController
   end
 
   def index
+    session[:template] = params[:template] || session[:template]
+
     if !params[:id2add].nil? && params[:id2add] != ''
       begin
         carPart = CarPart.find(params[:id2add])

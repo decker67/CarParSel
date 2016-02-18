@@ -10,6 +10,8 @@ class CarPart < ActiveRecord::Base
   STATE = [ [ 'Neu', 1000 ], [ 'Neu mit Fehlern', 1500 ], [ 'vom Hersteller generalüberholt', 2000 ], [ 'vom Verkäufer generalüberholt', 2500 ], [ 'Gebraucht', 3000 ], [ 'Als Ersatzteil/defekt', 7000 ], [ 'Fehlt', 8000 ],
             [ 'Entsorgt', 9000 ], [ 'Spezieller Lagerplatz', 9001 ]]
 
+  EBAY_TEMPLATES = [ [ 'autohalle', 0 ], [ 'euraf', 1 ] ]
+
   belongs_to :car, inverse_of: :car_parts
   belongs_to :storage, :inverse_of => :car_parts
 
