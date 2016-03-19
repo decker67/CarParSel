@@ -178,7 +178,14 @@ class CarPartsController < ApplicationController
     car_parts = []
     ids.each do |id|
       begin
-        car_parts << CarPart.find(id)
+        if id.include? '-'
+          fromId,toId = id.split('-')
+          for i in fromId..toId do
+            car_parts << CarPart.find(i)
+          end
+        else
+          car_parts << CarPart.find(id)
+        end
       rescue ActiveRecord::RecordNotFound
         #simply ignore invalid ids
       end

@@ -1,5 +1,6 @@
 CarParSel::Application.routes.draw do
 
+  get '/get_storage' => 'store#get_storage', :format => :json
   post '/store_part' => 'store#store_part', :format => :json
 
   get '/search_part' => 'store#search_part', :format => :json

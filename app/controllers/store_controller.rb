@@ -8,8 +8,20 @@ class StoreController < ApplicationController
   def search
   end
 
+  def get_storage
+    storageId = params[:id]
+    storage = nil
+    begin
+      storage = Storage.find(storageId)
+    rescue ActiveRecord::RecordNotFound
+    ensure
+      render json: {
+                 storageName: storage.nil? ? 'unbekannt' : storage.name
+             }
+    end
+  end
+
   def search_part
-    result = {}
     partId = params[:partId]
     car_part = nil
     storage = nil
@@ -40,27 +52,26 @@ class StoreController < ApplicationController
   end
 
   def store_part
-    result = {}
-    storageId = params[:storage]
-    carPartId = params[:part]
-    storage = nil
-    car_part = nil
-    storageInfo = 'unbekannt'
-    carPartInfo = 'unbekannt'
+    storageId = params[:storageId]
+    carPartId = params[:partId]
+    errorOccured = false
 
     begin
       storage = Storage.find(storageId)
-      storageInfo = storage.name
-      car_part = CarPart.find(carPartId)
-      previous_storage = car_part.storage_id;
-      carPartInfo = car_part.description
-      car_part.update(storage_id: storage.id)
+      storageName = storage.name
+      carPart = CarPart.find(carPartId)
+      previousStorageId = carPart.storage_id;
+      carPartName = carPart.description
+      carPart.update(storage_id: storage.id)
     rescue ActiveRecord::RecordNotFound
+      errorOccured = true
     ensure
       render json: {
-          car_part: carPartInfo,
-          storage: storageInfo,
-          previous_storage: previous_storage }
+          errorOccured: errorOccured,
+          carPartName: carPartName.nil? ? 'unbekannt' : carPartName,
+          storageName: storageName.nil? ? 'unbekannt' : storageName,
+          previousStorageId: previousStorageId
+      }
     end
   end
 
