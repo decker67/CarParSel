@@ -28,147 +28,141 @@
 
 <script type="text/javascript">
 
-    try {
+    var development = "<%= Rails.env.development? %>";
 
-        var development = "<%= Rails.env.development? %>";
+    var audioNode = document.getElementById("scan-sound");
+    var audioScanEndNode = document.getElementById('scan-end-sound');
+    var storeNameNode = document.getElementById('store-name');
+    var messageNode = document.getElementById('message');
 
-        var audioNode = document.getElementById("scan-sound");
-        var audioScanEndNode = document.getElementById('scan-end-sound');
-        var storeNameNode = document.getElementById('store-name');
-        var messageNode = document.getElementById('message');
+    var storageId;
+    var partId;
+    var previousStorageId;
+    var previousPartId;
 
-        var storageId;
-        var partId;
-        var previousStorageId;
-        var previousPartId;
-
-        var configuration = {
-            inputStream: {
-                type: "LiveStream",
-                constraints: {
-                    width: 640,
-                    height: 100,
-                    facing: "environment" // or user
-                }
-            },
-            locator: {
-                patchSize: "medium",
-                halfSample: true
-            },
-            numOfWorkers: 4,
-            decoder: {
-                readers: ["code_128_reader"]
-            },
-            locate: true
-        };
-
-        if (!development) {
-            init();
-        }
-
-        function init() {
-            Quagga.init(configuration, function (error) {
-                var previousCode;
-                if (error) {
-                    log(error.name + ' ' + error.message);
-                } else {
-                    Quagga.start();
-                    var stoppButtonNode = document.getElementById('stopp-button');
-                    stoppButtonNode.onclick = function () {
-                        Quagga.stop();
-                    };
-                    Quagga.onDetected(function (result) {
-                        var code = result.codeResult.code;
-                        if (code != previousCode) {
-                            previousCode = code;
-                            //log(code);
-                            handleResult(code);
-                        }
-                    });
-                }
-            });
-        }
-
-        function log(value) {
-            var errorNode = document.getElementById('log');
-            var textNode = document.createTextNode(value);
-            errorNode.appendChild(textNode);
-        }
-
-        function handleError(error) {
-            log('Error:' + error);
-        }
-
-        function handleStoreDone(result) {
-            messageNode.innerHTML = result.carPartName + ' wird gelagert in ' + result.storageName;
-            previousPartId = partId;
-            previousStorageId = result.previousStorageId;
-            if (!result.errorOccured) {
-                playScanEnd();
+    var configuration = {
+        inputStream: {
+            type: "LiveStream",
+            constraints: {
+                width: 640,
+                height: 100,
+                facing: "environment" // or user
             }
-        }
+        },
+        locator: {
+            patchSize: "medium",
+            halfSample: true
+        },
+        numOfWorkers: 4,
+        decoder: {
+            readers: ["code_128_reader"]
+        },
+        locate: true
+    };
 
-        function handleResult(codeAsText) {
-            //S#nnn or P#nnn
-            var type = codeAsText[0];
-            var id = codeAsText.substr(2);
-            if (type === 'S') {
-                storageId = id;
-                partId = undefined;
-                getStorageName(storageId);
-                playScanned();
-            } else if (type === 'P') {
-                partId = id;
-                playScanned();
+    if (development == 'false') {
+        init();
+    }
+
+    function init() {
+        Quagga.init(configuration, function (error) {
+            var previousCode;
+            if (error) {
+                log(error.name + ' ' + error.message);
+            } else {
+                Quagga.start();
+                var stoppButtonNode = document.getElementById('stopp-button');
+                stoppButtonNode.onclick = function () {
+                    Quagga.stop();
+                };
+                Quagga.onDetected(function (result) {
+                    var code = result.codeResult.code;
+                    if (code != previousCode) {
+                        previousCode = code;
+                        //log(code);
+                        handleResult(code);
+                    }
+                });
             }
+        });
+    }
 
-            if (storageId && partId) {
-                storePart(storageId, partId, handleStoreDone);
-            }
+    function log(value) {
+        var errorNode = document.getElementById('log');
+        var textNode = document.createTextNode(value);
+        errorNode.appendChild(textNode);
+    }
+
+    function handleError(error) {
+        log('Error:' + error);
+    }
+
+    function handleStoreDone(result) {
+        messageNode.innerHTML = result.carPartName + ' wird gelagert in ' + result.storageName;
+        previousPartId = partId;
+        previousStorageId = result.previousStorageId;
+        if (!result.errorOccured) {
+            playScanEnd();
+        }
+    }
+
+    function handleResult(codeAsText) {
+        //S#nnn or P#nnn
+        var type = codeAsText[0];
+        var id = codeAsText.substr(2);
+        if (type === 'S') {
+            storageId = id;
+            partId = undefined;
+            getStorageName(storageId);
+            playScanned();
+        } else if (type === 'P') {
+            partId = id;
+            playScanned();
         }
 
-        function playScanned() {
-            audioNode.play();
+        if (storageId && partId) {
+            storePart(storageId, partId, handleStoreDone);
         }
+    }
 
-        function playScanEnd() {
-            audioScanEndNode.play();
+    function playScanned() {
+        audioNode.play();
+    }
+
+    function playScanEnd() {
+        audioScanEndNode.play();
+    }
+
+    function getStorageName(id) {
+        var requestForGetStorage = '/get_storage';
+        var data = {id: id};
+        $.get(requestForGetStorage, data).
+                done(function (result) {
+                    storeNameNode.textContent = result.storageName;
+                })
+                .fail(handleError);
+    }
+
+    function storePart(storageId, partId, callback) {
+        var requestForStorePart = '/store_part';
+        var data = {storageId: storageId, partId: partId};
+        $.post(requestForStorePart, data)
+                .done(callback)
+                .fail(handleError);
+    }
+
+    function undoClickHandler() {
+        if (previousStorageId !== undefined && previousPartId !== undefined) {
+            storePart(previousStorageId, previousPartId, handleStoreDone);
         }
+    }
 
-        function getStorageName(id) {
-            var requestForGetStorage = '/get_storage';
-            var data = {id: id};
-            $.get(requestForGetStorage, data).
-                    done(function (result) {
-                        storeNameNode.textContent = result.storageName;
-                    })
-                    .fail(handleError);
-        }
+    function storageScannedClickHandler() {
+        handleResult('S#1');
+    }
 
-        function storePart(storageId, partId, callback) {
-            var requestForStorePart = '/store_part';
-            var data = {storageId: storageId, partId: partId};
-            $.post(requestForStorePart, data)
-                    .done(callback)
-                    .fail(handleError);
-        }
-
-        function undoClickHandler() {
-            if (previousStorageId !== undefined && previousPartId !== undefined) {
-                storePart(previousStorageId, previousPartId, handleStoreDone);
-            }
-        }
-
-        function storageScannedClickHandler() {
-            handleResult('S#1');
-        }
-
-        function articleScannedClickHandler() {
-            handleResult('P#1');
-        }
-
-    } catch (error) {
-        log(error);
+    function articleScannedClickHandler() {
+        handleResult('P#1');
     }
 
 </script>
