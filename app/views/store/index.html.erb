@@ -7,10 +7,13 @@
   Lagerort: <span id="store-name">-</span>
 </div>
 
-<div id="message">-</div>
-<audio id="scan-sound" src="/assets/scan.mp3"></audio>
-<audio id="scan-end-sound" src="/assets/scanEnd.mp3"></audio>
+<div id="article-id">
+  Artikelnummer: <span id="article-name">-</span>
+</div>
 
+<div id="message">-</div>
+<audio id="scan-sound" src="/assets/scan.mp3" type="audio/mpeg"></audio>
+<audio id="scan-end-sound" src="/assets/scanEnd.mp3" type="audio/mpeg"></audio>
 
 <% if Rails.env.development? %>
     <%= button_tag 'Storage Scanned', type: 'button', onclick: 'storageScannedClickHandler()', class: 'btn', role: 'button' %>
@@ -33,6 +36,7 @@
     var audioNode = document.getElementById("scan-sound");
     var audioScanEndNode = document.getElementById('scan-end-sound');
     var storeNameNode = document.getElementById('store-name');
+    var articleId = document.getElementById('article-name');
     var messageNode = document.getElementById('message');
 
     var storageId;
@@ -117,6 +121,7 @@
             playScanned();
         } else if (type === 'P') {
             partId = id;
+            articleId.textContent = partId;
             playScanned();
         }
 
