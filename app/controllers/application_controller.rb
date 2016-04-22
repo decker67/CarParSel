@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  #force_ssl
-
   #http_basic_authenticate_with name: "?", password: "?"
 
   # Prevent CSRF attacks by raising an exception.

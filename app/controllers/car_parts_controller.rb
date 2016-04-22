@@ -181,7 +181,11 @@ class CarPartsController < ApplicationController
         if id.include? '-'
           fromId,toId = id.split('-')
           for i in fromId..toId do
-            car_parts << CarPart.find(i)
+            begin
+              car_parts << CarPart.find(i)
+            rescue ActiveRecord::RecordNotFound
+              #simply ignore invalid ids
+            end
           end
         else
           car_parts << CarPart.find(id)
@@ -213,26 +217,25 @@ class CarPartsController < ApplicationController
         @like_filter = @like_filter || {}
 
         addEqualFilterFor(:id)
+        addEqualFilterFor(:ebay_selling_type)
+        addEqualFilterFor(:ebay_state)
+        addLikeFilterFor(:description)
+        addLikeFilterFor(:part_number)
+
         addBrandFilter
         addBrandModelFilter
         addBrandModelTypeFilter
-        addEqualFilterFor(:ebay_selling_type)
-        addEqualFilterFor(:ebay_state)
 
-        addLikeFilterFor(:description)
-        addLikeFilterFor(:part_number)
-        addEqualFilterFor(:color_code )
-        addEqualFilterFor(:engine_code)
-        addEqualFilterFor(:power)
-        addEqualFilterFor(:power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
-
-        addYearFilterFor(:year_of_construction)
-
-        addEqualFilterFor(:cylinder_capacity)
-        addEqualFilterFor(:fuel)
-        addEqualFilterFor(:gearing)
-        addEqualFilterFor(:key_number2)
-        addEqualFilterFor(:key_number3)
+        addCarPropertyFilter(:color_code)
+        addCarPropertyFilter(:engine_code)
+        addCarPropertyFilter(:power)
+        #addEqualFilterFor(:power, :ps) { |ps| CarsHelper.ps_to_power(ps.to_i).round }
+        #addYearFilterFor(:year_of_construction)
+        addCarPropertyFilter(:cylinder_capacity)
+        addCarPropertyFilter(:fuel)
+        addCarPropertyFilter(:gearing)
+        addCarPropertyFilter(:key_number2)
+        addCarPropertyFilter(:key_number3)
       end
 
       @car_parts = CarPart.where(@equal_filter).order(created_at: :desc).page( params[ :page ] )
@@ -246,6 +249,10 @@ class CarPartsController < ApplicationController
 
   def load_parts_of_specific_car
     !session[:car_id].nil?
+  end
+
+  def addCarPropertyFilter(column)
+    addEqualFilterFor(:car_id, column) { |value| Car.select(:id).where(column => value).load }
   end
 
   def addBrandModelTypeFilter

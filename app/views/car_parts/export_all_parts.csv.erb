@@ -1,9 +1,28 @@
-<%- headers = ['interne Artikelnummer', 'Lagerort', 'Artikelbezeichnung'] -%>
+<%- headers = ['interne Artikelnummer', 'Lagerplatz', 'Bezeichnung', 'Preis', 'Bestand', 'VKK', 'Bild 1', 'eBay Kategorie', 'eBay Shop Kategorie 1', 'eBay Shop Kategorie 2', 'Benutzerdef. Merkmale 1', 'Benutzerdef. Merkmale 2', 'HTML', 'Bezeichnung (eBay)', 'Notiz', 'Sofort-kaufen Preis (eBay)', 'Erstellungsdatum', 'Bei eBay einstellen', 'Aktiver Artikel', 'Zustand', 'Währung Stammdaten', 'Währung eBay-Daten', 'MwSt Satz', 'eBay Marktplatz' ] -%>
 <%= CSV.generate_line headers %>
 <%- @car_parts.each do |car_part| -%>
     <%= CSV.generate_line([car_part.formatted_id,
                            car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
-                           car_part.description
-                           ]).html_safe.strip %>
+                           car_part.description,
+                           car_part.price,
+                           car_part.quantity,
+                           car_part.postage_id, #?
+                           car_part.picture_url1, #add base url
+                           car_part.ebay_shop_category,
+                           car_part.car_id.nil? ? '' : car_part.car.ebay_shop_category,
+                           car_part.car_id.nil? ? '' : car_part.car.ebay_second_shop_category,
+                           car_part.part_number, #Teilenummern: 1234, 1234
+                           'HTML',
+                           car_part.description,
+                           car_part.remark,
+                           car_part.price,
+                           Date.current,
+                           (car_part.ebay_state == 1) ? 'ja' : 'nein',
+                           (car_part.ebay_state == 3) ? 'ja' : 'nein',
+                           car_part.state,
+                           'EUR',
+                           'EUR',
+                           '19',
+                           'DE'
+                          ]).html_safe.strip %>
 <%- end -%>
-<!-- kann weg -->

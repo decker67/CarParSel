@@ -40,7 +40,7 @@ class CarsController < ApplicationController
     end
 
     @cars = Car.where( @equal_filter ).order( created_at: :desc ).page params[ :page ]
-    logger.debug 'SQL:' + @cars.to_sql
+    #logger.debug 'SQL:' + @cars.to_sql
   end
 
   def new
