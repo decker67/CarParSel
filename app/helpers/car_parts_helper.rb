@@ -6,6 +6,34 @@ module CarPartsHelper
     prepend_picture_url(base_picture_url(car), picture_url)
   end
 
+  def create_cvs_line(car_part)
+    [car_part.formatted_id,
+     car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
+     car_part.description,
+     car_part.price,
+     car_part.quantity,
+     car_part.postage_id, #?
+     car_part.picture_url1, #add base url
+     car_part.ebay_shop_category,
+     car_part.car_id.nil? ? '' : car_part.car.ebay_shop_category,
+     car_part.car_id.nil? ? '' : car_part.car.ebay_second_shop_category,
+     car_part.part_number, #Teilenummern: 1234, 1234,
+     car_part.car_id.nil? ? '' : create_car_details(car_part.car),
+     'HTML',
+     car_part.description,
+     car_part.remark,
+     car_part.price,
+     Date.current,
+     (car_part.ebay_state == 1) ? 'ja' : 'nein',
+     (car_part.ebay_state == 3) ? 'ja' : 'nein',
+     car_part.state,
+     'EUR',
+     'EUR',
+     '19',
+     'DE'
+    ]
+  end
+
   def create_car_details(car)
     details = [
         (car.model_type.nil? || car.model_type.brand_model.nil? || car.model_type.brand_model.brand.nil?) ? '' : create_csv_details_from('Marke', car.model_type.brand_model.brand.name),
@@ -24,7 +52,7 @@ module CarPartsHelper
         create_csv_details_from('Schlüsselnummer zu 2/3', car.key_number2 + '/' + car.key_number3),
         create_csv_details_from('Laufleistung', car.mileage.to_s + ' km')
     ]
-    details.join(',')
+    details.join(';')
   end
 
 
