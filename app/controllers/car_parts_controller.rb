@@ -43,7 +43,7 @@ class CarPartsController < ApplicationController
   end
 
   def export_all_parts
-    @car_parts = CarPart.order(id: :asc)
+    load_parts
     respond_to do |format|
       format.csv do
         headers['Content-Disposition'] = "attachment; filename=\"car_parts.csv\""
