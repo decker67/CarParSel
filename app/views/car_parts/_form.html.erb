@@ -43,8 +43,7 @@
     <div class="form-group">
       <%= f.label :postage_id, 'Versandarten', class: 'col-md-3' %>
       <div class="col-md-3">
-        <!--%= f.collection_select :postage_id, Postage.order('name ASC'), :id, :name, { :onchange => 'postageOnChangeHandler( this )', :include_blank => true}, :class => 'form-control' %-->
-        <%= select_tag :postage_id, options_from_collection_for_select(Postage.order('name ASC'), :id, :name), onchange: 'postageOnChangeHandler( this )', include_blank: true, class: 'form-control' %>
+        <%= f.collection_select(:postage_id, Postage.order('name ASC'), :id, :name, {:include_blank => true}, :class => 'form-control') %>
       </div>
     </div>
     <div class="form-group">
@@ -185,9 +184,11 @@
 
 <script>
 
+    $('#car_part_postage_id').on('change', postageOnChangeHandler);
+
     function postageOnChangeHandler(event) {
-        console.log(event);
-        var selectedPostageId = $(event).val();
+        //console.log(this, event);
+        var selectedPostageId = $(event.target).val();
         var requestForPostage = '/postage_for_postage_id?postage_id=' + selectedPostageId;
         $.get(requestForPostage).done(function (result) {
             result = result[0];

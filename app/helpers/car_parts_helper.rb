@@ -7,19 +7,23 @@ module CarPartsHelper
   end
 
   def create_cvs_line(car_part)
+    html = render :text => renderActionInOtherController(
+                      EbayController,
+                      :create,{ id: car_part})
+
     [car_part.formatted_id,
      car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
      car_part.description,
      car_part.price,
      car_part.quantity,
      car_part.postage_id, #?
-     car_part.picture_url1, #add base url
+     car_part.car_id.nil? ? car_part.picture_url1 : car_part.car.base_image_url + car_part.picture_url1,
      car_part.ebay_shop_category,
      car_part.car_id.nil? ? '' : car_part.car.ebay_shop_category,
      car_part.car_id.nil? ? '' : car_part.car.ebay_second_shop_category,
-     car_part.part_number, #Teilenummern: 1234, 1234,
+     'Teilenummern:' + car_part.part_number, #Teilenummern: 1234, 1234,
      car_part.car_id.nil? ? '' : create_car_details(car_part.car),
-     'HTML',
+     html,
      car_part.description,
      car_part.remark,
      car_part.price,
@@ -62,6 +66,13 @@ module CarPartsHelper
     if !field_value.nil? && field_value != ''
       field_name + ':' + field_value
     end
+  end
+
+  def renderActionInOtherController(controller,action,params)
+    c = controller.new
+    c.params = params
+    c.dispatch(action, request)
+    c.response.body
   end
 
 end
