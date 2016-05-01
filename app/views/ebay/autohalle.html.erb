@@ -1,16 +1,19 @@
-<div>
-  <%= label :disable_car_data, 'Spenderfahrzeug ausblenden' %>
-  <%= check_box_tag :disable_car_data, :disable_car_data, false, onclick: 'toggleCarData( this )' %>
-</div>
-<div>
-  <%= text_area_tag :clipboard, 'Bitte <Kopieren> drücken und danach mit <CTRL>+C kopieren.', rows: 4, cols: 80, style: '' %>
-</div>
-<div>
-  <%= button_tag 'Html in die Zwischenablage kopieren', onclick: "copyToClipboard()" %>
-  <% if !@back_to_url.nil? %>
-      <%= link_to 'Zurück', @back_to_url %>
-  <% end %>
-</div>
+<% if !@dont_show_generator_controls %>
+    <div>
+      <%= label :disable_car_data, 'Spenderfahrzeug ausblenden' %>
+      <%= check_box_tag :disable_car_data, :disable_car_data, false, onclick: 'toggleCarData( this )' %>
+    </div>
+    <div>
+      <%= text_area_tag :clipboard, 'Bitte <Kopieren> drücken und danach mit <CTRL>+C kopieren.', rows: 4, cols: 80, style: '' %>
+    </div>
+    <div>
+      <%= button_tag 'Html in die Zwischenablage kopieren', onclick: "copyToClipboard()" %>
+      <% if !@back_to_url.nil? %>
+          <%= link_to 'Zurück', @back_to_url %>
+      <% end %>
+    </div>
+<% end %>
+
 
 <div id="ebay_content">
 <!-- Generiertes Template -->

@@ -187,19 +187,27 @@
     $('#car_part_postage_id').on('change', postageOnChangeHandler);
 
     function postageOnChangeHandler(event) {
-        //console.log(this, event);
-        var selectedPostageId = $(event.target).val();
-        var requestForPostage = '/postage_for_postage_id?postage_id=' + selectedPostageId;
-        $.get(requestForPostage).done(function (result) {
-            result = result[0];
-            //console.log(result)
-            $('#car_part_postage_germany').val(result.postage_germany);
-            $('#car_part_postage_austria').val(result.postage_austria);
-            $('#car_part_postage_swiss').val(result.postage_swiss);
-            $('#car_part_postage_europe_with_eu').val(result.postage_europe_with_eu);
-            $('#car_part_postage_europe_without_eu').val(result.postage_europe_without_eu);
-            $('#car_part_postage_world_wide').val(result.postage_world_wide);
-        });
+        var allPostages = $('#car_part_postage_germany').val() +
+        $('#car_part_postage_austria').val() +
+        $('#car_part_postage_swiss').val() +
+        $('#car_part_postage_europe_with_eu').val() +
+        $('#car_part_postage_europe_without_eu').val() +
+        $('#car_part_postage_world_wide').val();
+        if (allPostages === '') {
+            //console.log(this, event);
+            var selectedPostageId = $(event.target).val();
+            var requestForPostage = '/postage_for_postage_id?postage_id=' + selectedPostageId;
+            $.get(requestForPostage).done(function (result) {
+                result = result[0];
+                //console.log(result)
+                $('#car_part_postage_germany').val(result.postage_germany);
+                $('#car_part_postage_austria').val(result.postage_austria);
+                $('#car_part_postage_swiss').val(result.postage_swiss);
+                $('#car_part_postage_europe_with_eu').val(result.postage_europe_with_eu);
+                $('#car_part_postage_europe_without_eu').val(result.postage_europe_without_eu);
+                $('#car_part_postage_world_wide').val(result.postage_world_wide);
+            });
+        }
     }
 
 

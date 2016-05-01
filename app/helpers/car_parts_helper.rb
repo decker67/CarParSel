@@ -9,7 +9,7 @@ module CarPartsHelper
   def create_cvs_line(car_part)
     html = render :text => renderActionInOtherController(
                       EbayController,
-                      :create,{ id: car_part})
+                      :create,{ id: car_part, dont_show_generator_controls: true})
 
     [car_part.formatted_id,
      car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
