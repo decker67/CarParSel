@@ -22,7 +22,7 @@ module CarPartsHelper
      car_part.car_id.nil? ? '' : car_part.car.ebay_shop_category,
      car_part.car_id.nil? ? '' : car_part.car.ebay_second_shop_category,
      'Teilenummern:' + car_part.part_number, #Teilenummern: 1234, 1234,
-     car_part.car_id.nil? ? '' : create_car_details(car_part.car),
+     car_part.car_id.nil? || !car_part.show_car_details ? '' : create_car_details(car_part.car),
      html,
      car_part.description,
      car_part.remark,

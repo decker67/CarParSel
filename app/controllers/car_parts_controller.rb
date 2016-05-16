@@ -21,6 +21,16 @@ class CarPartsController < ApplicationController
                    state_as_string: CarPart::AUCTION_STATE[ car_part.ebay_state ][ 0 ] }
   end
 
+  #def reject
+  #
+  #  redirect_to car_parts_url
+  #end
+
+  #def separate
+  #
+  #  redirect_to car_parts_url
+  #end
+
   def reject_car_part
     id = params[:car_part_id]
     car_part = CarPart.find( id )

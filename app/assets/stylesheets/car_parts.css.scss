@@ -1,3 +1,21 @@
 // Place all the styles related to the car_parts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#filter {
+
+  label {
+    margin: 0 5px 0 15px;
+    width: 125px;
+  }
+
+  input[type=text], input[type=number], select {
+    margin: 5px;
+    width: 150px;
+  }
+
+  .panel {
+    padding-bottom: 10px;
+  }
+
+}
