@@ -232,6 +232,7 @@ class CarPartsController < ApplicationController
         addLikeFilterFor(:description)
         addLikeFilterFor(:part_number)
 
+        addStorageFilter
         addBrandFilter
         addBrandModelFilter
         addBrandModelTypeFilter
@@ -287,6 +288,10 @@ class CarPartsController < ApplicationController
     end
   end
 
+  def addStorageFilter
+    addEqualFilterFor(:storage_id) { |value| Storage.select(:id).where(id: value).load }
+  end
+
   def reset_filter
     @equal_filter = {}
     @like_filter = {}
@@ -309,6 +314,7 @@ class CarPartsController < ApplicationController
     session[ :gearing ] = nil
     session[ :key_number2 ] = nil
     session[ :key_number3 ] = nil
+    session[ :storage_id ] = nil
   end
 
   def save_and_generate
