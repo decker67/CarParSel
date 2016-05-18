@@ -34,8 +34,8 @@ CarParSel::Application.routes.draw do
   get '/toggle_car_part_state' => 'car_parts#toggle_car_part_state', :format => :json
   get '/reject_car_part' => 'car_parts#reject_car_part', :format => :json
   get '/separate_car_part' => 'car_parts#separate_car_part', :format => :json
-  #post '/car_parts/reject' => 'car_parts#reject', as: 'reject'
-  #post '/car_parts/separate' => 'car_parts#separate', as: 'separate'
+  post '/car_parts/reject' => 'car_parts#reject', as: 'reject'
+  post '/car_parts/separate' => 'car_parts#separate', as: 'separate'
 
 
   resources :model_types
