@@ -1,35 +1,80 @@
-<h1>Artikel
-  <small>lagern</small>
-  <%= link_to 'Abbrechen', {controller: 'mobile', action: 'overview'}, class: 'cancel-button btn btn-info', role: 'button', id: 'stopp-button' %>
-</h1>
+<div id="scanner-page">
+    <h1>Artikel
+      <small>lagern</small>
+      <%= link_to 'Abbrechen', {controller: 'mobile', action: 'overview'}, class: 'cancel-button btn btn-info', role: 'button', id: 'stopp-button' %>
+    </h1>
 
-<div id="store-info">
-  Lagerort: <span id="store-name">-</span>
+    <div id="store-info">
+      Lagerort: <span id="store-name">-</span>
+    </div>
+
+    <div id="article-id">
+      Artikelnummer: <span id="article-name">-</span>
+    </div>
+
+    <div id="message">-</div>
+    <audio id="scan-sound" src="/assets/scan.mp3" type="audio/mpeg"></audio>
+    <audio id="scan-end-sound" src="/assets/scanEnd.mp3" type="audio/mpeg"></audio>
+
+    <div class="form-group" id="partId-group">
+      <label for="partId">Artikelnummer</label>
+      <input type="number" class="form-control" id="partId" placeholder="id">
+    </div>
+
+    <% if Rails.env.development? %>
+        <%= button_tag 'Storage Scanned', type: 'button', onclick: 'storageScannedClickHandler()', class: 'btn', role: 'button' %>
+        <%= button_tag 'Article Scanned', type: 'button', onclick: 'articleScannedClickHandler()', class: 'btn', role: 'button' %>
+    <% else %>
+        <!-- scanner image -->
+        <div id="interactive" class="viewport"></div>
+    <% end %>
+
+    <div>
+      <%= button_tag 'Undo', type: 'button', onclick: 'undoClickHandler()', class: 'btn btn-danger', role: 'button' %>
+    </div>
+
+    <div id="log"></div>
 </div>
-
-<div id="article-id">
-  Artikelnummer: <span id="article-name">-</span>
-</div>
-
-<div id="message">-</div>
-<audio id="scan-sound" src="/assets/scan.mp3" type="audio/mpeg"></audio>
-<audio id="scan-end-sound" src="/assets/scanEnd.mp3" type="audio/mpeg"></audio>
-
-<% if Rails.env.development? %>
-    <%= button_tag 'Storage Scanned', type: 'button', onclick: 'storageScannedClickHandler()', class: 'btn', role: 'button' %>
-    <%= button_tag 'Article Scanned', type: 'button', onclick: 'articleScannedClickHandler()', class: 'btn', role: 'button' %>
-<% else %>
-    <!-- scanner image -->
-    <div id="interactive" class="viewport"></div>
-<% end %>
-
-<div>
-  <%= button_tag 'Undo', type: 'button', onclick: 'undoClickHandler()', class: 'btn btn-danger', role: 'button' %>
-</div>
-
-<div id="log"></div>
 
 <script type="text/javascript">
+
+    var nodeInteractive = $('#interactive');
+    var partIdGroupNode = $('#partId-group');
+    var nodePartIdInput = $('#partId');
+
+    (function (parent) {
+        var touchstartX = 0;
+        var touchendX = 0;
+        var element = document.getElementById('scanner-page');
+
+        partIdGroupNode.hide();
+
+        element.addEventListener('touchstart', function(event) {
+            touchstartX = event.changedTouches[0].pageX;
+        });
+        element.addEventListener('touchend', function(event) {
+            touchendX = event.changedTouches[0].pageX;
+            handle();
+        });
+
+        function handle() {
+            var swiped = 'swiped: ';
+            if (touchendX - touchstartX > 100) {
+                togglePartIdInput();
+            }
+        }
+
+        function togglePartIdInput() {
+            if (parent.nodeInteractive.is(":visible")) {
+                parent.nodeInteractive.hide();
+                parent.partIdGroupNode.show();
+            } else {
+                parent.nodeInteractive.show();
+                parent.partIdGroupNode.hide();
+            }
+        }
+    })(this);
+
 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
         var string = msg.toLowerCase();
@@ -188,6 +233,13 @@
     function articleScannedClickHandler() {
         handleResult('P#1');
     }
+
+    nodePartIdInput.keydown(function (e) {
+        if (e.keyCode == 9 || e.keyCode == 13) {
+            var carPartId = nodePartIdInput.val();
+            handleResult('P#' + carPartId);
+        }
+    });
 
 </script>
 
