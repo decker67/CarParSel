@@ -1,4 +1,10 @@
-<%- headers = ['interne Artikelnummer', 'Lagerplatz', 'Bezeichnung', 'Preis', 'Bestand', 'VKK', 'Bild 1', 'eBay Kategorie', 'eBay Shop Kategorie 1', 'eBay Shop Kategorie 2', 'Benutzerdef. Merkmale 1', 'Benutzerdef. Merkmale 2', 'HTML', 'Bezeichnung (eBay)', 'Notiz', 'Sofort-kaufen Preis (eBay)', 'Erstellungsdatum', 'Bei eBay einstellen', 'Aktiver Artikel', 'Zustand', 'Währung Stammdaten', 'Währung eBay-Daten', 'MwSt Satz', 'eBay Marktplatz' ] -%>
+<%- headers = ['interne Artikelnummer', 'Lagerplatz', 'Bezeichnung', 'Preis', 'Bestand', 'VKK',
+               'Bild 1','Bild 2','Bild 3','Bild 4','Bild 5','Bild 6','eBay Kategorie', 'eBay Shop Kategorie 1',
+               'eBay Shop Kategorie 2',
+               'Benutzerdef. Merkmale 1', 'Benutzerdef. Merkmale 2', 'HTML', 'Bezeichnung (eBay)',
+               'Notiz', 'Sofort-kaufen Preis (eBay)', 'Erstellungsdatum', 'Bei eBay einstellen',
+               'Aktiver Artikel', 'Zustand', 'Währung Stammdaten', 'Währung eBay-Daten', 'MwSt Satz',
+               'eBay Marktplatz', 'Schluesselwert', 'Versandart' ] -%>
 <%= CSV.generate_line headers -%>
 <%- @car_parts.each do |car_part| -%>
     <%= raw(CSV.generate_line(create_cvs_line(car_part)).strip) %>

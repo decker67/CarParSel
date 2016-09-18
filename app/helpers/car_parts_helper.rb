@@ -18,6 +18,11 @@ module CarPartsHelper
      car_part.quantity,
      car_part.postage_id, #?
      car_part.car_id.nil? ? car_part.picture_url1 : car_part.car.base_image_url + car_part.picture_url1,
+     car_part.car_id.nil? ? car_part.picture_url2 : car_part.car.base_image_url + car_part.picture_url2,
+     car_part.car_id.nil? ? car_part.picture_url3 : car_part.car.base_image_url + car_part.picture_url3,
+     car_part.car_id.nil? ? car_part.picture_url4 : car_part.car.base_image_url + car_part.picture_url4,
+     car_part.car_id.nil? ? car_part.picture_url5 : car_part.car.base_image_url + car_part.picture_url5,
+     car_part.car_id.nil? ? car_part.picture_url6 : car_part.car.base_image_url + car_part.picture_url6,
      car_part.ebay_shop_category,
      car_part.car_id.nil? ? '' : car_part.car.ebay_shop_category,
      car_part.car_id.nil? ? '' : car_part.car.ebay_second_shop_category,
@@ -34,7 +39,10 @@ module CarPartsHelper
      'EUR',
      'EUR',
      '19',
-     'DE'
+     'DE',
+     car_part.car_id.nil? ? '' : car_part.car.key_number2.to_s + car_part.car.key_number3.to_s,
+     car_part.postage_id.nil? ? '' : (['VKK7', 'VKK8', 'VKK9'].include? car_part.postage.name) ? '2' : '1'
+
     ]
   end
 
