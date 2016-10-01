@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801195603) do
+ActiveRecord::Schema.define(version: 20161001165849) do
 
   create_table "brand_models", force: true do |t|
     t.string   "name"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150801195603) do
     t.integer  "state"
     t.integer  "postage_id"
     t.integer  "storage_id"
+    t.string   "th_category"
   end
 
   add_index "car_parts", ["car_id"], name: "index_car_parts_on_car_id"

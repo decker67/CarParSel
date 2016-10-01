@@ -334,7 +334,7 @@ class CarPartsController < ApplicationController
                                      :picture_url3, :picture_url4, :picture_url5, :picture_url6,
                                      :remark, :ebay_shop_category, :second_price, :ean,
                                      :show_car_overview, :show_car_details, :state, :postage_id,
-                                     :storage_id
+                                     :storage_id, :th_category
                                      )
   end
 

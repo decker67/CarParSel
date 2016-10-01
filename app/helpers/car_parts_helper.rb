@@ -41,8 +41,8 @@ module CarPartsHelper
      '19',
      'DE',
      car_part.car_id.nil? ? '' : car_part.car.key_number2.to_s + car_part.car.key_number3.to_s,
-     car_part.postage_id.nil? ? '' : (['VKK7', 'VKK8', 'VKK9'].include? car_part.postage.name) ? '2' : '1'
-
+     car_part.postage_id.nil? ? '' : (['VKK7', 'VKK8', 'VKK9'].include? car_part.postage.name) ? '2' : '1',
+     car_part.th_category
     ]
   end
 
