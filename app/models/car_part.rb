@@ -14,6 +14,7 @@ class CarPart < ActiveRecord::Base
 
   belongs_to :car, inverse_of: :car_parts
   belongs_to :storage, :inverse_of => :car_parts
+  belongs_to :postage, :inverse_of => :car_parts
 
   def formatted_id
     id_as_string = id.to_s
