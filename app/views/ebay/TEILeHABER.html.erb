@@ -595,25 +595,7 @@
 </div>
 <!-- ADDITIONAL BOX END -->
 <div class="col-right sidebar">
-  <div class="widget">
-    <div class="widget-content">
-      <h2 class="widget-title">Artikelbilder</h2>
 
-      <div class="spacing">
-        <div class="gal">
-          <!-- GALLERY BOX START -->
-          <div class="artikelbilder" style="background-size: 530px 400px; background-image:url(<%= @car_picture_url %>)" align="center">
-
-            <% @picture_parts_urls.each do |url| %>
-                <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px">
-                  <span><img src="<%= url %>" height="400px" width="530px"></span></a>
-            <% end %>
-          </div>
-          <!-- GALLERY BOX END -->
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- ITEM DESCRIPTION BOX START -->
   <div class="widget">
     <div class="widget-content">
@@ -644,11 +626,27 @@
         <!-- ITEM ADDITIONAL BOX 0 END -->
     <% end %>
 
+    <div class="spacing"></div>
+
     <!-- ITEM ADDITIONAL BOX 1 START -->
     <% if !@car.nil? && (@car_part.show_car_details.nil? || @car_part.show_car_details != 1) %>
         <div id="car_data" class="widget">
           <div class="widget-content">
             <h2 class="widget-title">Daten vom Spenderfahrzeug</h2>
+
+            <div class="spacing">
+              <div class="gal">
+                <!-- GALLERY BOX START -->
+                <div class="artikelbilder" style="background-size: 530px 400px; background-image:url(<%= @car_picture_url %>)" align="center">
+
+                  <% @picture_parts_urls.each do |url| %>
+                      <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px">
+                        <span><img src="<%= url %>" height="400px" width="530px"></span></a>
+                  <% end %>
+                </div>
+                <!-- GALLERY BOX END -->
+              </div>
+            </div>
 
             <div class="spacing">
               <table style="margin-left: auto; margin-right: auto; font-size: 130%;">
@@ -696,29 +694,13 @@
             Bitte verstehen Sie, dass wir immer das Teil verkaufen, welches auch Beschrieben ist. Bei Artikeln wie Türen ist damit immer die Tür ohne Anbauteile an sich gemeint. Wir geben diese Teile dann schenkungsweise dazu, bitte denken Sie daran, dass Sie über die möglichen Anbauteile (z.B. Schläuche, Kabel, Stecker, Griffe etc.) keine Gewährleistung erhalten, da Sie nicht Bestandteil des Angebotes an sich sind.
           </p>
           <p align="center">
-            Rückversand und Reklamationen sind ohne Probleme möglich. Am Einfachsten geht dies, wenn Sie uns kurz anrufen oder eine Nachricht an ebay@autohalle24.de schicken. Hier bekommen Sie dann ggf. auch den Rückversandschein.
+            Rückversand und Reklamationen sind ohne Probleme möglich. Am Einfachsten geht dies, wenn Sie uns kurz anrufen oder eine Nachricht an info@autohalle24.de schicken. Hier bekommen Sie dann ggf. auch den Rückversandschein.
           </p>
         </div>
       </div>
     </div>
 
     <!-- ITEM ADDITIONAL BOX 5 START -->
-    <div class="widget">
-      <div class="widget-content">
-        <h2 class="widget-title">KUNDENBETREUUNG</h2>
-        <div class="spacing">
-          <p align="center">Haben Sie Fragen oder Anregungen?
-            Dann erreichen Sie uns per E-Mail: ebay@autohalle24.de
-
-            Wenn Sie Teile benötigen, welche wir nicht auf Lager haben und auf Ebay nicht anbieten, nehmen Sie
-            trotzdem
-            Kontakt mit uns auf. Wir sind auch Vermittler von KFZ-Teilen. Stellen Sie uns eine Anfrage per E-Mail mit
-            möglichst genauen Informationen zum gesuchten Artikel. Wir machen uns gerne die Mühe und fragen bei
-            unseren
-            Teilelieferanten nach.</p>
-        </div>
-      </div>
-    </div>
     <!-- ITEM ADDITIONAL BOX 5 END -->
 
     <div class="widget">
@@ -769,7 +751,7 @@
         <div class="spacing">
           <p align="center">Wir sind bestrebt, alle gesetzlichen Anforderungen, Vorschriften und Informationspflichten
             vollständig zu erfüllen und Schutzrechtsverletzungen zu vermeiden. Falls Sie vermuten, dass dies nicht der
-            Fall ist, teilen Sie dies bitte umgehend per Email an ebay@autohalle24.de mit, damit zügig Abhilfe
+            Fall ist, teilen Sie dies bitte umgehend per Email an info@autohalle24.de mit, damit zügig Abhilfe
             geschaffen
             werden kann. Bitte nehmen Sie zur Kenntnis, dass die zeitaufwendigere Einschaltung eines Rechtsanwaltes
             zur
