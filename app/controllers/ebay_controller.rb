@@ -15,11 +15,11 @@ class EbayController < ApplicationController
     render formats: [:html], action: CarPart::EBAY_TEMPLATES[session[:template].to_i][0]
   end
 
-  def euraf
+  def Euraf
 
   end
 
-  def autohalle
+  def Autohalle
 
   end
 
