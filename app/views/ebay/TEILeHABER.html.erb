@@ -17,10 +17,10 @@
 
 <div id="ebay_content">
 
-  <h2 class="">Herzlich Willkommen bei autohalle24de</h2>
+  <h1 style="text-decoration: underline; color: deepskyblue;">Herzlich Willkommen bei autohalle24de</h1>
 
   <div class="">
-    <h2 class="">Artikelbezeichnung</h2>
+    <h1 style="text-decoration: underline;">Artikelbezeichnung</h1>
 
     <div>
       <div style="font-size: 2em; padding-top: 10px; padding-bottom: 10px;"><%= @car_part.description %></div>
@@ -29,7 +29,7 @@
     </div>
 
     <% if @car_part.remark_given? %>
-        <h2 class="">Bemerkungen</h2>
+        <h1 style="text-decoration: underline;">Bemerkungen</h1>
 
         <div>
           <p align="center"><%= @car_part.remark %></p>
@@ -38,13 +38,13 @@
 
     <% if !@car.nil? && (@car_part.show_car_details.nil? || @car_part.show_car_details != 1) %>
         <div id="car_data">
-          <h2 class="">Daten vom Spenderfahrzeug</h2>
+          <h1 style="text-decoration: underline;">Daten vom Spenderfahrzeug</h1>
 
           <div class="">
-            <img class="" src="<%= @car_picture_url %>"/>
+            <img class="" style="width: 50%;" src="<%= @car_picture_url %>"/>
 
             <div class="">
-              <table border="1" style="font-size: 130%;">
+              <table border="1" style="font-size: 150%;">
                 <%= @car.model_type.nil? || @car.model_type.brand_model.nil? || @car.model_type.brand_model.brand.nil? ? '' : create_details_from('Marke', @car.model_type.brand_model.brand.name) %>
                 <%= @car.model_type.nil? || @car.model_type.brand_model.nil? ? '' : create_details_from('Modell', @car.model_type.brand_model.name) %>
                 <%= @car.model_type.nil? ? '' : create_details_from('Typ', @car.model_type.model_type) %>
