@@ -9,7 +9,10 @@ module CarPartsHelper
   def create_cvs_line(car_part)
     html = render :text => renderActionInOtherController(
                       EbayController,
-                      :create,{ id: car_part, dont_show_generator_controls: true})
+                      :create,{ id: car_part, dont_show_generator_controls: true, template: 0})
+    htmlTeilehaber = render :text => renderActionInOtherController(
+                      EbayController,
+                      :create,{ id: car_part, dont_show_generator_controls: true, template: 2})
 
     [car_part.formatted_id,
      car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
@@ -42,7 +45,8 @@ module CarPartsHelper
      'DE',
      car_part.car_id.nil? ? '' : car_part.car.key_number2.to_s + car_part.car.key_number3.to_s,
      car_part.postage_id.nil? ? '' : (['VKK7', 'VKK8', 'VKK9'].include? car_part.postage.name) ? '2' : '1',
-     car_part.th_category
+     car_part.th_category,
+     htmlTeilehaber
     ]
   end
 
