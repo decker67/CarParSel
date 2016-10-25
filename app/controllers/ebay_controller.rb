@@ -12,7 +12,8 @@ class EbayController < ApplicationController
     @car_picture_url, @picture_parts_urls = create_picture_urls(@car, @car_part, base_picture_url(@car))
     @dont_show_generator_controls = params[:dont_show_generator_controls]
 
-    render formats: [:html], action: CarPart::EBAY_TEMPLATES[params[:template]][0]
+    template = session[:template].to_i || params[:template]
+    render formats: [:html], action: CarPart::EBAY_TEMPLATES[template][0]
   end
 
   def Euraf
