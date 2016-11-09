@@ -15,12 +15,12 @@
 <% end %>
 
 
-<div id="ebay_content">
+<div id="ebay_content" style="font-family: Arial, sans-serif">
 
-  <h1 style="text-decoration: underline; color: deepskyblue;">Herzlich Willkommen bei autohalle24de</h1>
+  <h1 style="">Herzlich Willkommen bei autohalle24de</h1>
 
   <div class="">
-    <h1 style="text-decoration: underline;">Artikelbezeichnung</h1>
+    <h1 style="">Artikelbezeichnung</h1>
 
     <div>
       <div style="font-size: 2em; padding-top: 10px; padding-bottom: 10px;"><%= @car_part.description %></div>
@@ -29,16 +29,16 @@
     </div>
 
     <% if @car_part.remark_given? %>
-        <h1 style="text-decoration: underline;">Bemerkungen</h1>
+        <h1 style="">Notiz</h1>
 
         <div>
-          <p align="center"><%= @car_part.remark %></p>
+          <p><%= @car_part.remark %></p>
         </div>
     <% end %>
 
     <% if !@car.nil? && (@car_part.show_car_details.nil? || @car_part.show_car_details != 1) %>
         <div id="car_data">
-          <h1 style="text-decoration: underline;">Daten vom Spenderfahrzeug</h1>
+          <h1 style="">Daten vom Spenderfahrzeug</h1>
 
           <div class="">
             <img class="" style="width: 50%;" src="<%= @car_picture_url %>"/>

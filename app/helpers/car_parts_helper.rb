@@ -14,6 +14,10 @@ module CarPartsHelper
                       EbayController,
                       :create,{ id: car_part, dont_show_generator_controls: true, template: 2})
 
+    teilenummer = 'Teilenummern:' + (car_part.part_number.nil? ? '' : car_part.part_number) #Teilenummern: 1234, 1234,
+
+    automarke = (car_part.car_id.nil? || car_part.car.model_type.nil? || car_part.car.model_type.brand_model.nil? || car_part.car.model_type.brand_model.brand.nil?) ? '' : create_csv_details_from('Marke', car_part.car.model_type.brand_model.brand.name)
+
     [car_part.formatted_id,
      car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
      car_part.description,
@@ -29,7 +33,7 @@ module CarPartsHelper
      car_part.ebay_shop_category,
      car_part.car_id.nil? ? '' : car_part.car.ebay_shop_category,
      car_part.car_id.nil? ? '' : car_part.car.ebay_second_shop_category,
-     'Teilenummern:' + (car_part.part_number.nil? ? '' : car_part.part_number), #Teilenummern: 1234, 1234,
+     teilenummer, #Teilenummern: 1234, 1234,
      car_part.car_id.nil? || !car_part.show_car_details ? '' : create_car_details(car_part.car),
      html,
      car_part.description,
@@ -46,7 +50,9 @@ module CarPartsHelper
      car_part.car_id.nil? ? '' : car_part.car.key_number2.to_s + car_part.car.key_number3.to_s,
      car_part.postage_id.nil? ? '' : (['VKK7', 'VKK8', 'VKK9'].include? car_part.postage.name) ? '2' : '1',
      car_part.th_category,
-     htmlTeilehaber
+     htmlTeilehaber,
+     teilenummer,
+     automarke
     ]
   end
 

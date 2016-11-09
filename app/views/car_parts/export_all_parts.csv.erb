@@ -4,7 +4,8 @@
                'Benutzerdef. Merkmale 1', 'Benutzerdef. Merkmale 2', 'HTML', 'Bezeichnung (eBay)',
                'Notiz', 'Sofort-kaufen Preis (eBay)', 'Erstellungsdatum', 'Bei eBay einstellen',
                'Aktiver Artikel', 'Zustand', 'Währung Stammdaten', 'Währung eBay-Daten', 'MwSt Satz',
-               'eBay Marktplatz', 'Schluesselwert', 'Versandart', 'TEILeHABER-Kategorie', 'HTML-TEILeHABER' ] -%>
+               'eBay Marktplatz', 'Schluesselwert', 'Versandart', 'TEILeHABER-Kategorie', 'HTML-TEILeHABER',
+               'Teilenummer_Kopie', 'Automarke' ] -%>
 <%= CSV.generate_line headers -%>
 <%- @car_parts.each do |car_part| -%>
     <%= raw(CSV.generate_line(create_cvs_line(car_part)).strip) %>
