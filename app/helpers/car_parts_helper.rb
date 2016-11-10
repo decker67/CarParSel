@@ -14,9 +14,9 @@ module CarPartsHelper
                       EbayController,
                       :create,{ id: car_part, dont_show_generator_controls: true, template: 2})
 
-    teilenummer = 'Teilenummern:' + (car_part.part_number.nil? ? '' : car_part.part_number) #Teilenummern: 1234, 1234,
+    teilenummer = (car_part.part_number.nil? ? '' : car_part.part_number) #Teilenummern: 1234, 1234,
 
-    automarke = (car_part.car_id.nil? || car_part.car.model_type.nil? || car_part.car.model_type.brand_model.nil? || car_part.car.model_type.brand_model.brand.nil?) ? '' : create_csv_details_from('Marke', car_part.car.model_type.brand_model.brand.name)
+    automarke = (car_part.car_id.nil? || car_part.car.model_type.nil? || car_part.car.model_type.brand_model.nil? || car_part.car.model_type.brand_model.brand.nil?) ? '' : create_csv_details_from(nil, car_part.car.model_type.brand_model.brand.name)
 
     [car_part.formatted_id,
      car_part.storage_id.nil? ? 'unbekannt' : car_part.storage.name,
@@ -82,7 +82,7 @@ module CarPartsHelper
 
   def create_csv_details_from( field_name, field_value)
     if !field_value.nil? && field_value != ''
-      field_name + ':' + field_value
+      field_name.nil? ? field_value : field_name + ':' + field_value
     end
   end
 
