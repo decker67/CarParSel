@@ -140,7 +140,7 @@
   <table class="table table-hover">
     <thead>
     <tr>
-      <th><%= check_box_tag 'a' %></th>
+      <th><%= check_box_tag('check_all', 'check_all', false, onclick: 'checkAllClicked(this)') %></th>
       <th>Status</th>
       <th>Fahrzeug</th>
       <th>Beschreibung</th>
@@ -159,8 +159,8 @@
     <tbody>
     <% @car_parts.each do |car_part| %>
         <tr>
-          <td><%= check_box_tag 'a' %></td>
-          <td><%= image_tag("ball_#{car_part.ebay_state}.png", ondblclick: 'stateOnDoubleClickHandler( this )', 'data-id' => "#{car_part.id}", 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => "#{car_part.state_as_string}") %> </td>
+          <td><%= check_box_tag('check_'+car_part.id.to_s, 'check_'+car_part.id.to_s, false, onclick: 'checkOneClicked(this)') %></td>
+          <td><%= image_tag("ball_#{car_part.ebay_state}.png", ondblclick: 'stateOnDoubleClickHandler( this )', 'data-id' => "ball_#{car_part.id}", 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => "#{car_part.state_as_string}") %> </td>
           <td><%= car_part.car.nil? ? '-' : link_to(car_part.car.car_identifier, edit_car_url(car_part.car), class: 'btn btn-default') %></td>
           <td class="vertical_centered" id="<%= "#{car_part.id}_description" %>"><%= car_part.description.truncate(60, omission: '...') %></td>
           <td class="vertical_centered"><%= number_to_currency car_part.price %></td>
@@ -181,60 +181,5 @@
 
 <%= javascript_tag do %>
 
-    var image_urls = [
-    '<%= image_tag "ball_0.png" %>',
-    '<%= image_tag "ball_1.png" %>',
-    '<%= image_tag "ball_2.png" %>',
-    '<%= image_tag "ball_3.png" %>',
-    '<%= image_tag "ball_4.png" %>'
-    ];
-
-
-    function id2addKeyUpHandler(event) {
-    if(event.keyCode === 13) {
-    $('#paging_count').submit();
-    }
-    }
-
-    function limitOnChangeHandler() {
-    $('#paging_count').submit();
-    }
-
-    function stateOnDoubleClickHandler(element) {
-    var imageTag = $(element);
-    var car_part_id = imageTag.attr('data-id');
-    var requestForState = '/toggle_car_part_state?car_part_id=' + car_part_id;
-    $.get(requestForState).done(function (result) {
-    var srcOfImageTag = imageTag.attr('src');
-    var image_tag_for_state = image_urls[ result.state ];
-    element.src = image_tag_for_state.split('src="')[ 1 ].split( '"' )[ 0 ];
-    element.title = result.state_as_string;
-    element.alt = result.state_as_string;
-    });
-    }
-
-    function rejectClickHandler(node) {
-    var tag = $(node);
-    var car_part_id = tag.attr('data-id');
-    var request = '/reject_car_part?car_part_id=' + car_part_id;
-    $.get(request).done(function (result) {
-    changeDescription(car_part_id, result.description);
-    });
-    }
-
-    function separateClickHandler(node) {
-    var tag = $(node);
-    var car_part_id = tag.attr('data-id');
-    var request = '/separate_car_part?car_part_id=' + car_part_id;
-    $.get(request).done(function (result) {
-    changeDescription(car_part_id, result.description);
-    });
-    }
-
-    function changeDescription(id, value) {
-    var tag = $('#' + id + '_description');
-    //console.log(id, value, tag);
-    tag[0].innerHTML = value;
-    }
 
 <% end %>

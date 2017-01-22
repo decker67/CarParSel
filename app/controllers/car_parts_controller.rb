@@ -13,8 +13,9 @@ class CarPartsController < ApplicationController
 
   def toggle_car_part_state
     id = params[:car_part_id]
+    state = params[:state]
     car_part = CarPart.find( id )
-    car_part.toggle_state
+    car_part.toggle_state(state)
     #logger.debug( car_part.inspect )
     car_part.save
     render json: { state: car_part.ebay_state,

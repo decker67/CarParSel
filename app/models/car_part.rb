@@ -29,8 +29,10 @@ class CarPart < ActiveRecord::Base
     AUCTION_STATE[ ebay_state ][ 0 ]
   end
 
-  def toggle_state
-    self.ebay_state = ( ebay_state == 4 ) ? 0 : ( ebay_state + 1 )
+  def toggle_state(state)
+    self.ebay_state = state.nil? ?
+        (( ebay_state == 4 ) ? 0 : ( ebay_state + 1 )) :
+        state
   end
 
   def reject
