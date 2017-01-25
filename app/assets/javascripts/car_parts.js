@@ -12,7 +12,7 @@ var multipleChangeMode;
 
 function checkAllClicked(checkbox) {
     var checked = checkbox.checked;
-    $('[id^=check_]').attr('checked', checked);
+    $('[id^=check_]').prop('checked', checked);
     multipleChangeMode = (checked === true);
 }
 
