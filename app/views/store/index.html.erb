@@ -17,17 +17,9 @@
     <audio id="scan-end-sound" src="/assets/scanEnd.mp3" type="audio/mpeg"></audio>
 
     <div class="form-group" id="partId-group">
-      <label for="partId">Artikelnummer</label>
-      <input type="number" class="form-control" id="partId" placeholder="id">
+      <label for="partId">Scan</label>
+      <input type="text" class="form-control" id="partId" placeholder="id">
     </div>
-
-    <% if Rails.env.development? %>
-        <%= button_tag 'Storage Scanned', type: 'button', onclick: 'storageScannedClickHandler()', class: 'btn', role: 'button' %>
-        <%= button_tag 'Article Scanned', type: 'button', onclick: 'articleScannedClickHandler()', class: 'btn', role: 'button' %>
-    <% else %>
-        <!-- scanner image -->
-        <div id="interactive" class="viewport"></div>
-    <% end %>
 
     <div>
       <%= button_tag 'Undo', type: 'button', onclick: 'undoClickHandler()', class: 'btn btn-danger', role: 'button' %>
@@ -38,43 +30,7 @@
 
 <script type="text/javascript">
 
-    var nodeInteractive = $('#interactive');
-    var partIdGroupNode = $('#partId-group');
     var nodePartIdInput = $('#partId');
-
-    (function (parent) {
-        var touchstartX = 0;
-        var touchendX = 0;
-        var element = document.getElementById('scanner-page');
-
-        partIdGroupNode.hide();
-
-        element.addEventListener('touchstart', function(event) {
-            touchstartX = event.changedTouches[0].pageX;
-        });
-        element.addEventListener('touchend', function(event) {
-            touchendX = event.changedTouches[0].pageX;
-            handle();
-        });
-
-        function handle() {
-            var swiped = 'swiped: ';
-            if (touchendX - touchstartX > 100) {
-                togglePartIdInput();
-            }
-        }
-
-        function togglePartIdInput() {
-            if (parent.nodeInteractive.is(":visible")) {
-                parent.nodeInteractive.hide();
-                parent.partIdGroupNode.show();
-            } else {
-                parent.nodeInteractive.show();
-                parent.partIdGroupNode.hide();
-            }
-        }
-    })(this);
-
 
     window.onerror = function (msg, url, lineNo, columnNo, error) {
         var string = msg.toLowerCase();
@@ -95,8 +51,6 @@
         return false;
     };
 
-    var development = "<%= Rails.env.development? %>";
-
     var audioNode = document.getElementById("scan-sound");
     var audioScanEndNode = document.getElementById('scan-end-sound');
     var storeNameNode = document.getElementById('store-name');
@@ -108,52 +62,6 @@
     var previousStorageId;
     var previousPartId;
 
-    var configuration = {
-        inputStream: {
-            type: "LiveStream",
-            constraints: {
-                width: 640,
-                height: 100,
-                facing: "environment" // or user
-            }
-        },
-        locator: {
-            patchSize: "medium",
-            halfSample: true
-        },
-        numOfWorkers: 4,
-        decoder: {
-            readers: ["code_128_reader"]
-        },
-        locate: true
-    };
-
-    if (development == 'false') {
-        init();
-    }
-
-    function init() {
-        Quagga.init(configuration, function (error) {
-            var previousCode;
-            if (error) {
-                log(error.name + ' ' + error.message);
-            } else {
-                Quagga.start();
-                var stoppButtonNode = document.getElementById('stopp-button');
-                stoppButtonNode.onclick = function () {
-                    Quagga.stop();
-                };
-                Quagga.onDetected(function (result) {
-                    var code = result.codeResult.code;
-                    if (code != previousCode) {
-                        previousCode = code;
-                        //log(code);
-                        handleResult(code);
-                    }
-                });
-            }
-        });
-    }
 
     function log(value) {
         var errorNode = document.getElementById('log');
@@ -226,18 +134,10 @@
         }
     }
 
-    function storageScannedClickHandler() {
-        handleResult('S#1');
-    }
-
-    function articleScannedClickHandler() {
-        handleResult('P#1');
-    }
-
     nodePartIdInput.keydown(function (e) {
         if (e.keyCode == 9 || e.keyCode == 13) {
-            var carPartId = nodePartIdInput.val();
-            handleResult('P#' + carPartId);
+            var id = nodePartIdInput.val();
+            handleResult(id);
         }
     });
 
