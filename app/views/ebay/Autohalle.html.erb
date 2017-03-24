@@ -484,11 +484,11 @@
       <!-- SLOGAN END -->
     </div>
     <!-- SEARCH BOX START -->
-    <div class="header-search">
+    <!-- div class="header-search">
       <form class="search" action="http://stores.ebay.de/LOGO-DESIGN-SHOP?_rdc=1" method="GET">
         <input class="search_feld" id="search_value" name="_nkw" value="Suchbegriff eingeben..." type="text">
         <input class="search_button" id="submit" value="" type="submit"></form>
-    </div>
+    </div -->
     <!-- SEARCH BOX END -->
   </div>
   <!-- MENU START -->
@@ -948,6 +948,8 @@
 
 </body>
 
+<% if !@dont_show_generator_controls %>
+
 <script>
     function toggleCarData(checkBox) {
         var div = document.getElementById('car_data');
@@ -969,5 +971,6 @@
 
     copyToClipboard();
 </script>
-
+<% end %>
+    
 </div>
