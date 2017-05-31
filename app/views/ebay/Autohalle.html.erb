@@ -465,6 +465,10 @@
     }
 
   @media (max-width: 320px) {
+    .container {
+      width: 100%;
+    }
+
     .padder {
       padding: 0;
     }
@@ -477,8 +481,14 @@
       width: 100%;
     }
 
-  }
+    .gal {
+      width: 320px;
+    }
 
+    .artikelbilder {
+      width: 320px;
+    }
+  }
 </style>
 
 <body>
@@ -511,18 +521,18 @@
   <div id="master-nav" class="nav container">
     <ul>
       <li class="active">
-        <a href="http://stores.ebay.de/autohalle24de">eBay Shop</a></li>
+        <a href="http://stores.ebay.de/autohalle24de" target="_blank">eBay Shop</a></li>
       <li>
-        <a href="http://feedback.ebay.de/ws/eBayISAPI.dll?ViewFeedback2&userid=autohalle24de&rt=nc">Bewertungen</a>
+        <a href="http://feedback.ebay.de/ws/eBayISAPI.dll?ViewFeedback2&userid=autohalle24de&rt=nc" target="_blank">Bewertungen</a>
       </li>
       <li>
-        <a href="http://my.ebay.de/ws/eBayISAPI.dll?AcceptSavedSeller&sellerid=autohalle24de">Als
+        <a href="http://my.ebay.de/ws/eBayISAPI.dll?AcceptSavedSeller&sellerid=autohalle24de" target="_blank">Als
           Favorit speichern</a>
       </li>
       <li>
-        <a href="http://www.ebay.de/usr/autohalle24de?rt=nc">&Uuml;ber uns</a></li>
+        <a href="http://www.ebay.de/usr/autohalle24de?rt=nc" target="_blank">&Uuml;ber uns</a></li>
       <li>
-        <a href="http://contact.ebay.de/ws/eBayISAPI.dll?FindAnswers&requested=autohalle24de&_trksid=p2050430.m2531.l4583&rt=nc">Kontakt</a></li>
+        <a href="http://contact.ebay.de/ws/eBayISAPI.dll?FindAnswers&requested=autohalle24de&_trksid=p2050430.m2531.l4583&rt=nc" target="_blank">Kontakt</a></li>
     </ul>
   </div>
   <!-- MENU END -->
@@ -544,7 +554,7 @@
                 <li style="font-size: 120%; text-align: center"><%= line %></li>
             <% end %>
             <li style="font-size: 130%; text-align: center">
-              <a href="<%= @car.nil? ? '' : @car.ebay_url_all_parts %>">Alle Teile aus dem Spenderfahrzeug auf einen
+              <a href="<%= @car.nil? ? '' : @car.ebay_url_all_parts %>" target="_blank">Alle Teile aus dem Spenderfahrzeug auf einen
                 Blick</a></li>
           </ul>
         </div>
@@ -731,7 +741,7 @@
           <div class="artikelbilder" style="background-size: 530px 400px; background-image:url(<%= @car_picture_url %>)" align="center">
 
             <% @picture_parts_urls.each do |url| %>
-                <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px">
+                <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px" target="_blank">
                   <span><img src="<%= url %>" height="400px" width="530px"></span></a>
             <% end %>
           </div>
@@ -952,7 +962,7 @@
 </div>
 <div id="master-footer" class="container">
   <p class="copyrights"><span class="style5">Copyright &copy 2013</span>
-    <a href="http://stores.ebay.pl/LOGO-DESIGN-SHOP?_rdc=1"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/gfdesign.png" width="110" height="15" border="0"></a><span class="style5"> Alle Rechte vorbehalten.</span>
+    <a href="http://stores.ebay.pl/LOGO-DESIGN-SHOP?_rdc=1" target="_blank"><img src="http://gfdesign.nazwa.pl/ebay_templates/pro/gfdesign.png" width="110" height="15" border="0"></a><span class="style5"> Alle Rechte vorbehalten.</span>
   </p>
 </div>
 </div>
