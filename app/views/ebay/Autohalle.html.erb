@@ -469,6 +469,10 @@
       width: 100%;
     }
 
+    #page-content .padder {
+      padding: 0;
+    }
+
     .padder {
       padding: 0;
     }
@@ -741,7 +745,7 @@
           <div class="artikelbilder" style="background-size: 530px 400px; background-image:url(<%= @car_picture_url %>)" align="center">
 
             <% @picture_parts_urls.each do |url| %>
-                <a class="thumbnail" href="#thumb"><img src="<%= url %>" border="0" height="75px" width="100px" target="_blank">
+                <a class="thumbnail" href="#thumb" target="_blank"><img src="<%= url %>" border="0" height="75px" width="100px">
                   <span><img src="<%= url %>" height="400px" width="530px"></span></a>
             <% end %>
           </div>
