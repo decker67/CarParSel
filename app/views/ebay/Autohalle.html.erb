@@ -464,7 +464,12 @@
         padding: 5px;
     }
 
-  @media (max-width: 375px) {
+    .thumbnail span img
+    {
+      width: 530px;
+    }
+
+    @media (max-width: 375px) {
     .container {
       width: 100%;
       margin: 0;
@@ -496,6 +501,18 @@
 
     .artikelbilder {
       width: 320px;
+    }
+
+    .thumbnail span img
+    {
+      width: 320px;
+    }
+
+    .thumbnail:hover span {
+      visibility: visible;
+      top: -410px;
+      left: 0;
+      z-index: 50;
     }
   }
 </style>
@@ -750,8 +767,12 @@
           <div class="artikelbilder" style="background-size: 530px 400px; background-image:url(<%= @car_picture_url %>)" align="center">
 
             <% @picture_parts_urls.each do |url| %>
-                <a class="thumbnail" href="#thumb" target="_blank"><img src="<%= url %>" border="0" height="75px" width="100px">
-                  <span><img src="<%= url %>" height="400px" width="530px"></span></a>
+                <a class="thumbnail" href="#thumb" target="_blank">
+                  <img src="<%= url %>" border="0" height="75px" width="100px">
+                  <span>
+                    <img src="<%= url %>" height="400px">
+                  </span>
+                </a>
             <% end %>
           </div>
           <!-- GALLERY BOX END -->
